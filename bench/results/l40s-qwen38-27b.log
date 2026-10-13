@@ -1,0 +1,37 @@
+l40s-vllm qwen3.8-27b-fp8: smoke OK
+  speed: {'median_time_to_first_text_s': 0.12856208346784115, 'median_completion_tokens_per_total_second': 24.950154409518518}
+  Q1 coding: OK (9.0s)
+  Q2 coding: OK (10.7s)
+  Q3 math: OK (97.7s)
+  Q4 math: OK (46.6s)
+  Q5 math: OK (37.4s)
+  Q6 math: OK (34.1s)
+  Q7 math: OK (72.6s)
+  Q8 math: OK (39.6s)
+  Q9 logic: OK (59.6s)
+  Q10 logic: OK (6.1s)
+  Q11 coding: OK (23.6s)
+  Q12 coding: OK (5.7s)
+  Q13 coding: OK (9.8s)
+  Q14 coding: OK (9.5s)
+  Q15 coding: OK (7.3s)
+  Q16 math: OK (206.4s)
+  Q17 math: OK (202.6s)
+  Q18 math: OK (88.3s)
+  Q19 math: BAD (123.9s)
+  Q20 math: OK (86.7s)
+  Q21 math: OK (58.5s)
+  Q22 math: OK (39.8s)
+  Q23 math: OK (44.6s)
+  Q24 logic: OK (50.3s)
+  Q25 coding: OK (32.8s)
+  Q26 coding: OK (19.1s)
+  Q27 coding: OK (7.7s)
+  Q28 coding: OK (21.4s)
+  Q29 coding: OK (11.2s)
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1684, 'wait_before_first_text_s': 0.83, 'reading_tok_s': 2035.0, 'reply_tokens': 200, 'seconds': 8.75}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6320, 'wait_before_first_text_s': 2.75, 'reading_tok_s': 2300.5, 'reply_tokens': 179, 'seconds': 9.95}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 24313, 'wait_before_first_text_s': 10.82, 'reading_tok_s': 2247.4, 'reply_tokens': 200, 'seconds': 19.17}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 97808, 'wait_before_first_text_s': 51.35, 'reading_tok_s': 1904.9, 'reply_tokens': 196, 'seconds': 60.83}
+  document 262144: {'context': 262144, 'document_chars': 754974, 'too_long': True, 'error': 'HTTP 400: {"error":{"message":"This model\'s maximum context length is 139552 tokens. However, your prompt contains at least 139553 input tokens, which exceeds this limit even without any output tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=139553)","type":"BadRequestErro'}
+l40s-vllm qwen3.8-27b-fp8: {'correct': 28, 'total': 29, 'overall_pct': 96.55172413793103, 'avg_seconds_per_question': 50.43448434037895, 'hit_token_limit': 0, 'median_time_to_first_text_s': 0.12856208346784115, 'median_completion_tokens_per_total_second': 24.950154409518518}

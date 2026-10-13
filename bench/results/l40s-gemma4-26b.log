@@ -1,0 +1,37 @@
+l40s-vllm gemma-4-26b-fp8: smoke OK
+  speed: {'median_time_to_first_text_s': 0.12653195764869452, 'median_completion_tokens_per_total_second': 107.48876406759567}
+  Q1 coding: OK (2.1s)
+  Q2 coding: OK (3.1s)
+  Q3 math: OK (9.4s)
+  Q4 math: OK (10.3s)
+  Q5 math: OK (5.7s)
+  Q6 math: OK (6.6s)
+  Q7 math: OK (8.7s)
+  Q8 math: OK (6.0s)
+  Q9 logic: OK (7.2s)
+  Q10 logic: OK (1.3s)
+  Q11 coding: OK (4.1s)
+  Q12 coding: OK (1.6s)
+  Q13 coding: OK (2.9s)
+  Q14 coding: OK (2.8s)
+  Q15 coding: OK (2.0s)
+  Q16 math: OK (49.7s)
+  Q17 math: OK (9.2s)
+  Q18 math: OK (9.5s)
+  Q19 math: OK (10.2s)
+  Q20 math: OK (8.6s)
+  Q21 math: OK (7.3s)
+  Q22 math: OK (5.7s)
+  Q23 math: OK (12.0s)
+  Q24 logic: OK (7.3s)
+  Q25 coding: BAD (8.5s)
+  Q26 coding: OK (16.5s)
+  Q27 coding: OK (4.9s)
+  Q28 coding: OK (18.9s)
+  Q29 coding: OK (1.9s)
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1777, 'wait_before_first_text_s': 0.98, 'reading_tok_s': 1814.9, 'reply_tokens': 185, 'seconds': 2.66}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6778, 'wait_before_first_text_s': 0.58, 'reading_tok_s': 11741.6, 'reply_tokens': 200, 'seconds': 2.5}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 25962, 'wait_before_first_text_s': 2.81, 'reading_tok_s': 9245.8, 'reply_tokens': 200, 'seconds': 5.03}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 103996, 'wait_before_first_text_s': 25.13, 'reading_tok_s': 4138.8, 'reply_tokens': 200, 'seconds': 27.82}
+  document 262144: {'context': 262144, 'document_chars': 754974, 'prompt_tokens': 221187, 'wait_before_first_text_s': 98.81, 'reading_tok_s': 2238.4, 'reply_tokens': 200, 'seconds': 102.27}
+l40s-vllm gemma-4-26b-fp8: {'correct': 28, 'total': 29, 'overall_pct': 96.55172413793103, 'avg_seconds_per_question': 8.402245750072701, 'hit_token_limit': 0, 'median_time_to_first_text_s': 0.12653195764869452, 'median_completion_tokens_per_total_second': 107.48876406759567}

@@ -1,0 +1,11 @@
+{
+  "source": "ships-computer (github.com/chrishonson/ships-computer), the live voice loop in ships_computer/live.py",
+  "file": "voice/2026-10-24-135800-live.jsonl",
+  "model": "gemma4:latest",
+  "speech_to_text": "Parakeet v3",
+  "text_to_speech": "Pocket TTS",
+  "measured": "2026-10-24",
+  "ollama_version": "0.40.10",
+  "session": "Scripted session (ships-computer configs/live-test.toml) with demo/live-demo.toml: recorded speech fed in real time, 5 turns (Smart Turn v3 semantic endpointing, 300 ms hangover), one of them interrupting the reply.",
+  "provenance": "Recorded with demo/live-demo.toml on Ollama 0.40.10. A matching scripted session with nemotron-3.5-lightning:30b-a3b-mlx (voice/2026-10-24-133140-live.jsonl) measured 906 to 1005 ms on completed turns."
+}

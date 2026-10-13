@@ -1,0 +1,24 @@
+== step: 0.40.3 2K-32K Fri Oct 16 04:49:23 CDT 2026 | loaded on main: ['gemma4:latest']
+== deepseek-r1:latest
+  deepseek-r1:latest ctx=2048: {'prompt_tokens': 1842, 'prefill_tok_s': 300.5, 'wait_before_first_token_s': 6.13, 'reply_tokens': 200, 'gen_tok_s_with_document': 24.8, 'memory_gb_after': 6.3, 'memory_gb': 6.3}
+  deepseek-r1:latest ctx=8192: {'prompt_tokens': 6993, 'prefill_tok_s': 265.0, 'wait_before_first_token_s': 26.4, 'reply_tokens': 200, 'gen_tok_s_with_document': 25.3, 'memory_gb_after': 8.76, 'memory_gb': 8.76}
+  deepseek-r1:latest ctx=32768: {'prompt_tokens': 27847, 'prefill_tok_s': 184.5, 'wait_before_first_token_s': 150.97, 'reply_tokens': 200, 'gen_tok_s_with_document': 18.0, 'memory_gb_after': 10.36, 'memory_gb': 10.36}
+== gemma4:latest
+  gemma4:latest ctx=2048: {'prompt_tokens': 1774, 'prefill_tok_s': 1056.3, 'wait_before_first_token_s': 1.68, 'reply_tokens': 177, 'gen_tok_s_with_document': 57.9, 'memory_gb_after': 9.83, 'memory_gb': 10.74}
+  gemma4:latest ctx=8192: {'prompt_tokens': 7338, 'prefill_tok_s': 948.2, 'wait_before_first_token_s': 7.74, 'reply_tokens': 198, 'gen_tok_s_with_document': 53.0, 'memory_gb_after': 10.17, 'memory_gb': 11.39}
+  gemma4:latest ctx=32768: {'prompt_tokens': 28800, 'prefill_tok_s': 884.2, 'wait_before_first_token_s': 32.57, 'reply_tokens': 200, 'gen_tok_s_with_document': 37.8, 'memory_gb_after': 10.25, 'memory_gb': 11.86}
+== step: 0.40.3 2K-32K Fri Oct 16 04:56:31 CDT 2026 | loaded on main: []
+== gemma4:12b
+  gemma4:12b ctx=2048: {'prompt_tokens': 1772, 'prefill_tok_s': 199.1, 'wait_before_first_token_s': 8.89, 'reply_tokens': 200, 'gen_tok_s_with_document': 27.7, 'memory_gb_after': 10.11, 'memory_gb': 11.23}
+  gemma4:12b ctx=8192: {'prompt_tokens': 7318, 'prefill_tok_s': 192.9, 'wait_before_first_token_s': 37.93, 'reply_tokens': 200, 'gen_tok_s_with_document': 26.4, 'memory_gb_after': 10.5, 'memory_gb': 12.81}
+  gemma4:12b ctx=32768: {'prompt_tokens': 28673, 'prefill_tok_s': 178.9, 'wait_before_first_token_s': 160.31, 'reply_tokens': 200, 'gen_tok_s_with_document': 24.1, 'memory_gb_after': 10.22, 'memory_gb': 12.54}
+== qwen3.5:35b
+  qwen3.5:35b ctx=2048: {'prompt_tokens': 1801, 'prefill_tok_s': 789.6, 'wait_before_first_token_s': 2.28, 'reply_tokens': 191, 'gen_tok_s_with_document': 56.7, 'memory_gb_after': 22.82, 'memory_gb': 24.92}
+  qwen3.5:35b ctx=8192: {'prompt_tokens': 7146, 'prefill_tok_s': 685.0, 'wait_before_first_token_s': 10.43, 'reply_tokens': 200, 'gen_tok_s_with_document': 55.7, 'memory_gb_after': 23.15, 'memory_gb': 25.58}
+  qwen3.5:35b ctx=32768: {'prompt_tokens': 28257, 'prefill_tok_s': 578.2, 'wait_before_first_token_s': 48.87, 'reply_tokens': 200, 'gen_tok_s_with_document': 48.8, 'memory_gb_after': 23.16, 'memory_gb': 27.49}
+== step: qwen3.8 on 0.35.1 Fri Oct 16 05:05:10 CDT 2026 | loaded on main: []
+== qwen3.8:27b
+  qwen3.8:27b ctx=2048: {'prompt_tokens': 1807, 'prefill_tok_s': 85.8, 'wait_before_first_token_s': 21.04, 'reply_tokens': 172, 'gen_tok_s_with_document': 12.3, 'memory_gb_after': 20.54, 'memory_gb': 23.76}
+  qwen3.8:27b ctx=8192: {'prompt_tokens': 7147, 'prefill_tok_s': 84.6, 'wait_before_first_token_s': 84.48, 'reply_tokens': 193, 'gen_tok_s_with_document': 12.5, 'memory_gb_after': 21.5, 'memory_gb': 26.03}
+  qwen3.8:27b ctx=32768: {'prompt_tokens': 28231, 'prefill_tok_s': 78.7, 'wait_before_first_token_s': 358.58, 'reply_tokens': 200, 'gen_tok_s_with_document': 11.3, 'memory_gb_after': 21.69, 'memory_gb': 33.82}
+== step: done Fri Oct 16 05:19:01 CDT 2026 | loaded on main: []

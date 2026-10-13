@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "venue": "openrouter",
+  "measured_at": "2026-10-26T17:43:36.382543+00:00",
+  "model": "anthropic/claude-haiku-5.5",
+  "local_baseline_tag": "claude-haiku-5.5",
+  "endpoint": {
+    "name": "Anthropic | anthropic/claude-haiku-5.5-20261007",
+    "model_id": "anthropic/claude-haiku-5.5",
+    "model_name": "Anthropic: Claude Haiku 5.5",
+    "context_length": 1000000,
+    "pricing": {
+      "prompt": "0.0000001",
+      "completion": "0.0000005",
+      "web_search": "0.01",
+      "input_cache_read": "0.00000001",
+      "input_cache_write": "0.000000125",
+      "input_cache_write_1h": "0.0000002",
+      "discount": 0,
+      "overrides": [
+        {
+          "min_prompt_tokens": 100000,
+          "prompt": "0.0000005",
+          "completion": "0.0000025",
+          "input_cache_read": "0.00000005",
+          "input_cache_write": "0.000000625",
+          "input_cache_write_1h": "0.000001"
+        }
+      ]
+    },
+    "provider_name": "Anthropic",
+    "tag": "anthropic",
+    "service_tier": null,
+    "quantization": "unknown",
+    "max_completion_tokens": 128000,
+    "max_prompt_tokens": null,
+    "supported_parameters": [
+      "reasoning",
+      "include_reasoning",
+      "max_tokens",
+      "stop",
+      "tools",
+      "tool_choice",
+      "structured_outputs",
+      "response_format",
+      "verbosity",
+      "reasoning_effort"
+    ],
+    "supports_tool_choice": {
+      "none": true,
+      "auto": true,
+      "required": false,
+      "function": false
+    },
+    "status": 0,
+    "uptime_last_30m": 100,
+    "uptime_last_5m": 100,
+    "uptime_last_1d": 100,
+    "supports_implicit_caching": false,
+    "native_tools": {
+      "openrouter:web_search": {
+        "type": "web_search_20260209"
+      },
+      "openrouter:web_fetch": {
+        "type": "web_fetch_20260209"
+      },
+      "openrouter:bash": {
+        "type": "bash_20250124"
+      },
+      "openrouter:advisor": {
+        "type": "advisor_20260301"
+      }
+    },
+    "supports_voice_cloning": false,
+    "supports_multiple_audio_references": false,
+    "supports_image_reference": false,
+    "supports_diarization": false,
+    "latency_last_30m": null,
+    "throughput_last_30m": null
+  },
+  "settings": {
+    "set": "challenge",
+    "temperature": 0,
+    "seed": 0,
+    "think": false,
+    "max_tokens": 6144,
+    "prompt_sha256": "947a45010c59f1a9eb991bb5705522b5160c2b26f82aa71dffb34e734a0b157d"
+  },
+  "timing": "Client wall time, including network; first text excludes role/reasoning events. Throughput is completion tokens / total request seconds, not Ollama decode speed.",
+  "status": "smoke_passed",
+  "questions": [],
+  "speed_runs": [],
+  "smoke": {
+    "response": "OK",
+    "seconds": 0.6928179999813437,
+    "time_to_first_text_s": 0.6716962503269315,
+    "last_text_s": 0.6716962503269315,
+    "completion_tokens_per_total_second": 5.773522050679562,
+    "usage": {
+      "prompt_tokens": 16,
+      "completion_tokens": 4,
+      "total_tokens": 20,
+      "cost": 3.6e-06,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 3.6e-06,
+        "upstream_inference_prompt_cost": 1.6e-06,
+        "upstream_inference_completions_cost": 2e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "stop",
+    "metadata": {
+      "id": "gen-1793036616-ndO8Lx7z8C5u4PAWhDhr",
+      "model": "anthropic/claude-haiku-5.5",
+      "provider": "Anthropic"
+    },
+    "chunks": [
+      {
+        "elapsed_s": 0.6716962503269315,
+        "text": "OK"
+      }
+    ]
+  }
+}

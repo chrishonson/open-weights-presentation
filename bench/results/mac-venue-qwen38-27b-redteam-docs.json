@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "venue": "mac-ollama",
+  "server": "Ollama 0.40.6",
+  "base_url": "http://127.0.0.1:11436/v1",
+  "measured_at": "2026-10-25T14:46:38.463293+00:00",
+  "model": "qwen3.8-27b-redteam-262k:latest",
+  "local_baseline_tag": "rafw007/qwen3.8-27b-redteam:latest",
+  "precision": "Q4_K_M",
+  "settings": {
+    "set": "challenge",
+    "temperature": 0,
+    "seed": 0,
+    "think": false,
+    "max_tokens": 6144,
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "prompt_sha256": "947a45010c59f1a9eb991bb5705522b5160c2b26f82aa71dffb34e734a0b157d"
+  },
+  "timing": "Client wall time, including the network between this Mac and the server. First text is the first nonempty visible text chunk. Throughput is completion tokens / total request seconds.",
+  "status": "complete",
+  "questions": [],
+  "speed_runs": [],
+  "documents": [
+    {
+      "context": 2048,
+      "document_chars": 5898,
+      "prompt_tokens": 1865,
+      "wait_before_first_text_s": 18.03,
+      "reading_tok_s": 103.5,
+      "reply_tokens": 165,
+      "seconds": 39.68
+    },
+    {
+      "context": 8192,
+      "document_chars": 23592,
+      "prompt_tokens": 6506,
+      "wait_before_first_text_s": 69.22,
+      "reading_tok_s": 94.0,
+      "reply_tokens": 187,
+      "seconds": 94.33
+    },
+    {
+      "context": 32768,
+      "document_chars": 94371,
+      "prompt_tokens": 24498,
+      "wait_before_first_text_s": 290.99,
+      "reading_tok_s": 84.2,
+      "reply_tokens": 183,
+      "seconds": 316.94
+    },
+    {
+      "context": 131072,
+      "document_chars": 377487,
+      "prompt_tokens": 97989,
+      "wait_before_first_text_s": 1666.2,
+      "reading_tok_s": 58.8,
+      "reply_tokens": 200,
+      "seconds": 1701.43
+    },
+    {
+      "context": 262144,
+      "document_chars": 754974,
+      "prompt_tokens": 203290,
+      "wait_before_first_text_s": 5241.16,
+      "reading_tok_s": 38.8,
+      "reply_tokens": 200,
+      "seconds": 5286.38
+    }
+  ],
+  "smoke": {
+    "response": "OK",
+    "seconds": 9.856872292235494,
+    "time_to_first_text_s": 9.777080999687314,
+    "last_text_s": 9.777080999687314,
+    "completion_tokens_per_total_second": 0.2029041201614685,
+    "usage": {
+      "prompt_tokens": 201,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens": 2,
+      "total_tokens": 203
+    },
+    "finish_reason": "stop",
+    "metadata": {
+      "id": "chatcmpl-225",
+      "model": "qwen3.8-27b-redteam-262k:latest",
+      "system_fingerprint": "fp_ollama"
+    }
+  },
+  "summary": {}
+}

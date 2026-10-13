@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open-Weight AI: Laptop, GPU and API</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #131a2e;
+      --panel-2: #1a2340;
+      --line: #2a3557;
+      --track: #33416b;
+      --track-edge: #5a6b9e;  /* 3.3:1 against --panel, so the end of an unfilled bar is visible */
+      --text: #f3f6fc;
+      --text-2: #c3cce0;
+      --text-3: #93a0bd;
+      --blue: #4cc2ff;
+      --green: #3ddc97;
+      --amber: #ffc24b;
+      --red: #ff6b7d;
+      --violet: #b794ff;
+      --base: 18px;
+    }
+    @media (min-width: 1700px) { :root { --base: 22px; } }
+    @media (max-width: 1100px) { :root { --base: 16px; } }
+    @media (max-height: 800px) { :root { --base: 15px; } }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: var(--base); }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      line-height: 1.45;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.6rem 1.6rem;
+      border-bottom: 1px solid var(--line);
+      flex: none;
+    }
+    .brand { font-weight: 700; font-size: 0.95rem; white-space: nowrap; }
+    nav { display: flex; gap: 0.15rem; flex-wrap: nowrap; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+    /* 15 tabs: keep them on one line at 1280 px; the bar scrolls sideways on narrower screens. */
+    nav button { padding: 0.3rem 0.35rem !important; font-size: 0.72rem !important; }
+    nav button {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--text-3);
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.7rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    nav button.active { color: var(--text); border-color: var(--blue); background: rgba(76, 194, 255, 0.12); }
+
+    main { flex: 1; min-height: 0; padding: 1rem 1.6rem 0.6rem; }
+    .slide { display: none; height: 100%; flex-direction: column; gap: 0.8rem; }
+    .slide.active { display: flex; }
+
+    h1 { font-size: 2rem; line-height: 1.15; letter-spacing: -0.02em; }
+    .lead { font-size: 1.05rem; color: var(--text-2); max-width: 60rem; margin-top: 0.3rem; }
+    h2 { font-size: 1.05rem; margin-bottom: 0.6rem; }
+    .kicker { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.2rem; }
+
+    .row { display: flex; gap: 1rem; flex: 1; min-height: 0; }
+    .col { display: flex; flex-direction: column; gap: 1rem; min-height: 0; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 0.8rem; padding: 0.8rem 1.1rem; min-height: 0; }
+    .grow { flex: 1; }
+    .muted { color: var(--text-3); }
+    .small { font-size: 0.8rem; }
+    strong.num, .num { font-variant-numeric: tabular-nums; }
+
+    .spec { display: flex; justify-content: space-between; gap: 1rem; padding: 0.4rem 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+    .spec:last-child { border-bottom: none; }
+    .spec span:first-child { color: var(--text-3); }
+    .spec span:last-child { font-weight: 600; text-align: right; }
+
+    .two-parts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .part { background: var(--panel-2); border-radius: 0.6rem; padding: 0.8rem 1rem; font-size: 0.9rem; color: var(--text-2); }
+    .part b { display: block; color: var(--text); font-size: 1rem; margin-bottom: 0.2rem; }
+    .swatch { display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 0.2rem; margin-right: 0.4rem; vertical-align: -0.05rem; }
+
+    /* 4 Vertical Bar Graphs for Context */
+    .vbar-legend {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      font-size: 0.72rem;
+      color: var(--text-2);
+    }
+    .vleg-item { display: inline-flex; align-items: center; gap: 0.25rem; white-space: nowrap; }
+    .vleg-item .swatch { width: 0.65rem; height: 0.65rem; border-radius: 0.15rem; margin: 0; }
+
+    .vbars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+      align-items: end;
+      flex: 1;
+      min-height: 0;
+      padding: 0.3rem 0.2rem 0;
+    }
+    .vbar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+      gap: 0.35rem;
+      opacity: 0;
+    }
+    .slide.active .vbar-col { animation: vbarIn 0.35s ease-out forwards; }
+    .slide.active .vbar-col:nth-child(1) { animation-delay: 0.1s; }
+    .slide.active .vbar-col:nth-child(2) { animation-delay: 0.25s; }
+    .slide.active .vbar-col:nth-child(3) { animation-delay: 0.4s; }
+    .slide.active .vbar-col:nth-child(4) { animation-delay: 0.55s; }
+    @keyframes vbarIn { from { opacity: 0; transform: translateY(0.8rem); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .slide.active .vbar-col { animation: none; opacity: 1; } }
+
+    .vbar-stats {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.15;
+    }
+    /* The last bar has its own scale: a dashed divider and a tag set it apart from the bars that share one. */
+    .vbar-col.rescaled { border-left: 2px dashed var(--track-edge); padding-left: 0.85rem; margin-left: -0.45rem; }
+    .vbar-scale { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--amber); margin-bottom: 0.15rem; }
+    .vbar-total {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .vbar-extra {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--violet);
+    }
+
+    .vbar-track {
+      width: 100%;
+      max-width: 10.5rem;
+      display: flex;
+      flex-direction: column-reverse; /* bottom-to-top stacking: model at bottom, context above */
+      border-radius: 0.45rem;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(11, 16, 32, 0.6);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .vbar-col:hover .vbar-track {
+      transform: translateY(-2px);
+      border-color: rgba(183, 148, 255, 0.5);
+    }
+
+    .vbar-seg {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.66rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-top: 1px solid rgba(0, 0, 0, 0.25);
+      box-sizing: border-box;
+      padding: 0 0.25rem;
+      line-height: 1;
+    }
+    .vbar-seg.seg-model { background: #2563eb; color: #ffffff; border-top: none; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; }
+    .vbar-seg.seg-tools, .vbar-seg.seg-mcp { background: #10b981; color: #022c22; }
+    .vbar-seg.seg-system, .vbar-seg.seg-skills { background: #f43f5e; color: #ffffff; }
+    .vbar-seg.seg-doc { background: #6366f1; color: #ffffff; font-size: 0.74rem; font-weight: 800; }
+    .vbar-seg.seg-q { background: #a855f7; color: #ffffff; }
+    .vbar-seg.seg-tool { background: #f59e0b; color: #1e1302; }
+    .vbar-seg.seg-a { background: #06b6d4; color: #04202c; }
+
+    .vbar-foot {
+      text-align: center;
+      font-size: 0.76rem;
+      line-height: 1.25;
+      margin-top: 0.15rem;
+    }
+    .vbar-foot b { display: block; color: var(--text); font-size: 0.82rem; }
+    .vbar-foot span { color: var(--text-3); font-size: 0.72rem; }
+    .callout { border-left: 4px solid var(--amber); background: var(--panel-2); padding: 0.7rem 1rem; border-radius: 0 0.6rem 0.6rem 0; font-size: 0.92rem; color: var(--text-2); }
+    .callout b { color: var(--text); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+    th { text-align: left; font-size: 0.78rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.04em; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: bottom; }
+    td { padding: 0.42rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    td.r, th.r { text-align: right; }
+    table.compact { font-size: 0.85rem; }
+    table.compact td, table.compact th { padding: 0.32rem 0.45rem; }
+    .slide[data-title="Speed and accuracy"] table.compact td { padding-top: 0.18rem; padding-bottom: 0.18rem; }
+    .model-name { font-weight: 700; }
+    .model-sub { display: block; font-size: 0.78rem; color: var(--text-3); }
+    .best { color: var(--green); font-weight: 700; }
+    /* One line per What fits row, so all 8 models fit without scrolling. */
+    #fitTable .model-sub { display: inline; margin-left: 0.4rem; }
+    #fitTable td { white-space: nowrap; }
+    #fitTable { font-size: 0.85rem; }
+    #fitTable .mem-track { min-width: 3rem; }
+    #fitTable td { padding-top: 0.26rem; padding-bottom: 0.26rem; }
+    /* Short screens (1280x720 projectors). */
+    @media (max-height: 800px) {
+      .slide { gap: 0.55rem; }
+      .lead { font-size: 0.95rem; }
+      table.compact td, table.compact th { padding: 0.26rem 0.4rem; }
+      .seg button { padding: 0.25rem 0.7rem; }
+    }
+
+    .pill { display: inline-block; font-size: 0.8rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 999px; white-space: nowrap; }
+    .pill.green { background: rgba(61, 220, 151, 0.15); color: var(--green); }
+    .pill.amber { background: rgba(255, 194, 75, 0.15); color: var(--amber); }
+    .pill.red { background: rgba(255, 107, 125, 0.15); color: var(--red); }
+    .pill.gray { background: rgba(147, 160, 189, 0.15); color: var(--text-3); }
+
+    .seg { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .seg button {
+      font: inherit; font-size: 0.85rem; font-weight: 600;
+      background: var(--panel-2); color: var(--text-2);
+      border: 1px solid var(--line); border-radius: 0.5rem;
+      padding: 0.4rem 0.8rem; cursor: pointer;
+    }
+    .seg button.active { background: var(--blue); color: #04121f; border-color: var(--blue); }
+    .seg button small { display: block; font-size: 0.78rem; font-weight: 500; opacity: 0.85; }
+
+    .mem-cell { display: flex; align-items: center; gap: 0.6rem; }
+    .mem-track { position: relative; flex: 1; height: 0.8rem; background: var(--track); box-shadow: inset 0 0 0 1px var(--track-edge); border-radius: 999px; min-width: 6rem; }
+    .mem-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; }
+    .mem-limit { position: absolute; top: -0.25rem; bottom: -0.25rem; width: 2px; background: var(--red); }
+
+    .chart { width: 100%; height: 100%; display: block; }
+    .chart text { font-family: inherit; }
+
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    ul.plain { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.92rem; color: var(--text-2); }
+    ul.plain li b { color: var(--text); }
+
+    .hero { margin: auto; text-align: center; max-width: 56rem; display: flex; flex-direction: column; gap: 1.4rem; }
+    .hero h1 { font-size: 3rem; }
+    .hero .lead { margin: 0 auto; font-size: 1.25rem; }
+    .hero-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: left; }
+    .hero-cards .panel b { display: block; font-size: 1rem; margin-bottom: 0.3rem; }
+    .hero-cards .panel { font-size: 0.9rem; color: var(--text-2); }
+
+    table.tradeoffs { font-size: 1rem; }
+    table.environments tr.first td { border-top: 1px solid var(--line-strong, var(--line)); }
+    table.environments td { border-bottom: none; }
+    table.tradeoffs th, table.tradeoffs td { padding: 0.75rem 0.7rem; vertical-align: top; }
+    table.tradeoffs tbody th { color: var(--text-2); text-transform: none; letter-spacing: 0; font-size: 0.95rem; }
+    table.tradeoffs thead th { text-transform: none; letter-spacing: 0; font-size: 0.95rem; color: var(--text); }
+    table.tradeoffs td.expected, .tag { color: var(--amber); }
+    table.tradeoffs td.pending, .tag.pending { color: var(--text-3); font-style: italic; }
+    .tag { font-weight: 700; }
+
+    .voice-big { font-size: 3rem; font-weight: 800; font-variant-numeric: tabular-nums; margin-right: 0.6rem; }
+    .vstack { display: flex; height: 3.4rem; border-radius: 0.5rem; overflow: hidden; }
+    .vstack div { display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; color: #04121f; white-space: nowrap; overflow: hidden; }
+    .vlegend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-size: 0.9rem; color: var(--text-2); }
+
+
+    .hosted-results { margin-top: 0.8rem; padding: 1.2rem; }
+    .hosted-results table { font-size: 1.15rem; }
+    .hosted-results td { padding: 1.2rem 0.6rem; }
+    .hosted-results th { font-size: 0.8rem; }
+    .hosted-results > p { margin-top: 0.8rem; }
+    .notes {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: #060a14; border-top: 2px solid var(--blue);
+      padding: 1rem 1.6rem; font-size: 0.95rem; color: var(--text-2);
+      transform: translateY(100%); transition: transform 0.2s ease;
+      max-height: 40vh; overflow: auto; white-space: pre-line; z-index: 10;
+    }
+    .notes.open { transform: none; }
+    .notes b { color: var(--blue); display: block; margin-bottom: 0.3rem; }
+
+    nav { overflow-x: auto; min-width: 0; }
+    .hardware-body { display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.4rem; flex: 1; min-height: 0; align-items: center; }
+    .hardware-photo { width: 100%; max-height: 23rem; object-fit: contain; border-radius: .7rem; display: block; }
+    .hardware-caption, .hardware-source { font-size: .74rem; color: var(--text-3); margin-top: .5rem; }
+    .hardware-source a { color: var(--text-2); }
+    .hardware-copy { display: flex; flex-direction: column; gap: 1rem; }
+    .hardware-item { border-bottom: 1px solid var(--line); padding-bottom: .8rem; }
+    .hardware-item h2 { margin-bottom: .2rem; font-size: 1.15rem; }
+    .hardware-price { color: var(--green); font-size: 1.5rem; font-weight: 700; }
+    .hardware-item p { color: var(--text-2); font-size: .95rem; }
+
+    .demand-chart { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
+    .demand-track { display: grid; grid-template-columns: repeat(12, 1fr); gap: .3rem; margin: .6rem 0; }
+    .demand-track span { height: 2.8rem; background: var(--panel-2); border: 1px solid var(--line); border-radius: .25rem; }
+    .demand-track .busy { background: var(--blue); border-color: var(--blue); }
+    .demand-track .shared { background: var(--green); border-color: var(--green); }
+    .economics-equation { text-align: center; padding: .8rem; font-size: 1.15rem; color: var(--green); border-top: 1px solid var(--line); }
+
+    .ow-visual { display: flex; flex-direction: column; gap: 0.75rem; justify-content: center; }
+    .ow-box { background: var(--panel); border: 1px solid var(--line); border-radius: 0.8rem; padding: 0.75rem 1rem; position: relative; }
+    .ow-box.open { border-color: rgba(61, 220, 151, 0.45); background: linear-gradient(135deg, rgba(61, 220, 151, 0.07), var(--panel)); }
+    .ow-box.closed { border-style: dashed; border-color: var(--track-edge); opacity: 0.9; }
+    .ow-head { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.45rem; }
+    .ow-title { font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 0.45rem; }
+    .ow-matrix { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.28rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.72rem; }
+    .ow-cell { background: rgba(37, 99, 235, 0.2); border: 1px solid rgba(76, 194, 255, 0.35); color: #93c5fd; padding: 0.22rem 0.3rem; border-radius: 0.25rem; text-align: center; font-variant-numeric: tabular-nums; }
+    .ow-cell.hi { background: rgba(61, 220, 151, 0.18); border-color: var(--green); color: var(--green); font-weight: 700; }
+    .ow-meta { display: flex; gap: 0.45rem; flex-wrap: wrap; margin-top: 0.45rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.72rem; color: var(--text-2); }
+    .ow-meta span { background: var(--panel-2); border: 1px solid var(--line); padding: 0.15rem 0.45rem; border-radius: 0.25rem; }
+    .ow-arrow { text-align: center; color: var(--text-3); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; }
+    .ow-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.45rem; }
+    .ow-chip { background: var(--panel-2); border: 1px solid var(--line); border-radius: 0.45rem; padding: 0.4rem 0.55rem; font-size: 0.78rem; color: var(--text-3); }
+    .ow-chip b { display: block; color: var(--text-2); font-size: 0.8rem; margin-bottom: 0.1rem; }
+
+    /* Main-story tables use the space; the appendix retains compact detail. */
+    .slide[data-title="Three environments"] table,
+    .slide[data-title="Long documents"] table,
+    .slide[data-title="Tradeoffs"] table { font-size: 1.08rem; }
+    .slide[data-title="Three environments"] td,
+    .slide[data-title="Three environments"] tbody th,
+    .slide[data-title="Long documents"] td,
+    .slide[data-title="Long documents"] tbody th,
+    .slide[data-title="Tradeoffs"] td,
+    .slide[data-title="Tradeoffs"] tbody th { padding: 1.1rem .65rem; text-transform: none; letter-spacing: 0; }
+    .slide[data-title="Three environments"] tbody th,
+    .slide[data-title="Long documents"] tbody th { font-size: 1rem; }
+    /* The two payoff tables: larger type for a projector, scores in plain text. */
+    .slide[data-title="Three environments"] table, .slide[data-title="Long documents"] table { font-size: 1.25rem; }
+    .slide[data-title="Three environments"] td, .slide[data-title="Three environments"] tbody th,
+    .slide[data-title="Long documents"] td, .slide[data-title="Long documents"] tbody th { padding: 1rem 0.8rem; }
+    .slide[data-title="Three environments"] tbody th, .slide[data-title="Long documents"] tbody th { color: var(--text); text-transform: none; letter-spacing: 0; font-size: 1.15rem; }
+    .slide[data-title="Servers"] td { padding: .8rem .55rem; font-size: 1rem; }
+    .slide[data-title="Servers"] .table-note { display: block; font-size: .8rem; color: var(--text-3); margin-top: .15rem; }
+    .slide[data-title="Servers"] .server-photo { flex: 1; min-height: 0; display: flex; justify-content: center; margin-bottom: 1rem; }
+    .slide[data-title="Servers"] .server-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; border-radius: 8px; }
+    .slide[data-title="Servers"] .hardware-source { margin-top: auto; }
+    .weights-steps { flex: none; margin-bottom: .8rem; }
+    .weights-steps .panel { flex: 1; font-size: .95rem; color: var(--text-2); }
+    .weights-steps .panel b { display: block; color: var(--text); font-size: 1.05rem; margin-bottom: .25rem; }
+    .weights-graphic { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; margin: .4rem 0 .8rem; }
+    .weights-graphic svg { width: 100%; height: 100%; max-height: 27rem; font-family: inherit; }
+    .slide.active .vbar-col { animation: none; opacity: 1; }
+      /* From the restore: intro layout, flow diagrams, Mac comparison. */
+    .flow-panel { display:flex; align-items:center; justify-content:center; }
+    .flow-panel svg { display:block; width:100%; max-height:100%; font-family:inherit; }
+    .flow-captions { flex:none; }
+    .flow-captions .panel { flex:1; }
+    /* Intro only: a question, three choices, and the promise of the talk. */
+    .intro-layout { display:grid; grid-template-columns:1.15fr 1fr; gap:4rem; align-items:center; flex:1; min-height:0; padding:1rem 2rem; }
+    .intro-story h1 { font-size:4.4rem; line-height:1.04; letter-spacing:-.045em; margin:1.2rem 0 1.4rem; }
+    .intro-story h1 span { color:var(--blue); }
+    .intro-deck { font-size:1.35rem; color:var(--text-2); line-height:1.5; max-width:30rem; }
+    .intro-premise { margin-top:1.4rem; font-size:1rem; color:var(--text-3); line-height:1.5; }
+    .intro-routes { display:grid; gap:1.1rem; }
+    .intro-route { display:flex; align-items:center; gap:1.4rem; padding:1.35rem 1.6rem; background:var(--panel); border:1px solid var(--line); border-left:4px solid currentColor; border-radius:.8rem; }
+    .intro-route.laptop { color:var(--blue); }
+    .intro-route.rack { color:var(--violet); }
+    .intro-route.cloud { color:var(--green); }
+    .intro-route svg { width:3.7rem; height:3.7rem; flex:none; }
+    .intro-route-label { text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; font-weight:700; margin-bottom:.35rem; }
+    .intro-route h2 { font-size:1.55rem; color:var(--text); margin:0 0 .35rem; }
+    .intro-route p { color:var(--text-2); font-size:.95rem; }
+    .intro-footer { border-top:1px solid var(--line); padding:1.25rem 2rem .6rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .intro-footer-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-3); }
+    .intro-footer p { font-size:1.1rem; margin-top:.4rem; }
+    .intro-footer p span { color:var(--text-3); padding:0 .55rem; }
+    .intro-bonus { color:var(--text-2); font-size:.9rem; }
+    .intro-live-dot { display:inline-block; width:.5rem; height:.5rem; background:var(--green); border-radius:50%; margin-right:.5rem; }
+    @media (max-width: 900px) {
+      .intro-layout { grid-template-columns:1fr; gap:1.5rem; padding:1rem; }
+      .intro-story h1 { font-size:3.4rem; margin:.8rem 0; }
+      .intro-deck { font-size:1.1rem; }
+      .intro-premise { margin-top:.8rem; }
+      .intro-routes { grid-template-columns:repeat(3,minmax(0,1fr)); gap:.7rem; }
+      .intro-route { flex-direction:column; align-items:flex-start; gap:.7rem; padding:.9rem; }
+      .intro-route svg { width:2.4rem; height:2.4rem; }
+      .intro-route h2 { font-size:1.1rem; }
+      .intro-route p { font-size:.8rem; }
+      .intro-route-label { font-size:.65rem; }
+      .intro-footer { padding:1rem; flex-wrap:wrap; }
+    }
+    .mac-owned { display:flex; justify-content:space-between; gap:1rem; align-items:center; }
+    .mac-owned strong { color:var(--green); white-space:nowrap; }
+    .mac-owned p { color:var(--text-2); font-size:.9rem; margin-top:.25rem; }
+    .mac-compare { display:grid; grid-template-columns:1fr 1fr; gap:1.3rem; flex:1; min-height:0; }
+    .mac-option { display:flex; flex-direction:column; justify-content:center; gap:.8rem; }
+    .mac-option img { width:100%; height:clamp(100px,23vh,250px); object-fit:contain; border-radius:.5rem; }
+    .mac-option h2 { font-size:1.3rem; margin-bottom:.35rem; }
+    .mac-option p { color:var(--text-2); line-height:1.5; margin-top:.4rem; }
+    .closing-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.4rem; margin:auto 0; }
+    .closing-link { display:flex; flex-direction:column; gap:.65rem; padding:1.25rem; min-height:19rem; color:var(--text); text-decoration:none; border-top:3px solid var(--blue); }
+    .closing-link:nth-child(2) { border-top-color:var(--violet); }
+    .closing-link:nth-child(3) { border-top-color:var(--green); }
+    .closing-link:hover, .closing-link:focus-visible { background:var(--panel-2); outline:2px solid var(--blue); }
+    .closing-image { display:block; width:100%; height:clamp(100px,21vh,210px); object-fit:contain; background:#0b1020; border-radius:.4rem; margin-bottom:.25rem; }
+    .closing-type { color:var(--text-3); font-size:.8rem; text-transform:uppercase; letter-spacing:.12em; }
+    .closing-link h2 { font-size:1.65rem; margin:0; }
+    .closing-link p { color:var(--text-2); line-height:1.5; }
+    .closing-url { margin-top:auto; color:var(--blue); overflow-wrap:anywhere; font-size:.95rem; }
+    @media(max-width:800px) { .closing-links { gap:.6rem; } .closing-link { padding:1rem; } .closing-link h2 { font-size:1.2rem; } }
+    .aws-state { display:grid; grid-template-columns:1fr 1.4fr; gap:1rem; }
+    .aws-state b { color:var(--green); }
+    .aws-state p { font-size:.9rem; color:var(--text-2); line-height:1.4; margin-top:.3rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Open-Weight AI</div>
+    <nav id="nav"></nav>
+  </header>
+
+  <main>
+    <section class="slide" data-title="Intro">
+      <div class="intro-layout">
+        <div class="intro-story">
+          <div class="kicker">Open-weight AI · A hands-on comparison</div>
+          <h1>Where should<br>your AI <span>run?</span></h1>
+          <p class="intro-deck">I ran the same questions on this Mac, a rented GPU, and a hosted API.</p>
+          <p class="intro-premise">Downloadable models give us a choice.<br>Measurements show what that choice changes.</p>
+        </div>
+        <div class="intro-routes" aria-label="Three ways to run AI"><div class="intro-route laptop"><svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="9" width="44" height="32" rx="3"/><path d="M5 48h54l-5 7H10z"/><path d="M27 48h10"/></svg><div><div class="intro-route-label">Run it locally</div><h2>This laptop</h2><p>M1 Max MacBook Pro</p></div></div><div class="intro-route rack"><svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="5" width="36" height="54" rx="4"/><path d="M14 23h36M14 41h36M22 14h2M22 32h2M22 50h2M33 14h9M33 32h9M33 50h9"/></svg><div><div class="intro-route-label">Rent the hardware</div><h2>An AWS GPU</h2><p>One NVIDIA L40S</p></div></div><div class="intro-route cloud"><svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 47a12 12 0 0 1-2-24 18 18 0 0 1 34-4 14 14 0 0 1 1 28z"/><path d="m27 29-7 7 7 7m10-14 7 7-7 7"/></svg><div><div class="intro-route-label">Call a service</div><h2>A hosted API</h2><p>OpenRouter → DeepInfra</p></div></div></div>
+      </div>
+      <div class="intro-footer"><div><span class="intro-footer-label">What we’ll compare</span><p>Memory <span>·</span> Answer quality <span>·</span> Waiting time</p></div><div class="intro-bonus"><span class="intro-live-dot"></span>Bonus: a voice assistant on this Mac</div></div>
+    </section>
+
+    <section class="slide" data-title="Inference paths" data-tab="Paths"><div><div class="kicker">How we ran the comparison</div><h1>One test harness, three inference paths</h1><p class="lead">The harness is our test program on this Mac: it sends questions, times replies, grades answers and saves the results.</p></div><div class="panel grow flow-panel"><svg viewBox="0 0 1200 440" role="img" aria-label="The harness branches to local Ollama on the Mac, an AWS L40S server through an SSH tunnel, or OpenRouter and DeepInfra. Replies return to the same client for timing and grading."><defs><marker id="inferenceArrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8" fill="#4cc2ff"/></marker></defs><rect x="10" y="145" width="275" height="155" rx="14" fill="var(--panel)" stroke="var(--blue)" stroke-width="2"/><text x="30" y="179" fill="var(--blue)" font-size="23" font-weight="700">Test harness on Mac</text><text x="30" y="212" fill="var(--text-2)" font-size="19">Same 29 questions</text><text x="30" y="239" fill="var(--text-2)" font-size="19">Same automatic graders</text><text x="30" y="266" fill="var(--text-2)" font-size="19">Saved answers + timings</text><rect x="430" y="15" width="300" height="115" rx="14" fill="var(--panel)" stroke="var(--blue)" stroke-width="2"/><text x="450" y="49" fill="var(--blue)" font-size="23" font-weight="700">Local request</text><text x="450" y="82" fill="var(--text-2)" font-size="19">Ollama interface</text><text x="450" y="109" fill="var(--text-2)" font-size="19">No remote inference</text><rect x="810" y="15" width="380" height="115" rx="14" fill="var(--panel)" stroke="var(--green)" stroke-width="2"/><text x="830" y="49" fill="var(--green)" font-size="23" font-weight="700">This Mac · M1 Max</text><text x="830" y="82" fill="var(--text-2)" font-size="19">Ollama runs the model</text><rect x="430" y="160" width="300" height="115" rx="14" fill="var(--panel)" stroke="var(--blue)" stroke-width="2"/><text x="450" y="194" fill="var(--blue)" font-size="23" font-weight="700">SSH tunnel to AWS</text><text x="450" y="227" fill="var(--text-2)" font-size="19">Encrypted connection</text><text x="450" y="254" fill="var(--text-2)" font-size="19">to our rented server</text><rect x="810" y="160" width="380" height="115" rx="14" fill="var(--panel)" stroke="var(--green)" stroke-width="2"/><text x="830" y="194" fill="var(--green)" font-size="23" font-weight="700">AWS · one L40S GPU</text><text x="830" y="227" fill="var(--text-2)" font-size="19">vLLM runs standard models</text><text x="830" y="254" fill="var(--text-2)" font-size="19">Ollama runs redteam</text><rect x="430" y="305" width="300" height="115" rx="14" fill="var(--panel)" stroke="var(--blue)" stroke-width="2"/><text x="450" y="339" fill="var(--blue)" font-size="23" font-weight="700">OpenRouter API</text><text x="450" y="372" fill="var(--text-2)" font-size="19">Internet request</text><text x="450" y="399" fill="var(--text-2)" font-size="19">DeepInfra provider pinned</text><rect x="810" y="305" width="380" height="115" rx="14" fill="var(--panel)" stroke="var(--green)" stroke-width="2"/><text x="830" y="339" fill="var(--green)" font-size="23" font-weight="700">DeepInfra deployment</text><text x="830" y="372" fill="var(--text-2)" font-size="19">Hosted Gemma or Qwen</text><path d="M285,220 H350 V72 H420" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#inferenceArrow)"/><path d="M350,220 H420" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#inferenceArrow)"/><path d="M350,220 V362 H420" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#inferenceArrow)"/><path d="M730,72 H800" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#inferenceArrow)"/><path d="M730,217 H800" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#inferenceArrow)"/><path d="M730,362 H800" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#inferenceArrow)"/></svg></div><div class="callout"><b>Replies return along each path to the same client.</b> Timings include waiting and network travel. Different model precision and serving software make this a deployment comparison, not a hardware-only test.</div><p class="small muted">Mac / AWS: bench/venue.py · hosted API: bench/openrouter.py · shared challenge and streaming timer. Long-document tests ran on Mac and AWS only.</p></section>
+
+    <section class="slide" data-title="Macs">
+      <div><div class="kicker">Hardware context • 64 GB configurations</div><h1>A laptop or a desktop for local AI?</h1><p class="lead">All three have 64 GB of unified memory. The chip, cooling and portability differ; memory capacity alone does not predict speed.</p></div>
+      <div class="panel mac-owned"><div><b>My tested MacBook Pro · M1 Max · 64 GB</b><p>10-core CPU (8 performance, 2 efficiency) · 32-core GPU · 16-core Neural Engine · 400 GB/s memory bandwidth</p></div><span>I paid <strong>$2,500</strong> in January 2024</span></div>
+      <div class="mac-compare">
+        <div class="panel mac-option"><img src="assets/hardware/macbook64.jpg" alt="Apple 14-inch MacBook Pro in Space Black"><div><h2>14-inch MacBook Pro · M5 Max</h2><div class="hardware-price">$5,099</div><p><b>64 GB memory · 2 TB storage</b><br>18-core CPU (6 super, 12 performance) · 40-core GPU<br>16-core Neural Engine · 614 GB/s memory bandwidth<br>Screen, keyboard and battery included</p></div></div>
+        <div class="panel mac-option"><img src="assets/hardware/studio64.jpg" alt="Apple Mac Studio desktop"><div><h2>Mac Studio · M5 Max</h2><div class="hardware-price">$3,799</div><p><b>64 GB memory · 1 TB storage</b><br>18-core CPU (6 super, 12 performance) · 40-core GPU<br>16-core Neural Engine · 614 GB/s memory bandwidth<br>Display, keyboard and mouse extra</p></div></div>
+      </div>
+      <p class="hardware-source">Apple US prices for these exact configurations, before tax, checked Oct 26, 2026. 2 TB is the smallest storage Apple offers with a 64 GB M5 Max MacBook Pro. New examples were not benchmarked. My historical purchase price is owner-reported. Images: Apple. Specs: <a href="https://support.apple.com/en-us/111901">M1 Max</a> · <a href="https://www.apple.com/macbook-pro/specs/">MacBook Pro M5 Max</a> · <a href="https://www.apple.com/mac-studio/specs/">Mac Studio M5 Max</a>. Prices: <a href="https://www.apple.com/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m5-max-chip-18-core-cpu-40-core-gpu-64gb-memory-2tb-storage">64 GB MacBook Pro</a> · <a href="https://www.apple.com/shop/buy-mac/mac-studio/m5-max-chip-18-core-cpu-40-core-gpu-64gb-memory-1tb-storage">64 GB Mac Studio</a>.</p>
+    </section>
+
+    <section class="slide" data-title="GPUs">
+      <div><div class="kicker">Hardware context • add-in cards</div><h1>A GPU has its own memory and its own price</h1><p class="lead">The card is one part of a computer. You also need a host, power, cooling and storage.</p></div>
+      <div class="hardware-body">
+        <figure><img class="hardware-photo" src="assets/hardware/rtx-pro-5000.jpg" alt="NVIDIA RTX PRO 5000 Blackwell graphics card"><figcaption class="hardware-caption">RTX PRO 5000 Blackwell. Image: NVIDIA.</figcaption></figure>
+        <div class="hardware-copy">
+          <div class="hardware-item"><h2>L40S · the card we rented on AWS</h2><div class="hardware-price">About $10,500</div><p>48 GB dedicated GPU memory · 864 GB/s<br>18,176 CUDA cores · 568 Tensor cores · 350 W</p></div>
+         <div class="hardware-item"><h2>RTX PRO 5000 Blackwell · 72 GB</h2><div class="hardware-price">$11,999 reseller MSRP</div><p>72 GB dedicated GPU memory · 1,344 GB/s<br>14,080 CUDA cores · 440 Tensor cores · 300 W</p></div>
+          <div class="panel"><h2>Memory capacity is a first filter</h2><p>A model and its conversation must fit the available memory for full GPU execution. More memory does not by itself tell us the answer speed.</p></div>
+        </div>
+      </div>
+      <p class="hardware-source">US card-only prices: RTX PRO 5000 reseller-listed MSRP, Oct 2026. L40S CDW listing, checked Oct 25, 2026. Not current retail quotes. Manufacturer memory units. Sources: <a href="https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-5000/">RTX PRO 5000 specs</a> · <a href="https://www.shi.com/product/50915088/NVIDIA-RTX-PRO-5000-BLACKWELL-72GB-GCARD-SCB-RETAIL">RTX PRO 5000 price</a> · <a href="https://www.nvidia.com/en-us/data-center/l40s/">L40S specs</a> · <a href="https://www.cdw.com/product/pny-nvidia-quadro-l40s-graphic-card-48-gb-gddr6/7582191">L40S price</a>.</p>
+    </section>
+
+    <section class="slide" data-title="Servers"><div><div class="kicker">Hardware context • cards versus servers</div><h1>Same architecture name ≠ same kind of product</h1></div><div class="server-photo"><img src="assets/hardware/superpod.jpg" alt="NVIDIA DGX SuperPOD racks in a data center aisle"></div><div class="panel"><table><thead><tr><th>Architecture</th><th>Product / class</th><th>Memory / scale</th><th>Purchase example (USD)</th></tr></thead><tbody>
+<tr><td>Ada Lovelace</td><td>RTX 6000 Ada • workstation</td><td>48 GB</td><td>~$9,600 / card</td></tr>
+<tr><td>Ada Lovelace</td><td>L40S • data center <b>(our AWS test)</b></td><td>48 GB</td><td>~$10,500 / card</td></tr>
+<tr><td>Hopper</td><td>H100 PCIe • data center <span class="table-note">Data center only. No Hopper RTX workstation card.</span></td><td>80 GB</td><td>$30,000–$35,000 / card*</td></tr>
+<tr><td>Blackwell</td><td>RTX PRO 6000 • workstation</td><td>96 GB</td><td>~$20,000 / card</td></tr>
+<tr><td>Blackwell</td><td>B200 • data center</td><td>8 GPUs</td><td>~$550,000 / complete server</td></tr>
+</tbody></table></div><p class="hardware-source">*H100 is a volume-based seller range, not MSRP. Other card prices exclude the host. Illustrative racks, not our providers’ machines. USD purchase examples: <a href="https://www.cdw.com/product/pny-nvidia-rtx-6000-ada-graphic-card-48-gb-gddr6/7275196">RTX 6000 Ada $9,605.99 at CDW</a>, <a href="https://www.cdw.com/product/pny-nvidia-quadro-l40s-graphic-card-48-gb-gddr6/7582191">L40S $10,497.99 at CDW</a>, <a href="https://www.cdw.com/product/pny-nvidia-rtx-pro-6000-graphic-card-96-gb-gddr7/8326705">RTX PRO 6000 $19,977.99 at CDW</a>, <a href="https://www.datapowersupply.com/copy-of-inventory-3/h100">H100 $30K–$35K, Data Power Supply (volume-based)</a>, checked Oct 25 and 26, 2026; <a href="https://lenovopress.lenovo.com/lp2368-on-premise-vs-cloud-generative-ai-total-cost-of-ownership-2026-edition">8× B200 $550,475.10, Lenovo</a>, dated Jun 15, 2026. Taxes, delivery and operating costs extra; configurations and quotes vary. Rack photo: <a href="https://www.nvidia.com/en-us/data-center/dgx-b200/">NVIDIA</a>.</p></section>
+
+    <section class="slide" data-title="Open weights" data-tab="Weights"><div><div class="kicker">Start here</div><h1>Open weights: download the trained model</h1><p class="lead">Weights are the billions of numbers a model learned during training. Publishing them lets someone else run the model.</p></div><div class="weights-graphic"><svg viewBox="0 -54 1200 348" role="img" aria-label="A neural network drawn as columns of nodes: the prompt, layer 1, layer 2, many more layers, the last layer and the next word. Lines connect each column to the next. One line is highlighted as a single weight with the value 0.0213. Every line is a number learned in training."><line x1="110" y1="40.0" x2="330" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="40.0" x2="330" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="40.0" x2="330" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="40.0" x2="330" y2="148.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="40.0" x2="330" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="40.0" x2="330" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="100.0" x2="330" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="100.0" x2="330" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="100.0" x2="330" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="100.0" x2="330" y2="148.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="100.0" x2="330" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="100.0" x2="330" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="160.0" x2="330" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="160.0" x2="330" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="160.0" x2="330" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="160.0" x2="330" y2="148.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="160.0" x2="330" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="160.0" x2="330" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="220.0" x2="330" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="220.0" x2="330" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="220.0" x2="330" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="220.0" x2="330" y2="148.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="220.0" x2="330" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="110" y1="220.0" x2="330" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="40.0" x2="530" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="40.0" x2="530" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="40.0" x2="530" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="40.0" x2="530" y2="148.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="40.0" x2="530" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="40.0" x2="530" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="76.0" x2="530" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="76.0" x2="530" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="76.0" x2="530" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="76.0" x2="530" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="76.0" x2="530" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="112.0" x2="530" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="112.0" x2="530" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="112.0" x2="530" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="112.0" x2="530" y2="148.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="112.0" x2="530" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="112.0" x2="530" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="148.0" x2="530" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="148.0" x2="530" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="148.0" x2="530" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="148.0" x2="530" y2="148.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="148.0" x2="530" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="148.0" x2="530" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="184.0" x2="530" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="184.0" x2="530" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="184.0" x2="530" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="184.0" x2="530" y2="148.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="184.0" x2="530" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="184.0" x2="530" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="220.0" x2="530" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="220.0" x2="530" y2="76.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="220.0" x2="530" y2="112.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="220.0" x2="530" y2="148.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="220.0" x2="530" y2="184.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="220.0" x2="530" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="40.0" x2="1010" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="40.0" x2="1010" y2="100.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="40.0" x2="1010" y2="160.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="40.0" x2="1010" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="76.0" x2="1010" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="76.0" x2="1010" y2="100.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="76.0" x2="1010" y2="160.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="76.0" x2="1010" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="112.0" x2="1010" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="112.0" x2="1010" y2="100.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="112.0" x2="1010" y2="160.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="112.0" x2="1010" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="148.0" x2="1010" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="148.0" x2="1010" y2="100.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="148.0" x2="1010" y2="160.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="148.0" x2="1010" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="184.0" x2="1010" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="184.0" x2="1010" y2="100.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="184.0" x2="1010" y2="160.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="184.0" x2="1010" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="220.0" x2="1010" y2="40.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="220.0" x2="1010" y2="100.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="220.0" x2="1010" y2="160.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="770" y1="220.0" x2="1010" y2="220.0" stroke="var(--track-edge)" stroke-opacity=".45" stroke-width="1"/><line x1="330" y1="76.0" x2="530" y2="148.0" stroke="var(--green)" stroke-width="3.5"/><circle cx="628" cy="130.0" r="5" fill="var(--text-3)"/><circle cx="650" cy="130.0" r="5" fill="var(--text-3)"/><circle cx="672" cy="130.0" r="5" fill="var(--text-3)"/><circle cx="110" cy="40.0" r="11" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2.5"/><circle cx="110" cy="100.0" r="11" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2.5"/><circle cx="110" cy="160.0" r="11" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2.5"/><circle cx="110" cy="220.0" r="11" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2.5"/><circle cx="330" cy="40.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="330" cy="76.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="330" cy="112.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="330" cy="148.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="330" cy="184.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="330" cy="220.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="530" cy="40.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="530" cy="76.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="530" cy="112.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="530" cy="148.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="530" cy="184.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="530" cy="220.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="770" cy="40.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="770" cy="76.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="770" cy="112.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="770" cy="148.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="770" cy="184.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="770" cy="220.0" r="11" fill="var(--panel-2)" stroke="var(--violet)" stroke-width="2.5"/><circle cx="1010" cy="40.0" r="11" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2.5"/><circle cx="1010" cy="100.0" r="11" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2.5"/><circle cx="1010" cy="160.0" r="11" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2.5"/><circle cx="1010" cy="220.0" r="11" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2.5"/><text x="110" y="262" text-anchor="middle" fill="var(--text-2)" font-size="19" font-weight="600">Your prompt</text><text x="330" y="262" text-anchor="middle" fill="var(--text-2)" font-size="19" font-weight="600">Layer 1</text><text x="530" y="262" text-anchor="middle" fill="var(--text-2)" font-size="19" font-weight="600">Layer 2</text><text x="770" y="262" text-anchor="middle" fill="var(--text-2)" font-size="19" font-weight="600">Last layer</text><text x="1010" y="262" text-anchor="middle" fill="var(--text-2)" font-size="19" font-weight="600">Next word</text><text x="650" y="262" text-anchor="middle" fill="var(--text-3)" font-size="17">many more layers</text><line x1="430.0" y1="112.0" x2="430.0" y2="-12" stroke="var(--green)" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="320.0" y="-48" width="220" height="34" rx="8" fill="var(--panel)" stroke="var(--green)" stroke-width="2"/><text x="430.0" y="-25" text-anchor="middle" fill="var(--green)" font-size="18" font-weight="700">one weight: 0.0213</text><text x="1080" y="110" fill="var(--text-2)" font-size="18"><tspan x="1080" dy="0">Every line</tspan><tspan x="1080" dy="24">is a number</tspan><tspan x="1080" dy="24">learned in</tspan><tspan x="1080" dy="24">training.</tspan></text></svg></div><div class="row weights-steps"><div class="panel"><b>Training makes the weights</b>The lab runs huge amounts of text through the network and nudges every number until its predictions improve. This happens once, on large GPU clusters.</div><div class="panel"><b>Inference uses the weights</b>Your prompt flows through the layers. Each layer multiplies it by its fixed weights, and the last layer picks the next word. The weights never change while it runs.</div></div><div class="callout"><b>27B means about 27 billion parameters.</b> It is a model-size label, not a quality score.</div></section>
+    <section class="slide" data-title="What is released" data-tab="Released">
+      <div>
+        <div class="kicker">Start here</div>
+        <h1>What you download, and what stays at the lab</h1>
+      </div>
+      <div class="hardware-body">
+        <div class="ow-visual" role="img" aria-label="Diagram comparing the closed training recipe with the downloaded open weights file">
+          <div class="ow-box closed">
+            <div class="ow-head">
+              <div class="ow-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                1. Training at the lab
+              </div>
+              <span class="pill amber">Usually closed</span>
+            </div>
+            <div class="ow-chips">
+              <div class="ow-chip"><b>Training data</b>Trillions of words</div>
+              <div class="ow-chip"><b>Training recipe</b>Code &amp; filtering</div>
+              <div class="ow-chip"><b>Cluster</b>Months of GPUs</div>
+            </div>
+          </div>
+
+          <div class="ow-arrow">↓ outputs the trained model ↓</div>
+
+          <div class="ow-box open">
+            <div class="ow-head">
+              <div class="ow-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+                2. Downloaded weights file
+              </div>
+              <span class="pill green">Open to download</span>
+            </div>
+            <div class="ow-matrix" aria-hidden="true">
+              <span class="ow-cell">+0.041</span><span class="ow-cell">-0.812</span><span class="ow-cell hi">+1.204</span><span class="ow-cell">-0.019</span><span class="ow-cell">+0.530</span><span class="ow-cell">-0.307</span>
+              <span class="ow-cell">-0.225</span><span class="ow-cell hi">+0.948</span><span class="ow-cell">+0.112</span><span class="ow-cell">-0.640</span><span class="ow-cell hi">+0.773</span><span class="ow-cell">+0.008</span>
+              <span class="ow-cell">+0.619</span><span class="ow-cell">-0.104</span><span class="ow-cell">-0.491</span><span class="ow-cell hi">+1.085</span><span class="ow-cell">-0.276</span><span class="ow-cell">+0.390</span>
+            </div>
+            <div class="ow-meta">
+              <span>weights + biases: billions of learned parameters</span>
+              <span>config.json: layers = 32, hidden_size = 4096</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hardware-copy">
+          <div class="hardware-item">
+            <h2>Released: every learned parameter</h2>
+            <p>Weights and biases are all inside the file you download. You can run the model offline, fine-tune it, or quantize it to fit smaller memory.</p>
+          </div>
+          <div class="hardware-item">
+            <h2>Usually not released: the recipe</h2>
+            <p>The training data, training code, and sometimes full license freedom stay private. That is why <b>open weights</b> is not the same as <b>open source</b>.</p>
+          </div>
+          <div>
+            <h2>Parameters vs. hyperparameters</h2>
+            <p>Parameters are the numbers learned during training. Hyperparameters (like layer count) are settings chosen beforehand and shipped in the model's config file.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="slide" data-title="Memory">
+      <div>
+        <div class="kicker">Part 1</div>
+        <h1>How an AI model uses your computer's memory</h1>
+        <p class="lead">A model needs room for itself and room to remember what you have said. The second part grows as the conversation gets longer.</p>
+      </div>
+      <div class="row">
+        <div class="col" style="flex: 0 0 34%;">
+          <div class="panel">
+            <h2>The laptop</h2>
+            <div id="specs"></div>
+          </div>
+          <div class="panel" style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.15rem;">
+                <span class="swatch" style="background: #2563eb;"></span>1. The model itself
+              </div>
+              <div class="small" style="color: var(--text-2);">
+                Billions of numbers learned during training, called parameters (or weights). Its size is fixed. A short question and a long book use the same amount.
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex: none;">
+              <span class="pill gray" id="exampleName" style="font-size: 0.72rem; padding: 0.2rem 0.5rem; font-weight: 600;"></span>
+              <span id="exampleSize" style="font-weight: 700; font-size: 0.95rem; color: #3b82f6;"></span>
+              <span class="pill gray" style="font-size: 0.68rem; padding: 0.08rem 0.4rem;">Fixed in RAM</span>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>A quick word on "tokens"</h2>
+            <p class="small" style="color: var(--text-2);">AI models read and write in <b>tokens</b>, which are pieces of words. <b>1,000 tokens is about 750 English words</b>, or one and a half pages. Most people read about 5 tokens per second.</p>
+          </div>
+        </div>
+        <div class="col grow">
+          <div class="panel grow" style="display: flex; flex-direction: column; padding: 0.65rem 1rem; min-height: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex: none;">
+              <h2 id="growthTitle" style="margin: 0; font-size: 1.02rem;"><span class="swatch" style="background: var(--violet);"></span>2. Context</h2>
+              <div class="vbar-legend">
+                <span class="vleg-item"><span class="swatch" style="background: #2563eb;"></span>Model (fixed)</span>
+                <span class="vleg-item"><span class="swatch" style="background: #10b981;"></span>Tools (MCP)</span>
+                <span class="vleg-item"><span class="swatch" style="background: #f43f5e;"></span>System prompt (skills)</span>
+                <span class="vleg-item"><span class="swatch" style="background: #a855f7;"></span>User (Q)</span>
+                <span class="vleg-item"><span class="swatch" style="background: #f59e0b;"></span>Tool call</span>
+                <span class="vleg-item"><span class="swatch" style="background: #06b6d4;"></span>Answer (A)</span>
+                <span class="vleg-item"><span class="swatch" style="background: #6366f1;"></span><span id="bookLegend"></span></span>
+              </div>
+            </div>
+            <div id="verticalBars" class="vbars-grid"></div>
+            <p class="small muted" style="flex: none; margin-top: 0.3rem;">Turns 1 to 3 share one scale. Turn 4 is drawn at a smaller scale to fit.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="What fits">
+      <div>
+        <div class="kicker">Part 2</div>
+        <h1>What fits on this Mac?</h1>
+        <p class="lead">Earlier Mac-only survey (Oct 22). macOS recommends the graphics chip use at most <b><span class="limitGb"></span> GB</b> of the Mac's <span class="ramGb"></span> GB. Pick a document size to see how full each model's context window (the most text it can hold at once) gets, how much memory it used, and how long you wait before it starts answering.</p>
+      </div>
+      <div class="seg" id="ctxPicker"></div>
+      <div class="panel grow" style="overflow: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Engine</th>
+              <th>Format</th>
+              <th class="r">Download</th>
+              <th style="width: 17%;">Context window used</th>
+              <th style="width: 21%;">Memory used<br><span class="muted" style="text-transform: none;">red line = <span class="limitGb"></span> GB limit</span></th>
+              <th class="r">Reading<br><span style="text-transform: none;">tokens/sec</span></th>
+              <th class="r">Wait to<br>answer</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody id="fitTable"></tbody>
+        </table>
+      </div>
+      <p class="small muted">The "document" is Python's own standard library source code, glued together, with one request: <i>"Explain what the code above does in about 150 words."</i> The largest is about 755,000 characters of Python.</p>
+    </section>
+
+    <section class="slide" data-title="Speed and accuracy" data-tab="Speed">
+      <div>
+        <div class="kicker">Part 3</div>
+        <h1>Mac survey: speed and challenge score</h1>
+        <p class="lead">Earlier Mac-only survey (Oct 22): speed uses the local server’s output timing. Accuracy is its score on the same 29-question challenge set: math problems, logic puzzles and coding tasks, picked because they separate models. Questions every model got right were left out.</p>
+      </div>
+      <div class="row">
+        <div class="col" style="flex: 0 0 58%;">
+          <div class="panel" style="overflow: auto;">
+            <table class="compact">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th class="r">Speed<br><span style="text-transform: none;">tokens/sec</span></th>
+                  <th class="r">Math<br><span style="text-transform: none;">14</span></th>
+                  <th class="r">Coding<br><span style="text-transform: none;">12</span></th>
+                  <th class="r">Overall<br><span style="text-transform: none;">29</span></th>
+                  <th class="r">Per<br>answer</th>
+                </tr>
+              </thead>
+              <tbody id="perfTable"></tbody>
+            </table>
+          </div>
+          <div class="callout" id="speedCallout"></div>
+        </div>
+        <div class="panel grow" style="display: flex; flex-direction: column;">
+          <h2>Faster to the right, more accurate toward the top</h2>
+          <div class="grow" style="min-height: 0;"><svg class="chart" id="scatter"></svg></div>
+          <p class="small muted" style="margin-top: 0.3rem;">White ring: no other model is both faster and more accurate.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="OpenRouter diagram" data-tab="Providers"><div><div class="kicker">Hosted inference</div><h1>One API, many providers and models</h1><p class="lead">Choose a model through OpenRouter. It routes your request to an eligible provider that runs it.</p></div><div class="panel grow flow-panel"><svg viewBox="0 0 1200 420" role="img" aria-label="One application connects to OpenRouter, which branches to many providers: DeepInfra serving Gemma and Qwen, OpenAI serving GPT models, and Anthropic serving Claude models. DeepInfra is highlighted as our measured path."><defs><marker id="routerBlue" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#4cc2ff"/></marker><marker id="routerGreen" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#3ddc97"/></marker></defs><rect x="10" y="150" width="225" height="125" rx="12" fill="var(--panel)" stroke="#4cc2ff" stroke-width="2"/><text x="28" y="183" fill="#4cc2ff" font-size="23" font-weight="700">Your app</text><text x="28" y="214" fill="var(--text-2)" font-size="19">Choose a model</text><text x="28" y="239" fill="var(--text-2)" font-size="19">Send a prompt</text><rect x="300" y="150" width="255" height="125" rx="12" fill="var(--panel)" stroke="#4cc2ff" stroke-width="2"/><text x="318" y="183" fill="#4cc2ff" font-size="23" font-weight="700">OpenRouter</text><text x="318" y="214" fill="var(--text-2)" font-size="19">One API</text><text x="318" y="239" fill="var(--text-2)" font-size="19">Routes to a provider</text><path d="M235,212 H290" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#routerBlue)"/><path d="M555,212 H590 V60 H630" fill="none" stroke="#3ddc97" stroke-width="3" marker-end="url(#routerGreen)"/><rect x="640" y="10" width="220" height="110" rx="12" fill="var(--panel)" stroke="#3ddc97" stroke-width="2"/><text x="658" y="43" fill="#3ddc97" font-size="23" font-weight="700">DeepInfra</text><text x="658" y="74" fill="var(--text-2)" font-size="19">Our measured path</text><path d="M860,60 H900" fill="none" stroke="#3ddc97" stroke-width="3" marker-end="url(#routerGreen)"/><rect x="910" y="10" width="280" height="110" rx="12" fill="var(--panel)" stroke="#3ddc97" stroke-width="2"/><text x="928" y="43" fill="#3ddc97" font-size="23" font-weight="700">Gemma · Qwen</text><text x="928" y="74" fill="var(--text-2)" font-size="19">Two models tested</text><path d="M555,212 H590 V200 H630" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#routerBlue)"/><rect x="640" y="150" width="220" height="110" rx="12" fill="var(--panel)" stroke="#4cc2ff" stroke-width="2"/><text x="658" y="183" fill="#4cc2ff" font-size="23" font-weight="700">OpenAI</text><text x="658" y="214" fill="var(--text-2)" font-size="19">Another provider</text><path d="M860,200 H900" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#routerBlue)"/><rect x="910" y="150" width="280" height="110" rx="12" fill="var(--panel)" stroke="#4cc2ff" stroke-width="2"/><text x="928" y="183" fill="#4cc2ff" font-size="23" font-weight="700">GPT models</text><text x="928" y="214" fill="var(--text-2)" font-size="19">Other model choices</text><path d="M555,212 H590 V340 H630" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#routerBlue)"/><rect x="640" y="290" width="220" height="110" rx="12" fill="var(--panel)" stroke="#4cc2ff" stroke-width="2"/><text x="658" y="323" fill="#4cc2ff" font-size="23" font-weight="700">Anthropic</text><text x="658" y="354" fill="var(--text-2)" font-size="19">Another provider</text><path d="M860,340 H900" fill="none" stroke="#4cc2ff" stroke-width="3" marker-end="url(#routerBlue)"/><rect x="910" y="290" width="280" height="110" rx="12" fill="var(--panel)" stroke="#4cc2ff" stroke-width="2"/><text x="928" y="323" fill="#4cc2ff" font-size="23" font-weight="700">Claude models</text><text x="928" y="354" fill="var(--text-2)" font-size="19">Other model choices</text></svg></div><div class="row flow-captions"><div class="panel"><b>More choices than shown here</b><p>OpenRouter includes open-weight and proprietary models. The same model can be offered by several providers; availability varies.</p></div><div class="panel"><b>Green = our test path</b><p>We pinned Gemma and Qwen to DeepInfra and disabled fallback. Other requests can use provider selection and fallback.</p></div></div><p class="small muted">Examples, not the full catalog. Replies return through OpenRouter. <a href="https://openrouter.ai/docs/guides/routing/provider-selection">Source: OpenRouter provider routing</a>.</p></section>
+
+    <section class="slide" data-title="AWS architecture" data-tab="AWS">
+      <div><div class="kicker">The rented-GPU setup</div><h1>Models in S3, inference on one GPU</h1><p class="lead">The Mac sends every test and measures the reply through an encrypted tunnel. The model runs in Ohio.</p></div>
+      <div class="panel grow flow-panel"><svg viewBox="0 0 1200 440" role="img" aria-label="The Mac uploads model files to a private S3 bucket in Ohio and drives tests through an SSH tunnel to one AWS L40S instance. An instance role grants access to that bucket. Compute has since been deleted; S3 remains.">
+<defs><marker id="awsArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0L8 4L0 8" fill="#4cc2ff"/></marker><marker id="awsStorageArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#3ddc97"/></marker></defs>
+<rect x="330" y="8" width="858" height="424" rx="18" fill="none" stroke="#526077" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="355" y="42" fill="#f3f6fc" font-size="23" font-weight="700">One AWS account · us-east-2 (Ohio)</text>
+<rect x="10" y="230" width="255" height="172" rx="14" fill="#131a2e" stroke="#4cc2ff" stroke-width="2"/>
+<text x="30" y="265" fill="#4cc2ff" font-size="24" font-weight="700">My Mac</text>
+<text x="30" y="299" fill="#c4cede" font-size="20">Test harness + timer</text><text x="30" y="329" fill="#c4cede" font-size="20">bench/venue.py</text><text x="30" y="365" fill="#c4cede" font-size="18">Send · time · grade</text>
+<rect x="390" y="76" width="365" height="132" rx="14" fill="#131a2e" stroke="#3ddc97" stroke-width="2"/>
+<text x="410" y="110" fill="#3ddc97" font-size="24" font-weight="700">S3 model storage</text><text x="410" y="143" fill="#c4cede" font-size="20">3 FP8 checkpoints · 91.9 GB</text><text x="410" y="174" fill="#c4cede" font-size="18">Public access blocked · encrypted</text>
+<path d="M135 230V142H378" fill="none" stroke="#3ddc97" stroke-width="3" marker-end="url(#awsStorageArrow)"/><text x="28" y="115" fill="#3ddc97" font-size="19">Upload models once</text>
+<rect x="390" y="255" width="365" height="157" rx="14" fill="#131a2e" stroke="#b794ff" stroke-width="2"/>
+<text x="410" y="289" fill="#b794ff" font-size="24" font-weight="700">EC2 · g6e.xlarge</text><text x="410" y="322" fill="#c4cede" font-size="20">1× L40S · 48 GB GPU memory</text><text x="410" y="353" fill="#c4cede" font-size="18">vLLM: FP8 models, one at a time</text><text x="410" y="382" fill="#c4cede" font-size="18">Ollama: Q4_K_M redteam model</text>
+<path d="M572 208V245" stroke="#3ddc97" stroke-width="3" marker-end="url(#awsStorageArrow)"/><text x="590" y="237" fill="#3ddc97" font-size="17">Copy to disk</text>
+<path d="M275 333H378" stroke="#4cc2ff" stroke-width="3" marker-start="url(#awsArrow)" marker-end="url(#awsArrow)"/><text x="278" y="298" fill="#4cc2ff" font-size="17">SSH tunnel</text>
+<rect x="815" y="76" width="345" height="132" rx="14" fill="#131a2e" stroke="#3ddc97" stroke-width="2"/>
+<text x="835" y="110" fill="#3ddc97" font-size="23" font-weight="700">Instance role</text><text x="835" y="143" fill="#c4cede" font-size="19">Read/write this bucket only</text><text x="835" y="174" fill="#c4cede" font-size="18">No stored access keys on EC2</text>
+<path d="M815 142H765" stroke="#3ddc97" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#awsStorageArrow)"/>
+<text x="825" y="281" fill="#f3f6fc" font-size="22" font-weight="700">Restricted access</text><text x="825" y="316" fill="#c4cede" font-size="19">SSH from my home IP only</text><text x="825" y="346" fill="#c4cede" font-size="19">No public model ports</text><text x="825" y="386" fill="#c4cede" font-size="18">5-hour automatic shutdown</text>
+</svg></div>
+      <div class="aws-state"><div class="panel"><b>During the run</b><p>$1.861/hour for compute · 250 GiB disk<br>Ubuntu 24.04 · GPU drivers · Docker</p></div><div class="panel"><b>After teardown · Oct 26</b><p>Instance and disk deleted; no volumes or snapshots remain.<br>S3 retained for reruns: about $2/month.</p></div></div>
+      <p class="small muted">Ohio had available GPU quota: 504 vCPUs versus 0 in us-east-1. Architecture and teardown state supplied by the presenter; cost figures are approximate, not the total bill.</p>
+    </section>
+
+    <section class="slide" data-title="Three environments" data-tab="Compare"><div><div class="kicker">Measured comparison</div><h1>Scores and answer times in three environments</h1><p class="lead">Each cell shows correct answers out of 29, then average time to finish an answer. Smaller time is better.</p></div><div class="panel grow"><table><thead><tr><th>Model</th><th>This Mac</th><th>AWS L40S</th><th>OpenRouter</th></tr></thead><tbody><!-- answers-rows:start -->
+<tr><th>Qwen 3.8 27B</th><td><b>28/29</b> · 59 s</td><td><b>28/29</b> · 50 s</td><td><b>28/29</b> · 32 s</td></tr>
+<tr><th>Gemma 4 26B</th><td><b>26/29</b> · 13 s</td><td><b>28/29</b> · 8 s</td><td><b>26/29</b> · 15 s</td></tr>
+<tr><th>Nemotron 3.5 Lightning</th><td><b>23/29</b> · 8 s</td><td><b>23/29</b> · 3 s</td><td>not tested</td></tr>
+<tr><th>Qwen 3.8 27B redteam</th><td><b>28/29</b> · 2.3 min</td><td><b>27/29</b> · 29 s</td><td>not tested</td></tr>
+<tr><th>Claude Haiku 5.5</th><td>not tested</td><td>not tested</td><td><b>28/29</b> · 2 s</td></tr>
+<!-- answers-rows:end --></tbody></table></div><p class="small muted">Same prompts and graders; one run per model and deployment. Times include every question, including wrong or capped replies, and network time. Answer lengths, precision and serving software differ.</p></section>
+
+    <section class="slide" data-title="OpenRouter" data-tab="API">
+      <div>
+        <div class="kicker">Part 4 · Hosted models</div>
+        <h1>One API, many model providers</h1>
+        <p class="lead">An API is a software interface: our test script sends text and receives a model’s answer. OpenRouter connects that script to a provider.</p>
+      </div>
+      <div class="panel"><b>What is OpenRouter?</b> OpenRouter is a single API for accessing models from many providers. It routes each request to a provider that runs the model. For these tests, that was DeepInfra and Anthropic.</div>
+      <div class="panel hosted-results">
+        <table aria-label="Local and OpenRouter challenge results">
+          <thead><tr><th>Model</th><th>Provider</th><th>Hosted weights</th><th>29-question cost</th></tr></thead>
+          <tbody>
+<!-- hosted-rows:start -->
+<tr><td><b>Gemma 4 26B</b></td><td>DeepInfra</td><td>FP8</td><td>$0.0103</td></tr>
+<tr><td><b>Qwen 3.8 27B</b></td><td>DeepInfra</td><td>BF16</td><td>$0.0673</td></tr>
+<tr><td><b>Claude Haiku 5.5</b></td><td>Anthropic</td><td>API</td><td>$0.0062</td></tr>
+<!-- hosted-rows:end -->
+          </tbody>
+        </table>
+        <p class="small muted">Our script → OpenRouter → provider (DeepInfra or Anthropic) → model → streamed answer. Provider was pinned; there were no retries or fallbacks.</p>
+      </div>
+      <p class="small muted"><!-- hosted-cost:start -->
+All three hosted runs cost $0.086 in total, including smoke tests and speed measurements.
+<!-- hosted-cost:end --> Measured October 24–26, 2026. No retries or provider fallbacks.</p>
+    </section>
+    <template id="hostedNotes"><!-- hosted-notes:start -->
+Gemma 4 26B: hosted 26/29; average answer 15.1 s, median first text 0.31 s; question-only cost $0.010263. Timings include network. Output rate 72.7 tokens per total request second. Qwen 3.8 27B: hosted 28/29; average answer 32.4 s, median first text 0.37 s; question-only cost $0.067270. Timings include network. Output rate 38.3 tokens per total request second. Claude Haiku 5.5: hosted 28/29; average answer 2.3 s, median first text 0.88 s; question-only cost $0.006226. Timings include network. Output rate 131.3 tokens per total request second. Both open-weight models hit the output cap on Q16. Gemma also failed coding Q25 and Q28. Haiku 5.5 failed logic Q9. All requests used pinned providers with no retries or fallbacks. Qwen had a nonzero endpoint health status at preflight but all requests completed. These are deployment comparisons with different precision and engines, not isolated hardware measurements.
+<!-- hosted-notes:end --></template>
+
+    <section class="slide" data-title="API economics" data-tab="Economics">
+      <div><div class="kicker">Why a small API bill can pay for expensive hardware</div><h1>Many customers share the cost of keeping a GPU busy</h1><p class="lead">A personal machine may wait between your requests. A provider pools demand from many customers throughout the day.</p></div>
+      <div class="hardware-body">
+        <div class="demand-chart">
+          <div><h2>One owner • occasional requests</h2><div class="demand-track" role="img" aria-label="Illustrative timeline: a few active periods separated by idle time"><span></span><span></span><span class="busy"></span><span></span><span></span><span></span><span></span><span></span><span class="busy"></span><span></span><span></span><span></span></div><p class="small muted">Blue = serving requests · dark = idle for AI</p></div>
+          <div><h2>Shared service • overlapping demand</h2><div class="demand-track" role="img" aria-label="Illustrative timeline: pooled demand keeps the hardware busy for more of the day"><span class="shared"></span><span class="shared"></span><span class="shared"></span><span class="shared"></span><span class="shared"></span><span class="shared"></span><span class="shared"></span><span></span><span class="shared"></span><span class="shared"></span><span class="shared"></span><span class="shared"></span></div><p class="small muted">Green = serving customers · time runs left to right</p></div>
+          <p class="hardware-caption">Conceptual timelines, not measured utilization. Your Mac may do other useful work between AI requests.</p>
+        </div>
+        <div class="hardware-copy">
+          <div class="hardware-item"><h2>1. Less idle time</h2><p>More paid work spreads the hardware’s purchase cost over more tokens across its useful life.</p></div>
+          <div class="hardware-item"><h2>2. Several requests at once</h2><p>Continuous batching groups requests on the GPU. New requests join as others finish, increasing total tokens served per second.</p></div>
+          <div><h2>3. Enough revenue to cover the whole service</h2><p>API revenue must cover hardware, electricity, cooling, networking, staff and spare capacity, and leave a margin.</p></div>
+        </div>
+      </div>
+      <div class="economics-equation">Hardware cost per token ≈ hardware cost over its useful life ÷ total tokens served</div>
+      <p class="hardware-source">Higher throughput does not guarantee a faster individual answer. Utilization varies; our API bill does not establish provider profitability. Batching source: <a href="https://huggingface.co/docs/transformers/en/continuous_batching">Hugging Face documentation</a>. Cost relationship is explanatory, not a provider cost estimate.</p>
+    </section>
+
+    <section class="slide" data-title="Long documents" data-tab="Docs"><div><div class="kicker">Measured comparison</div><h1>Waiting for a long document</h1><p class="lead">Time until the first visible answer after sending the same Python-source document.</p></div><div class="panel grow"><table><thead><tr><th rowspan="2">Model</th><th colspan="3">377K characters<br><span class="muted">~95K–139K tokens</span></th><th colspan="3">755K characters<br><span class="muted">~200K–297K tokens</span></th></tr><tr><th>Mac</th><th>L40S</th><th>OpenRouter</th><th>Mac</th><th>L40S</th><th>OpenRouter</th></tr></thead><tbody><!-- documents-rows:start -->
+<tr><th>Qwen 3.8 27B</th><td>27.6 min</td><td>51 s</td><td>13 s</td><td>1.8 hours*</td><td>too long</td><td>27 s</td></tr>
+<tr><th>Gemma 4 26B</th><td>5.4 min</td><td>25 s</td><td>7 s</td><td>17.1 min</td><td>1.6 min</td><td>19 s</td></tr>
+<tr><th>Nemotron 3.5 Lightning</th><td>4.7 min</td><td>9 s</td><td>not tested</td><td>13.7 min</td><td>25 s</td><td>not tested</td></tr>
+<tr><th>Qwen 3.8 27B redteam</th><td>27.8 min</td><td>1.1 min</td><td>not tested</td><td>1.5 hours</td><td>4.6 min</td><td>not tested</td></tr>
+<tr><th>Claude Haiku 5.5</th><td>not tested</td><td>not tested</td><td>3 s</td><td>not tested</td><td>not tested</td><td>7 s</td></tr>
+<!-- documents-rows:end --></tbody></table></div><p class="small muted">* Oct 22, through Ollama's native API. Later runs through the shared client were stopped by macOS while the Mac was in use. On the L40S, Qwen exceeded the 139,552-token limit of this FP8 deployment. Token counts differ by model; character counts identify the same-size source text.</p></section>
+
+    <section class="slide" data-title="Voice">
+      <div>
+        <div class="kicker">Bonus · Local voice</div>
+        <h1>Talking to it</h1>
+        <p class="lead">A voice assistant running entirely on this laptop: speech in, speech out, no internet. How long from your last word to the first word you hear?</p>
+      </div>
+      <div class="panel grow" style="display: flex; flex-direction: column; justify-content: center; gap: 1.4rem;">
+        <div id="voiceHeadline"></div>
+        <div class="vstack" id="voiceBar"></div>
+        <div class="vlegend" id="voiceLegend"></div>
+      </div>
+      <p class="small muted" id="voiceSource"></p>
+    </section>
+
+    <section class="slide" data-title="Live demo" data-tab="Demo">
+      <div class="hero">
+        <div class="kicker">Bonus · Live demo</div>
+        <h1>Live: ask the laptop</h1>
+        <p class="lead" id="demoLead"></p>
+        <div class="hero-cards">
+          <div class="panel"><b>Ask it something</b>A short question works best. It answers in one or two spoken sentences.</div>
+          <div class="panel"><b>Interrupt it</b>Start talking while it answers. It stops and listens.</div>
+          <div class="panel"><b>Watch the wait</b><span id="demoWait"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Tradeoffs">
+      <div>
+        <div class="kicker">Wrap-up</div>
+        <h1>Tradeoffs</h1>
+        <p class="lead">The same Qwen 3.8 27B in four places to run it.</p>
+      </div>
+      <div class="panel grow">
+        <table class="tradeoffs">
+          <thead><tr><th></th><th>This MacBook Pro<br><span class="muted">M1 Max, 2021</span></th><th>New MacBook Pro<br><span class="muted">M5 Max, 64 GB</span></th><th>Rented GPU<br><span class="muted">L40S on AWS</span></th><th>Hosted API<br><span class="muted">OpenRouter, DeepInfra</span></th></tr></thead>
+          <tbody>
+            <tr><th>You pay</th><td>Already owned</td><td class="expected">About $5,099</td><td>$1.86 an hour while it runs</td><td>$0.067 for 29 questions</td></tr>
+            <tr><th>Writing speed</th><td><span id="tradeMacSpeed"></span> tokens/sec</td><td class="expected">About 21 to 25 tokens/sec</td><td>25 tokens/sec, including network</td><td>38 tokens/sec, including network</td></tr>
+            <tr><th>Reading a 262K-token document</th><td><span id="tradeMacRead"></span> before the first word</td><td class="expected">About 30 min</td><td>Does not fit. Largest window 139,552 tokens</td><td class="pending">Not tested</td></tr>
+            <tr><th>You manage</th><td>Downloads and local runtime</td><td>Downloads and local runtime</td><td>Instance, models and server</td><td>Requests and provider selection</td></tr>
+            <tr><th>Your data goes to</th><td>Stays on the laptop</td><td>Stays on the laptop</td><td>A machine you rent</td><td>The API service and model provider</td></tr>
+            <tr><th>Without internet</th><td>Works</td><td>Works</td><td>No</td><td>No</td></tr>
+          </tbody>
+        </table>
+        <p class="small muted" style="margin-top: 0.8rem;"><span class="tag">Expected:</span> estimated from published prices and specs, not measured. Everything else is measured in this deck. EC2 bills while the instance runs, idle or not.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-title="How we measured" data-tab="Method">
+      <div>
+        <div class="kicker">Appendix</div>
+        <h1>How these numbers were measured</h1>
+        <p class="lead">Saved responses, timings and grading are in bench/. These are small, selected tests, not a general benchmark or a production load test.</p>
+      </div>
+      <div class="row">
+        <div class="panel grow">
+          <h2>What we did</h2>
+          <ul class="plain" id="methodList"></ul>
+        </div>
+        <div class="panel grow">
+          <h2>What to keep in mind</h2>
+          <ul class="plain">
+            <li><b>Three environments.</b> This Mac, one AWS L40S, and two DeepInfra deployments reached through OpenRouter. Precision and serving software differ between them.</li>
+            <li><b>A small test.</b> This custom set was selected to separate the tested models. Each question is worth about 3 points.</li>
+            <li><b>"Thinking" mode was off.</b> Most of these models can reason step by step before answering, which takes much longer. We did not test that mode. DeepSeek-R1 always thinks, so its answers are slower. It often thought so long that it ran out of room before answering, which counts as wrong, so its score says more about that limit than about the model.</li>
+            <li id="enginesNote"></li>
+            <li><b>Compressed models.</b> The Mac builds are compressed downloads, mostly about 4-bit. The L40S builds use FP8 and the hosted ones FP8 or BF16, so precision and serving software differ.</li>
+            <li><b>Not the published scores.</b> Model makers publish their own scores, measured their own way. Ours come from our runs of this challenge set.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Run details" data-tab="Details">
+      <div>
+        <div class="kicker">Appendix • exact deployments</div>
+        <h1>All deployment measurements</h1>
+        <p class="lead">All request timings below come from the same streaming client. Output rate includes the full request time.</p>
+      </div>
+      <div class="panel grow" style="overflow: auto;">
+        <table class="compact environments">
+          <thead><tr><th>Model</th><th>Where</th><th>Weights</th><th class="r">Score</th><th class="r">Per<br>answer</th><th class="r">First<br>text</th><th class="r">Output / total<br><span style="text-transform: none;">tokens/sec</span></th><th class="r">Wait<br>377K chars</th><th class="r">Wait<br>755K chars</th></tr></thead>
+          <tbody>
+<!-- environment-rows:start -->
+<tr class="first"><td class="model-name">Qwen 3.8 27B</td><td>This Mac</td><td>nvfp4</td><td class="r num">28/29</td><td class="r num">59 s</td><td class="r num">0.35 s</td><td class="r num">14</td><td class="r num">27.6 min</td><td class="r num">1.8 hours*</td></tr>
+<tr><td></td><td>Rented L40S</td><td>FP8</td><td class="r num">28/29</td><td class="r num">50 s</td><td class="r num">0.13 s</td><td class="r num">25</td><td class="r num">51 s</td><td class="r num">too long</td></tr>
+<tr><td></td><td>OpenRouter</td><td>BF16</td><td class="r num">28/29</td><td class="r num">32 s</td><td class="r num">0.37 s</td><td class="r num">38</td><td class="r num">13 s</td><td class="r num">27 s</td></tr>
+<tr class="first"><td class="model-name">Gemma 4 26B</td><td>This Mac</td><td>nvfp4</td><td class="r num">26/29</td><td class="r num">13 s</td><td class="r num">0.08 s</td><td class="r num">56</td><td class="r num">5.4 min</td><td class="r num">17.1 min</td></tr>
+<tr><td></td><td>Rented L40S</td><td>FP8</td><td class="r num">28/29</td><td class="r num">8 s</td><td class="r num">0.13 s</td><td class="r num">107</td><td class="r num">25 s</td><td class="r num">1.6 min</td></tr>
+<tr><td></td><td>OpenRouter</td><td>FP8</td><td class="r num">26/29</td><td class="r num">15 s</td><td class="r num">0.31 s</td><td class="r num">73</td><td class="r num">7 s</td><td class="r num">19 s</td></tr>
+<tr class="first"><td class="model-name">Nemotron 3.5 Lightning</td><td>This Mac</td><td>nvfp4</td><td class="r num">23/29</td><td class="r num">8 s</td><td class="r num">0.11 s</td><td class="r num">64</td><td class="r num">4.7 min</td><td class="r num">13.7 min</td></tr>
+<tr><td></td><td>Rented L40S</td><td>FP8</td><td class="r num">23/29</td><td class="r num">3 s</td><td class="r num">0.13 s</td><td class="r num">134</td><td class="r num">9 s</td><td class="r num">25 s</td></tr>
+<tr class="first"><td class="model-name">Qwen 3.8 27B redteam</td><td>This Mac</td><td>Q4_K_M</td><td class="r num">28/29</td><td class="r num">2.3 min</td><td class="r num">0.20 s</td><td class="r num">8</td><td class="r num">27.8 min</td><td class="r num">1.5 hours</td></tr>
+<tr><td></td><td>Rented L40S</td><td>Q4_K_M</td><td class="r num">27/29</td><td class="r num">29 s</td><td class="r num">0.43 s</td><td class="r num">37</td><td class="r num">1.1 min</td><td class="r num">4.6 min</td></tr>
+<tr class="first"><td class="model-name">Claude Haiku 5.5</td><td>OpenRouter</td><td>API</td><td class="r num">28/29</td><td class="r num">2 s</td><td class="r num">0.88 s</td><td class="r num">131</td><td class="r num">3 s</td><td class="r num">7 s</td></tr>
+<!-- environment-rows:end -->
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">Weights: nvfp4 and Q4_K_M are roughly 4-bit compressed builds; FP8 uses 8-bit and BF16 uses 16-bit numbers. L40S: AWS g6e.xlarge, Ohio, quoted $1.86/hour plus other services; vLLM 0.32.0, except redteam uses Ollama 0.40.6. API: DeepInfra through OpenRouter. Failed = attempted, no completed result; not tested = no run. * Oct 22, through Ollama's native API. Later runs through the shared client were stopped by macOS while the Mac was in use.</p>
+    </section>
+    <section class="slide" data-title="Connect & resources" data-tab="Links">
+      <div><div class="kicker">Thank you</div><h1>Questions &amp; further reading</h1><p class="lead">Connect with me, watch a deeper introduction, or explore the economics behind the hardware.</p></div>
+      <div class="closing-links">
+        <a class="panel closing-link" href="https://www.linkedin.com/in/nickchristensenembedded/" target="_blank" rel="noopener noreferrer"><img class="closing-image" src="assets/links/linkedin.svg" alt="LinkedIn icon"><span class="closing-type">Connect</span><h2>Nick Christensen</h2><p>Find me on LinkedIn.</p><span class="closing-url">linkedin.com/in/<br>nickchristensenembedded/ ↗</span></a>
+        <a class="panel closing-link" href="https://youtu.be/79Pnm5hANsA?si=HY57oSUbIyjf8PL_" target="_blank" rel="noopener noreferrer"><img class="closing-image" src="assets/links/video.jpg" alt="Thumbnail for Nathan Lambert’s Open Language Models video"><span class="closing-type">Watch</span><h2>Open Language Models</h2><p>Nathan Lambert</p><p class="small">Overview, Open Source History, Distillation, Risks, &amp; Chinese Labs</p><span class="closing-url">youtu.be/79Pnm5hANsA ↗</span></a>
+        <a class="panel closing-link" href="https://semianalysis.com/" target="_blank" rel="noopener noreferrer"><img class="closing-image" src="assets/links/semianalysis.png" alt="SemiAnalysis"><span class="closing-type">Read</span><h2>SemiAnalysis</h2><p>AI and semiconductor research.</p><p class="small">Hardware, data centers and the economics of inference.</p><span class="closing-url">semianalysis.com ↗</span></a>
+      </div>
+      <p class="small muted">All three cards are clickable. Video thumbnail: Nathan Lambert / YouTube · SemiAnalysis graphic: SemiAnalysis.</p>
+    </section>
+  </main>
+
+  <div class="notes" id="notes"></div>
+
+  <script src="benchmarks.js"></script>
+  <script>
+    const B = window.BENCHMARKS;
+    const M = B.models.filter(m => m.in_deck);  // bench/models.json in_deck. The README lists every measured model.
+    const LIMIT_GB = B.machine.gpu_memory_limit_gb;
+    const fmt = (v, d = 1) => v == null ? "–" : (Math.round((Number(v) + Number.EPSILON) * 10 ** d) / 10 ** d).toFixed(d);
+    const kTokens = n => `${fmt(n / 1000, n >= 10000 ? 0 : 1)}K`;  // decimal thousands, like summarize.k_tokens
+    // Code inputs have model-specific tokenization; do not convert them into prose page counts.
+    const docSub = tokens => `${kTokens(tokens)} input tokens (varies)`;
+    const CONTEXTS = [
+      { key: "2048", label: "Short chat" },
+      { key: "8192", label: "Article" },
+      { key: "32768", label: "Report" },
+      { key: "131072", label: "Book" },
+      { key: "262144", label: "Huge document" },
+    ].filter(c => M.some(m => m.by_context[c.key])).map(c => {
+      const sent = M.map(m => m.by_context[c.key]?.prompt_tokens).filter(Boolean);
+      const tokens = sent.reduce((a, b) => a + b, 0) / sent.length;
+      return { ...c, tokens, sub: docSub(tokens) };
+    });
+    const COLORS = { "deepseek-r1:latest": "#b794ff", "gemma4:latest": "#3ddc97", "gemma4:12b": "#4cc2ff", "qwen3.8:27b": "#ffc24b", "qwen3.5:35b": "#ff8a5c",
+                     "gemma4:26b-nvfp4": "#7ee8c4", "nemotron-3.5-lightning:30b-a3b-mlx": "#a3e635", "rafw007/qwen3.8-27b-redteam:latest": "#ff6b7d", "qwen3.8:27b-q4_K_M": "#f0e68c" };
+    const isMixture = m => /mixture of experts/i.test(m.design);
+    const ENGINES = { "MLX": "Newer", "llama.cpp": "Older" };  // Ollama's two engines, named as the audience hears them
+    const CHALLENGE_N = B.method.quiz_questions;
+    const listing = names => names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
+
+    // Round half up (same rule as bench/summarize.py), avoiding toFixed's binary-float surprises such as 0.15 -> "0.1".
+    const byTag = tag => M.find(m => m.tag === tag);
+    const withQuiz = M.filter(m => m.quiz);
+    const maxBy = (arr, f) => arr.reduce((a, b) => (f(b) > f(a) ? b : a));
+    const minBy = (arr, f) => arr.reduce((a, b) => (f(b) < f(a) ? b : a));
+    const fmtWait = s => s == null ? "–" : s < 60 ? `${fmt(s, s < 10 ? 1 : 0)} sec` : s < 3600 ? `${fmt(s / 60, 1)} min` : `${fmt(s / 3600, 1)} hours`;
+    const memAt = (m, key) => m.by_context[key]?.memory_gb;
+    const svgEl = (tag, attrs, text) => {
+      const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const k in attrs) el.setAttribute(k, attrs[k]);
+      if (text != null) el.textContent = text;
+      return el;
+    };
+    const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const rem = () => parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+    // ---------- Slide 1: specs + memory growth ----------
+    // Models measured on a different Ollama version than the rest, e.g. " (Qwen 3.8 27B: 0.35.1)".
+    function otherVersions() {
+      const odd = M.filter(m => m.ollama_version !== B.machine.ollama_version);
+      return odd.length ? ` (${odd.map(m => `${m.name}: ${m.ollama_version}`).join(", ")})` : "";
+    }
+
+    function renderSpecs() {
+      const mc = B.machine;
+      const rows = [
+        ["Computer", "MacBook Pro 14-inch (2021)"],
+        ["Chip", `${mc.chip}, 10 CPU cores, 32 GPU cores`],
+        ["Memory", `${mc.memory.replace("GB", "GiB")} = ${fmt(mc.memory_gb)} GB, shared by CPU and GPU`],
+        ["Suggested GPU limit", `${fmt(LIMIT_GB, 0)} GB`],
+        ["Memory speed (Apple spec)", `${mc.memory_bandwidth_gb_s_apple_spec} GB per second`],
+        ["Software", `Ollama ${mc.ollama_version}${otherVersions()}, macOS ${mc.macos}`],
+      ];
+      document.getElementById("specs").innerHTML = rows.map(([a, b]) => `<div class="spec"><span>${a}</span><span>${b}</span></div>`).join("");
+    }
+
+    // One example model (bench/models.json "memory_example") shown at every document size it read.
+    const EXAMPLE = M.find(m => m.memory_example);
+
+    function renderGrowth() {
+      const container = document.getElementById("verticalBars");
+      if (!container || !EXAMPLE) return;
+      const steps = CONTEXTS.filter(c => memAt(EXAMPLE, c.key) != null);
+      const model = EXAMPLE.download_gb;
+
+      // Measured numbers for the example model at each step: tokens it read, tokens it wrote, memory added since the previous step.
+      const read = i => kTokens(EXAMPLE.by_context[steps[i].key].prompt_tokens);
+      const wrote = i => EXAMPLE.by_context[steps[i].key].reply_tokens;
+      const added = i => fmt(memAt(EXAMPLE, steps[i].key) - memAt(EXAMPLE, steps[i - 1].key));
+      const notMeasured = "not part of the measured prompt";
+
+      // Fixed proportional layers (Model is strictly identical across all 4 columns)
+      const modelSeg = { cls: "seg-model", text: `Model ${fmt(model)} GB`, h: 76, title: `Model: ${EXAMPLE.name} (${fmt(model)} GB fixed in RAM)` };
+      const toolsSeg = { cls: "seg-tools", text: "Tools (MCP)", h: 18, title: `Tools: MCP tool schemas (${notMeasured})` };
+      const systemSeg = { cls: "seg-system", text: "System prompt", h: 18, title: `System prompt: skills and instructions (${notMeasured})` };
+
+      // Turn 1 slices: Q1, Tool 1, A1 (identical heights across all 4 columns)
+      const q1Title = `Turn 1: User prompt with a short chat (${read(0)} tokens)`, a1Title = `Turn 1: Assistant answer (${wrote(0)} tokens)`;
+      const tool1Title = `Turn 1: Tool call execution (${notMeasured})`;
+      const q1Full = { cls: "seg-q", text: "User (Q1)", h: 15, title: q1Title };
+      const q1Short = { cls: "seg-q", text: "Q1", h: 15, title: q1Title };
+      const tool1Full = { cls: "seg-tool", text: "Tool Call", h: 14, title: tool1Title };
+      const tool1Short = { cls: "seg-tool", text: "Tool 1", h: 14, title: tool1Title };
+      const a1Full = { cls: "seg-a", text: "Answer (A1)", h: 16, title: a1Title };
+      const a1Short = { cls: "seg-a", text: "A1", h: 16, title: a1Title };
+
+      // Turn 2 slices: Q2 (Article), Tool 2, A2 (identical heights across columns 2, 3, 4)
+      const q2Title = `Turn 2: User prompt with an article (${read(1)} tokens, +${added(1)} GB)`, a2Title = `Turn 2: Assistant answer (${wrote(1)} tokens)`;
+      const tool2Title = `Turn 2: Tool call execution (${notMeasured})`;
+      const q2Full = { cls: "seg-q", text: "User (Q2 · Article)", h: 30, title: q2Title };
+      const q2Short = { cls: "seg-q", text: "Q2 · Article", h: 30, title: q2Title };
+      const tool2Full = { cls: "seg-tool", text: "Tool Call 2", h: 14, title: tool2Title };
+      const tool2Short = { cls: "seg-tool", text: "Tool 2", h: 14, title: tool2Title };
+      const a2Full = { cls: "seg-a", text: "Answer (A2)", h: 16, title: a2Title };
+      const a2Short = { cls: "seg-a", text: "A2", h: 16, title: a2Title };
+
+      // Turn 3 slices: Q3 (Report), Tool 3, A3 (identical heights across columns 3, 4)
+      const q3Title = `Turn 3: User prompt with a report (${read(2)} tokens, +${added(2)} GB)`, a3Title = `Turn 3: Assistant answer (${wrote(2)} tokens)`;
+      const tool3Title = `Turn 3: Tool calls (×2, ${notMeasured})`;
+      const q3Full = { cls: "seg-q", text: "User (Q3 · Report)", h: 38, title: q3Title };
+      const q3Short = { cls: "seg-q", text: "Q3 · Report", h: 38, title: q3Title };
+      const tool3Full = { cls: "seg-tool", text: "Tool Calls (×2)", h: 16, title: tool3Title };
+      const tool3Short = { cls: "seg-tool", text: "Tool 3 (×2)", h: 16, title: tool3Title };
+      const a3Full = { cls: "seg-a", text: "Answer (A3)", h: 16, title: a3Title };
+      const a3Short = { cls: "seg-a", text: "A3", h: 16, title: a3Title };
+
+      // Turn 4 slices: Book, Q4, Tool 4, A4 (column 4 only)
+      const bookSeg = { cls: "seg-doc", text: `Book (${read(3)} tokens)`, h: 110, title: `Turn 4: Full book document (${read(3)} tokens, +${added(3)} GB)` };
+      const q4Seg = { cls: "seg-q", text: "User (Q4)", h: 15, title: "Turn 4: User prompt on the book" };
+      const tool4Seg = { cls: "seg-tool", text: "Tool Call", h: 14, title: `Turn 4: Tool call execution (${notMeasured})` };
+      const a4Seg = { cls: "seg-a", text: "Answer (A4)", h: 16, title: `Turn 4: Assistant answer (${wrote(3)} tokens)` };
+
+      // What each turn adds to the context: full labels in its own bar, short labels in later bars.
+      const turns = [
+        { add: [toolsSeg, systemSeg, q1Full, tool1Full, a1Full], later: [toolsSeg, systemSeg, q1Short, tool1Short, a1Short] },
+        { add: [q2Full, tool2Full, a2Full], later: [q2Short, tool2Short, a2Short] },
+        { add: [q3Full, tool3Full, a3Full], later: [q3Short, tool3Short, a3Short] },
+        { add: [bookSeg, q4Seg, tool4Seg, a4Seg], later: [bookSeg, q4Seg, tool4Seg, a4Seg] },
+      ].slice(0, steps.length);
+
+      // The first turns share one scale that fills the chart height. The last turn (the book) is far bigger and gets its
+      // own, smaller scale, so it does not squash the others. Within a bar,
+      // heights are in proportion: the model part is the download size and each turn's new pieces share the memory
+      // measured on top of the previous bar, in proportion to their weights (h). The pieces illustrate what a
+      // conversation holds and are not measured one by one.
+      const extraAt = i => i < 0 ? 0 : memAt(EXAMPLE, steps[i].key) - model;
+      const gbOf = turns.map((turn, i) => {
+        const weight = turn.add.reduce((sum, s) => sum + s.h, 0), added = Math.max(0, extraAt(i) - extraAt(i - 1));
+        return turn.add.map(s => added * s.h / weight);
+      });
+
+      const draw = room => {
+        container.innerHTML = steps.map((c, i) => {
+          const total = memAt(EXAMPLE, c.key), last = i === steps.length - 1;
+          const pxPerGb = room / (last ? total : Math.max(...steps.slice(0, -1).map(s => memAt(EXAMPLE, s.key))));
+          const extra = total - model;
+          const ctxSegs = turns.slice(0, i + 1).flatMap((turn, k) =>
+            (k === i ? turn.add : turn.later).map((s, j) => ({ ...s, h: gbOf[k][j] * pxPerGb })));
+          const segs = [{ ...modelSeg, h: model * pxPerGb }, ...ctxSegs];
+
+          // A segment too thin for its label keeps the label as a tooltip only.
+          const segsHtml = segs.map(s =>
+            `<div class="vbar-seg ${s.cls}" style="height: ${s.h}px; flex: none;" title="${s.title || s.text}">${s.h >= 11 ? s.text : ""}</div>`
+          ).join("");
+
+          return `
+            <div class="vbar-col${last ? " rescaled" : ""}">
+              <div class="vbar-stats">
+                ${last ? `<span class="vbar-scale">Different scale</span>` : ""}
+                <span class="vbar-total">${fmt(total)} GB</span>
+                <span class="vbar-extra">+${fmt(extra)} GB context</span>
+              </div>
+              <div class="vbar-track" style="height: ${total * pxPerGb + 2}px;" title="Turn ${i + 1}: ${c.label} (${fmt(total)} GB total)">
+                ${segsHtml}
+              </div>
+              <div class="vbar-foot">
+                <b>Turn ${i + 1}: ${c.label}</b>
+                <span>${docSub(EXAMPLE.by_context[c.key].prompt_tokens)}</span>
+              </div>
+            </div>
+          `;
+        }).join("");
+      };
+
+      // Draw tiny, measure the room the labels above and below each bar take, then fill the card with every bar.
+      draw(0);
+      const labels = Math.max(...[...container.querySelectorAll(".vbar-col")].map(col =>
+        col.querySelector(".vbar-foot").getBoundingClientRect().bottom - col.querySelector(".vbar-stats").getBoundingClientRect().top
+        - col.querySelector(".vbar-track").clientHeight));
+      const style = getComputedStyle(container);
+      const room = container.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom) - labels - 2;
+      draw(room);
+    }
+
+    function renderGrowthLabels() {
+      if (!EXAMPLE) return;
+      document.getElementById("exampleName").textContent = EXAMPLE.name;
+      document.getElementById("exampleSize").textContent = `${fmt(EXAMPLE.download_gb)} GB`;
+      const book = EXAMPLE.by_context["131072"]?.prompt_tokens;  // same tokens as the Book segment in the bars
+      document.getElementById("bookLegend").textContent = book ? `Book (${kTokens(book)})` : "Book";
+    }
+
+    // ---------- Slide 2: what fits ----------
+    let ctxKey = CONTEXTS.find(c => c.key === "32768") ? "32768" : CONTEXTS[CONTEXTS.length - 1].key;
+
+    function renderCtxPicker() {
+      document.getElementById("ctxPicker").innerHTML = CONTEXTS.map(c =>
+        `<button class="${c.key === ctxKey ? "active" : ""}" onclick="ctxKey='${c.key}'; renderCtxPicker(); renderFit();">${c.label}<small>${c.sub}</small></button>`).join("");
+    }
+
+    // How much of the model's context window this document fills: the tokens it actually read, or the average sent if it could not.
+    function contextCell(m, r) {
+      const max = m.max_context_tokens, ctx = CONTEXTS.find(c => c.key === ctxKey);
+      const tokens = r?.prompt_tokens ?? ctx.tokens, share = tokens / max;
+      const color = share > 1 ? cssVar("--red") : share > 0.7 ? cssVar("--amber") : cssVar("--green");
+      const label = share > 1 ? `Over ${kTokens(max)}` : `${fmt(share * 100, 0)}% of ${kTokens(max)}`;
+      return `<div class="mem-cell"><div class="mem-track"><div class="mem-fill" style="width:${Math.min(share, 1) * 100}%; background:${color};"></div></div><strong class="num">${label}</strong></div>`;
+    }
+
+    function renderFit() {
+      const maxScale = Math.max(LIMIT_GB, ...M.map(m => memAt(m, ctxKey) || 0)) * 1.05;
+      const ctx = CONTEXTS.find(c => c.key === ctxKey);
+      document.getElementById("fitTable").innerHTML = M.map(m => {
+        const r = m.by_context[ctxKey];
+        // The bucket is named for its context size, but a document read whole fits even when the window is smaller.
+        const supported = m.max_context_tokens >= Number(ctxKey) || Boolean(r && r.prompt_tokens && !r.truncated);
+        let mem = `<span class="muted">Not measured</span>`, verdict = `<span class="pill gray">Not measured</span>`;
+        if (!supported) {
+          verdict = `<span class="pill gray">Too long</span>`;
+          mem = `<span class="muted">–</span>`;
+        } else if (r && r.crashed) {
+          mem = `<span class="muted">–</span>`;
+          verdict = `<span class="pill red">Crashed</span>`;
+        } else if (r && r.memory_gb != null) {
+          const pct = (r.memory_gb / maxScale) * 100, limitPct = (LIMIT_GB / maxScale) * 100;
+          const color = r.memory_gb > LIMIT_GB ? cssVar("--red") : r.memory_gb > LIMIT_GB * 0.7 ? cssVar("--amber") : cssVar("--green");
+          mem = `<div class="mem-cell"><div class="mem-track"><div class="mem-fill" style="width:${pct}%; background:${color};"></div><div class="mem-limit" style="left:${limitPct}%;"></div></div><strong class="num">${fmt(r.memory_gb)} GB</strong></div>`;
+          verdict = r.memory_gb > LIMIT_GB ? `<span class="pill red">Over the suggested limit</span>`
+            : r.memory_gb > LIMIT_GB * 0.7 ? `<span class="pill amber">Fits, little room left</span>`
+            : `<span class="pill green">Fits easily</span>`;
+        }
+        return `<tr>
+          <td title="${m.maker}, ${m.released}"><span class="model-name">${m.name}</span>${m.ollama_version !== B.machine.ollama_version ? `<span class="model-sub">Ollama ${m.ollama_version}</span>` : ""}</td>
+          <td>${ENGINES[m.runner] ?? m.runner}</td>
+          <td class="num">${m.quantization}</td>
+          <td class="r num">${fmt(m.download_gb)} GB</td>
+          <td>${contextCell(m, r)}</td>
+          <td>${mem}</td>
+          <td class="r num">${r?.prefill_tok_s != null ? fmt(r.prefill_tok_s, 0) : "–"}</td>
+          <td class="r num">${r ? fmtWait(r.wait_before_first_token_s) : "–"}</td>
+          <td>${verdict}</td>
+        </tr>`;
+      }).join("");
+
+    }
+
+    // ---------- Slide 3: speed vs accuracy ----------
+    function frontier() {
+      return new Set(withQuiz.filter(a => !withQuiz.some(b => b !== a &&
+        b.speed.tokens_per_second >= a.speed.tokens_per_second && b.quiz.overall_pct >= a.quiz.overall_pct &&
+        (b.speed.tokens_per_second > a.speed.tokens_per_second || b.quiz.overall_pct > a.quiz.overall_pct))).map(m => m.tag));
+    }
+
+    function renderPerf() {
+      const best = (f) => Math.max(...withQuiz.map(f));
+      const rows = [...M].sort((a, b) => (b.quiz?.overall_pct ?? -1) - (a.quiz?.overall_pct ?? -1));
+      const cell = (v, top, suffix = "%") => v == null ? `<td class="r muted">–</td>` : `<td class="r num ${v === top ? "best" : ""}">${fmt(v, 0)}${suffix}</td>`;
+      document.getElementById("perfTable").innerHTML = rows.map(m => {
+        const q = m.quiz || {};
+        // Only what changes how to read the row. One short line, so the table fits without scrolling.
+        const notes = [m.always_thinks && "always thinks", m.safety_removed && "safety training removed",
+          q.hit_token_limit && `${q.hit_token_limit} cut off`, q.crashed && `crashed ${q.crashed}×`,
+          m.ollama_version !== B.machine.ollama_version && `Ollama ${m.ollama_version}`].filter(Boolean);
+        return `<tr>
+          <td><span class="model-name">${m.name}</span>${notes.length ? `<span class="model-sub">${notes.join(", ")}</span>` : ""}</td>
+          <td class="r num ${m.speed.tokens_per_second === Math.max(...M.map(x => x.speed.tokens_per_second || 0)) ? "best" : ""}">${fmt(m.speed.tokens_per_second, 0)}</td>
+          ${cell(q.math_pct, best(x => x.quiz.math_pct ?? 0))}
+          ${cell(q.coding_pct, best(x => x.quiz.coding_pct ?? 0))}
+          ${cell(q.overall_pct, best(x => x.quiz.overall_pct))}
+          <td class="r num">${q.avg_seconds_per_question == null ? "–" : fmtWait(q.avg_seconds_per_question)}</td>
+        </tr>`;
+      }).join("");
+
+      const dense = M.filter(m => !isMixture(m) && m.speed.tokens_per_second);
+      const biggestDense = maxBy(dense, m => m.memory_gb_idle || 0);
+      // The counter-example: a mixture model that takes more memory than that dense model yet writes faster.
+      const bigger = M.filter(m => isMixture(m) && m.memory_gb_idle > biggestDense.memory_gb_idle &&
+        m.speed.tokens_per_second > biggestDense.speed.tokens_per_second);
+      const moe = bigger.length ? maxBy(bigger, m => m.memory_gb_idle) : null;
+      const active = moe && /about ([\d.]+B) of/.exec(moe.design)?.[1];  // "about 3B of 35B active per word" in models.json
+      let text = `<b>Why some models are faster:</b> to write each token, the chip reads the model from memory, so a bigger model is usually slower. ` +
+        `${biggestDense.name} takes up ${fmt(biggestDense.memory_gb_idle)} GB and writes ${fmt(biggestDense.speed.tokens_per_second, 0)} tokens per second.`;
+      if (moe) {
+        text += ` ${moe.name} is bigger (${fmt(moe.memory_gb_idle)} GB) but writes ${fmt(moe.speed.tokens_per_second, 0)} tokens per second, because it is built from many small "experts"` +
+          `${active ? ` and reads only about ${active} parameters per token` : ""}.`;
+      }
+      document.getElementById("speedCallout").innerHTML = text;
+    }
+
+    function renderScatter() {
+      const svg = document.getElementById("scatter");
+      svg.innerHTML = "";
+      if (!withQuiz.length) return;
+      const W = svg.clientWidth, H = svg.clientHeight, f = rem();
+      const padL = 3.2 * f, padR = 1 * f, padT = 0.8 * f, padB = 2.6 * f;
+      const xs = withQuiz.map(m => m.speed.tokens_per_second), ys = withQuiz.map(m => m.quiz.overall_pct);
+      const xMax = Math.ceil(Math.max(...xs) * 1.15 / 10) * 10;
+      const yMin = Math.max(0, Math.floor((Math.min(...ys) - 10) / 10) * 10), yMax = 100;
+      const X = v => padL + (v / xMax) * (W - padL - padR);
+      const Y = v => padT + (1 - (v - yMin) / (yMax - yMin)) * (H - padT - padB);
+      const grid = cssVar("--line"), tc = cssVar("--text-3");
+
+      for (let v = yMin; v <= yMax; v += 10) {
+        svg.appendChild(svgEl("line", { x1: padL, x2: W - padR, y1: Y(v), y2: Y(v), stroke: grid }));
+        svg.appendChild(svgEl("text", { x: padL - 0.4 * f, y: Y(v) + 0.25 * f, fill: tc, "font-size": 0.7 * f, "text-anchor": "end" }, `${v}%`));
+      }
+      const step = xMax > 60 ? 20 : 10;
+      for (let v = 0; v <= xMax; v += step) {
+        svg.appendChild(svgEl("line", { x1: X(v), x2: X(v), y1: padT, y2: H - padB, stroke: grid }));
+        svg.appendChild(svgEl("text", { x: X(v), y: H - padB + 1 * f, fill: tc, "font-size": 0.7 * f, "text-anchor": "middle" }, v));
+      }
+      svg.appendChild(svgEl("text", { x: padL + (W - padL - padR) / 2, y: H - 0.3 * f, fill: cssVar("--text-2"), "font-size": 0.8 * f, "text-anchor": "middle" }, "Writing speed (tokens per second) →"));
+      const yl = svgEl("text", { x: 0, y: 0, fill: cssVar("--text-2"), "font-size": 0.8 * f, "text-anchor": "middle", transform: `translate(${0.8 * f} ${padT + (H - padT - padB) / 2}) rotate(-90)` }, "Challenge score (29 questions) →");
+      svg.appendChild(yl);
+
+      const front = frontier();
+      const pts = withQuiz.map(m => ({ m, x: X(m.speed.tokens_per_second), y: Y(m.quiz.overall_pct) }));
+      // Draw every point first, then label them one by one at the free spot nearest the point. Obstacles are the
+      // points (with a margin), labels already placed and the leader lines drawn so far. Label boxes use the text's
+      // real measured size plus a margin, so labels never touch. With no free spot, take the least-overlapping one.
+      const r = 0.45 * f, gap = 0.6 * f, margin = 0.12 * f;
+      const hit = (a, b) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
+      const overlap = (a, b) => hit(a, b) ? (Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0)) * (Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0)) : 0;
+      const obstacles = pts.map(p => ({ x0: p.x - r - margin, x1: p.x + r + margin, y0: p.y - r - margin, y1: p.y + r + margin }));
+      for (const p of pts) {
+        svg.appendChild(svgEl("circle", { cx: p.x, cy: p.y, r, fill: COLORS[p.m.tag] || cssVar("--blue"), stroke: front.has(p.m.tag) ? "#fff" : "none", "stroke-width": 2 }));
+      }
+      const measure = svgEl("text", { x: 0, y: 0, "font-size": 0.78 * f, "font-weight": 700 });
+      svg.appendChild(measure);
+      [...pts].sort((a, b) => a.y - b.y).forEach(p => {
+        const color = COLORS[p.m.tag] || cssVar("--blue");
+        const label = `${p.m.name} (${fmt(p.m.quiz.overall_pct, 0)}%)`;
+        measure.textContent = label;
+        const tb = measure.getBBox(), w = tb.width, h = tb.height + 2 * margin;
+        const mid = tb.y + tb.height / 2;  // baseline to the middle of the glyphs
+        // Candidate centres: beside the point, then stepping up and down, on both sides and centred above or below.
+        const xs = [p.x + gap, p.x - gap - w, p.x - w / 2];
+        const spots = [];
+        for (let k = 0; k <= 8; k++) for (const sign of k ? [-1, 1] : [1]) for (const x0 of xs) {
+          const dy = sign * k * h * 0.5;
+          if (x0 === p.x - w / 2 && Math.abs(dy) < r + h / 2 + margin) continue;  // centred only clear of the point
+          spots.push({ dy, x0, x1: x0 + w, y0: p.y + dy - h / 2, y1: p.y + dy + h / 2 });
+        }
+        const inside = b => b.x0 >= padL && b.x1 <= W - padR && b.y0 >= padT && b.y1 <= H - padB;
+        const cost = b => obstacles.reduce((sum, o) => sum + overlap(b, o), 0);
+        const pick = spots.filter(inside).find(b => cost(b) === 0) ||
+          spots.filter(inside).reduce((best, b) => (cost(b) < cost(best) ? b : best), spots.filter(inside)[0] || spots[0]);
+        obstacles.push(pick);
+        // A label not beside its point gets a thin line back to the point, so it cannot be read as a neighbour's.
+        if (pick.dy) {
+          const lx = pick.x0 > p.x ? pick.x0 : pick.x1 < p.x ? pick.x1 : p.x, ly = pick.dy < 0 ? pick.y1 : pick.y0;
+          const ty = Math.abs(pick.dy) < h ? (pick.y0 + pick.y1) / 2 : ly;
+          const d = Math.hypot(lx - p.x, ty - p.y);
+          svg.appendChild(svgEl("line", { x1: p.x + (lx - p.x) * r / d, y1: p.y + (ty - p.y) * r / d, x2: lx, y2: ty, stroke: color, "stroke-width": 1.5 }));
+          for (let s = 0.2; s < 1; s += 0.2) {  // the line itself becomes an obstacle for later labels
+            const x = p.x + (lx - p.x) * s, y = p.y + (ty - p.y) * s;
+            obstacles.push({ x0: x - 2, x1: x + 2, y0: y - 2, y1: y + 2 });
+          }
+        }
+        // Label text takes its point's colour, so two labels near one another still name the right point.
+        svg.appendChild(svgEl("text", { x: pick.x0, y: (pick.y0 + pick.y1) / 2 - mid, fill: color, "font-size": 0.78 * f, "font-weight": 700 }, label));
+      });
+      measure.remove();
+    }
+
+    // ---------- Voice slide: the ships-computer session in bench/voice.json ----------
+    const V = B.voice;
+    const VOICE_STAGES = [
+      { key: "hangover_ms", label: "Waiting to be sure you stopped", color: "var(--amber)" },
+      { key: "stt_ms", label: "Speech to text", color: "var(--blue)" },
+      { key: "llm_ms", label: "The model's first phrase", color: "var(--violet)" },
+      { key: "tts_ms", label: "Text to speech", color: "var(--green)" },
+      { key: "other_ms", label: "Everything else", color: "var(--text-3)" },
+    ];
+    const voiceModel = () => B.models.find(m => m.tag === V.model).name;
+
+    function renderVoice() {
+      const s = V.median_turn_stages_ms, total = V.median_ms;
+      document.getElementById("voiceHeadline").innerHTML =
+        `<span class="voice-big">${fmt(total, 0)} ms</span><span class="muted">the middle of ${V.turns} turns, ${fmt(V.min_ms, 0)} to ${fmt(V.max_ms, 0)} ms</span>`;
+      document.getElementById("voiceBar").innerHTML = VOICE_STAGES.map(st => {
+        const share = s[st.key] / total;
+        return `<div style="width: ${share * 100}%; background: ${st.color};" title="${st.label}: ${fmt(s[st.key], 0)} ms">${share > 0.07 ? `${fmt(s[st.key], 0)} ms` : ""}</div>`;
+      }).join("");
+      document.getElementById("voiceLegend").innerHTML = VOICE_STAGES.map(st =>
+        `<span><span class="swatch" style="background: ${st.color};"></span>${st.label} <b class="num">${fmt(s[st.key], 0)} ms</b></span>`).join("");
+      document.getElementById("voiceSource").textContent =
+        `Measured ${V.measured} with ships-computer (${V.speech_to_text}, ${voiceModel()}, ${V.text_to_speech}) on Ollama ${V.ollama_version}, one scripted session. ` +
+        `The other slides use Ollama ${B.machine.ollama_version}.`;
+      document.getElementById("demoLead").textContent = `${V.speech_to_text}, ${voiceModel()} and ${V.text_to_speech}, all on this MacBook Pro. Nothing leaves this machine.`;
+      document.getElementById("demoWait").textContent = `It measured ${fmt(V.min_ms, 0)} to ${fmt(V.max_ms, 0)} ms from your last word to its first.`;
+    }
+
+    // ---------- Tradeoffs: the Mac's own measurements for Qwen 3.8 27B ----------
+    // ---------- Tradeoffs: the Mac's own measurements for Qwen 3.8 27B ----------
+    function renderTradeoffs() {
+      const q = B.models.find(m => m.tag === "qwen3.8:27b");
+      document.getElementById("tradeMacSpeed").textContent = fmt(q.speed.tokens_per_second, 0);
+      document.getElementById("tradeMacRead").textContent = fmtWait(q.by_context["262144"]?.wait_before_first_token_s);
+    }
+
+    function renderMethod() {
+      const n = B.method;
+      const items = [
+        ["Speed", "Each model answered a short prompt three times with a 300-token answer cap. We report the middle result. In the Mac survey, timings come from Ollama itself."],
+        ["Waiting time", "We gave each model a document (Python source code) of each size and timed how long it took to read it before writing the first word."],
+        ["Memory", "The most memory the model's process used while it read each document, in a freshly started process."],
+        ["Accuracy", "29 questions written for this talk (14 math, 3 logic, 12 coding), picked because they separate models. Math and logic answers are checked exactly. Code is checked by running tests against it. No human grading."],
+        ["Three environments", "Compare and Docs: this Mac, one AWS L40S and OpenRouter (DeepInfra or Anthropic, pinned, no fallbacks) got the same requests from one program on this laptop, timed by its clock, so times include the network. Same challenge settings. Measured October 24 and 25."],
+        ["Voice", `${V.session} The time runs from the end of speech to the first reply audio. The speaker's own delay is not included.`],
+        ["Mac survey settings", `Ollama ${B.machine.ollama_version}${otherVersions()} with its default settings, temperature 0 (variation is still possible), thinking off, on AC power. Each answer could be up to 6,144 tokens long. An answer cut off before it finished counts as wrong. Measured ${String(B.machine.measured_at).slice(0, 10)}.`],
+      ];
+      document.getElementById("methodList").innerHTML = items.map(([a, b]) => `<li><b>${a}.</b> ${b}</li>`).join("");
+      const older = M.filter(m => m.runner === "llama.cpp").map(m => m.name);
+      document.getElementById("enginesNote").innerHTML = `<b>Two engines.</b> Ollama has an older engine and a newer one. ` +
+        `${older.join(" and ")} run${older.length === 1 ? "s" : ""} on the older one. The others run on the newer one, which also guesses a few tokens ahead to save time. ` +
+        `Some speed differences come from the engine, not the model.`;
+    }
+
+    // ---------- Speaker notes (built from the same data) ----------
+    function notes() {
+      return {
+        "AWS architecture": "Setup and teardown summary supplied by the presenter on October 26, 2026. One AWS account: 717915633540, region us-east-2 (Ohio), chosen for 504 on-demand G/VT vCPUs versus zero in us-east-1. Login: IAM user nick, CLI profile open-weights, aws login. ED25519 key pair open-weights; private key ~/.ssh/open-weights.pem. Security group open-weights-ssh (sg-07eb55bfc5ed413db) allowed SSH only from the home IP; model ports were reached only through the SSH tunnel. Bucket open-weights-717915633540-us-east-2-an: public access blocked, SSE-S3 encryption, 109 files / 91.9 GB for Qwen 3.8 27B, Gemma 4 26B and Nemotron 3.5 Lightning FP8 checkpoints. Role/profile open-weights-ec2, inline open-weights-ec2Policy: read/write that bucket only, without stored access keys on the instance. Compute: one on-demand g6e.xlarge, one 48 GB L40S, $1.861/hour; Deep Learning Base OSS Nvidia Driver GPU AMI Ubuntu 24.04 (ami-02c04e39084ed697f); 250 GiB gp3 root volume about $21/month while provisioned. shutdown -h +300 was a 5-hour safety stop, not deletion. vLLM 0.32.0 in Docker served three FP8 models one at a time; Ollama 0.40.6 served redteam Q4_K_M. Mac venue.py drove and timed all tests. Presenter reports instance terminated and disk deleted today, no volumes/snapshots remain. Retained: S3 about $2/month, key pair, security group and IAM role. Deleting the bucket would remove the remaining storage charge but require uploading about 92 GB for a rerun. No live AWS inspection or deletion was performed for this slide.",
+        "Connect & resources": "Closing links supplied by the presenter: Nick Christensen on LinkedIn, Nathan Lambert’s Open Language Models video, and SemiAnalysis. Video title and creator verified through YouTube public oEmbed metadata. SemiAnalysis is further reading, not the source of our measured benchmark results. Links open in a new tab.",
+        "Intro": "Open with the practical question: where should your AI run? Downloadable weights let us run models on hardware we own or rent; hosted services offer another route. Four selected model variants ran on Mac and AWS, and two also ran through OpenRouter. We compare memory, answer quality and waiting time. End with a local voice demo. Keep specifications and methodology for later slides.",
+        "What is released": "Open weights means the trained numbers are published. The training data, code and recipe usually are not, so open weights is not open source. Parameters are learned; hyperparameters such as layer count are chosen before training and shipped in the config file. Check each model's license.",
+        "Open weights": "Inference means using the trained model to generate an answer. Downloadable weights do not guarantee unrestricted licensing or access to training data. Parameter count is not a quality score.",
+        "Macs": "All three comparison machines have 64 GB unified memory. The tested M1 Max cost the owner $2,500 in January 2024. Apple US configured prices checked October 26, 2026: 14-inch MacBook Pro M5 Max 18-core CPU/40-core GPU, 64 GB/2 TB, $5,099 (2 TB is the smallest storage offered with 64 GB); M5 Max Studio 18-core CPU/40-core GPU, 64 GB/1 TB, $3,799. Prices are not base-model prices. The newer machines were not benchmarked; do not infer speed from memory capacity or core counts alone. Studio peripherals cost extra. Exact product URLs and image credits: assets/hardware/mac-comparison-sources.json.",
+        "GPUs": "Card-only prices, host extra. L40S: CDW listing, $10,497.99, the card we rented on AWS, passively cooled for servers. RTX PRO 5000 Blackwell 72 GB: $11,999 reseller-listed MSRP, the card closest in memory to the 64 GB Macs. Specs from NVIDIA; RTX PRO 5000 core counts from reseller listings.",
+        "Servers": "Workstation line: RTX 6000 Ada to RTX PRO 6000 Blackwell; no Hopper RTX workstation generation. Data-center line: Hopper H100/H200 to Blackwell B200. L40S is Ada. These public prices compare different classes and purchase units, and do not disclose provider acquisition costs. AWS test completed on one L40S. Rack photo is illustrative. Sources: HARDWARE-SOURCES.md.",
+        "Memory": "Independent earlier Mac document tests, not successive conversation turns. Total bars are measured process peaks on a common scale. Blue uses model download size as a reference, not a separately measured resident allocation. The remainder includes runtime overhead and context. Manufacturer 64 GiB equals 68.7 decimal GB.",
+        "What fits": "Earlier Mac survey, October 22. Click through sizes. Context utilization uses each model\u2019s actual token count. The roughly 56 GB recommendation is not a hard allocation limit. Timing here is local server prompt-processing duration, not client first-visible-text time. The newer Mac Nemotron document run succeeded where this earlier run crashed; the newer Qwen run failed at the largest input. Both historical and latest results are preserved.",
+        "Speed and accuracy": "Earlier Mac survey, October 22. Speed uses internal output-generation time; do not directly compare it to the appendix output-per-total-time rate. Small selected challenge: no confidence intervals, and one question is about 3.4 percentage points. DeepSeek-R1 cannot disable thinking; capped answers explain much of its low score. Redteam is a community variant advertised as removing safety training; this challenge does not evaluate safety. Models that activate only some experts per token can be fast despite large total parameter counts.",
+        "OpenRouter diagram": "OpenRouter offers a common API across many providers and model families, including open-weight and proprietary models. The same model may have multiple providers; not every provider hosts every model. The diagram shows examples, not a full catalog. Green is our pinned DeepInfra path with Gemma and Qwen, fallback disabled. Blue paths are other choices, not runs in this benchmark. Source: https://openrouter.ai/docs/guides/routing/provider-selection .",
+        "OpenRouter": "Our script calls one API; OpenRouter routes to the selected DeepInfra endpoint. Provider was pinned and fallback disabled. Question costs exclude the smoke and speed tests; total costs include all 66 requests. See the saved results and OpenRouter documentation: https://openrouter.ai/docs/quickstart .",
+        "Inference paths": "The shared challenge comes from quiz.py. venue.py drives local Ollama and AWS; openrouter.py drives the hosted API. Both use consume_stream for wall time and first visible text. All clients run on this Mac. AWS uses an SSH tunnel. Document tests ran only on Mac and AWS. Different precision and engines prevent hardware-only conclusions.",
+        "Three environments": "Same 29 question prompts and graders; all timings from one streaming client. Qwen 28/29 everywhere; Gemma 26/29 on Mac/API and 28/29 on L40S. Single runs, not statistically established rankings. Mean answer time includes wrong and capped answers; output lengths differ. Precision and software differ, so this does not isolate hardware performance.",
+        "Long documents": "Old 131K/262K labels were target size IDs. Actual inputs are 377,487 and 754,974 characters, with model-specific token counts. A unique prefix discourages caching, but no corpus hash was saved. These are acceptance and latency tests, not comprehension tests. Latest Mac Qwen failed; latest Nemotron succeeded despite an earlier native crash. Qwen\u2019s configured GPU limit is specific to this deployment.",
+        "Tradeoffs": "Ownership and operating choices, not equal-work costs. EC2 rate excludes ancillary services and is not the measured total bill. API Qwen question-only cost is about 6.7 cents. No newer-Mac speed prediction is supported by these measurements. Local processing avoids sending prompts to a remote inference service; cloud data handling depends on policies and configuration.",
+        "API economics": "Providers pool demand and batch requests to spread hardware cost over more work. Timelines are conceptual, not measured utilization. More aggregate throughput does not guarantee lower individual latency. Hardware is only one cost component; we do not know DeepInfra\u2019s utilization, acquisition cost or profitability. An already-owned Mac can do useful work between AI requests. Source: https://huggingface.co/docs/transformers/en/continuous_batching .",
+        "Voice": "Five scripted turns on October 24, Ollama 0.40.10. 784 ms is the median end-of-speech to first generated reply audio, excluding speaker hardware delay. The displayed stage breakdown is the single median-total turn, not independent stage medians. The model\u2019s first phrase took 351 ms and endpoint waiting 300 ms; the whole pipeline determines responsiveness.",
+        "Live demo": "Follow DEMO.md. Ask a short question, then interrupt the second reply. If the room is too loud or nothing happens within a few seconds, return to the measured voice slide. The measured scripted session is evidence, not a guarantee of every live turn.",
+        "How we measured": "Native survey and cross-environment client tests have different timing definitions. Temperature 0 is not a guarantee of deterministic execution. One question run per deployment, three short speed repeats, one document run per size. No production concurrency tests, energy measurements or provider profitability estimates. Full provenance and limitations are in LANDING.md.",
+        "Run details": "First text is median of three short requests. Output rate is completion tokens divided by full request wall time, not output-generation time alone. QA mean includes all 29 replies. Long document waits use first visible text; none were run through OpenRouter. Short-question prompts share the recorded hash. Different numeric precision and serving software make this a deployment comparison."
+};
+    }
+
+    // ---------- Navigation ----------
+    const slides = [...document.querySelectorAll(".slide")];
+    let current = 0;
+    document.getElementById("nav").innerHTML = slides.map((s, i) => `<button onclick="go(${i})">${s.dataset.tab || s.dataset.title}</button>`).join("");
+
+    function renderSlide(i) {
+      if (slides[i].dataset.title === "Memory") { renderGrowth(); }
+      if (slides[i].dataset.title === "What fits") { renderCtxPicker(); renderFit(); }
+      if (slides[i].dataset.title === "Speed and accuracy") { renderPerf(); renderScatter(); }
+    }
+
+    function go(i) {
+      if (i < 0 || i >= slides.length) return;
+      current = i;
+      slides.forEach((s, j) => s.classList.toggle("active", j === i));
+      document.querySelectorAll("nav button").forEach((b, j) => b.classList.toggle("active", j === i));
+      document.getElementById("notes").innerHTML = `<b>Speaker notes: ${slides[i].dataset.title}</b>${notes()[slides[i].dataset.title] || ""}`;
+      document.querySelectorAll("nav button")[i]?.scrollIntoView({block:"nearest", inline:"nearest"});
+      history.replaceState(null, "", "#" + (i + 1));
+      renderSlide(i);
+    }
+
+    window.addEventListener("keydown", e => {
+      if (["ArrowRight", " ", "PageDown"].includes(e.key)) { e.preventDefault(); go(current + 1); }
+      else if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); go(current - 1); }
+      else if (e.key.toLowerCase() === "n") document.getElementById("notes").classList.toggle("open");
+      else if (e.key.toLowerCase() === "f") document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+      else if (/^[1-9]$/.test(e.key)) go(Number(e.key) - 1);
+    });
+    window.addEventListener("resize", () => renderSlide(current));
+
+    document.querySelectorAll(".limitGb").forEach(el => el.textContent = fmt(LIMIT_GB, 0));
+    document.querySelectorAll(".ramGb").forEach(el => el.textContent = fmt(B.machine.memory_gb));
+    renderSpecs();
+    renderGrowth();
+    renderGrowthLabels();
+    renderVoice();
+    renderTradeoffs();
+    renderMethod();
+    go(Math.max(0, Number(location.hash.slice(1)) - 1) || 0);
+  </script>
+</body>
+</html>

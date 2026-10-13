@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "venue": "mac-ollama",
+  "server": "Ollama 0.40.6",
+  "base_url": "http://127.0.0.1:11436/v1",
+  "measured_at": "2026-10-25T03:49:44.320397+00:00",
+  "model": "gemma4:26b-nvfp4",
+  "local_baseline_tag": "gemma4:26b-nvfp4",
+  "precision": "nvfp4",
+  "settings": {
+    "set": "challenge",
+    "temperature": 0,
+    "seed": 0,
+    "think": false,
+    "max_tokens": 6144,
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "prompt_sha256": "947a45010c59f1a9eb991bb5705522b5160c2b26f82aa71dffb34e734a0b157d"
+  },
+  "timing": "Client wall time, including the network between this Mac and the server. First text is the first nonempty visible text chunk. Throughput is completion tokens / total request seconds.",
+  "status": "complete",
+  "questions": [],
+  "speed_runs": [],
+  "documents": [
+    {
+      "context": 2048,
+      "document_chars": 5898,
+      "prompt_tokens": 1777,
+      "wait_before_first_text_s": 2.78,
+      "reading_tok_s": 640.1,
+      "reply_tokens": 200,
+      "seconds": 6.83
+    },
+    {
+      "context": 8192,
+      "document_chars": 23592,
+      "prompt_tokens": 6780,
+      "wait_before_first_text_s": 12.8,
+      "reading_tok_s": 529.5,
+      "reply_tokens": 200,
+      "seconds": 17.43
+    },
+    {
+      "context": 32768,
+      "document_chars": 94371,
+      "prompt_tokens": 25963,
+      "wait_before_first_text_s": 55.22,
+      "reading_tok_s": 470.2,
+      "reply_tokens": 200,
+      "seconds": 61.34
+    },
+    {
+      "context": 131072,
+      "document_chars": 377487,
+      "prompt_tokens": 103998,
+      "wait_before_first_text_s": 321.31,
+      "reading_tok_s": 323.7,
+      "reply_tokens": 200,
+      "seconds": 337.5
+    },
+    {
+      "context": 262144,
+      "document_chars": 754974,
+      "prompt_tokens": 221184,
+      "wait_before_first_text_s": 1027.67,
+      "reading_tok_s": 215.2,
+      "reply_tokens": 200,
+      "seconds": 1069.08
+    }
+  ],
+  "smoke": {
+    "response": "OK",
+    "seconds": 7.379198708571494,
+    "time_to_first_text_s": 7.374935458414257,
+    "last_text_s": 7.374935458414257,
+    "completion_tokens_per_total_second": 0.13551606881630995,
+    "usage": {
+      "prompt_tokens": 18,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens": 1,
+      "total_tokens": 19
+    },
+    "finish_reason": "stop",
+    "metadata": {
+      "id": "chatcmpl-900",
+      "model": "gemma4:26b-nvfp4",
+      "system_fingerprint": "fp_ollama"
+    }
+  },
+  "summary": {}
+}

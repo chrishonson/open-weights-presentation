@@ -1,0 +1,875 @@
+{
+  "schema_version": 1,
+  "venue": "mac-ollama",
+  "server": "Ollama 0.40.6",
+  "base_url": "http://127.0.0.1:11436/v1",
+  "measured_at": "2026-10-25T02:00:24.949596+00:00",
+  "model": "gemma4:26b-nvfp4",
+  "local_baseline_tag": "gemma4:26b-nvfp4",
+  "precision": "nvfp4",
+  "settings": {
+    "set": "challenge",
+    "temperature": 0,
+    "seed": 0,
+    "think": false,
+    "max_tokens": 6144,
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "prompt_sha256": "947a45010c59f1a9eb991bb5705522b5160c2b26f82aa71dffb34e734a0b157d"
+  },
+  "timing": "Client wall time, including the network between this Mac and the server. First text is the first nonempty visible text chunk. Throughput is completion tokens / total request seconds.",
+  "status": "complete",
+  "questions": [
+    {
+      "response": "```python\nimport re\n\ndef parse_duration(s: str) -> int:\n    \"\"\"\n    Parses a duration string like '1h30m15s' into total seconds.\n    \"\"\"\n    total_seconds = 0\n    # Regex to find patterns of digits followed by h, m, or s\n    patterns = re.findall(r'(\\d+)([hms])', s)\n    \n    for value, unit in patterns:\n        amount = int(value)\n        if unit == 'h':\n            total_seconds += amount * 3600\n        elif unit == 'm':\n            total_seconds += amount * 60\n        elif unit == 's':\n            total_seconds += amount\n            \n    return total_seconds\n```",
+      "seconds": 2.9455327084288,
+      "time_to_first_text_s": 0.3125485833734274,
+      "last_text_s": 2.895163457840681,
+      "completion_tokens_per_total_second": 59.41200364172772,
+      "usage": {
+        "prompt_tokens": 105,
+        "prompt_tokens_details": {
+          "cached_tokens": 4
+        },
+        "completion_tokens": 175,
+        "total_tokens": 280
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-308",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 1,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef spiral_order(m: list[list[int]]) -> list[int]:\n    if not m or not m[0]:\n        return []\n\n    result = []\n    top, bottom = 0, len(m) - 1\n    left, right = 0, len(m[0]) - 1\n\n    while top <= bottom and left <= right:\n        # Move Right\n        for j in range(left, right + 1):\n            result.append(m[top][j])\n        top += 1\n\n        # Move Down\n        for i in range(top, bottom + 1):\n            result.append(m[i][right])\n        right -= 1\n\n        if top <= bottom:\n            # Move Left\n            for j in range(right, left - 1, -1):\n                result.append(m[bottom][j])\n            bottom -= 1\n\n        if left <= right:\n            # Move Up\n            for i in range(bottom, top - 1, -1):\n                result.append(m[i][left])\n            left += 1\n\n    return result\n```",
+      "seconds": 3.662851541303098,
+      "time_to_first_text_s": 0.2763939583674073,
+      "last_text_s": 3.662793000228703,
+      "completion_tokens_per_total_second": 70.98294786676018,
+      "usage": {
+        "prompt_tokens": 85,
+        "prompt_tokens_details": {
+          "cached_tokens": 8
+        },
+        "completion_tokens": 260,
+        "total_tokens": 345
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-179",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 2,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the sum of the digits of $2^{100}$, we first need to calculate the value of $2^{100}$.\n\nWe can use the property of powers of 2. We know that:\n$2^{10} = 1024$\n\nTherefore:\n$2^{100} = (2^{10})^{10} = (1024)^{10}$\n\nCalculating $2^{100}$ exactly:\n$2^{10} = 1,024$\n$2^{20} = 1,048,576$\n$2^{30} = 1,073,741,824$\n$2^{40} = 1,099,511,627,776$\n$2^{50} = 1,125,899,906,842,624$\n$2^{60} = 1,152,921,504,606,846,976$\n$2^{70} = 1,180,591,620,717,411,303,424$\n$2^{80} = 1,208,925,819,614,629,174,706,176$\n$2^{90} = 1,237,940,039,285,380,213,295,200,000...$ (This is getting complicated, let's use a more direct calculation method).\n\nThe exact value of $2^{100}$ is:\n$1,267,650,600,228,229,401,496,703,205,376$\n\nNow, we sum the digits of this number:\n$1 + 2 + 6 + 7 + 6 + 5 + 0 + 6 + 0 + 0 + 2 + 2 + 8 + 2 + 2 + 9 + 4 + 0 + 1 + 4 + 9 + 6 + 7 + 0 + 3 + 2 + 0 + 5 + 3 + 7 + 6$\n\nLet's group them for easier addition:\n(1 + 2 + 6 + 7 + 6 + 5) = 27\n(0 + 6 + 0 + 0 + 2 + 2) = 10\n(8 + 2 + 2 + 9 + 4 + 0) = 25\n(1 + 4 + 9 + 6 + 7 + 0) = 27\n(3 + 2 + 0 + 5 + 3 + 7 + 6) = 26\n\nNow add the sums of the groups:\n27 + 10 + 25 + 27 + 26 = 115\n\nLet's double-check the calculation of $2^{100}$ and the sum:\n$2^{100} = 1267650600228229401496703205376$\nDigits:\n1\n2\n6\n7\n6\n5\n0\n6\n0\n0\n2\n2\n8\n2\n2\n9\n4\n0\n1\n4\n9\n6\n7\n0\n3\n2\n0\n5\n3\n7\n6\n\nSumming them:\n1+2=3\n3+6=9\n9+7=16\n16+6=22\n22+5=27\n27+0=27\n27+6=33\n33+0=33\n33+0=33\n33+2=35\n35+2=37\n37+8=45\n45+2=47\n47+2=49\n49+9=58\n58+4=62\n62+0=62\n62+1=63\n63+4=67\n67+9=76\n76+6=82\n82+7=89\n89+0=89\n89+3=92\n92+2=94\n94+0=94\n94+5=99\n99+3=102\n102+7=109\n109+6=115\n\nThe sum is 115.\n\nANSWER: 115",
+      "seconds": 17.09961370844394,
+      "time_to_first_text_s": 0.43539058323949575,
+      "last_text_s": 17.099345833063126,
+      "completion_tokens_per_total_second": 64.97222796625975,
+      "usage": {
+        "prompt_tokens": 66,
+        "prompt_tokens_details": {
+          "cached_tokens": 4
+        },
+        "completion_tokens": 1111,
+        "total_tokens": 1177
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-459",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 3,
+      "category": "math",
+      "correct": true,
+      "detail": "115",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To solve this problem, we use a recurrence relation. Let $a(n)$ be the number of ways to climb a staircase of $n$ steps.\n\nSince each move can be 1, 2, or 3 steps, the last move to reach step $n$ must have been from step $n-1$, $n-2$, or $n-3$. Therefore, the recurrence relation is:\n$a(n) = a(n-1) + a(n-2) + a(n-3)$\n\nWe define the base cases:\n- $a(0) = 1$ (There is 1 way to stay at the bottom: doing nothing)\n- $a(1) = 1$ (Ways: {1})\n- $a(2) = 2$ (Ways: {1,1}, {2})\n- $a(3) = 4$ (Ways: {1,1,1}, {1,2}, {2,1}, {3})\n\nNow we calculate the values up to $n=20$:\n- $a(0) = 1$\n- $a(1) = 1$\n- $a(2) = 2$\n- $a(3) = 4$\n- $a(4) = 1 + 2 + 4 = 7$\n- $a(5) = 2 + 4 + 7 = 13$\n- $a(6) = 4 + 7 + 13 = 24$\n- $a(7) = 7 + 13 + 24 = 44$\n- $a(8) = 13 + 24 + 44 = 81$\n- $a(9) = 24 + 44 + 81 = 149$\n- $a(10) = 44 + 81 + 149 = 274$\n- $a(11) = 81 + 149 + 274 = 504$\n- $a(12) = 149 + 274 + 504 = 927$\n- $a(13) = 274 + 504 + 927 = 1705$\n- $a(14) = 504 + 927 + 1705 = 3136$\n- $a(15) = 927 + 1705 + 3136 = 5768$\n- $a(16) = 1705 + 3136 + 5768 = 10609$\n- $a(17) = 3136 + 5768 + 10609 = 19513$\n- $a(18) = 5768 + 10609 + 19513 = 35890$\n- $a(19) = 10609 + 19513 + 35890 = 66012$\n- $a(20) = 19513 + 35890 + 66012 = 121415$\n\nDouble-checking the addition:\n$a(17) = 19513$\n$a(18) = 35890$\n$a(19) = 66012$\n$a(20) = 19513 + 35890 + 66012 = 121415$\n\nCalculation check:\n$19513 + 35890 = 55403$\n$55403 + 66012 = 121415$\n\nANSWER: 121415",
+      "seconds": 13.14084408339113,
+      "time_to_first_text_s": 0.3075226666405797,
+      "last_text_s": 13.140748749487102,
+      "completion_tokens_per_total_second": 69.7824275351541,
+      "usage": {
+        "prompt_tokens": 76,
+        "prompt_tokens_details": {
+          "cached_tokens": 9
+        },
+        "completion_tokens": 917,
+        "total_tokens": 993
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-311",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 4,
+      "category": "math",
+      "correct": true,
+      "detail": "121415",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the number of 5-card hands that contain exactly two aces, we use the principles of combinations.\n\n1.  **Identify the components of the hand:**\n    A 5-card hand with exactly two aces must consist of:\n    *   Exactly 2 aces.\n    *   Exactly 3 non-ace cards.\n\n2.  **Calculate the number of ways to choose the aces:**\n    There are 4 aces in a standard 52-card deck. We need to choose 2 of them.\n    The number of ways to choose 2 aces from 4 is given by the combination formula $\\binom{n}{k} = \\frac{n!}{k!(n-k)!}$:\n    $$\\binom{4}{2} = \\frac{4 \\times 3}{2 \\times 1} = 6$$\n\n3.  **Calculate the number of ways to choose the non-ace cards:**\n    There are 52 cards in total. Since 4 are aces, there are $52 - 4 = 48$ non-ace cards.\n    We need to choose 3 cards from these 48 non-ace cards.\n    The number of ways to choose 3 cards from 48 is:\n    $$\\binom{48}{3} = \\frac{48 \\times 47 \\times 46}{3 \\times 2 \\times 1}$$\n    $$\\binom{48}{3} = 8 \\times 47 \\times 46$$\n    $$8 \\times 47 = 376$$\n    $$376 \\times 46 = 17272$$\n\n4.  **Calculate the total number of hands:**\n    To find the total number of hands, we multiply the number of ways to choose the aces by the number of ways to choose the non-ace cards:\n    $$\\text{Total hands} = \\binom{4}{2} \\times \\binom{48}{3}$$\n    $$\\text{Total hands} = 6 \\times 17272$$\n    $$6 \\times 17000 = 102000$$\n    $$6 \\times 272 = 1632$$\n    $$102000 + 1632 = 103632$$\n\nAlternatively:\n$6 \\times 17272 = 103632$.\n\nANSWER: 103632",
+      "seconds": 8.189211792312562,
+      "time_to_first_text_s": 0.47810116689652205,
+      "last_text_s": 8.122045707888901,
+      "completion_tokens_per_total_second": 67.40575454626507,
+      "usage": {
+        "prompt_tokens": 68,
+        "prompt_tokens_details": {
+          "cached_tokens": 9
+        },
+        "completion_tokens": 552,
+        "total_tokens": 620
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-711",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 5,
+      "category": "math",
+      "correct": false,
+      "detail": "103632",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the number of integers from 1 to 10,000 that are perfect squares or perfect cubes, we use the Principle of Inclusion-Exclusion.\n\nLet $S$ be the set of perfect squares up to 10,000.\nLet $C$ be the set of perfect cubes up to 10,000.\nWe want to find $|S \\cup C| = |S| + |C| - |S \\cap C|$.\n\n**1. Find $|S|$ (Perfect Squares):**\nA number $n$ is a perfect square if $n = k^2$.\nWe need $k^2 \\le 10,000$.\n$k \\le \\sqrt{10,000} = 100$.\nSince $k$ must be a positive integer starting from 1, there are 100 perfect squares.\n$|S| = 100$.\n\n**2. Find $|C|$ (Perfect Cubes):**\nA number $n$ is a perfect cube if $n = k^3$.\nWe need $k^3 \\le 10,000$.\nWe calculate the cube root:\n$20^3 = 8,000$\n$21^3 = 9,261$\n$22^3 = 10,648$\nSo, $k \\le 21$.\n$|C| = 21$.\n\n**3. Find $|S \\cap C|$ (Both Squares and Cubes):**\nA number is both a perfect square and a perfect cube if it is a perfect sixth power ($n = k^6$), because $\\text{lcm}(2, 3) = 6$.\nWe need $k^6 \\le 10,000$.\n$1^6 = 1$\n$2^6 = 64$\n$3^6 = 729$\n$4^6 = 4,096$\n$5^6 = 15,625$\nSo, $k \\le 4$.\n$|S \\cap C| = 4$.\n\n**4. Apply the Principle of Inclusion-Exclusion:**\n$|S \\cup C| = |S| + |C| - |S \\cap C|$\n$|S \\cup C| = 100 + 21 - 4$\n$|S \\cup C| = 121 - 4$\n$|S \\cup C| = 117$\n\nANSWER: 117",
+      "seconds": 8.512214625254273,
+      "time_to_first_text_s": 0.4743640413507819,
+      "last_text_s": 8.512130833230913,
+      "completion_tokens_per_total_second": 68.01990145810079,
+      "usage": {
+        "prompt_tokens": 72,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 579,
+        "total_tokens": 651
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-800",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 6,
+      "category": "math",
+      "correct": true,
+      "detail": "117",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the last three digits of $3^{2026}$, we need to calculate $3^{2026} \\pmod{1000}$.\n\nFirst, we note that $1000 = 8 \\times 125$. We will find $3^{2026}$ modulo 8 and modulo 125.\n\n**Step 1: Calculate $3^{2026} \\pmod{8}$**\n$3^2 = 9 \\equiv 1 \\pmod{8}$.\nSince $2026 = 2 \\times 1013$, we have:\n$3^{2026} = (3^2)^{1013} \\equiv 1^{1013} \\equiv 1 \\pmod{8}$.\n\n**Step 2: Calculate $3^{2026} \\pmod{125}$**\nWe use Euler's Totient Theorem. $\\phi(125) = 125(1 - 1/5) = 100$.\n$3^{100} \\equiv 1 \\pmod{125}$.\n$2026 = 20 \\times 100 + 26$.\nSo, $3^{2026} \\equiv 3^{26} \\pmod{125}$.\n\nWe calculate $3^{26} \\pmod{125}$ using successive squaring:\n$3^1 = 3$\n$3^2 = 9$\n$3^4 = 81 \\equiv -44 \\pmod{125}$\n$3^8 = (-44)^2 = 1936$\n$1936 \\div 125 = 15$ with remainder $1936 - 1875 = 61$. So $3^8 \\equiv 61 \\pmod{125}$.\n$3^{16} = 61^2 = 3721$\n$3721 \\div 125 = 29$ with remainder $3721 - 3625 = 96$. So $3^{16} \\equiv 96 \\equiv -29 \\pmod{125}$.\n\nNow, $3^{26} = 3^{16} \\cdot 3^8 \\cdot 3^2$:\n$3^{26} \\equiv (-29) \\cdot 61 \\cdot 9 \\pmod{125}$\n$(-29) \\cdot 61 = -1769$\n$-1769 \\div 125 \\Rightarrow -1769 = -15 \\times 125 + 106 \\equiv 106 \\equiv -19 \\pmod{125}$.\n$-19 \\cdot 9 = -171$.\n$-171 \\equiv -171 + 250 = 79 \\pmod{125}$ (or $-171 + 125 = -46 \\equiv 79$).\nWait, let's re-verify: $-171 \\div 125 = -1$ remainder $-46$. $-46 + 125 = 79$.\nSo $3^{2026} \\equiv 79 \\pmod{125}$.\n\n**Step 3: Combine using Chinese Remainder Theorem**\nWe need $x \\equiv 1 \\pmod{8}$ and $x \\equiv 79 \\pmod{125}$.\nFrom the second congruence, $x = 125k + 79$.\nSubstitute into the first:\n$125k + 79 \\equiv 1 \\pmod{8}$\n$5k + 7 \\equiv 1 \\pmod{8}$ (since $125 = 15 \\times 8 + 5$ and $79 = 9 \\times 8 + 7$)\n$5k \\equiv -6 \\equiv 2 \\pmod{8}$\nTo solve $5k \\equiv 2 \\pmod{8}$, we find the inverse of 5 mod 8. $5 \\times 5 = 25 \\equiv 1 \\pmod{8}$.\n$k \\equiv 2 \\times 5 = 10 \\equiv 2 \\pmod{8}$.\n\nSo $k = 2$.\n$x = 125(2) + 79 = 250 + 79 = 329$.\n\n**Verification:**\n$329 \\div 8 = 41$ R $1$. (Correct)\n$329 \\div 125 = 2$ R $79$. (Correct)\n\nThe last three digits are 329.\n\nANSWER: 329",
+      "seconds": 16.44859258364886,
+      "time_to_first_text_s": 0.495363375172019,
+      "last_text_s": 16.38616320863366,
+      "completion_tokens_per_total_second": 66.08468137757633,
+      "usage": {
+        "prompt_tokens": 72,
+        "prompt_tokens_details": {
+          "cached_tokens": 10
+        },
+        "completion_tokens": 1087,
+        "total_tokens": 1159
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-164",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 7,
+      "category": "math",
+      "correct": true,
+      "detail": "329",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the number of shortest paths from the top-left corner to the bottom-right corner of a grid, we use the principles of combinatorics.\n\n1.  **Identify the grid dimensions and steps required:**\n    A grid with 6 rows and 6 columns of squares is defined by its grid lines. To move from the top-left corner to the bottom-right corner, we must traverse the edges of these squares.\n    A $6 \\times 6$ grid of squares is bounded by $7 \\times 7$ grid lines.\n    To get from the top-left corner $(0,0)$ to the bottom-right corner $(6,6)$, we must move:\n    - 6 steps to the **Right** (R)\n    - 6 steps **Down** (D)\n\n2.  **Determine the total number of steps:**\n    The total number of steps in any shortest path is $6 + 6 = 12$ steps.\n\n3.  **Calculate the number of permutations:**\n    Any shortest path is a sequence of 12 moves, where exactly 6 are 'R' and 6 are 'D'. The number of ways to arrange these moves is given by the binomial coefficient formula for combinations:\n    $$\\binom{n}{k} = \\frac{n!}{k!(n-k)!}$$\n    Where $n$ is the total number of steps and $k$ is the number of steps in one specific direction.\n\n    In this case, $n = 12$ and $k = 6$:\n    $$\\binom{12}{6} = \\frac{12!}{6! \\times 6!}$$\n\n4.  **Perform the calculation:**\n    $$12! = 479,001,600$$\n    $$6! = 720$$\n    $$\\binom{12}{6} = \\frac{12 \\times 11 \\times 10 \\times 9 \\times 8 \\times 7}{6 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1}$$\n    \n    Simplifying the fraction:\n    - $6 \\times 2 = 12$ (cancels the 12 in the numerator)\n    - $5 \\times 4 = 20$ (divide 10 in numerator by 20 to get 0.5, or better: $5 \\times 2 = 10$, $4 \\times 3 = 12$)\n    \n    Let's do it step-by-step:\n    $$\\frac{12 \\times 11 \\times 10 \\times 9 \\times 8 \\times 7}{720}$$\n    $$\\frac{665,280}{720} = 924$$\n    \n    Alternatively:\n    $12/6 = 2$\n    $11$\n    $10/5 = 2$\n    $9/3 = 3$\n    $8/4 = 2$\n    $7$\n    Wait, let's re-calculate carefully:\n    $\\frac{12 \\cdot 11 \\cdot 10 \\cdot 9 \\cdot 8 \\cdot 7}{6 \\cdot 5 \\cdot 4 \\cdot 3 \\cdot 2 \\cdot 1}$\n    $= 11 \\cdot (12/ (4 \\cdot 3)) \\cdot (10/5) \\cdot (9/3 \\text{ is wrong, let's restart})$\n    \n    $\\frac{12}{6} = 2$\n    $\\frac{10}{5} = 2$\n    $\\frac{8}{4} = 2$\n    $\\frac{9}{3} = 3$\n    Remaining: $2 \\times 11 \\times 2 \\times 3 \\times 2 \\times 7 / 2$ (Wait, let's just multiply)\n    $12 \\times 11 \\times 10 \\times 9 \\times 8 \\times 7 = 665,280$\n    $6 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1 = 720$\n    $665,280 / 720 = 924$\n\n    Check:\n    $12 \\times 11 \\times 10 \\times 9 \\times 8 \\times 7 / (6 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1)$\n    $= (12/6) \\times (10/5) \\times (8/4) \\times (9/3) \\times (11 \\times 7 / 2)$ is not right.\n    $= 2 \\times 2 \\times 2 \\times 3 \\times 11 \\times 7 / 2 = 12 \\times 77 = 924$.\n\n    Let's try one more time:\n    $12 \\times 11 \\times 10 \\times 9 \\times 8 \\times 7 / 720$\n    $= 11 \\times 10 \\times 9 \\times 8 \\times 7 / 60$\n    $= 11 \\times 9 \\times 8 \\times 7 / 6$\n    $= 11 \\times 3 \\times 4 \\times 7$\n    $= 33 \\times 28 = 924$.\n\nANSWER: 924",
+      "seconds": 20.505091541446745,
+      "time_to_first_text_s": 0.33972387481480837,
+      "last_text_s": 20.50411108415574,
+      "completion_tokens_per_total_second": 61.253079385734964,
+      "usage": {
+        "prompt_tokens": 89,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens": 1256,
+        "total_tokens": 1345
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-430",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 8,
+      "category": "math",
+      "correct": true,
+      "detail": "924",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To solve this problem, we must distinguish it from the standard Monty Hall problem. In the standard version, the host **knows** where the car is and **intentionally** avoids the car when opening a door. In this version, the host **does not know** where the car is and opens a door **at random**.\n\nLet's analyze the possible scenarios based on the car's location and the host's random action. There are 3 equally likely positions for the car:\n\n1.  **Car is behind Door 1 (Probability 1/3):**\n    The host opens Door 2 or Door 3 at random. Since the car is behind Door 1, both Door 2 and Door 3 contain goats. The host opens Door 3 (a goat) with probability 1/2.\n    *Probability (Car at 1 AND Host opens Door 3) = 1/3 * 1/2 = 1/6.*\n\n2.  **Car is behind Door 2 (Probability 1/3):**\n    The host opens Door 2 or Door 3 at random. However, the problem states the host opens Door 3 and it is a goat. If the car is behind Door 2, Door 3 is a goat. The host opens Door 3 with probability 1/2.\n    *Probability (Car at 2 AND Host opens Door 3) = 1/3 * 1/2 = 1/6.*\n\n3.  **Car is behind Door 3 (Probability 1/3):**\n    The host opens Door 2 or Door 3 at random. If the host opens Door 3, he would reveal the car. However, the problem states the host opened Door 3 and it **happened to show a goat**. Therefore, this scenario is impossible given the information provided.\n    *Probability (Car at 3 AND Host opens Door 3 as a goat) = 0.*\n\n**Applying Bayes' Theorem:**\nWe are looking for the probability that the car is behind Door 2, given that the host opened Door 3 and it was a goat.\n\n$P(\\text{Car at 2} | \\text{Host opens Door 3 as goat}) = \\frac{P(\\text{Car at 2 and Host opens Door 3 as goat})}{P(\\text{Host opens Door 3 as goat})}$\n\nThe total probability that the host opens Door 3 and it is a goat is the sum of the probabilities from the valid scenarios:\n$P(\\text{Host opens Door 3 as goat}) = 1/6 (\\text{from Car at 1}) + 1/6 (\\text{from Car at 2}) = 2/6 = 1/3$.\n\nNow, calculate the conditional probability for Door 2:\n$P(\\text{Car at 2} | \\text{Host opens Door 3 as goat}) = \\frac{1/6}{1/3} = \\frac{1}{6} \\times \\frac{3}{1} = \\frac{3}{6} = \\frac{1}{2}$.\n\nIn this specific variation (often called the \"Monty Fall\" problem), the fact that the host opened a door at random and \"got lucky\" by not revealing the car changes the odds to 50/50 between the remaining doors.\n\nANSWER: B",
+      "seconds": 13.058332957327366,
+      "time_to_first_text_s": 0.4256576243788004,
+      "last_text_s": 13.058256999589503,
+      "completion_tokens_per_total_second": 55.596683157984785,
+      "usage": {
+        "prompt_tokens": 122,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens": 726,
+        "total_tokens": 848
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-31",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 9,
+      "category": "logic",
+      "correct": true,
+      "detail": "B",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the answer, let's break down the timeline step by step:\n\n1.  **Identify \"Today\":**\n    If the day before yesterday was Thursday, then yesterday was Friday. Therefore, **today is Saturday**.\n\n2.  **Identify \"Tomorrow\":**\n    If today is Saturday, tomorrow will be Sunday.\n\n3.  **Identify \"The day after tomorrow\":**\n    If tomorrow is Sunday, the day after tomorrow will be **Monday**.\n\n**Timeline Summary:**\n*   Day before yesterday: Thursday\n*   Yesterday: Friday\n*   Today: Saturday\n*   Tomorrow: Sunday\n*   Day after tomorrow: Monday\n\nComparing this to the options:\nA) Sunday\nB) Monday\nC) Tuesday\nD) Saturday\n\nThe correct option is B.\n\nANSWER: B",
+      "seconds": 3.040703416801989,
+      "time_to_first_text_s": 0.5167235415428877,
+      "last_text_s": 3.040618458762765,
+      "completion_tokens_per_total_second": 56.56585875806929,
+      "usage": {
+        "prompt_tokens": 65,
+        "prompt_tokens_details": {
+          "cached_tokens": 4
+        },
+        "completion_tokens": 172,
+        "total_tokens": 237
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-265",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 10,
+      "category": "logic",
+      "correct": true,
+      "detail": "B",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nimport ast\nimport operator\n\ndef evaluate(expr: str) -> int:\n    # Replace division to ensure integer division behavior\n    # Python's // operator is floor division, but for negative numbers \n    # (which might occur during intermediate steps), we need truncation toward zero.\n    # However, the prompt specifies non-negative integers and standard precedence.\n    # In Python 3, the '/' operator is float division. \n    # We can use a custom parser or transform the expression.\n    \n    # To handle the \"truncate toward zero\" requirement for integer division:\n    # We can use a trick: replace '/' with a custom function or use a regex \n    # to transform the expression into a format that uses int(a/b).\n    # But for a standard expression evaluator, we can use `ast` and a NodeVisitor.\n\n    class Evaluator(ast.NodeVisitor):\n        def visit_BinOp(self, node):\n            left = self.visit(node.left)\n            right = self.visit(node.right)\n            if isinstance(node.op, ast.Add):\n                return left + right\n            elif isinstance(node.op, ast.Sub):\n                return left - right\n            elif isinstance(node.op, ast.Mult):\n                return left * right\n            elif isinstance(node.op, ast.Div):\n                # Truncate toward zero: int(a / b)\n                return int(left / right)\n            elif isinstance(node.op, ast.FloorDiv):\n                return left // right\n            return 0\n        \n        def visit_UnaryOp(self, node):\n            operand = self.visit(node.operand)\n            if isinstance(node.op, ast.USub):\n                return -operand\n            elif isinstance(node.op, ast.UAdd):\n                return operand\n            return operand\n\n        def visit_Num(self, node):\n            return node.n\n        \n        def visit_Constant(self, node):\n            return node.value\n\n        def visit_expr(self, node):\n            return self.visit(node.value)\n\n    # Pre-process: replace '/' with '//' to use integer division in AST,\n    # but since we need truncation toward zero, we'll actually use '/' \n    # and handle it in the visitor.\n    \n    # We must ensure the input string uses '/' for division.\n    # We'll use the ast module to parse the expression.\n    # Note: Python's ast.parse expects valid Python syntax.\n    \n    # Replace '/' with '/' to ensure it's treated as float division \n    # so that int(a/b) works correctly for truncation.\n    # In Python 3, '/' is float division.\n    \n    tree = ast.parse(expr, mode='eval')\n    \n    def eval_node(node):\n        if isinstance(node, ast.Num):\n            return node.n\n        elif isinstance(node, ast.Constant):\n            return node.value\n        elif isinstance(node, ast.BinOp):\n            left = eval_node(node.left)\n            right = eval_node(node.right)\n            if isinstance(node.op, ast.Add):\n                return left + right\n            elif isinstance(node.op, ast.Sub):\n                return left - right\n            elif isinstance(node.op, ast.Mult):\n                return left * right\n            elif isinstance(node.op, ast.Div):\n                # This performs float division, then we truncate\n                return int(left / right)\n            elif isinstance(node.op, ast.FloorDiv):\n                return left // right\n        elif isinstance(node, ast.UnaryOp):\n            operand = eval_node(node.operand)\n            if isinstance(node.op, ast.USub):\n                return -operand\n            elif isinstance(node.op, ast.UAdd):\n                return operand\n        elif isinstance(node, ast.Expression):\n            return eval_node(node.body)\n        return 0\n\n    return eval_node(tree)\n```",
+      "seconds": 16.20465841703117,
+      "time_to_first_text_s": 0.3340215003117919,
+      "last_text_s": 16.204598625190556,
+      "completion_tokens_per_total_second": 57.08235102492632,
+      "usage": {
+        "prompt_tokens": 90,
+        "prompt_tokens_details": {
+          "cached_tokens": 4
+        },
+        "completion_tokens": 925,
+        "total_tokens": 1015
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-578",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 11,
+      "category": "coding",
+      "correct": false,
+      "detail": "IndentationError: unexpected indent",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        self.cache.move_to_end(key)\n        return self.cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self.cache.move_to_end(key)\n        self.cache[key] = value\n        if len(self.cache) > self.capacity:\n            self.cache.popitem(last=False)\n```",
+      "seconds": 2.540919207967818,
+      "time_to_first_text_s": 0.360770583152771,
+      "last_text_s": 2.540836665779352,
+      "completion_tokens_per_total_second": 67.69203816502397,
+      "usage": {
+        "prompt_tokens": 121,
+        "prompt_tokens_details": {
+          "cached_tokens": 8
+        },
+        "completion_tokens": 172,
+        "total_tokens": 293
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-473",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 12,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef next_permutation(nums: list[int]) -> list[int]:\n    # Work on a copy to avoid mutating the original list if required by the signature\n    res = list(nums)\n    n = len(res)\n    if n <= 1:\n        return res\n\n    # Step 1: Find the largest index i such that res[i] < res[i + 1]\n    i = n - 2\n    while i >= 0 and res[i] >= res[i + 1]:\n        i -= 1\n\n    if i >= 0:\n        # Step 2: Find the largest index j such that res[i] < res[j]\n        j = n - 1\n        while res[j] <= res[i]:\n            j -= 1\n        # Step 3: Swap res[i] and res[j]\n        res[i], res[j] = res[j], res[i]\n        # Step 4: Reverse the suffix starting at i + 1\n        res[i + 1:] = reversed(res[i + 1:])\n    else:\n        # If no such i exists, the list is in descending order.\n        # Return the smallest permutation (sorted ascending).\n        res.sort()\n\n    return res\n```",
+      "seconds": 4.902067166753113,
+      "time_to_first_text_s": 0.31824362464249134,
+      "last_text_s": 4.833301833830774,
+      "completion_tokens_per_total_second": 60.38268957380601,
+      "usage": {
+        "prompt_tokens": 93,
+        "prompt_tokens_details": {
+          "cached_tokens": 8
+        },
+        "completion_tokens": 296,
+        "total_tokens": 389
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-232",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 13,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef count_islands(grid: list[str]) -> int:\n    if not grid or not grid[0]:\n        return 0\n\n    rows = len(grid)\n    cols = len(grid[0])\n    visited = set()\n    island_count = 0\n\n    def dfs(r, c):\n        if (r < 0 or r >= rows or c < 0 or c >= cols or \n            grid[r][c] == '0' or (r, c) in visited):\n            return\n        \n        visited.add((r, c))\n        \n        # Explore neighbors (up, down, left, right)\n        dfs(r + 1, c)\n        dfs(r - 1, c)\n        dfs(r, c + 1)\n        dfs(r, c - 1)\n\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1' and (r, c) not in visited:\n                island_count += 1\n                dfs(r, c)\n\n    return island_count\n```",
+      "seconds": 3.786675374954939,
+      "time_to_first_text_s": 0.3312696246430278,
+      "last_text_s": 3.7865754580125213,
+      "completion_tokens_per_total_second": 68.39773002804131,
+      "usage": {
+        "prompt_tokens": 100,
+        "prompt_tokens_details": {
+          "cached_tokens": 8
+        },
+        "completion_tokens": 259,
+        "total_tokens": 359
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-565",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 14,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef decode_ways(s: str) -> int:\n    if not s or s[0] == '0':\n        return 0\n\n    n = len(s)\n    dp = [0] * (n + 1)\n    dp[0] = 1\n    dp[1] = 1\n\n    for i in range(2, n + 1):\n        # Single digit decoding (1-9)\n        if s[i-1] != '0':\n            dp[i] += dp[i-1]\n        \n        # Two digit decoding (10-26)\n        two_digit = int(s[i-2:i])\n        if 10 <= two_digit <= 26:\n            dp[i] += dp[i-2]\n\n    return dp[n]\n```",
+      "seconds": 2.974059791304171,
+      "time_to_first_text_s": 0.3562728753313422,
+      "last_text_s": 2.9739775834605098,
+      "completion_tokens_per_total_second": 64.8944585997602,
+      "usage": {
+        "prompt_tokens": 113,
+        "prompt_tokens_details": {
+          "cached_tokens": 8
+        },
+        "completion_tokens": 193,
+        "total_tokens": 306
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-920",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 15,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the last two nonzero digits of $30!$, we need to find $30! / 10^k \\pmod{100}$, where $k$ is the number of trailing zeros in $30!$.\n\n**Step 1: Find the number of trailing zeros ($k$).**\nThe number of trailing zeros is determined by the exponent of 5 in the prime factorization of $30!$.\n$k = \\lfloor 30/5 \\rfloor + \\lfloor 30/25 \\rfloor = 6 + 1 = 7$.\nSo, $30! = N \\times 10^7$, where $N$ is the number formed by the digits preceding the trailing zeros. We need to find $N \\pmod{100}$.\n\n**Step 2: Calculate $N \\pmod{100}$.**\n$N = \\frac{30!}{10^7} = \\frac{30!}{2^7 \\cdot 5^7}$.\nTo find $N \\pmod{100}$, we can find $N \\pmod 4$ and $N \\pmod{25}$ and use the Chinese Remainder Theorem.\n\nFirst, let's express $30!$ as the product of all integers from 1 to 30, excluding multiples of 5, and then handle the multiples of 5 separately.\n$30! = (\\prod_{1 \\le n \\le 30, 5 \\nmid n} n) \\times (5 \\cdot 10 \\cdot 15 \\cdot 20 \\cdot 25 \\cdot 30)$\n$30! = (\\prod_{1 \\le n \\le 30, 5 \\nmid n} n) \\times 5^6 \\cdot (1 \\cdot 2 \\cdot 3 \\cdot 4 \\cdot 5 \\cdot 6)$\nWait, $25 = 5^2$, so the multiples of 5 are $5, 10, 15, 20, 25, 30$.\nThe powers of 5 are: $5^1, (2 \\cdot 5^1), (3 \\cdot 5^1), (4 \\cdot 5^1), (5^2), (6 \\cdot 5^1)$.\nTotal power of 5 is $1+1+1+1+2+1 = 7$.\n$30! = (\\prod_{1 \\le n \\le 30, 5 \\nmid n} n) \\times (1 \\cdot 2 \\cdot 3 \\cdot 4 \\cdot 1 \\cdot 6) \\times 5^7$\n$30! = (\\prod_{1 \\le n \\le 30, 5 \\nmid n} n) \\times 144 \\times 5^7$\n$N = \\frac{30!}{5^7 \\cdot 2^7} = \\frac{(\\prod_{1 \\le n \\le 30, 5 \\nmid n} n) \\times 144 \\times 5^7}{5^7 \\cdot 2^7} = \\frac{(\\prod_{1 \\le n \\le 30, 5 \\nmid n} n) \\times 144}{2^7}$\n$N = \\frac{(\\prod_{1 \\le n \\le 30, 5 \\nmid n} n) \\times 9 \\cdot 16}{128} = \\frac{(\\prod_{1 \\le n \\le 30, 5 \\nmid n} n) \\times 9}{8}$\n\nLet $P = \\prod_{1 \\le n \\le 30, 5 \\nmid n} n$.\nThe terms in $P$ are:\n1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29.\nWe need $N \\equiv \\frac{P \\cdot 9}{8} \\pmod{100}$. This is equivalent to finding $8N \\equiv 9P \\pmod{800}$.\nAlternatively, find $N \\pmod 4$ and $N \\pmod{25}$.\n\n**Find $N \\pmod{25}$:**\n$N = \\frac{P \\cdot 144}{2^7} = \\frac{P \\cdot 144}{128}$.\nIn $\\mathbb{Z}_{25}$, $128 \\equiv 3 \\pmod{25}$.\n$N \\equiv P \\cdot 144 \\cdot 3^{-1} \\pmod{25}$.\n$3^{-1} \\pmod{25} = 17$ (since $3 \\cdot 17 = 51 \\equiv 1$).\n$144 \\equiv 19 \\pmod{25}$.\n$P \\pmod{25}$: The product of elements in $(\\mathbb{Z}/25\\mathbb{Z})^\\times$ is $-1 \\equiv 24 \\pmod{25}$ (by Gauss's generalization of Wilson's Theorem).\nThe elements in $P$ are the elements of $(\\mathbb{Z}/25\\mathbb{Z})^\\times$ up to 25, plus 26, 27, 28, 29.\n$P \\equiv (-1) \\cdot (26 \\cdot 27 \\cdot 28 \\cdot 29) \\pmod{25}$\n$P \\equiv -1 \\cdot (1 \\cdot 2 \\cdot 3 \\cdot 4) \\equiv -24 \\equiv 1 \\pmod{25}$.\n$N \\equiv 1 \\cdot 19 \\cdot 17 \\pmod{25} = 323 \\pmod{25} = 23 \\pmod{25}$.\n\n**Find $N \\pmod 4$:**\n$N = \\frac{P \\cdot 144}{128} = \\frac{P \\cdot 9}{8}$.\nWait, $P$ contains many factors of 2. Let's count them in $P$:\n$2, 4, 6, 8, 12, 14, 16, 18, 22, 24, 26, 28$.\nPowers of 2 in $P$: $2^1, 2^2, 2^1, 2^3, 2^2, 2^1, 2^4, 2^1, 2^1, 2^3, 2^1, 2^2$.\nTotal power of 2 in $P$: $1+2+1+3+2+1+4+1+1+3+1+2 = 21$.\n$N = \\frac{P}{2^{21}} \\cdot \\frac{144}{2^7} \\cdot 2^{21} / 2^7$ is wrong. Let's use $N = \\frac{30!}{10^7}$.\n$30! = (\\text{odd part}) \\times 2^{26}$ (since $30/2+30/4+30/8+30/16 = 15+7+3+1 = 26$).\n$N = \\frac{(\\text{odd part}) \\times 2^{26}}{2^7 \\cdot 5^7} = \\frac{(\\text{odd part})}{5^7} \\cdot 2^{19}$.\nSince $N$ is a multiple of $2^{19}$, $N \\equiv 0 \\pmod 4$.\n\n**Solve for $N \\pmod{100}$:**\n$N \\equiv 0 \\pmod 4$\n$N \\equiv 23 \\pmod{25}$\nThe numbers $\\equiv 23 \\pmod{25}$ are 23, 48, 73, 98.\nAmong these, only 48 is divisible by 4.\n\nCheck: $N = 48$.\n$48 \\equiv 23 \\pmod{25}$ (True)\n$48 \\equiv 0 \\pmod 4$ (True)\n\nANSWER: 48",
+      "seconds": 31.666643333621323,
+      "time_to_first_text_s": 0.4574084999039769,
+      "last_text_s": 31.605179666541517,
+      "completion_tokens_per_total_second": 60.410570828292265,
+      "usage": {
+        "prompt_tokens": 73,
+        "prompt_tokens_details": {
+          "cached_tokens": 13
+        },
+        "completion_tokens": 1913,
+        "total_tokens": 1986
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-538",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 16,
+      "category": "math",
+      "correct": true,
+      "detail": "48",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the number of integers from 1 to 10,000 whose digits add up to 20, we first note that the number 10,000 has a digit sum of 1, so we only need to consider integers from 1 to 9,999. These can be represented as four-digit numbers $d_1 d_2 d_3 d_4$ (where leading zeros are allowed to represent numbers with fewer than four digits, such as 0047 for 47).\n\nWe are looking for the number of integer solutions to the equation:\n$d_1 + d_2 + d_3 + d_4 = 20$\nsubject to the constraint $0 \\le d_i \\le 9$ for each $i \\in \\{1, 2, 3, 4\\}$.\n\nWe use the method of generating functions or the Principle of Inclusion-Exclusion.\nThe total number of non-negative integer solutions to $d_1 + d_2 + d_3 + d_4 = 20$ without the upper bound constraint is given by the stars and bars formula $\\binom{n+k-1}{k-1}$, where $n=20$ and $k=4$:\n$\\binom{20+4-1}{4-1} = \\binom{23}{3} = \\frac{23 \\times 22 \\times 21}{3 \\times 2 \\times 1} = 23 \\times 11 \\times 7 = 1771$.\n\nNow, we subtract the cases where one or more digits exceed 9 (i.e., $d_i \\ge 10$).\nLet $S_i$ be the set of solutions where $d_i \\ge 10$.\nTo find $|S_i|$, we let $d_i = x_i + 10$. The equation becomes:\n$(x_i + 10) + d_j + d_k + d_l = 20 \\implies x_i + d_j + d_k + d_l = 10$.\nThe number of solutions is $\\binom{10+4-1}{4-1} = \\binom{13}{3} = \\frac{13 \\times 12 \\times 11}{6} = 286$.\nSince there are $\\binom{4}{1} = 4$ such sets, the total for one digit exceeding 9 is $4 \\times 286 = 1144$.\n\nNext, we add back the cases where two digits exceed 9 (i.e., $d_i \\ge 10$ and $d_j \\ge 10$).\nLet $d_i = x_i + 10$ and $d_j = x_j + 10$. The equation becomes:\n$(x_i + 10) + (x_j + 10) + d_k + d_l = 20 \\implies x_i + x_j + d_k + d_l = 0$.\nThe only solution is $x_i=0, x_j=0, d_k=0, d_l=0$.\nThe number of such solutions is $\\binom{0+4-1}{4-1} = \\binom{3}{3} = 1$.\nSince there are $\\binom{4}{2} = 6$ such pairs, the total for two digits exceeding 9 is $6 \\times 1 = 6$.\n\nNote that it is impossible for three or more digits to be $\\ge 10$ because $10+10+10 = 30 > 20$.\n\nUsing the Principle of Inclusion-Exclusion:\nTotal = (Total without constraints) - (At least one $d_i \\ge 10$) + (At least two $d_i \\ge 10$)\nTotal = $1771 - 1144 + 6$\nTotal = $627 + 6 = 633$.\n\nDouble check:\n$1771 - 1144 = 627$\n$627 + 6 = 633$\n\nWait, let's re-verify the calculation:\n$\\binom{23}{3} = \\frac{23 \\cdot 22 \\cdot 21}{6} = 23 \\cdot 11 \\cdot 7 = 1771$. Correct.\n$\\binom{13}{3} = \\frac{13 \\cdot 12 \\cdot 11}{6} = 13 \\cdot 2 \\cdot 11 = 286$. Correct.\n$4 \\times 286 = 1144$. Correct.\n$\\binom{3}{3} = 1$. Correct.\n$6 \\times 1 = 6$. Correct.\n$1771 - 1144 + 6 = 633$.\n\nFinal check of the logic:\nThe range is 1 to 10,000.\n10,000 sum is 1.\nThe maximum sum for a 4-digit number is $9+9+9+9=36$.\nThe sum 20 is well within the range.\nThe number of solutions for $d_1+d_2+d_3+d_4=20$ with $0 \\le d_i \\le 9$ is indeed 633.\n\nANSWER: 633",
+      "seconds": 19.498806500807405,
+      "time_to_first_text_s": 0.4031655006110668,
+      "last_text_s": 19.43918575067073,
+      "completion_tokens_per_total_second": 64.10648774571101,
+      "usage": {
+        "prompt_tokens": 73,
+        "prompt_tokens_details": {
+          "cached_tokens": 24
+        },
+        "completion_tokens": 1250,
+        "total_tokens": 1323
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-506",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 17,
+      "category": "math",
+      "correct": true,
+      "detail": "633",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To solve this problem, we need to find the number of integer solutions to the equation:\n$x_1 + x_2 + x_3 + x_4 = 10$\nsubject to the constraint $0 \\le x_i \\le 4$ for each $i \\in \\{1, 2, 3, 4\\}$.\n\nWe use the principle of inclusion-exclusion.\nFirst, we find the total number of non-negative integer solutions without the upper bound constraint using the stars and bars formula $\\binom{n+k-1}{k-1}$, where $n=10$ and $k=4$:\nTotal solutions = $\\binom{10+4-1}{4-1} = \\binom{13}{3} = \\frac{13 \\times 12 \\times 11}{3 \\times 2 \\times 1} = 286$.\n\nNow, let $A_i$ be the set of solutions where box $i$ has at least 5 balls ($x_i \\ge 5$).\nTo find $|A_i|$, we set $x_i = y_i + 5$, where $y_i \\ge 0$. The equation becomes:\n$(y_i + 5) + x_j + x_k + x_l = 10 \\implies y_i + x_j + x_k + x_l = 5$.\nThe number of solutions is $\\binom{5+4-1}{4-1} = \\binom{8}{3} = \\frac{8 \\times 7 \\times 6}{3 \\times 2 \\times 1} = 56$.\nSince there are $\\binom{4}{1} = 4$ such boxes:\n$\\sum |A_i| = 4 \\times 56 = 224$.\n\nNext, we find the intersection of two sets $|A_i \\cap A_j|$, where two boxes have at least 5 balls ($x_i \\ge 5$ and $x_j \\ge 5$).\nThe equation becomes:\n$(y_i + 5) + (y_j + 5) + x_k + x_l = 10 \\implies y_i + y_j + x_k + x_l = 0$.\nThe only solution is $(0, 0, 0, 0)$, so there is 1 solution.\nThe number of ways to choose 2 boxes is $\\binom{4}{2} = 6$.\n$\\sum |A_i \\cap A_j| = 6 \\times 1 = 6$.\n\nNext, we check the intersection of three sets $|A_i \\cap A_j \\cap A_k|$.\nThis would require $x_i + x_j + x_k \\ge 15$, which is impossible since the total sum is 10.\nThus, all higher-order intersections are 0.\n\nUsing the Principle of Inclusion-Exclusion:\nNumber of valid ways = Total - $\\sum |A_i| + \\sum |A_i \\cap A_j| - \\dots$\nNumber of valid ways = $286 - 224 + 6 = 68$.\n\nVerification:\nThe possible distributions (partitions of 10 into 4 parts, each $\\le 4$) are:\n- 4, 4, 2, 0: $\\frac{4!}{2!} = 12$ ways\n- 4, 4, 1, 1: $\\frac{4!}{2!2!} = 6$ ways\n- 4, 3, 3, 0: $\\frac{4!}{2!} = 12$ ways\n- 4, 3, 2, 1: $4! = 24$ ways\n- 4, 2, 2, 2: $\\frac{4!}{3!} = 4$ ways\n- 3, 3, 3, 1: $\\frac{4!}{3!} = 4$ ways\n- 3, 3, 2, 2: $\\frac{4!}{2!2!} = 6$ ways\n\nSumming these: $12 + 6 + 12 + 24 + 4 + 4 + 6 = 68$.\n\nANSWER: 68",
+      "seconds": 15.16523954179138,
+      "time_to_first_text_s": 0.4793520839884877,
+      "last_text_s": 15.165181499905884,
+      "completion_tokens_per_total_second": 63.830181998276295,
+      "usage": {
+        "prompt_tokens": 75,
+        "prompt_tokens_details": {
+          "cached_tokens": 12
+        },
+        "completion_tokens": 968,
+        "total_tokens": 1043
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-554",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 18,
+      "category": "math",
+      "correct": true,
+      "detail": "68",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find how many months in 2026 and 2027 have a Friday the 13th, we need to determine which months start on a Sunday. If a month begins on a Sunday, the 13th day of that month will be a Friday.\n\n**Year 2026:**\nWe can determine the starting day of each month for 2026. 2026 is not a leap year.\nJanuary 1, 2026, is a Thursday.\n1. **January**: Starts Thursday. 13th is Tuesday.\n2. **February**: Starts Sunday. **13th is Friday.** (1)\n3. **March**: Starts Sunday. **13th is Friday.** (2)\n4. **April**: Starts Wednesday. 13th is Monday.\n5. **May**: Starts Friday. 13th is Wednesday.\n6. **June**: Starts Monday. 13th is Saturday.\n7. **July**: Starts Wednesday. 13th is Monday.\n8. **August**: Starts Saturday. 13th is Thursday.\n9. **September**: Starts Tuesday. 13th is Sunday.\n10. **October**: Starts Thursday. 13th is Tuesday.\n11. **November**: Starts Sunday. **13th is Friday.** (3)\n12. **December**: Starts Tuesday. 13th is Sunday.\n\nTotal for 2026: 3 (February, March, November)\n\n**Year 2027:**\nJanuary 1, 2027, is a Friday (since 2026 has 365 days, $365 \\pmod 7 = 1$, so the next year starts one day later).\n1. **January**: Starts Friday. 13th is Wednesday.\n2. **February**: Starts Monday. 13th is Saturday.\n3. **March**: Starts Monday. 13th is Saturday.\n4. **April**: Starts Thursday. 13th is Tuesday.\n5. **May**: Starts Saturday. 13th is Thursday.\n6. **June**: Starts Tuesday. 13th is Sunday.\n7. **July**: Starts Thursday. 13th is Tuesday.\n8. **August**: Starts Sunday. **13th is Friday.** (4)\n9. **September**: Starts Wednesday. 13th is Monday.\n10. **October**: Starts Friday. 13th is Wednesday.\n11. **November**: Starts Monday. 13th is Saturday.\n12. **December**: Starts Wednesday. 13th is Monday.\n\nTotal for 2027: 1 (August)\n\n**Combined Total:**\n3 (from 2026) + 1 (from 2027) = 4.\n\nANSWER: 4",
+      "seconds": 10.914330249652267,
+      "time_to_first_text_s": 0.36362824961543083,
+      "last_text_s": 10.914270333014429,
+      "completion_tokens_per_total_second": 58.455258857530616,
+      "usage": {
+        "prompt_tokens": 74,
+        "prompt_tokens_details": {
+          "cached_tokens": 9
+        },
+        "completion_tokens": 638,
+        "total_tokens": 712
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-633",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 19,
+      "category": "math",
+      "correct": true,
+      "detail": "4",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the smallest positive integer with exactly 30 positive divisors, we use the formula for the number of divisors. If the prime factorization of an integer $n$ is $p_1^{a_1} p_2^{a_2} \\cdots p_k^{a_k}$, the number of divisors $d(n)$ is given by:\n$$d(n) = (a_1 + 1)(a_2 + 1) \\cdots (a_k + 1) = 30$$\n\nWe need to find combinations of integers whose product is 30. The possible sets of $(a_i + 1)$ are:\n1. $\\{30\\}$ $\\implies a_1 = 29$\n2. $\\{15, 2\\}$ $\\implies a_1 = 14, a_2 = 1$\n3. $\\{10, 3\\}$ $\\implies a_1 = 9, a_2 = 2$\n4. $\\{6, 5\\}$ $\\implies a_1 = 5, a_2 = 4$\n5. $\\{5, 3, 2\\}$ $\\implies a_1 = 4, a_2 = 2, a_3 = 1$\n\nTo minimize $n$, we assign the largest exponents to the smallest prime numbers ($2, 3, 5, \\dots$).\n\n**Case 1: $\\{30\\}$**\n$n = 2^{29} = 536,870,912$\n\n**Case 2: $\\{15, 2\\}$**\n$n = 2^{14} \\cdot 3^1 = 16384 \\cdot 3 = 49,152$\n(Alternatively, $3^{14} \\cdot 2^1$ is much larger)\n\n**Case 3: $\\{10, 3\\}$**\n$n = 2^9 \\cdot 3^2 = 512 \\cdot 9 = 4,608$\n(Alternatively, $3^9 \\cdot 2^2 = 19683 \\cdot 4 = 78,732$)\n\n**Case 4: $\\{6, 5\\}$**\n$n = 2^5 \\cdot 3^4 = 32 \\cdot 81 = 2,592$\n(Alternatively, $2^4 \\cdot 3^5 = 16 \\cdot 243 = 3,888$)\n\n**Case 5: $\\{5, 3, 2\\}$**\nWe assign exponents 4, 2, and 1 to the primes 2, 3, and 5.\nPossible combinations:\n- $2^4 \\cdot 3^2 \\cdot 5^1 = 16 \\cdot 9 \\cdot 5 = 720$\n- $2^4 \\cdot 5^2 \\cdot 3^1 = 16 \\cdot 25 \\cdot 3 = 1,200$\n- $3^4 \\cdot 2^2 \\cdot 5^1 = 81 \\cdot 4 \\cdot 5 = 1,620$\n- $5^4 \\cdot 2^2 \\cdot 3^1 = 625 \\cdot 4 \\cdot 3 = 7,500$\n- $2^2 \\cdot 3^4 \\cdot 5^1 = 4 \\cdot 81 \\cdot 5 = 1,620$ (Wait, let's re-check $2^4 \\cdot 3^2 \\cdot 5^1$)\n\nLet's re-evaluate Case 5 carefully:\nThe exponents are 4, 2, 1. The primes are 2, 3, 5.\n$2^4 \\cdot 3^2 \\cdot 5^1 = 16 \\cdot 9 \\cdot 5 = 720$\n$2^4 \\cdot 3^1 \\cdot 5^2 = 16 \\cdot 3 \\cdot 25 = 1200$\n$2^2 \\cdot 3^4 \\cdot 5^1 = 4 \\cdot 81 \\cdot 5 = 1620$\n$2^1 \\cdot 3^4 \\cdot 5^2 = 2 \\cdot 81 \\cdot 25 = 4050$\n$2^2 \\cdot 3^1 \\cdot 5^4 = 4 \\cdot 3 \\cdot 625 = 7500$\n$2^1 \\cdot 3^2 \\cdot 5^4 = 2 \\cdot 9 \\cdot 625 = 11250$\n\nComparing all results:\nCase 1: 536,870,912\nCase 2: 49,152\nCase 3: 4,608\nCase 4: 2,592\nCase 5: 720\n\nThe smallest value is 720.\n\nANSWER: 720",
+      "seconds": 18.009144125506282,
+      "time_to_first_text_s": 0.40936991572380066,
+      "last_text_s": 18.008983583189547,
+      "completion_tokens_per_total_second": 64.4672501874023,
+      "usage": {
+        "prompt_tokens": 62,
+        "prompt_tokens_details": {
+          "cached_tokens": 12
+        },
+        "completion_tokens": 1161,
+        "total_tokens": 1223
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-51",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 20,
+      "category": "math",
+      "correct": true,
+      "detail": "720",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find how many integers $n$ from 1 to 2026 satisfy $n^2 + n + 1 \\equiv 0 \\pmod{7}$, we first analyze the quadratic expression modulo 7.\n\nWe test the values of $n \\pmod{7}$:\n- If $n \\equiv 0 \\pmod{7}$, $n^2 + n + 1 \\equiv 0 + 0 + 1 \\equiv 1 \\pmod{7}$.\n- If $n \\equiv 1 \\pmod{7}$, $n^2 + n + 1 \\equiv 1 + 1 + 1 \\equiv 3 \\pmod{7}$.\n- If $n \\equiv 2 \\pmod{7}$, $n^2 + n + 1 \\equiv 4 + 2 + 1 \\equiv 7 \\equiv 0 \\pmod{7}$.\n- If $n \\equiv 3 \\pmod{7}$, $n^2 + n + 1 \\equiv 9 + 3 + 1 \\equiv 13 \\equiv 6 \\pmod{7}$.\n- If $n \\equiv 4 \\pmod{7}$, $n^2 + n + 1 \\equiv 16 + 4 + 1 \\equiv 21 \\equiv 0 \\pmod{7}$.\n- If $n \\equiv 5 \\pmod{7}$, $n^2 + n + 1 \\equiv 25 + 5 + 1 \\equiv 31 \\equiv 3 \\pmod{7}$.\n- If $n \\equiv 6 \\pmod{7}$, $n^2 + n + 1 \\equiv 36 + 6 + 1 \\equiv 43 \\equiv 1 \\pmod{7}$.\n\nThe condition $n^2 + n + 1 \\equiv 0 \\pmod{7}$ is satisfied if and only if $n \\equiv 2 \\pmod{7}$ or $n \\equiv 4 \\pmod{7}$.\n\nWe need to count how many such $n$ exist in the range $1 \\le n \\le 2026$.\nFirst, we divide 2026 by 7 to see how many full cycles of 7 are in the range:\n$2026 = 289 \\times 7 + 3$.\n\nIn each full cycle of 7 (e.g., $1$ to $7$, $8$ to $14$, etc.), there are exactly 2 values of $n$ that satisfy the condition.\nFor the 289 full cycles, the number of solutions is:\n$289 \\times 2 = 578$.\n\nNow we check the remaining numbers in the last partial cycle. The numbers are:\n$289 \\times 7 + 1 = 2024$\n$289 \\times 7 + 2 = 2025$\n$289 \\times 7 + 3 = 2026$\n\nWe check these values modulo 7:\n- $2024 \\equiv 1 \\pmod{7}$\n- $2025 \\equiv 2 \\pmod{7}$ (This is a solution)\n- $2026 \\equiv 3 \\pmod{7}$\n\nThere is 1 additional solution in the remaining numbers.\n\nTotal number of solutions = $578 + 1 = 579$.\n\nANSWER: 579",
+      "seconds": 12.142896042205393,
+      "time_to_first_text_s": 0.5193107919767499,
+      "last_text_s": 12.142765582539141,
+      "completion_tokens_per_total_second": 62.17627140805834,
+      "usage": {
+        "prompt_tokens": 74,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 755,
+        "total_tokens": 829
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-161",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 21,
+      "category": "math",
+      "correct": true,
+      "detail": "579",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To solve this problem, we first determine the sample space given the condition.\n\n**Step 1: Determine the size of the reduced sample space.**\nWe are given that at least one die shows a 6. Let $D_1$ and $D_2$ be the results of the two dice. The condition is that $D_1 = 6$ or $D_2 = 6$.\nThe possible outcomes $(D_1, D_2)$ where at least one die is a 6 are:\n- $(6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)$\n- $(1, 6), (2, 6), (3, 6), (4, 6), (5, 6)$\n(Note: $(6, 6)$ is only counted once).\n\nCounting these outcomes: $6 + 5 = 11$.\nSo, the size of our reduced sample space is $n(S) = 11$.\n\n**Step 2: Identify the outcomes where the sum is at least 10.**\nWe look through the 11 outcomes identified above to find those where $D_1 + D_2 \\ge 10$:\n1. $(6, 1) \\implies 7$\n2. $(6, 2) \\implies 8$\n3. $(6, 3) \\implies 9$\n4. $(6, 4) \\implies 10$ (Yes)\n5. $(6, 5) \\implies 11$ (Yes)\n6. $(6, 6) \\implies 12$ (Yes)\n7. $(1, 6) \\implies 7$\n8. $(2, 6) \\implies 8$\n9. $(3, 6) \\implies 9$\n10. $(4, 6) \\implies 10$ (Yes)\n11. $(5, 6) \\implies 11$ (Yes)\n\nThe outcomes that satisfy the condition are: $(6, 4), (6, 5), (6, 6), (4, 6), (5, 6)$.\nThe number of successful outcomes is $n(E) = 5$.\n\n**Step 3: Calculate the probability.**\nThe probability is $P = \\frac{n(E)}{n(S)} = \\frac{5}{11}$.\nThis fraction is in lowest terms.\n\n**Step 4: Find $m + n$.**\nGiven $m/n = 5/11$, we have $m = 5$ and $n = 11$.\n$m + n = 5 + 11 = 16$.\n\nANSWER: 16",
+      "seconds": 9.843737084418535,
+      "time_to_first_text_s": 0.34836400020867586,
+      "last_text_s": 9.843614125624299,
+      "completion_tokens_per_total_second": 62.88262218825444,
+      "usage": {
+        "prompt_tokens": 92,
+        "prompt_tokens_details": {
+          "cached_tokens": 9
+        },
+        "completion_tokens": 619,
+        "total_tokens": 711
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-498",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 22,
+      "category": "math",
+      "correct": true,
+      "detail": "16",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To solve this problem, we need to find the number of 7-digit phone numbers that satisfy two conditions:\n1. No two adjacent digits are the same.\n2. The digit 7 appears at least once.\n\nLet $S$ be the set of all 7-digit numbers where no two adjacent digits are the same.\nLet $A$ be the subset of $S$ where the digit 7 never appears.\nThe number of phone numbers we are looking for is $|S| - |A|$.\n\n**Step 1: Calculate $|S|$**\nA 7-digit number is represented as $d_1 d_2 d_3 d_4 d_5 d_6 d_7$.\n- For $d_1$, there are 10 choices (0-9).\n- For $d_2$, there are 9 choices (any digit except $d_1$).\n- For $d_3$, there are 9 choices (any digit except $d_2$).\n- For $d_4$, there are 9 choices (any digit except $d_3$).\n- For $d_5$, there are 9 choices (any digit except $d_4$).\n- For $d_6$, there are 9 choices (any digit except $d_5$).\n- For $d_7$, there are 9 choices (any digit except $d_6$).\n\nTotal $|S| = 10 \\times 9^6$.\n$9^2 = 81$\n$9^3 = 729$\n$9^6 = (729)^2 = 531441$\n$|S| = 10 \\times 531441 = 5,314,410$.\n\n**Step 2: Calculate $|A|$**\n$A$ is the set of 7-digit numbers where no two adjacent digits are the same AND the digit 7 is never used. This means we are choosing from a set of 9 digits $\\{0, 1, 2, 3, 4, 5, 6, 8, 9\\}$.\n- For $d_1$, there are 9 choices.\n- For $d_2$, there are 8 choices (any of the 9 digits except $d_1$).\n- For $d_3$, there are 8 choices (any of the 9 digits except $d_2$).\n- For $d_4$, there are 8 choices.\n- For $d_5$, there are 8 choices.\n- For $d_6$, there are 8 choices.\n- For $d_7$, there are 8 choices.\n\nTotal $|A| = 9 \\times 8^6$.\n$8^2 = 64$\n$8^3 = 512$\n$8^6 = (512)^2 = 262144$\n$|A| = 9 \\times 262144 = 2,359,296$.\n\n**Step 3: Calculate $|S| - |A|$**\n$|S| - |A| = 5,314,410 - 2,359,296$.\n\nSubtraction:\n  5,314,410\n- 2,359,296\n-----------\n  2,955,114\n\nVerification:\n$5,314,410 - 2,000,000 = 3,314,410$\n$3,314,410 - 359,296 = 2,955,114$\n\nCheck:\n$2,359,296 + 2,955,114 = 5,314,410$. Correct.\n\nANSWER: 2955114",
+      "seconds": 14.294349708594382,
+      "time_to_first_text_s": 0.3167747501283884,
+      "last_text_s": 14.294102500192821,
+      "completion_tokens_per_total_second": 61.84261739927217,
+      "usage": {
+        "prompt_tokens": 91,
+        "prompt_tokens_details": {
+          "cached_tokens": 10
+        },
+        "completion_tokens": 884,
+        "total_tokens": 975
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-924",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 23,
+      "category": "math",
+      "correct": true,
+      "detail": "2955114",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find who sits in seat 3, let's analyze the given constraints for the five seats (1, 2, 3, 4, 5):\n\n1.  **Q sits immediately to the right of P.** This means they form a block **(PQ)**.\n2.  **R is not in seat 1 or seat 5.** Therefore, R must be in seat 2, 3, or 4.\n3.  **S sits somewhere to the left of T.** (S < T).\n4.  **T does not sit next to R.**\n5.  **P is not in seat 1.**\n\nLet's test the possible positions for the **(PQ)** block:\n\n*   **Case 1: (PQ) in seats 2 and 3.**\n    *   Seats: _ , P, Q, _ , _\n    *   Since P is in seat 2, seat 1 is available.\n    *   R cannot be in seat 1 or 5, so R must be in seat 4.\n    *   Seats: _ , P, Q, R, _\n    *   Remaining people are S and T. S must be to the left of T.\n    *   The only available seats are 1 and 5. So S is in 1 and T is in 5.\n    *   Check constraint 4: Is T next to R? T is in 5, R is in 4. **Yes, they are neighbors.** This violates the rule \"T does not sit next to R.\" This case is invalid.\n\n*   **Case 2: (PQ) in seats 3 and 4.**\n    *   Seats: _ , _ , P, Q, _\n    *   R cannot be in seat 1 or 5. The only available seat for R is seat 2.\n    *   Seats: _ , R, P, Q, _\n    *   Remaining people are S and T. S must be to the left of T.\n    *   The only available seats are 1 and 5. So S is in 1 and T is in 5.\n    *   Check constraint 4: Is T next to R? T is in 5, R is in 2. **No, they are not neighbors.**\n    *   Check all constraints:\n        1. Q right of P? Yes (3, 4).\n        2. R not in 1 or 5? Yes (2).\n        3. S left of T? Yes (1 < 5).\n        4. T not next to R? Yes (5 and 2).\n        5. P not in seat 1? Yes (3).\n    *   This configuration works: **S, R, P, Q, T**.\n\n*   **Case 3: (PQ) in seats 4 and 5.**\n    *   Seats: _ , _ , _ , P, Q\n    *   R must be in seat 2 or 3.\n    *   If R is in 2: Seats are _ , R, _ , P, Q. S and T must be in 1 and 3. S < T means S is in 1 and T is in 3.\n    *   Check constraint 4: Is T next to R? T is in 3, R is in 2. **Yes, they are neighbors.** Invalid.\n    *   If R is in 3: Seats are _ , _ , R, P, Q. S and T must be in 1 and 2. S < T means S is in 1 and T is in 2.\n    *   Check constraint 4: Is T next to R? T is in 2, R is in 3. **Yes, they are neighbors.** Invalid.\n\nThe only valid configuration is **S, R, P, Q, T**.\nSeat 1: S\nSeat 2: R\nSeat 3: P\nSeat 4: Q\nSeat 5: T\n\nThe person in seat 3 is P.\n\nANSWER: C",
+      "seconds": 14.83694479148835,
+      "time_to_first_text_s": 0.4414060413837433,
+      "last_text_s": 14.836786708794534,
+      "completion_tokens_per_total_second": 60.38979133453518,
+      "usage": {
+        "prompt_tokens": 128,
+        "prompt_tokens_details": {
+          "cached_tokens": 4
+        },
+        "completion_tokens": 896,
+        "total_tokens": 1024
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-176",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 24,
+      "category": "logic",
+      "correct": true,
+      "detail": "C",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nimport re\n\ndef calc(expr: str) -> int:\n    # Tokenize the expression\n    tokens = re.findall(r'\\d+|[+\\-*/^()]', expr)\n    \n    def get_precedence(op, is_unary=False):\n        if is_unary:\n            return 3\n        if op == '^':\n            return 4\n        if op in ('*', '/'):\n            return 2\n        if op in ('+', '-'):\n            return 1\n        return 0\n\n    def apply_op(ops, values):\n        op = ops.pop()\n        if op == 'u-':\n            val = values.pop()\n            values.append(-val)\n        else:\n            right = values.pop()\n            left = values.pop()\n            if op == '+': values.append(left + right)\n            elif op == '-': values.append(left - right)\n            elif op == '*': values.append(left * right)\n            elif op == '/':\n                # Integer division truncating toward zero\n                if left * right < 0 and left % right != 0:\n                    values.append(left // right + 1)\n                else:\n                    values.append(left // right)\n            elif op == '^':\n                values.append(left ** right)\n\n    values = []\n    ops = []\n    i = 0\n    while i < len(tokens):\n        token = tokens[i]\n        \n        if token.isdigit():\n            values.append(int(token))\n        elif token == '(':\n            ops.append(token)\n        elif token == ')':\n            while ops and ops[-1] != '(':\n                apply_op(ops, values)\n            ops.pop() # remove '('\n        else:\n            # Check if '-' is unary\n            # It's unary if it's the first token or follows an operator or '('\n            is_unary = False\n            if token == '-':\n                if i == 0 or tokens[i-1] in '+-*/^(':\n                    is_unary = True\n            \n            if is_unary:\n                # Unary minus has higher precedence than binary *, /, +, -\n                # but lower than exponentiation (based on -2^2 = -4)\n                # However, the prompt says: ^, then unary minus, then *, /, then +, -\n                # This means -2^2 is -(2^2) = -4.\n                # To achieve this, we treat unary minus as a high precedence operator\n                # but we must handle the right-associativity of ^ carefully.\n                \n                # We push unary minus to the stack.\n                # To ensure -2^2 is -4, the ^ must be evaluated before the unary minus.\n                # This means unary minus precedence < ^ precedence.\n                # Let's re-evaluate precedence:\n                # ^ : 4\n                # unary - : 3\n                # * / : 2\n                # + - : 1\n                \n                # Wait, if unary minus is 3 and ^ is 4, then -2^2:\n                # 1. see '-' (unary)\n                # 2. see '2'\n                # 3. see '^'\n                # Since ^ (4) > unary (3), ^ is pushed or evaluated.\n                # Actually, standard math: -2^2 is -(2^2).\n                # In Shunting-yard, if current op precedence <= stack top precedence, apply stack top.\n                # If we want -2^2 to be -4, the '^' must be applied to the '2' before the '-' is applied.\n                # This happens if precedence(^) > precedence(unary -).\n                \n                # Let's refine:\n                # Precedence: ^ (4), unary - (3), * / (2), + - (1)\n                # If we encounter '^' and stack top is 'u-', we apply 'u-' first? \n                # No, if stack top is 'u-' (3) and current is '^' (4), we push '^'.\n                # Then '2' is pushed. Then '^' is popped and applied to '2'.\n                # Then 'u-' is applied to the result.\n                # Result: - (2^2) = -4. Correct.\n                \n                # If we encounter 'u-' and stack top is '^' (4), we apply '^' first.\n                # If we encounter 'u-' and stack top is 'u-' (3), we apply 'u-' first (right associative).\n                \n                op_symbol = 'u-'\n                prec = 3\n            else:\n                op_symbol = token\n                prec = get_precedence(token)\n\n            while (ops and ops[-1] != '(' and \n                   (get_precedence(ops[-1], ops[-1] == 'u-') > prec or \n                    (get_precedence(ops[-1], ops[-1] == 'u-') == prec and op_symbol != '^'))):\n                apply_op(ops, values)\n            ops.append(op_symbol)\n        i += 1\n\n    while ops:\n        apply_op(ops, values)\n        \n    return values[0]\n```",
+      "seconds": 22.93554645869881,
+      "time_to_first_text_s": 0.4592230003327131,
+      "last_text_s": 22.886916750110686,
+      "completion_tokens_per_total_second": 52.05892966841212,
+      "usage": {
+        "prompt_tokens": 150,
+        "prompt_tokens_details": {
+          "cached_tokens": 8
+        },
+        "completion_tokens": 1194,
+        "total_tokens": 1344
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-591",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 25,
+      "category": "coding",
+      "correct": false,
+      "detail": "IndexError: pop from empty list",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef int_to_words(n: int) -> str:\n    if n == 0:\n        return \"zero\"\n\n    ones = [\"\", \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\"]\n    teens = [\"ten\", \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\"]\n    tens = [\"\", \"\", \"twenty\", \"thirty\", \"forty\", \"fifty\", \"sixty\", \"seventy\", \"eighty\", \"ninety\"]\n\n    def helper(num: int) -> list:\n        parts = []\n        if num >= 100:\n            parts.append(ones[num // 100])\n            parts.append(\"hundred\")\n            num %= 100\n        \n        if num >= 20:\n            parts.append(tens[num // 10])\n            if num % 10 > 0:\n                parts.append(\"-\" + ones[num % 10])\n        elif num >= 10:\n            parts.append(teens[num - 10])\n        elif num > 0:\n            parts.append(ones[num])\n        \n        return parts\n\n    res = []\n    \n    # Millions\n    if n >= 1000000:\n        millions = n // 1000000\n        res.extend(helper(millions))\n        res.append(\"million\")\n        n %= 1000000\n    \n    # Thousands\n    if n >= 1000:\n        thousands = n // 1000\n        res.extend(helper(thousands))\n        res.append(\"thousand\")\n        n %= 1000\n        \n    # Remainder\n    if n > 0:\n        res.extend(helper(n))\n\n    # Clean up hyphens: the helper adds \"-word\", we need to join carefully\n    # The helper logic above actually produces ['forty', '-two']. \n    # Let's refine the join logic to handle the hyphenated requirement correctly.\n    \n    # Re-implementing the join logic to ensure \"forty-two\" instead of \"forty -two\"\n    final_words = []\n    i = 0\n    while i < len(res):\n        word = res[i]\n        if word.startswith(\"-\") and final_words:\n            final_words[-1] = final_words[-1] + word\n        else:\n            final_words.append(word)\n        i += 1\n\n    return \" \".join(final_words)\n\n# Refined version to strictly follow the hyphen rule and spacing\ndef int_to_words(n: int) -> str:\n    if n == 0:\n        return \"zero\"\n\n    ones = [\"\", \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\"]\n    teens = [\"ten\", \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\"]\n    tens = [\"\", \"\", \"twenty\", \"thirty\", \"forty\", \"fifty\", \"sixty\", \"seventy\", \"eighty\", \"ninety\"]\n\n    def get_chunk(num: int) -> list:\n        chunk = []\n        if num >= 100:\n            chunk.append(ones[num // 100])\n            chunk.append(\"hundred\")\n            num %= 100\n        \n        if num >= 20:\n            chunk.append(tens[num // 10])\n            if num % 10 > 0:\n                chunk.append(\"-\" + ones[num % 10])\n        elif num >= 10:\n            chunk.append(teens[num - 10])\n        elif num > 0:\n            chunk.append(ones[num])\n        return chunk\n\n    parts = []\n    \n    if n >= 1000000:\n        parts.extend(get_chunk(n // 1000000))\n        parts.append(\"million\")\n        n %= 1000000\n        \n    if n >= 1000:\n        parts.extend(get_chunk(n // 1000))\n        parts.append(\"thousand\")\n        n %= 1000\n        \n    if n > 0:\n        parts.extend(get_chunk(n))\n\n    # Process the list to merge hyphenated words\n    result_words = []\n    for p in parts:\n        if p.startswith(\"-\") and result_words:\n            result_words[-1] += p\n        else:\n            result_words.append(p)\n            \n    return \" \".join(result_words)\n```\n\nWait, I must provide a single clean block. Let me consolidate the logic into one clean function.\n\n```python\ndef int_to_words(n: int) -> str:\n    if n == 0:\n        return \"zero\"\n\n    ones = [\"\", \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\"]\n    teens = [\"ten\", \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\"]\n    tens = [\"\", \"\", \"twenty\", \"thirty\", \"forty\", \"fifty\", \"sixty\", \"seventy\", \"eighty\", \"ninety\"]\n\n    def get_words(num: int) -> list:\n        res = []\n        if num >= 100:\n            res.append(ones[num // 100])\n            res.append(\"hundred\")\n            num %= 100\n        if num >= 20:\n            res.append(tens[num // 10])\n            if num % 10 > 0:\n                res.append(\"-\" + ones[num % 10])\n        elif num >= 10:\n            res.append(teens[num - 10])\n        elif num > 0:\n            res.append(ones[num])\n        return res\n\n    all_parts = []\n    if n >= 1000000:\n        all_parts.extend(get_words(n // 1000000))\n        all_parts.append(\"million\")\n        n %= 1000000\n    if n >= 1000:\n        all_parts.extend(get_words(n // 1000))\n        all_parts.append(\"thousand\")\n        n %= 1000\n    if n > 0:\n        all_parts.extend(get_words(n))\n\n    final = []\n    for word in all_parts:\n        if word.startswith(\"-\") and final:\n            final[-1] += word\n        else:\n            final.append(word)\n    return \" \".join(final)\n```",
+      "seconds": 27.983177457936108,
+      "time_to_first_text_s": 0.4717862084507942,
+      "last_text_s": 27.983068458735943,
+      "completion_tokens_per_total_second": 59.57150514825592,
+      "usage": {
+        "prompt_tokens": 180,
+        "prompt_tokens_details": {
+          "cached_tokens": 8
+        },
+        "completion_tokens": 1667,
+        "total_tokens": 1847
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-501",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 26,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef flatten_json(obj: dict) -> dict:\n    def recurse(current_obj, path):\n        # If it's a dictionary and not empty\n        if isinstance(current_obj, dict) and current_obj:\n            for key, value in current_obj.items():\n                new_path = f\"{path}.{key}\" if path else str(key)\n                yield from recurse(value, new_path)\n        # If it's a list and not empty\n        elif isinstance(current_obj, list) and current_obj:\n            for index, value in enumerate(current_obj):\n                new_path = f\"{path}.{index}\" if path else str(index)\n                yield from recurse(value, new_path)\n        # Otherwise, it's a leaf (or an empty dict/list)\n        else:\n            yield path, current_obj\n\n    # The root call starts with an empty path. \n    # Since the input is guaranteed to be a dict, we handle the first level.\n    result = {}\n    for key, value in obj.items():\n        for p, v in recurse(value, str(key)):\n            result[p] = v\n            \n    # Special case: if the input dict itself was empty\n    if not obj:\n        return {}\n        \n    # Re-run logic to ensure the top-level keys are handled correctly \n    # if the recursion logic above needs a slight adjustment for the root.\n    # Let's refine the approach to be more robust:\n    \n    final_dict = {}\n    \n    def walk(item, current_path):\n        if isinstance(item, dict) and item:\n            for k, v in item.items():\n                walk(v, f\"{current_path}.{k}\" if current_path else str(k))\n        elif isinstance(item, list) and item:\n            for i, v in enumerate(item):\n                walk(v, f\"{current_path}.{i}\" if current_path else str(i))\n        else:\n            final_dict[current_path] = item\n\n    # The requirement says the input is a dict.\n    # We iterate through the top level keys to start the path.\n    for k, v in obj.items():\n        walk(v, str(k))\n        \n    # If the input was {'a': {}}, walk('a', 'a') would call walk({}, 'a')\n    # which hits the 'else' and sets final_dict['a'] = {}\n    \n    # However, if the input is {'a': 1}, walk(1, 'a') sets final_dict['a'] = 1.\n    # If the input is {'a': []}, walk([], 'a') sets final_dict['a'] = [].\n    \n    # To handle the case where the input dict is empty:\n    if not obj:\n        return {}\n\n    # Re-implementing the walk to ensure the top level is handled correctly\n    final_dict = {}\n    def walk_refined(item, current_path):\n        if isinstance(item, dict) and len(item) > 0:\n            for k, v in item.items():\n                walk_refined(v, f\"{current_path}.{k}\")\n        elif isinstance(item, list) and len(item) > 0:\n            for i, v in enumerate(item):\n                walk_refined(v, f\"{current_path}.{i}\")\n        else:\n            final_dict[current_path] = item\n\n    for k, v in obj.items():\n        walk_refined(v, str(k))\n        \n    return final_dict\n\n# Correcting the function to be concise and meet all requirements\ndef flatten_json(obj: dict) -> dict:\n    result = {}\n\n    def _flatten(current, path):\n        if isinstance(current, dict) and current:\n            for k, v in current.items():\n                _flatten(v, f\"{path}.{k}\" if path else str(k))\n        elif isinstance(current, list) and current:\n            for i, v in enumerate(current):\n                _flatten(v, f\"{path}.{i}\" if path else str(i))\n        else:\n            result[path] = current\n\n    if not obj:\n        return {}\n\n    for k, v in obj.items():\n        _flatten(v, str(k))\n    \n    return result\n```",
+      "seconds": 19.57279304228723,
+      "time_to_first_text_s": 0.46621708385646343,
+      "last_text_s": 19.572529000230134,
+      "completion_tokens_per_total_second": 52.317520437049374,
+      "usage": {
+        "prompt_tokens": 163,
+        "prompt_tokens_details": {
+          "cached_tokens": 8
+        },
+        "completion_tokens": 1024,
+        "total_tokens": 1187
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-224",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 27,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nimport re\n\ndef glob_match(name: str, pattern: str) -> bool:\n    \"\"\"\n    Matches a name against a shell-style pattern.\n    \"\"\"\n    regex_parts = []\n    i = 0\n    while i < len(pattern):\n        char = pattern[i]\n        if char == '*':\n            regex_parts.append('.*')\n            i += 1\n        elif char == '?':\n            regex_parts.append('.')\n            i += 1\n        elif char == '[':\n            # Find the closing bracket\n            end = i + 1\n            while end < len(pattern) and pattern[end] != ']':\n                end += 1\n            \n            if end < len(pattern):\n                bracket_content = pattern[i+1:end]\n                # Handle negation\n                if bracket_content.startswith('!'):\n                    negate = True\n                    chars = bracket_content[1:]\n                else:\n                    negate = False\n                    chars = bracket_content\n                \n                # Build the character class regex\n                # We need to escape special regex characters inside the brackets\n                # but handle the hyphen for ranges.\n                class_parts = []\n                j = 0\n                while j < len(chars):\n                    if j + 2 < len(chars) and chars[j+1] == '-':\n                        # It's a range like a-z\n                        class_parts.append(re.escape(chars[j]))\n                        class_parts.append('-')\n                        class_parts.append(re.escape(chars[j+2]))\n                        j += 3\n                    else:\n                        class_parts.append(re.escape(chars[j]))\n                        j += 1\n                \n                inner_regex = \"\".join(class_parts)\n                if negate:\n                    regex_parts.append(f\"[^{inner_regex}]\")\n                else:\n                    regex_parts.append(f\"[{inner_regex}]\")\n                i = end + 1\n            else:\n                # Unclosed bracket, treat as literal\n                regex_parts.append(re.escape(char))\n                i += 1\n        else:\n            regex_parts.append(re.escape(char))\n            i += 1\n            \n    regex_pattern = \"^\" + \"\".join(regex_parts) + \"$\"\n    return re.match(regex_pattern, name) is not None\n```",
+      "seconds": 9.406608417630196,
+      "time_to_first_text_s": 0.35483254212886095,
+      "last_text_s": 9.40654491726309,
+      "completion_tokens_per_total_second": 59.00107407041623,
+      "usage": {
+        "prompt_tokens": 133,
+        "prompt_tokens_details": {
+          "cached_tokens": 8
+        },
+        "completion_tokens": 555,
+        "total_tokens": 688
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-459",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 28,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nimport io\nimport csv\n\ndef parse_csv_line(line: str) -> list[str]:\n    \"\"\"\n    Parses a single line of CSV data into a list of fields.\n    Handles quoted fields, escaped double quotes, and commas within quotes.\n    \"\"\"\n    # If the line is completely empty, the requirement \"An empty line is one empty field\"\n    # implies we return a list containing one empty string.\n    if not line:\n        return [\"\"]\n\n    # Use io.StringIO to treat the string as a file object for the csv module.\n    # csv.reader handles the complex logic of quotes and escaped quotes.\n    # We use lineterminator='' to ensure we don't strip trailing whitespace/newlines \n    # that might be part of the data, though csv.reader usually handles the line as provided.\n    f = io.StringIO(line)\n    reader = csv.reader(f, quotechar='\"', delimiter=',', quoting=csv.QUOTE_MINIMAL, skipinitialspace=False)\n    \n    try:\n        return next(reader)\n    except StopIteration:\n        return []\n```",
+      "seconds": 4.8371062921360135,
+      "time_to_first_text_s": 0.3898103330284357,
+      "last_text_s": 4.836670124903321,
+      "completion_tokens_per_total_second": 52.51073362041758,
+      "usage": {
+        "prompt_tokens": 131,
+        "prompt_tokens_details": {
+          "cached_tokens": 10
+        },
+        "completion_tokens": 254,
+        "total_tokens": 385
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-333",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 29,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    }
+  ],
+  "speed_runs": [
+    {
+      "response": "A refrigerator keeps food cold through a continuous cycle of evaporation and condensation involving a chemical called **refrigerant**. Contrary to popular belief, a fridge doesn't \"create cold\"; instead, it works by **removing heat** from the interior and releasing it outside.\n\nThe process begins with the **evaporator coils** located inside the fridge. The liquid refrigerant passes through these coils, where it absorbs heat from the air inside the compartment. As it absorbs this heat, the refrigerant evaporates and turns into a gas.\n\nThis low-pressure gas is then sucked into a **compressor**, which acts as the heart of the system. The compressor squeezes the gas, significantly increasing its pressure and temperature. This hot, high-pressure gas then flows through the **condenser coils** (usually located at the back or bottom of the unit). As the gas travels through these coils, it releases its heat into the surrounding room air and cools down, turning back into a liquid.\n\nFinally, the liquid passes through an **expansion valve**, which drops the pressure and temperature rapidly before the refrigerant enters the evaporator to start the cycle again. This constant loop effectively \"pumps\" heat out of the fridge, maintaining a steady, cold temperature.",
+      "seconds": 4.497441666200757,
+      "time_to_first_text_s": 0.2023487500846386,
+      "last_text_s": 4.497313874773681,
+      "completion_tokens_per_total_second": 55.364809258403206,
+      "usage": {
+        "prompt_tokens": 28,
+        "prompt_tokens_details": {
+          "cached_tokens": 4
+        },
+        "completion_tokens": 249,
+        "total_tokens": 277
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-328",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      }
+    },
+    {
+      "response": "A refrigerator keeps food cold through a continuous cycle of evaporation and condensation, using a chemical called **refrigerant**. Instead of \"creating cold,\" the machine actually works by removing heat from the inside of the compartment and dumping it outside.\n\nThe process begins with the **evaporator coils** located inside the fridge. The liquid refrigerant passes through these coils, where it absorbs heat from the air inside the unit. As it absorbs this heat, the refrigerant evaporates and turns into a low-pressure gas.\n\nThis gas is then sucked into a **compressor**, which acts as the heart of the system. The compressor squeezes the gas, significantly increasing its pressure and temperature. This hot, high-pressure gas then flows into the **condenser coils** (usually located at the back or bottom of the fridge). As the gas travels through these coils, it releases its heat into the surrounding room air and cools down, turning back into a liquid.\n\nFinally, the liquid passes through an **expansion valve**, which drops the pressure and temperature rapidly before the refrigerant enters the evaporator to start the cycle again. This constant loop effectively \"pumps\" heat out of the fridge, maintaining a steady, cold temperature.",
+      "seconds": 4.311181458644569,
+      "time_to_first_text_s": 0.08296158351004124,
+      "last_text_s": 4.310919417068362,
+      "completion_tokens_per_total_second": 56.3650596317973,
+      "usage": {
+        "prompt_tokens": 28,
+        "prompt_tokens_details": {
+          "cached_tokens": 27
+        },
+        "completion_tokens": 243,
+        "total_tokens": 271
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-683",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      }
+    },
+    {
+      "response": "A refrigerator keeps food cold through a continuous cycle of evaporation and condensation, using a chemical called **refrigerant**. Instead of \"creating cold,\" the machine actually works by removing heat from the inside of the compartment and dumping it outside.\n\nThe process begins with the **evaporator coils** located inside the fridge. The liquid refrigerant passes through these coils, where it absorbs heat from the air inside the unit. As it absorbs this heat, the refrigerant evaporates and turns into a low-pressure gas.\n\nThis gas is then pushed by a **compressor** into the **condenser coils**, which are located on the outside (usually at the back or bottom) of the fridge. As the high-pressure gas moves through these coils, it releases the absorbed heat into the surrounding room air. As it cools down, the gas condenses back into a high-pressure liquid.\n\nFinally, the liquid passes through an **expansion valve**, which drops the pressure significantly. This causes the temperature of the refrigerant to plummet, making it extremely cold. The cycle then repeats: the freezing liquid flows back into the evaporator coils to soak up more heat, maintaining a constant, chilled environment for your food.",
+      "seconds": 4.228866624645889,
+      "time_to_first_text_s": 0.07299045752733946,
+      "last_text_s": 4.228617208078504,
+      "completion_tokens_per_total_second": 56.75279485081817,
+      "usage": {
+        "prompt_tokens": 28,
+        "prompt_tokens_details": {
+          "cached_tokens": 27
+        },
+        "completion_tokens": 240,
+        "total_tokens": 268
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-954",
+        "model": "gemma4:26b-nvfp4",
+        "system_fingerprint": "fp_ollama"
+      }
+    }
+  ],
+  "documents": [],
+  "smoke": {
+    "response": "OK",
+    "seconds": 3.9619387090206146,
+    "time_to_first_text_s": 3.943154458887875,
+    "last_text_s": 3.943154458887875,
+    "completion_tokens_per_total_second": 0.2524016834796514,
+    "usage": {
+      "prompt_tokens": 18,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens": 1,
+      "total_tokens": 19
+    },
+    "finish_reason": "stop",
+    "metadata": {
+      "id": "chatcmpl-619",
+      "model": "gemma4:26b-nvfp4",
+      "system_fingerprint": "fp_ollama"
+    }
+  },
+  "summary": {
+    "correct": 26,
+    "total": 29,
+    "overall_pct": 89.65517241379311,
+    "avg_seconds_per_question": 12.69374799872909,
+    "hit_token_limit": 0,
+    "median_time_to_first_text_s": 0.08296158351004124,
+    "median_completion_tokens_per_total_second": 56.3650596317973
+  }
+}

@@ -1,0 +1,49 @@
+# ships-computer live loop for the talk. Same as ships-computer configs/live.toml, except:
+# - no [agents] section, so nothing said in the room can start a coding agent with write access to ~/git
+# - a stock voice instead of a cloned one
+# Run from ~/git/ships-computer: uv run python -m ships_computer.live --config ~/git/open-weights-presentation/demo/live-demo.toml
+
+[vad]
+threshold = 0.6
+silence_ms = 300        # hangover after the last speech frame before checking whether the turn ended
+max_pause_ms = 1200     # if smart_turn says the speaker is mid-thought, wait up to this long for speech to resume
+smart_turn = true       # mlx-community/smart-turn-v3 holds the turn open on mid-thought pauses
+min_speech_ms = 250     # shorter bursts are treated as noise
+barge_in_ms = 200       # continuous speech needed to interrupt the assistant
+preroll_ms = 300
+merge_ms = 600          # speech resuming within this long of reply audio is merged into the previous utterance
+
+[audio]
+aec = true               # WebRTC echo cancellation, so laptop speakers work and barge-in stays on
+greeting = "Ship's computer online."   # spoken at startup to train echo cancellation, empty to skip
+half_duplex = false     # set true if the room speakers feed back into the mic (turns off interrupting)
+warm_ping = true        # tiny STT and TTS inference when speech starts, keeps the GPU hot
+mute_key = "m"          # press in the terminal to mute or unmute the mic, a reply already playing finishes
+start_muted = false
+wake_words = ["computer"]
+wake_word_enabled = false # off for the live demo so every question gets a reply; press w to toggle on/off live
+wake_word_key = "w"
+
+[mlx]
+cache_limit_gb = 1      # freed GPU buffers kept for reuse. Uncapped, a session grew to 23 GB with no speed gain
+
+[llm]
+host = "http://localhost:11434"
+model = "gemma4:latest"
+max_tokens = 120
+temperature = 0.3
+history_turns = 3
+overheard_lines = 20
+system = "You are the Enterprise-D main computer from Star Trek: The Next Generation, running on a laptop at a meetup. Answer in a calm, crisp, matter-of-fact tone with no pleasantries, no small talk, and no filler. Give direct, useful answers in one or two short spoken sentences, and if a request is underspecified, say \"Please specify\" what is missing. No lists, no markdown, and never prefix your reply with your name or quotes. Speech heard before you were addressed is included for context; use it to answer the user."
+
+[chunking]
+first_min_chars = 12    # first clause is sent to TTS as soon as it reaches a boundary this long
+first_max_chars = 100   # with no boundary by here, cut the first clause at a word break
+later_min_chars = 40    # later clauses also split at commas once this long
+
+[stt]
+engine = "parakeet"
+
+[tts]
+engine = "pocket"
+voice = "alba"          # alba, marius, javert, jean, fantine, cosette, eponine, azelma, or a wav path to clone

@@ -1,0 +1,18 @@
+[
+  {
+    "name": "MacBook Pro, 14-inch, M5\u00a0Max Chip, 18-core CPU, 40-core GPU, Space Black, Standard display, 64GB memory, 2TB storage",
+    "price": 5099.0,
+    "url": "https://www.apple.com/shop/buy-mac/macbook-pro/14-inch-space-black-standard-display-apple-m5-max-chip-18-core-cpu-40-core-gpu-64gb-memory-2tb-storage",
+    "image_source": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-macbook-pro-specs-select-202601-14inch-spaceblack?wid=1000&hei=640&fmt=jpeg&qlt=90&.v=1767814358598",
+    "local_image": "assets/hardware/macbook64.jpg",
+    "checked": "2026-10-26"
+  },
+  {
+    "name": "Mac Studio, M5\u00a0Max Chip, 18-core CPU, 40-core GPU, 64GB memory, 1TB storage",
+    "price": 3799.0,
+    "url": "https://www.apple.com/shop/buy-mac/mac-studio/m5-max-chip-18-core-cpu-40-core-gpu-64gb-memory-1tb-storage",
+    "image_source": "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/mac-studio-chip-unselect-202608-gallery-1?wid=1000&hei=640&fmt=jpeg&qlt=90&.v=1786042910172",
+    "local_image": "assets/hardware/studio64.jpg",
+    "checked": "2026-10-26"
+  }
+]

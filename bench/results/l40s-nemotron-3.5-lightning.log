@@ -1,0 +1,37 @@
+l40s-vllm nemotron-3.5-lightning-fp8: smoke OK
+  speed: {'median_time_to_first_text_s': 0.12621741741895676, 'median_completion_tokens_per_total_second': 134.42203417909735}
+  Q1 coding: OK (1.9s)
+  Q2 coding: OK (2.5s)
+  Q3 math: OK (1.8s)
+  Q4 math: OK (6.9s)
+  Q5 math: OK (2.4s)
+  Q6 math: OK (2.8s)
+  Q7 math: OK (6.1s)
+  Q8 math: OK (1.3s)
+  Q9 logic: BAD (4.0s)
+  Q10 logic: OK (0.4s)
+  Q11 coding: OK (2.6s)
+  Q12 coding: OK (1.1s)
+  Q13 coding: OK (1.5s)
+  Q14 coding: OK (1.9s)
+  Q15 coding: OK (1.5s)
+  Q16 math: BAD (2.3s)
+  Q17 math: BAD (4.8s)
+  Q18 math: OK (5.8s)
+  Q19 math: OK (9.3s)
+  Q20 math: OK (4.0s)
+  Q21 math: OK (5.3s)
+  Q22 math: OK (1.9s)
+  Q23 math: OK (2.5s)
+  Q24 logic: OK (10.2s)
+  Q25 coding: BAD (4.5s)
+  Q26 coding: BAD (3.3s)
+  Q27 coding: BAD (1.1s)
+  Q28 coding: OK (0.4s)
+  Q29 coding: OK (2.6s)
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1701, 'wait_before_first_text_s': 1.0, 'reading_tok_s': 1708.0, 'reply_tokens': 164, 'seconds': 2.07}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6180, 'wait_before_first_text_s': 1.07, 'reading_tok_s': 5788.3, 'reply_tokens': 171, 'seconds': 2.21}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 23827, 'wait_before_first_text_s': 1.93, 'reading_tok_s': 12330.6, 'reply_tokens': 187, 'seconds': 3.24}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 94773, 'wait_before_first_text_s': 9.21, 'reading_tok_s': 10284.8, 'reply_tokens': 123, 'seconds': 10.13}
+  document 262144: {'context': 262144, 'document_chars': 754974, 'prompt_tokens': 199546, 'wait_before_first_text_s': 25.17, 'reading_tok_s': 7928.8, 'reply_tokens': 200, 'seconds': 26.81}
+l40s-vllm nemotron-3.5-lightning-fp8: {'correct': 23, 'total': 29, 'overall_pct': 79.3103448275862, 'avg_seconds_per_question': 3.3368954182249206, 'hit_token_limit': 0, 'median_time_to_first_text_s': 0.12621741741895676, 'median_completion_tokens_per_total_second': 134.42203417909735}

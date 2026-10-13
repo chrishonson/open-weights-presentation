@@ -1,0 +1,813 @@
+== step: A speed lfm2.5:8b-a1b-q4_K_M Wed Oct 21 21:00:30 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== lfm2.5:8b-a1b-q4_K_M
+  lfm2.5:8b-a1b-q4_K_M ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1681, 'truncated': False, 'prefill_tok_s': 1455.4, 'wait_before_first_token_s': 1.15, 'reply_tokens': 200, 'gen_tok_s_with_document': 118.8, 'memory_gb_after': 5.43, 'memory_gb': 5.43}
+  lfm2.5:8b-a1b-q4_K_M ctx=8192: {'document_chars': 23592, 'prompt_tokens': 6208, 'truncated': False, 'prefill_tok_s': 1415.4, 'wait_before_first_token_s': 4.39, 'reply_tokens': 200, 'gen_tok_s_with_document': 112.7, 'memory_gb_after': 5.66, 'memory_gb': 5.66}
+  lfm2.5:8b-a1b-q4_K_M ctx=32768: {'document_chars': 94371, 'prompt_tokens': 24032, 'truncated': False, 'prefill_tok_s': 1199.0, 'wait_before_first_token_s': 20.04, 'reply_tokens': 200, 'gen_tok_s_with_document': 96.3, 'memory_gb_after': 5.88, 'memory_gb': 5.88}
+  lfm2.5:8b-a1b-q4_K_M ctx=131072: {'document_chars': 377487, 'prompt_tokens': 94381, 'truncated': False, 'prefill_tok_s': 674.3, 'wait_before_first_token_s': 139.97, 'reply_tokens': 200, 'gen_tok_s_with_document': 60.0, 'memory_gb_after': 7.8, 'memory_gb': 7.8}
+== step: A challenge lfm2.5:8b-a1b-q4_K_M Wed Oct 21 21:03:58 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== lfm2.5:8b-a1b-q4_K_M
+  lfm2.5:8b-a1b-q4_K_M #1 coding: OK  'pass' 10.89s
+  lfm2.5:8b-a1b-q4_K_M #2 coding: BAD 'AssertionError' 5.68s
+  lfm2.5:8b-a1b-q4_K_M #3 math: OK  '115' 19.38s
+  lfm2.5:8b-a1b-q4_K_M #4 math: OK  '121415' 16.01s
+  lfm2.5:8b-a1b-q4_K_M #5 math: OK  '103776' 4.53s
+  lfm2.5:8b-a1b-q4_K_M #6 math: OK  '117' 5.94s
+  lfm2.5:8b-a1b-q4_K_M #7 math: OK  '329' 7.21s
+  lfm2.5:8b-a1b-q4_K_M #8 math: OK  '924' 9.91s
+  lfm2.5:8b-a1b-q4_K_M #9 logic: OK  'B' 12.97s
+  lfm2.5:8b-a1b-q4_K_M #10 logic: OK  'B' 3.8s
+  lfm2.5:8b-a1b-q4_K_M #11 coding: OK  'pass' 15.14s
+  lfm2.5:8b-a1b-q4_K_M #12 coding: OK  'pass' 4.35s
+  lfm2.5:8b-a1b-q4_K_M #13 coding: OK  'pass' 7.63s
+  lfm2.5:8b-a1b-q4_K_M #14 coding: BAD 'SyntaxError: invalid syntax' 7.12s
+  lfm2.5:8b-a1b-q4_K_M #15 coding: OK  'pass' 8.49s
+  lfm2.5:8b-a1b-q4_K_M #16 math: BAD None 57.73s
+  lfm2.5:8b-a1b-q4_K_M #17 math: BAD '5631' 10.87s
+  lfm2.5:8b-a1b-q4_K_M #18 math: OK  '68' 9.21s
+  lfm2.5:8b-a1b-q4_K_M #19 math: BAD None 57.07s
+  lfm2.5:8b-a1b-q4_K_M #20 math: OK  '720' 22.04s
+  lfm2.5:8b-a1b-q4_K_M #21 math: OK  '579' 23.57s
+  lfm2.5:8b-a1b-q4_K_M #22 math: OK  '16' 9.14s
+  lfm2.5:8b-a1b-q4_K_M #23 math: OK  '2955114' 6.89s
+  lfm2.5:8b-a1b-q4_K_M #24 logic: OK  'C' 12.96s
+  lfm2.5:8b-a1b-q4_K_M #25 coding: BAD 'SyntaxError: Unexpected token' 47.68s
+  lfm2.5:8b-a1b-q4_K_M #26 coding: OK  'pass' 18.45s
+  lfm2.5:8b-a1b-q4_K_M #27 coding: BAD 'AssertionError' 55.96s
+  lfm2.5:8b-a1b-q4_K_M #28 coding: BAD 'AssertionError' 56.49s
+  lfm2.5:8b-a1b-q4_K_M #29 coding: BAD 'AssertionError' 5.87s
+  lfm2.5:8b-a1b-q4_K_M: {'overall_pct': 69.0, 'everyday_pct': 69.0, 'math_pct': 78.6, 'knowledge_pct': None, 'logic_pct': 100.0, 'coding_pct': 50.0, 'hard_pct': None, 'avg_seconds_per_question': 18.4, 'total_minutes': 8.9, 'thought_before_answering': False, 'hit_token_limit': 3, 'crashed': 0}
+== step: A speed qwen3.5:4b-nvfp4 Wed Oct 21 21:12:53 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.5:4b-nvfp4
+  qwen3.5:4b-nvfp4 ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1681, 'truncated': False, 'prefill_tok_s': 615.4, 'wait_before_first_token_s': 2.73, 'reply_tokens': 194, 'gen_tok_s_with_document': 63.3, 'memory_gb_after': 4.81, 'memory_gb': 6.53}
+  qwen3.5:4b-nvfp4 ctx=8192: {'document_chars': 23592, 'prompt_tokens': 6323, 'truncated': False, 'prefill_tok_s': 610.9, 'wait_before_first_token_s': 10.35, 'reply_tokens': 200, 'gen_tok_s_with_document': 60.4, 'memory_gb_after': 5.26, 'memory_gb': 7.47}
+  qwen3.5:4b-nvfp4 ctx=32768: {'document_chars': 94371, 'prompt_tokens': 24317, 'truncated': False, 'prefill_tok_s': 554.7, 'wait_before_first_token_s': 43.84, 'reply_tokens': 179, 'gen_tok_s_with_document': 51.6, 'memory_gb_after': 5.32, 'memory_gb': 9.25}
+  qwen3.5:4b-nvfp4 ctx=131072: {'document_chars': 377487, 'prompt_tokens': 97808, 'truncated': False, 'prefill_tok_s': 347.8, 'wait_before_first_token_s': 281.25, 'reply_tokens': 157, 'gen_tok_s_with_document': 32.9, 'memory_gb_after': 8.15, 'memory_gb': 19.46}
+== step: A challenge qwen3.5:4b-nvfp4 Wed Oct 21 21:19:44 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.5:4b-nvfp4
+  qwen3.5:4b-nvfp4 #1 coding: OK  'pass' 4.09s
+  qwen3.5:4b-nvfp4 #2 coding: OK  'pass' 5.29s
+  qwen3.5:4b-nvfp4 #3 math: OK  '115' 13.11s
+  qwen3.5:4b-nvfp4 #4 math: OK  '121415' 14.92s
+  qwen3.5:4b-nvfp4 #5 math: OK  '103776' 6.72s
+  qwen3.5:4b-nvfp4 #6 math: OK  '117' 16.36s
+  qwen3.5:4b-nvfp4 #7 math: BAD '929' 16.39s
+  qwen3.5:4b-nvfp4 #8 math: OK  '924' 30.25s
+  qwen3.5:4b-nvfp4 #9 logic: BAD 'C' 65.47s
+  qwen3.5:4b-nvfp4 #10 logic: OK  'B' 1.84s
+  qwen3.5:4b-nvfp4 #11 coding: OK  'pass' 9.47s
+  qwen3.5:4b-nvfp4 #12 coding: OK  'pass' 3.4s
+  qwen3.5:4b-nvfp4 #13 coding: OK  'pass' 6.01s
+  qwen3.5:4b-nvfp4 #14 coding: OK  'pass' 5.18s
+  qwen3.5:4b-nvfp4 #15 coding: OK  'pass' 4.32s
+  qwen3.5:4b-nvfp4 #16 math: BAD None 103.04s
+  qwen3.5:4b-nvfp4 #17 math: BAD None 102.66s
+  qwen3.5:4b-nvfp4 #18 math: OK  '68' 25.14s
+  qwen3.5:4b-nvfp4 #19 math: OK  '4' 28.89s
+  qwen3.5:4b-nvfp4 #20 math: OK  '720' 16.05s
+  qwen3.5:4b-nvfp4 #21 math: OK  '579' 21.76s
+  qwen3.5:4b-nvfp4 #22 math: OK  '16' 15.62s
+  qwen3.5:4b-nvfp4 #23 math: OK  '2955114' 14.1s
+  qwen3.5:4b-nvfp4 #24 logic: OK  'C' 18.05s
+  qwen3.5:4b-nvfp4 #25 coding: BAD 'IndexError: list index out of range' 14.61s
+  qwen3.5:4b-nvfp4 #26 coding: BAD "UnboundLocalError: cannot access local variable 'remainder_ 14.22s
+  qwen3.5:4b-nvfp4 #27 coding: BAD 'AssertionError' 5.25s
+  qwen3.5:4b-nvfp4 #28 coding: OK  'pass' 4.78s
+  qwen3.5:4b-nvfp4 #29 coding: BAD 'timeout' 8.07s
+  qwen3.5:4b-nvfp4: {'overall_pct': 72.4, 'everyday_pct': 72.4, 'math_pct': 78.6, 'knowledge_pct': None, 'logic_pct': 66.7, 'coding_pct': 66.7, 'hard_pct': None, 'avg_seconds_per_question': 20.5, 'total_minutes': 9.9, 'thought_before_answering': False, 'hit_token_limit': 2, 'crashed': 0}
+== step: A speed bonsai-2:4b Wed Oct 21 21:29:51 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== bonsai-2:4b
+  bonsai-2:4b ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1681, 'truncated': False, 'prefill_tok_s': 693.9, 'wait_before_first_token_s': 2.42, 'reply_tokens': 147, 'gen_tok_s_with_document': 61.9, 'memory_gb_after': 2.66, 'memory_gb': 2.66}
+  bonsai-2:4b ctx=8192: {'document_chars': 23592, 'prompt_tokens': 6318, 'truncated': False, 'prefill_tok_s': 656.3, 'wait_before_first_token_s': 9.63, 'reply_tokens': 126, 'gen_tok_s_with_document': 59.2, 'memory_gb_after': 3.24, 'memory_gb': 3.24}
+  bonsai-2:4b ctx=32768: {'document_chars': 94371, 'prompt_tokens': 24313, 'truncated': False, 'prefill_tok_s': 538.6, 'wait_before_first_token_s': 45.14, 'reply_tokens': 122, 'gen_tok_s_with_document': 50.2, 'memory_gb_after': 3.38, 'memory_gb': 3.38}
+  bonsai-2:4b ctx=131072: {'document_chars': 377487, 'prompt_tokens': 97803, 'truncated': False, 'prefill_tok_s': 256.6, 'wait_before_first_token_s': 381.08, 'reply_tokens': 148, 'gen_tok_s_with_document': 30.9, 'memory_gb_after': 7.47, 'memory_gb': 7.47}
+== step: A challenge bonsai-2:4b Wed Oct 21 21:38:14 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== bonsai-2:4b
+  bonsai-2:4b #1 coding: BAD 'AssertionError' 1.65s
+  bonsai-2:4b #2 coding: OK  'pass' 4.52s
+  bonsai-2:4b #3 math: BAD '124' 6.36s
+  bonsai-2:4b #4 math: BAD '121335' 15.42s
+  bonsai-2:4b #5 math: OK  '103776' 8.32s
+  bonsai-2:4b #6 math: OK  '117' 10.97s
+  bonsai-2:4b #7 math: OK  '329' 24.97s
+  bonsai-2:4b #8 math: OK  '924' 16.58s
+  bonsai-2:4b #9 logic: OK  'B' 18.49s
+  bonsai-2:4b #10 logic: OK  'B' 2.31s
+  bonsai-2:4b #11 coding: BAD "SyntaxError: name 'tokens' is used prior to global declarat 16.88s
+  bonsai-2:4b #12 coding: OK  'pass' 3.19s
+  bonsai-2:4b #13 coding: OK  'pass' 3.79s
+  bonsai-2:4b #14 coding: OK  'pass' 4.3s
+  bonsai-2:4b #15 coding: OK  'pass' 3.34s
+  bonsai-2:4b #16 math: BAD '16' 55.68s
+  bonsai-2:4b #17 math: BAD '628' 25.52s
+  bonsai-2:4b #18 math: OK  '68' 31.87s
+  bonsai-2:4b #19 math: OK  '4' 9.73s
+  bonsai-2:4b #20 math: OK  '720' 15.25s
+  bonsai-2:4b #21 math: OK  '579' 20.97s
+  bonsai-2:4b #22 math: OK  '16' 15.13s
+  bonsai-2:4b #23 math: OK  '2955114' 11.98s
+  bonsai-2:4b #24 logic: OK  'C' 20.43s
+  bonsai-2:4b #25 coding: BAD "UnboundLocalError: cannot access local variable 'expr' wher 13.17s
+  bonsai-2:4b #26 coding: BAD 'AssertionError' 7.02s
+  bonsai-2:4b #27 coding: BAD 'AssertionError' 2.63s
+  bonsai-2:4b #28 coding: BAD 'SyntaxError: f-string expression part cannot include a back 10.72s
+  bonsai-2:4b #29 coding: BAD 'AssertionError' 4.3s
+  bonsai-2:4b: {'overall_pct': 62.1, 'everyday_pct': 62.1, 'math_pct': 71.4, 'knowledge_pct': None, 'logic_pct': 100.0, 'coding_pct': 41.7, 'hard_pct': None, 'avg_seconds_per_question': 13.3, 'total_minutes': 6.4, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: A speed bonsai-2:9b Wed Oct 21 21:44:41 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== bonsai-2:9b
+  bonsai-2:9b ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1680, 'truncated': False, 'prefill_tok_s': 381.9, 'wait_before_first_token_s': 4.4, 'reply_tokens': 148, 'gen_tok_s_with_document': 39.4, 'memory_gb_after': 4.37, 'memory_gb': 4.37}
+  bonsai-2:9b ctx=8192: {'document_chars': 23592, 'prompt_tokens': 6321, 'truncated': False, 'prefill_tok_s': 360.4, 'wait_before_first_token_s': 17.54, 'reply_tokens': 160, 'gen_tok_s_with_document': 37.8, 'memory_gb_after': 4.97, 'memory_gb': 4.97}
+  bonsai-2:9b ctx=32768: {'document_chars': 94371, 'prompt_tokens': 24316, 'truncated': False, 'prefill_tok_s': 321.8, 'wait_before_first_token_s': 75.57, 'reply_tokens': 145, 'gen_tok_s_with_document': 34.2, 'memory_gb_after': 5.11, 'memory_gb': 5.11}
+  bonsai-2:9b ctx=131072: {'document_chars': 377487, 'prompt_tokens': 97808, 'truncated': False, 'prefill_tok_s': 224.7, 'wait_before_first_token_s': 435.24, 'reply_tokens': 199, 'gen_tok_s_with_document': 23.9, 'memory_gb_after': 8.39, 'memory_gb': 8.39}
+== step: A challenge bonsai-2:9b Wed Oct 21 21:55:21 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== bonsai-2:9b
+  bonsai-2:9b #1 coding: BAD "ValueError: invalid literal for int() with base 10: ''" 12.9s
+  bonsai-2:9b #2 coding: BAD 'AssertionError' 7.65s
+  bonsai-2:9b #3 math: OK  '115' 126.57s
+  bonsai-2:9b #4 math: OK  '121415' 30.46s
+  bonsai-2:9b #5 math: OK  '103776' 11.52s
+  bonsai-2:9b #6 math: OK  '117' 20.12s
+  bonsai-2:9b #7 math: OK  '329' 33.59s
+  bonsai-2:9b #8 math: BAD '252' 22.16s
+  bonsai-2:9b #9 logic: OK  'B' 89.01s
+  bonsai-2:9b #10 logic: BAD 'A' 2.9s
+  bonsai-2:9b #11 coding: OK  'pass' 12.74s
+  bonsai-2:9b #12 coding: OK  'pass' 5.19s
+  bonsai-2:9b #13 coding: OK  'pass' 6.59s
+  bonsai-2:9b #14 coding: OK  'pass' 6.48s
+  bonsai-2:9b #15 coding: OK  'pass' 6.26s
+  bonsai-2:9b #16 math: OK  '48' 129.1s
+  bonsai-2:9b #17 math: OK  '633' 95.99s
+  bonsai-2:9b #18 math: OK  '68' 40.0s
+  bonsai-2:9b #19 math: BAD '3' 49.4s
+  bonsai-2:9b #20 math: OK  '720' 38.5s
+  bonsai-2:9b #21 math: OK  '579' 19.22s
+  bonsai-2:9b #22 math: OK  '16' 26.2s
+  bonsai-2:9b #23 math: OK  '2955114' 20.67s
+  bonsai-2:9b #24 logic: OK  'C' 32.78s
+  bonsai-2:9b #25 coding: BAD 'AssertionError' 138.77s
+  bonsai-2:9b #26 coding: BAD 'AssertionError' 14.84s
+  bonsai-2:9b #27 coding: BAD 'AssertionError' 4.55s
+  bonsai-2:9b #28 coding: BAD 'timeout' 129.1s
+  bonsai-2:9b #29 coding: BAD 'AssertionError' 5.29s
+  bonsai-2:9b: {'overall_pct': 65.5, 'everyday_pct': 65.5, 'math_pct': 85.7, 'knowledge_pct': None, 'logic_pct': 66.7, 'coding_pct': 41.7, 'hard_pct': None, 'avg_seconds_per_question': 39.3, 'total_minutes': 19.0, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: B speed gemma4:latest Wed Oct 21 22:14:32 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== gemma4:latest
+  gemma4:latest ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1770, 'truncated': False, 'prefill_tok_s': 1034.8, 'wait_before_first_token_s': 1.71, 'reply_tokens': 182, 'gen_tok_s_with_document': 57.2, 'memory_gb_after': 9.86, 'memory_gb': 10.78}
+  gemma4:latest ctx=8192: {'document_chars': 23592, 'prompt_tokens': 6775, 'truncated': False, 'prefill_tok_s': 926.8, 'wait_before_first_token_s': 7.31, 'reply_tokens': 184, 'gen_tok_s_with_document': 50.8, 'memory_gb_after': 10.12, 'memory_gb': 11.33}
+  gemma4:latest ctx=32768: {'document_chars': 94371, 'prompt_tokens': 25957, 'truncated': False, 'prefill_tok_s': 866.9, 'wait_before_first_token_s': 29.94, 'reply_tokens': 200, 'gen_tok_s_with_document': 38.6, 'memory_gb_after': 10.2, 'memory_gb': 11.83}
+  gemma4:latest ctx=131072: {'document_chars': 377487, 'prompt_tokens': 103994, 'truncated': False, 'prefill_tok_s': 655.8, 'wait_before_first_token_s': 158.57, 'reply_tokens': 200, 'gen_tok_s_with_document': 16.9, 'memory_gb_after': 11.67, 'memory_gb': 14.89}
+== step: B challenge gemma4:latest Wed Oct 21 22:19:10 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== gemma4:latest
+  gemma4:latest #1 coding: OK  'pass' 3.11s
+  gemma4:latest #2 coding: BAD 'AssertionError' 3.41s
+  gemma4:latest #3 math: OK  '115' 18.51s
+  gemma4:latest #4 math: OK  '121415' 12.72s
+  gemma4:latest #5 math: OK  '103776' 8.14s
+  gemma4:latest #6 math: OK  '117' 7.97s
+  gemma4:latest #7 math: OK  '329' 17.19s
+  gemma4:latest #8 math: OK  '924' 13.51s
+  gemma4:latest #9 logic: BAD 'C' 11.3s
+  gemma4:latest #10 logic: OK  'B' 2.17s
+  gemma4:latest #11 coding: BAD 'ValueError: Unknown token: 3' 8.64s
+  gemma4:latest #12 coding: OK  'pass' 5.68s
+  gemma4:latest #13 coding: OK  'pass' 5.59s
+  gemma4:latest #14 coding: OK  'pass' 4.13s
+  gemma4:latest #15 coding: OK  'pass' 3.81s
+  gemma4:latest #16 math: BAD '40' 58.24s
+  gemma4:latest #17 math: BAD '980' 17.22s
+  gemma4:latest #18 math: BAD '64' 29.47s
+  gemma4:latest #19 math: OK  '4' 30.56s
+  gemma4:latest #20 math: OK  '720' 14.01s
+  gemma4:latest #21 math: OK  '579' 16.96s
+  gemma4:latest #22 math: OK  '16' 9.46s
+  gemma4:latest #23 math: OK  '2955114' 8.37s
+  gemma4:latest #24 logic: OK  'C' 16.54s
+  gemma4:latest #25 coding: BAD 'IndexError: pop from empty list' 12.72s
+  gemma4:latest #26 coding: BAD 'KeyError: 0' 14.04s
+  gemma4:latest #27 coding: BAD 'AssertionError' 7.16s
+  gemma4:latest #28 coding: BAD 'AssertionError' 26.45s
+  gemma4:latest #29 coding: OK  'pass' 6.23s
+  gemma4:latest: {'overall_pct': 65.5, 'everyday_pct': 65.5, 'math_pct': 78.6, 'knowledge_pct': None, 'logic_pct': 66.7, 'coding_pct': 50.0, 'hard_pct': None, 'avg_seconds_per_question': 13.6, 'total_minutes': 6.6, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: B speed qwen3.5:35b Wed Oct 21 22:25:47 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.5:35b
+  qwen3.5:35b ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1683, 'truncated': False, 'prefill_tok_s': 788.0, 'wait_before_first_token_s': 2.14, 'reply_tokens': 200, 'gen_tok_s_with_document': 56.9, 'memory_gb_after': 22.81, 'memory_gb': 24.75}
+  qwen3.5:35b ctx=8192: {'document_chars': 23592, 'prompt_tokens': 6322, 'truncated': False, 'prefill_tok_s': 676.4, 'wait_before_first_token_s': 9.35, 'reply_tokens': 200, 'gen_tok_s_with_document': 55.5, 'memory_gb_after': 23.17, 'memory_gb': 25.59}
+  qwen3.5:35b ctx=32768: {'document_chars': 94371, 'prompt_tokens': 24314, 'truncated': False, 'prefill_tok_s': 591.8, 'wait_before_first_token_s': 41.08, 'reply_tokens': 200, 'gen_tok_s_with_document': 49.9, 'memory_gb_after': 23.01, 'memory_gb': 26.96}
+  qwen3.5:35b ctx=131072: {'document_chars': 377487, 'prompt_tokens': 97807, 'truncated': False, 'prefill_tok_s': 322.3, 'wait_before_first_token_s': 303.47, 'reply_tokens': 200, 'gen_tok_s_with_document': 31.7, 'memory_gb_after': 25.12, 'memory_gb': 35.5}
+== step: B challenge qwen3.5:35b Wed Oct 21 22:33:59 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.5:35b
+  qwen3.5:35b #1 coding: OK  'pass' 4.05s
+  qwen3.5:35b #2 coding: OK  'pass' 5.15s
+  qwen3.5:35b #3 math: OK  '115' 20.56s
+  qwen3.5:35b #4 math: OK  '121415' 20.62s
+  qwen3.5:35b #5 math: OK  '103776' 12.48s
+  qwen3.5:35b #6 math: OK  '117' 14.58s
+  qwen3.5:35b #7 math: OK  '329' 23.3s
+  qwen3.5:35b #8 math: OK  '924' 23.33s
+  qwen3.5:35b #9 logic: BAD 'C' 19.98s
+  qwen3.5:35b #10 logic: OK  'B' 2.71s
+  qwen3.5:35b #11 coding: BAD 'AssertionError' 25.66s
+  qwen3.5:35b #12 coding: BAD 'AssertionError' 38.8s
+  qwen3.5:35b #13 coding: OK  'pass' 5.3s
+  qwen3.5:35b #14 coding: OK  'pass' 4.87s
+  qwen3.5:35b #15 coding: OK  'pass' 4.89s
+  qwen3.5:35b #16 math: OK  '48' 107.72s
+  qwen3.5:35b #17 math: OK  '633' 39.88s
+  qwen3.5:35b #18 math: OK  '68' 30.52s
+  qwen3.5:35b #19 math: OK  '4' 20.2s
+  qwen3.5:35b #20 math: OK  '720' 22.53s
+  qwen3.5:35b #21 math: OK  '579' 14.88s
+  qwen3.5:35b #22 math: OK  '16' 13.87s
+  qwen3.5:35b #23 math: OK  '2955114' 18.88s
+  qwen3.5:35b #24 logic: OK  'C' 23.93s
+  qwen3.5:35b #25 coding: BAD "TypeError: 'NoneType' object is not subscriptable" 27.92s
+  qwen3.5:35b #26 coding: OK  'pass' 8.77s
+  qwen3.5:35b #27 coding: OK  'pass' 5.78s
+  qwen3.5:35b #28 coding: BAD 'timeout' 13.76s
+  qwen3.5:35b #29 coding: OK  'pass' 4.4s
+  qwen3.5:35b: {'overall_pct': 82.8, 'everyday_pct': 82.8, 'math_pct': 100.0, 'knowledge_pct': None, 'logic_pct': 66.7, 'coding_pct': 66.7, 'hard_pct': None, 'avg_seconds_per_question': 20.0, 'total_minutes': 9.7, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: B speed gemma4:12b Wed Oct 21 22:44:03 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== gemma4:12b
+  gemma4:12b ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1779, 'truncated': False, 'prefill_tok_s': 196.9, 'wait_before_first_token_s': 9.0, 'reply_tokens': 200, 'gen_tok_s_with_document': 23.2, 'memory_gb_after': 10.12, 'memory_gb': 11.15}
+  gemma4:12b ctx=8192: {'document_chars': 23592, 'prompt_tokens': 6781, 'truncated': False, 'prefill_tok_s': 189.0, 'wait_before_first_token_s': 35.88, 'reply_tokens': 200, 'gen_tok_s_with_document': 25.8, 'memory_gb_after': 10.45, 'memory_gb': 12.75}
+  gemma4:12b ctx=32768: {'document_chars': 94371, 'prompt_tokens': 25964, 'truncated': False, 'prefill_tok_s': 178.1, 'wait_before_first_token_s': 145.78, 'reply_tokens': 200, 'gen_tok_s_with_document': 26.3, 'memory_gb_after': 10.27, 'memory_gb': 12.73}
+  gemma4:12b ctx=131072: {'document_chars': 377487, 'prompt_tokens': 103998, 'truncated': False, 'prefill_tok_s': 135.5, 'wait_before_first_token_s': 767.44, 'reply_tokens': 200, 'gen_tok_s_with_document': 19.9, 'memory_gb_after': 14.42, 'memory_gb': 19.21}
+== step: B challenge gemma4:12b Wed Oct 21 23:03:11 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== gemma4:12b
+  gemma4:12b #1 coding: OK  'pass' 4.41s
+  gemma4:12b #2 coding: OK  'pass' 8.51s
+  gemma4:12b #3 math: OK  '115' 38.24s
+  gemma4:12b #4 math: OK  '121415' 20.65s
+  gemma4:12b #5 math: OK  '103776' 13.64s
+  gemma4:12b #6 math: OK  '117' 17.0s
+  gemma4:12b #7 math: OK  '329' 24.23s
+  gemma4:12b #8 math: OK  '924' 56.23s
+  gemma4:12b #9 logic: OK  'B' 21.0s
+  gemma4:12b #10 logic: OK  'B' 6.24s
+  gemma4:12b #11 coding: OK  'pass' 52.88s
+  gemma4:12b #12 coding: OK  'pass' 6.52s
+  gemma4:12b #13 coding: OK  'pass' 10.42s
+  gemma4:12b #14 coding: OK  'pass' 8.68s
+  gemma4:12b #15 coding: OK  'pass' 9.56s
+  gemma4:12b #16 math: BAD None 169.55s
+  gemma4:12b #17 math: OK  '633' 27.9s
+  gemma4:12b #18 math: OK  '68' 37.27s
+  gemma4:12b #19 math: BAD None 170.77s
+  gemma4:12b #20 math: OK  '720' 21.78s
+  gemma4:12b #21 math: OK  '579' 31.1s
+  gemma4:12b #22 math: OK  '16' 23.17s
+  gemma4:12b #23 math: OK  '2955114' 19.54s
+  gemma4:12b #24 logic: OK  'C' 37.22s
+  gemma4:12b #25 coding: BAD 'AssertionError' 87.36s
+  gemma4:12b #26 coding: BAD 'AssertionError' 15.95s
+  gemma4:12b #27 coding: BAD 'AssertionError' 7.81s
+  gemma4:12b #28 coding: OK  'pass' 10.76s
+  gemma4:12b #29 coding: BAD 'AssertionError' 7.61s
+  gemma4:12b: {'overall_pct': 79.3, 'everyday_pct': 79.3, 'math_pct': 85.7, 'knowledge_pct': None, 'logic_pct': 100.0, 'coding_pct': 66.7, 'hard_pct': None, 'avg_seconds_per_question': 33.3, 'total_minutes': 16.1, 'thought_before_answering': False, 'hit_token_limit': 2, 'crashed': 0}
+== step: B speed deepseek-r1:latest Wed Oct 21 23:19:19 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== deepseek-r1:latest
+  deepseek-r1:latest ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1584, 'truncated': False, 'prefill_tok_s': 326.6, 'wait_before_first_token_s': 4.85, 'reply_tokens': 200, 'gen_tok_s_with_document': 26.9, 'memory_gb_after': 6.26, 'memory_gb': 6.26}
+  deepseek-r1:latest ctx=8192: {'document_chars': 23592, 'prompt_tokens': 5870, 'truncated': False, 'prefill_tok_s': 271.0, 'wait_before_first_token_s': 21.66, 'reply_tokens': 200, 'gen_tok_s_with_document': 25.0, 'memory_gb_after': 8.5, 'memory_gb': 8.5}
+  deepseek-r1:latest ctx=32768: {'document_chars': 94371, 'prompt_tokens': 22605, 'truncated': False, 'prefill_tok_s': 192.6, 'wait_before_first_token_s': 117.36, 'reply_tokens': 200, 'gen_tok_s_with_document': 19.6, 'memory_gb_after': 10.41, 'memory_gb': 10.41}
+  deepseek-r1:latest ctx=131072: {'document_chars': 377487, 'prompt_tokens': 91316, 'truncated': False, 'prefill_tok_s': 85.6, 'wait_before_first_token_s': 1066.84, 'reply_tokens': 200, 'gen_tok_s_with_document': 9.1, 'memory_gb_after': 24.97, 'memory_gb': 24.97}
+== step: B challenge deepseek-r1:latest Wed Oct 21 23:42:25 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== deepseek-r1:latest
+  deepseek-r1:latest #1 coding: OK  'pass' 228.43s
+  deepseek-r1:latest #2 coding: BAD "NameError: name 'spiral_order' is not defined" 242.35s
+  deepseek-r1:latest #3 math: BAD None 242.21s
+  deepseek-r1:latest #4 math: BAD None 241.48s
+  deepseek-r1:latest #5 math: BAD None 241.66s
+  deepseek-r1:latest #6 math: BAD None 241.88s
+  deepseek-r1:latest #7 math: BAD None 241.68s
+  deepseek-r1:latest #8 math: BAD None 241.85s
+  deepseek-r1:latest #9 logic: BAD None 242.18s
+  deepseek-r1:latest #10 logic: OK  'B' 92.92s
+  deepseek-r1:latest #11 coding: BAD "NameError: name 'evaluate' is not defined" 242.68s
+  deepseek-r1:latest #12 coding: OK  'pass' 53.43s
+  deepseek-r1:latest #13 coding: BAD "NameError: name 'next_permutation' is not defined" 242.02s
+  deepseek-r1:latest #14 coding: OK  'pass' 41.82s
+  deepseek-r1:latest #15 coding: BAD "NameError: name 'decode_ways' is not defined" 241.31s
+  deepseek-r1:latest #16 math: BAD None 242.13s
+  deepseek-r1:latest #17 math: BAD None 241.77s
+  deepseek-r1:latest #18 math: BAD None 241.42s
+  deepseek-r1:latest #19 math: BAD None 240.97s
+  deepseek-r1:latest #20 math: BAD None 242.17s
+  deepseek-r1:latest #21 math: BAD None 241.24s
+  deepseek-r1:latest #22 math: BAD None 241.39s
+  deepseek-r1:latest #23 math: BAD None 241.63s
+  deepseek-r1:latest #24 logic: OK  'C' 160.12s
+  deepseek-r1:latest #25 coding: BAD "NameError: name 'calc' is not defined" 242.13s
+  deepseek-r1:latest #26 coding: BAD 'AssertionError' 49.81s
+  deepseek-r1:latest #27 coding: BAD "NameError: name 'flatten_json' is not defined" 242.57s
+  deepseek-r1:latest #28 coding: BAD "NameError: name 'glob_match' is not defined" 241.57s
+  deepseek-r1:latest #29 coding: BAD "NameError: name 'parse_csv_line' is not defined" 242.34s
+  deepseek-r1:latest: {'overall_pct': 17.2, 'everyday_pct': 17.2, 'math_pct': 0.0, 'knowledge_pct': None, 'logic_pct': 66.7, 'coding_pct': 25.0, 'hard_pct': None, 'avg_seconds_per_question': 213.4, 'total_minutes': 103.2, 'thought_before_answering': True, 'hit_token_limit': 23, 'crashed': 0}
+== step: B speed qwen3.8:27b Thu Oct 22 01:25:36 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.8:27b
+  qwen3.8:27b ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1686, 'truncated': False, 'prefill_tok_s': 83.8, 'wait_before_first_token_s': 20.12, 'reply_tokens': 200, 'gen_tok_s_with_document': 12.4, 'memory_gb_after': 20.54, 'memory_gb': 23.53}
+  qwen3.8:27b ctx=8192: {'document_chars': 23592, 'prompt_tokens': 6322, 'truncated': False, 'prefill_tok_s': 82.2, 'wait_before_first_token_s': 76.84, 'reply_tokens': 184, 'gen_tok_s_with_document': 12.3, 'memory_gb_after': 21.53, 'memory_gb': 26.01}
+  qwen3.8:27b ctx=32768: {'document_chars': 94371, 'prompt_tokens': 24318, 'truncated': False, 'prefill_tok_s': 78.1, 'wait_before_first_token_s': 311.52, 'reply_tokens': 200, 'gen_tok_s_with_document': 11.0, 'memory_gb_after': 21.22, 'memory_gb': 32.3}
+  qwen3.8:27b ctx=131072: {'document_chars': 377487, 'prompt_tokens': 97808, 'truncated': False, 'prefill_tok_s': 55.9, 'wait_before_first_token_s': 1749.53, 'reply_tokens': 200, 'gen_tok_s_with_document': 7.7, 'memory_gb_after': 27.69, 'memory_gb': 53.0}
+== step: B challenge qwen3.8:27b Thu Oct 22 02:08:22 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.8:27b
+  qwen3.8:27b #1 coding: OK  'pass' 16.15s
+  qwen3.8:27b #2 coding: OK  'pass' 16.73s
+  qwen3.8:27b #3 math: OK  '115' 80.43s
+  qwen3.8:27b #4 math: OK  '121415' 66.72s
+  qwen3.8:27b #5 math: OK  '103776' 45.77s
+  qwen3.8:27b #6 math: OK  '117' 51.04s
+  qwen3.8:27b #7 math: OK  '329' 99.97s
+  qwen3.8:27b #8 math: OK  '924' 79.08s
+  qwen3.8:27b #9 logic: OK  'B' 100.76s
+  qwen3.8:27b #10 logic: OK  'B' 10.41s
+  qwen3.8:27b #11 coding: OK  'pass' 32.23s
+  qwen3.8:27b #12 coding: OK  'pass' 9.04s
+  qwen3.8:27b #13 coding: OK  'pass' 18.74s
+  qwen3.8:27b #14 coding: OK  'pass' 13.13s
+  qwen3.8:27b #15 coding: OK  'pass' 13.54s
+  qwen3.8:27b #16 math: OK  '48' 224.18s
+  qwen3.8:27b #17 math: OK  '633' 115.2s
+  qwen3.8:27b #18 math: OK  '68' 107.04s
+  qwen3.8:27b #19 math: BAD '2' 80.34s
+  qwen3.8:27b #20 math: OK  '720' 83.28s
+  qwen3.8:27b #21 math: OK  '579' 80.95s
+  qwen3.8:27b #22 math: OK  '16' 55.56s
+  qwen3.8:27b #23 math: OK  '2955114' 59.98s
+  qwen3.8:27b #24 logic: OK  'C' 71.68s
+  qwen3.8:27b #25 coding: OK  'pass' 46.8s
+  qwen3.8:27b #26 coding: OK  'pass' 27.48s
+  qwen3.8:27b #27 coding: OK  'pass' 18.76s
+  qwen3.8:27b #28 coding: BAD 'AssertionError' 32.57s
+  qwen3.8:27b #29 coding: OK  'pass' 14.48s
+  qwen3.8:27b: {'overall_pct': 93.1, 'everyday_pct': 93.1, 'math_pct': 92.9, 'knowledge_pct': None, 'logic_pct': 100.0, 'coding_pct': 91.7, 'hard_pct': None, 'avg_seconds_per_question': 57.7, 'total_minutes': 27.9, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: C challenge gemma4:e2b-nvfp4 Thu Oct 22 02:36:19 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== gemma4:e2b-nvfp4
+  gemma4:e2b-nvfp4 #1 coding: BAD 'AssertionError' 2.18s
+  gemma4:e2b-nvfp4 #2 coding: OK  'pass' 2.09s
+  gemma4:e2b-nvfp4 #3 math: OK  '115' 18.09s
+  gemma4:e2b-nvfp4 #4 math: BAD '120415' 7.62s
+  gemma4:e2b-nvfp4 #5 math: OK  '103776' 4.76s
+  gemma4:e2b-nvfp4 #6 math: OK  '117' 7.0s
+  gemma4:e2b-nvfp4 #7 math: OK  '329' 8.67s
+  gemma4:e2b-nvfp4 #8 math: BAD '252' 8.18s
+  gemma4:e2b-nvfp4 #9 logic: BAD 'C' 9.58s
+  gemma4:e2b-nvfp4 #10 logic: OK  'B' 1.79s
+  gemma4:e2b-nvfp4 #11 coding: OK  'pass' 5.31s
+  gemma4:e2b-nvfp4 #12 coding: OK  'pass' 2.18s
+  gemma4:e2b-nvfp4 #13 coding: BAD 'SyntaxError: invalid syntax' 2.39s
+  gemma4:e2b-nvfp4 #14 coding: OK  'pass' 1.58s
+  gemma4:e2b-nvfp4 #15 coding: OK  'pass' 1.56s
+  gemma4:e2b-nvfp4 #16 math: BAD '95' 14.88s
+  gemma4:e2b-nvfp4 #17 math: BAD '980' 16.94s
+  gemma4:e2b-nvfp4 #18 math: OK  '68' 12.32s
+  gemma4:e2b-nvfp4 #19 math: BAD None 35.89s
+  gemma4:e2b-nvfp4 #20 math: OK  '720' 9.52s
+  gemma4:e2b-nvfp4 #21 math: OK  '579' 13.15s
+  gemma4:e2b-nvfp4 #22 math: OK  '16' 9.06s
+  gemma4:e2b-nvfp4 #23 math: OK  '2955114' 5.89s
+  gemma4:e2b-nvfp4 #24 logic: OK  'C' 9.76s
+  gemma4:e2b-nvfp4 #25 coding: BAD "SyntaxError: unmatched ')'" 16.5s
+  gemma4:e2b-nvfp4 #26 coding: BAD 'SyntaxError: invalid syntax' 35.69s
+  gemma4:e2b-nvfp4 #27 coding: BAD 'AssertionError' 1.67s
+  gemma4:e2b-nvfp4 #28 coding: BAD 'AssertionError' 10.36s
+  gemma4:e2b-nvfp4 #29 coding: BAD "SyntaxError: 'return' outside function" 12.83s
+  gemma4:e2b-nvfp4: {'overall_pct': 55.2, 'everyday_pct': 55.2, 'math_pct': 64.3, 'knowledge_pct': None, 'logic_pct': 66.7, 'coding_pct': 41.7, 'hard_pct': None, 'avg_seconds_per_question': 9.9, 'total_minutes': 4.8, 'thought_before_answering': False, 'hit_token_limit': 2, 'crashed': 0}
+== step: C challenge nemotron-3.5-lightning:30b-a3b-mlx Thu Oct 22 02:41:10 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== nemotron-3.5-lightning:30b-a3b-mlx
+  nemotron-3.5-lightning:30b-a3b-mlx #1 coding: OK  'pass' 2.09s
+  nemotron-3.5-lightning:30b-a3b-mlx #2 coding: OK  'pass' 3.37s
+  nemotron-3.5-lightning:30b-a3b-mlx #3 math: OK  '115' 3.43s
+  nemotron-3.5-lightning:30b-a3b-mlx #4 math: OK  '121415' 14.25s
+  nemotron-3.5-lightning:30b-a3b-mlx #5 math: OK  '103776' 5.59s
+  nemotron-3.5-lightning:30b-a3b-mlx #6 math: OK  '117' 4.7s
+  nemotron-3.5-lightning:30b-a3b-mlx #7 math: OK  '329' 8.71s
+  nemotron-3.5-lightning:30b-a3b-mlx #8 math: OK  '924' 2.38s
+  nemotron-3.5-lightning:30b-a3b-mlx #9 logic: OK  'B' 7.67s
+  nemotron-3.5-lightning:30b-a3b-mlx #10 logic: OK  'B' 1.02s
+  nemotron-3.5-lightning:30b-a3b-mlx #11 coding: OK  'pass' 6.07s
+  nemotron-3.5-lightning:30b-a3b-mlx #12 coding: OK  'pass' 2.42s
+  nemotron-3.5-lightning:30b-a3b-mlx #13 coding: OK  'pass' 3.23s
+  nemotron-3.5-lightning:30b-a3b-mlx #14 coding: OK  'pass' 3.79s
+  nemotron-3.5-lightning:30b-a3b-mlx #15 coding: OK  'pass' 4.91s
+  nemotron-3.5-lightning:30b-a3b-mlx #16 math: BAD '16' 5.45s
+  nemotron-3.5-lightning:30b-a3b-mlx #17 math: OK  '633' 7.46s
+  nemotron-3.5-lightning:30b-a3b-mlx #18 math: OK  '68' 7.66s
+  nemotron-3.5-lightning:30b-a3b-mlx #19 math: BAD '1' 6.83s
+  nemotron-3.5-lightning:30b-a3b-mlx #20 math: OK  '720' 9.79s
+  nemotron-3.5-lightning:30b-a3b-mlx #21 math: BAD '578' 9.36s
+  nemotron-3.5-lightning:30b-a3b-mlx #22 math: OK  '16' 10.91s
+  nemotron-3.5-lightning:30b-a3b-mlx #23 math: OK  '2955114' 7.99s
+  nemotron-3.5-lightning:30b-a3b-mlx #24 logic: OK  'C' 21.06s
+  nemotron-3.5-lightning:30b-a3b-mlx #25 coding: BAD 'AssertionError' 8.3s
+  nemotron-3.5-lightning:30b-a3b-mlx #26 coding: OK  'pass' 6.79s
+  nemotron-3.5-lightning:30b-a3b-mlx #27 coding: BAD 'AssertionError' 2.14s
+  nemotron-3.5-lightning:30b-a3b-mlx #28 coding: OK  'pass' 15.48s
+  nemotron-3.5-lightning:30b-a3b-mlx #29 coding: BAD 'AssertionError' 5.79s
+  nemotron-3.5-lightning:30b-a3b-mlx: {'overall_pct': 79.3, 'everyday_pct': 79.3, 'math_pct': 78.6, 'knowledge_pct': None, 'logic_pct': 100.0, 'coding_pct': 75.0, 'hard_pct': None, 'avg_seconds_per_question': 6.8, 'total_minutes': 3.3, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: C challenge gemma4:26b-nvfp4 Thu Oct 22 02:44:50 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== gemma4:26b-nvfp4
+  gemma4:26b-nvfp4 #1 coding: OK  'pass' 2.87s
+  gemma4:26b-nvfp4 #2 coding: OK  'pass' 3.33s
+  gemma4:26b-nvfp4 #3 math: OK  '115' 23.9s
+  gemma4:26b-nvfp4 #4 math: OK  '121415' 13.22s
+  gemma4:26b-nvfp4 #5 math: BAD '103632' 8.29s
+  gemma4:26b-nvfp4 #6 math: OK  '117' 8.67s
+  gemma4:26b-nvfp4 #7 math: OK  '329' 15.85s
+  gemma4:26b-nvfp4 #8 math: OK  '924' 16.11s
+  gemma4:26b-nvfp4 #9 logic: OK  'B' 12.35s
+  gemma4:26b-nvfp4 #10 logic: OK  'B' 3.04s
+  gemma4:26b-nvfp4 #11 coding: BAD 'IndentationError: unexpected indent' 10.67s
+  gemma4:26b-nvfp4 #12 coding: OK  'pass' 2.54s
+  gemma4:26b-nvfp4 #13 coding: OK  'pass' 4.55s
+  gemma4:26b-nvfp4 #14 coding: OK  'pass' 3.79s
+  gemma4:26b-nvfp4 #15 coding: OK  'pass' 2.86s
+  gemma4:26b-nvfp4 #16 math: OK  '48' 27.78s
+  gemma4:26b-nvfp4 #17 math: OK  '633' 18.41s
+  gemma4:26b-nvfp4 #18 math: OK  '68' 15.34s
+  gemma4:26b-nvfp4 #19 math: OK  '4' 10.15s
+  gemma4:26b-nvfp4 #20 math: OK  '720' 16.95s
+  gemma4:26b-nvfp4 #21 math: OK  '579' 12.3s
+  gemma4:26b-nvfp4 #22 math: OK  '16' 9.0s
+  gemma4:26b-nvfp4 #23 math: OK  '2955114' 13.23s
+  gemma4:26b-nvfp4 #24 logic: OK  'C' 14.0s
+  gemma4:26b-nvfp4 #25 coding: OK  'pass' 14.47s
+  gemma4:26b-nvfp4 #26 coding: OK  'pass' 77.25s
+  gemma4:26b-nvfp4 #27 coding: OK  'pass' 6.46s
+  gemma4:26b-nvfp4 #28 coding: OK  'pass' 7.78s
+  gemma4:26b-nvfp4 #29 coding: OK  'pass' 4.84s
+  gemma4:26b-nvfp4: {'overall_pct': 93.1, 'everyday_pct': 93.1, 'math_pct': 92.9, 'knowledge_pct': None, 'logic_pct': 100.0, 'coding_pct': 91.7, 'hard_pct': None, 'avg_seconds_per_question': 13.1, 'total_minutes': 6.3, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: C challenge bonsai-2:27b Thu Oct 22 02:51:15 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== bonsai-2:27b
+  bonsai-2:27b #1 coding: OK  'pass' 7.73s
+  bonsai-2:27b #2 coding: OK  'pass' 18.8s
+  bonsai-2:27b #3 math: OK  '115' 76.86s
+  bonsai-2:27b #4 math: OK  '121415' 76.91s
+  bonsai-2:27b #5 math: OK  '103776' 43.32s
+  bonsai-2:27b #6 math: OK  '117' 61.4s
+  bonsai-2:27b #7 math: OK  '329' 122.65s
+  bonsai-2:27b #8 math: OK  '924' 66.71s
+  bonsai-2:27b #9 logic: OK  'B' 106.8s
+  bonsai-2:27b #10 logic: OK  'B' 8.96s
+  bonsai-2:27b #11 coding: OK  'pass' 27.88s
+  bonsai-2:27b #12 coding: OK  'pass' 11.4s
+  bonsai-2:27b #13 coding: OK  'pass' 21.28s
+  bonsai-2:27b #14 coding: OK  'pass' 17.48s
+  bonsai-2:27b #15 coding: OK  'pass' 12.7s
+  bonsai-2:27b #16 math: BAD '40' 300.11s
+  bonsai-2:27b #17 math: OK  '633' 112.19s
+  bonsai-2:27b #18 math: OK  '68' 117.94s
+  bonsai-2:27b #19 math: BAD '3' 133.25s
+  bonsai-2:27b #20 math: OK  '720' 84.82s
+  bonsai-2:27b #21 math: OK  '579' 125.01s
+  bonsai-2:27b #22 math: OK  '16' 69.5s
+  bonsai-2:27b #23 math: OK  '2955114' 113.55s
+  bonsai-2:27b #24 logic: OK  'C' 123.62s
+  bonsai-2:27b #25 coding: BAD 'ValueError: unexpected token at position 4: ^' 40.58s
+  bonsai-2:27b #26 coding: OK  'pass' 39.29s
+  bonsai-2:27b #27 coding: BAD 'AssertionError' 17.97s
+  bonsai-2:27b #28 coding: BAD 'AssertionError' 45.11s
+  bonsai-2:27b #29 coding: OK  'pass' 18.68s
+  bonsai-2:27b: {'overall_pct': 82.8, 'everyday_pct': 82.8, 'math_pct': 85.7, 'knowledge_pct': None, 'logic_pct': 100.0, 'coding_pct': 75.0, 'hard_pct': None, 'avg_seconds_per_question': 69.7, 'total_minutes': 33.7, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: C challenge qwen3.8:27b-q4_K_M Thu Oct 22 03:25:03 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.8:27b-q4_K_M
+  qwen3.8:27b-q4_K_M #1 coding: OK  'pass' 27.83s
+  qwen3.8:27b-q4_K_M #2 coding: OK  'pass' 31.31s
+  qwen3.8:27b-q4_K_M #3 math: OK  '115' 145.73s
+  qwen3.8:27b-q4_K_M #4 math: OK  '121415' 146.95s
+  qwen3.8:27b-q4_K_M #5 math: OK  '103776' 92.52s
+  qwen3.8:27b-q4_K_M #6 math: OK  '117' 122.08s
+  qwen3.8:27b-q4_K_M #7 math: OK  '329' 201.57s
+  qwen3.8:27b-q4_K_M #8 math: OK  '924' 116.08s
+  qwen3.8:27b-q4_K_M #9 logic: OK  'B' 144.76s
+  qwen3.8:27b-q4_K_M #10 logic: OK  'B' 19.73s
+  qwen3.8:27b-q4_K_M #11 coding: OK  'pass' 75.19s
+  qwen3.8:27b-q4_K_M #12 coding: OK  'pass' 18.85s
+  qwen3.8:27b-q4_K_M #13 coding: OK  'pass' 31.72s
+  qwen3.8:27b-q4_K_M #14 coding: OK  'pass' 30.27s
+  qwen3.8:27b-q4_K_M #15 coding: OK  'pass' 24.41s
+  qwen3.8:27b-q4_K_M #16 math: OK  '48' 658.94s
+  qwen3.8:27b-q4_K_M #17 math: OK  '633' 312.12s
+  qwen3.8:27b-q4_K_M #18 math: OK  '68' 253.43s
+  qwen3.8:27b-q4_K_M #19 math: OK  '4' 380.45s
+  qwen3.8:27b-q4_K_M #20 math: OK  '720' 252.6s
+  qwen3.8:27b-q4_K_M #21 math: OK  '579' 207.13s
+  qwen3.8:27b-q4_K_M #22 math: OK  '16' 123.25s
+  qwen3.8:27b-q4_K_M #23 math: OK  '2955114' 131.92s
+  qwen3.8:27b-q4_K_M #24 logic: OK  'C' 150.78s
+  qwen3.8:27b-q4_K_M #25 coding: OK  'pass' 96.28s
+  qwen3.8:27b-q4_K_M #26 coding: OK  'pass' 63.98s
+  qwen3.8:27b-q4_K_M #27 coding: OK  'pass' 25.1s
+  qwen3.8:27b-q4_K_M #28 coding: OK  'pass' 65.17s
+  qwen3.8:27b-q4_K_M #29 coding: OK  'pass' 36.62s
+  qwen3.8:27b-q4_K_M: {'overall_pct': 100.0, 'everyday_pct': 100.0, 'math_pct': 100.0, 'knowledge_pct': None, 'logic_pct': 100.0, 'coding_pct': 100.0, 'hard_pct': None, 'avg_seconds_per_question': 137.5, 'total_minutes': 66.4, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: C challenge rafw007/qwen3.8-27b-redteam:latest Thu Oct 22 04:31:40 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== rafw007/qwen3.8-27b-redteam:latest
+  rafw007/qwen3.8-27b-redteam:latest #1 coding: OK  'pass' 29.39s
+  rafw007/qwen3.8-27b-redteam:latest #2 coding: OK  'pass' 36.28s
+  rafw007/qwen3.8-27b-redteam:latest #3 math: BAD '94' 146.59s
+  rafw007/qwen3.8-27b-redteam:latest #4 math: OK  '121415' 156.07s
+  rafw007/qwen3.8-27b-redteam:latest #5 math: OK  '103776' 79.58s
+  rafw007/qwen3.8-27b-redteam:latest #6 math: OK  '117' 123.38s
+  rafw007/qwen3.8-27b-redteam:latest #7 math: OK  '329' 222.73s
+  rafw007/qwen3.8-27b-redteam:latest #8 math: OK  '924' 129.6s
+  rafw007/qwen3.8-27b-redteam:latest #9 logic: OK  'B' 166.17s
+  rafw007/qwen3.8-27b-redteam:latest #10 logic: OK  'B' 20.96s
+  rafw007/qwen3.8-27b-redteam:latest #11 coding: OK  'pass' 76.44s
+  rafw007/qwen3.8-27b-redteam:latest #12 coding: OK  'pass' 20.75s
+  rafw007/qwen3.8-27b-redteam:latest #13 coding: OK  'pass' 38.79s
+  rafw007/qwen3.8-27b-redteam:latest #14 coding: OK  'pass' 32.64s
+  rafw007/qwen3.8-27b-redteam:latest #15 coding: OK  'pass' 25.64s
+  rafw007/qwen3.8-27b-redteam:latest #16 math: OK  '48' 539.63s
+  rafw007/qwen3.8-27b-redteam:latest #17 math: BAD None 828.62s
+  rafw007/qwen3.8-27b-redteam:latest #18 math: OK  '68' 237.92s
+  rafw007/qwen3.8-27b-redteam:latest #19 math: OK  '4' 504.35s
+  rafw007/qwen3.8-27b-redteam:latest #20 math: OK  '720' 334.53s
+  rafw007/qwen3.8-27b-redteam:latest #21 math: OK  '579' 260.23s
+  rafw007/qwen3.8-27b-redteam:latest #22 math: OK  '16' 121.98s
+  rafw007/qwen3.8-27b-redteam:latest #23 math: OK  '2955114' 152.4s
+  rafw007/qwen3.8-27b-redteam:latest #24 logic: OK  'C' 157.98s
+  rafw007/qwen3.8-27b-redteam:latest #25 coding: OK  'pass' 85.01s
+  rafw007/qwen3.8-27b-redteam:latest #26 coding: OK  'pass' 63.91s
+  rafw007/qwen3.8-27b-redteam:latest #27 coding: OK  'pass' 27.13s
+  rafw007/qwen3.8-27b-redteam:latest #28 coding: OK  'pass' 83.18s
+  rafw007/qwen3.8-27b-redteam:latest #29 coding: OK  'pass' 38.7s
+  rafw007/qwen3.8-27b-redteam:latest: {'overall_pct': 93.1, 'everyday_pct': 93.1, 'math_pct': 85.7, 'knowledge_pct': None, 'logic_pct': 100.0, 'coding_pct': 100.0, 'hard_pct': None, 'avg_seconds_per_question': 163.5, 'total_minutes': 79.0, 'thought_before_answering': False, 'hit_token_limit': 1, 'crashed': 0}
+== step: A 262K qwen3.5:4b-nvfp4 Thu Oct 22 05:50:51 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.5:4b-nvfp4
+  qwen3.5:4b-nvfp4 ctx=262144: {'document_chars': 754974, 'prompt_tokens': 203107, 'truncated': False, 'prefill_tok_s': 215.0, 'wait_before_first_token_s': 944.65, 'reply_tokens': 200, 'gen_tok_s_with_document': 20.8, 'memory_gb_after': 12.27, 'memory_gb': 34.31}
+== step: A 262K bonsai-2:4b Thu Oct 22 06:06:48 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== bonsai-2:4b
+  bonsai-2:4b ctx=262144: {'document_chars': 754974, 'prompt_tokens': 203101, 'truncated': False, 'prefill_tok_s': 141.0, 'wait_before_first_token_s': 1440.79, 'reply_tokens': 79, 'gen_tok_s_with_document': 20.0, 'memory_gb_after': 12.64, 'memory_gb': 12.64}
+== step: A 262K bonsai-2:9b Thu Oct 22 06:30:57 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== bonsai-2:9b
+  bonsai-2:9b ctx=262144: {'document_chars': 754974, 'prompt_tokens': 203104, 'truncated': False, 'prefill_tok_s': 140.6, 'wait_before_first_token_s': 1444.75, 'reply_tokens': 200, 'gen_tok_s_with_document': 16.8, 'memory_gb_after': 12.9, 'memory_gb': 12.9}
+== step: B 262K qwen3.5:35b Thu Oct 22 06:55:18 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.5:35b
+  qwen3.5:35b ctx=262144: {'document_chars': 754974, 'prompt_tokens': 203106, 'truncated': False, 'prefill_tok_s': 182.1, 'wait_before_first_token_s': 1115.48, 'reply_tokens': 200, 'gen_tok_s_with_document': 20.1, 'memory_gb_after': 28.09, 'memory_gb': 47.89}
+== step: B 262K gemma4:12b Thu Oct 22 07:14:18 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== gemma4:12b
+  gemma4:12b ctx=262144: {'document_chars': 754974, 'prompt_tokens': 221184, 'truncated': False, 'prefill_tok_s': 98.0, 'wait_before_first_token_s': 2257.8, 'reply_tokens': 200, 'gen_tok_s_with_document': 14.4, 'memory_gb_after': 20.13, 'memory_gb': 28.12}
+== step: B 262K qwen3.8:27b Thu Oct 22 07:52:14 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== qwen3.8:27b
+  qwen3.8:27b ctx=262144: {'document_chars': 754974, 'prompt_tokens': 203100, 'truncated': False, 'prefill_tok_s': 31.1, 'wait_before_first_token_s': 6539.81, 'reply_tokens': 200, 'gen_tok_s_with_document': 5.3, 'memory_gb_after': 37.11, 'memory_gb': 59.55}
+== all done Thu Oct 22 09:41:57 CDT 2026
+== step: D 262K retry nemotron-3.5-lightning:30b-a3b-mlx Thu Oct 22 21:00:30 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+== nemotron-3.5-lightning:30b-a3b-mlx
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  nemotron-3.5-lightning:30b-a3b-mlx ctx=262144: CRASHED (Ollama runner)
+== all done Thu Oct 22 21:11:35 CDT 2026
+== step: E venue qa gemma4:26b-nvfp4 Sat Oct 24 21:00:21 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+mac-ollama gemma4:26b-nvfp4: smoke OK
+  speed: {'median_time_to_first_text_s': 0.08296158351004124, 'median_completion_tokens_per_total_second': 56.3650596317973}
+  Q1 coding: OK (2.9s)
+  Q2 coding: OK (3.7s)
+  Q3 math: OK (17.1s)
+  Q4 math: OK (13.1s)
+  Q5 math: BAD (8.2s)
+  Q6 math: OK (8.5s)
+  Q7 math: OK (16.4s)
+  Q8 math: OK (20.5s)
+  Q9 logic: OK (13.1s)
+  Q10 logic: OK (3.0s)
+  Q11 coding: BAD (16.2s)
+  Q12 coding: OK (2.5s)
+  Q13 coding: OK (4.9s)
+  Q14 coding: OK (3.8s)
+  Q15 coding: OK (3.0s)
+  Q16 math: OK (31.7s)
+  Q17 math: OK (19.5s)
+  Q18 math: OK (15.2s)
+  Q19 math: OK (10.9s)
+  Q20 math: OK (18.0s)
+  Q21 math: OK (12.1s)
+  Q22 math: OK (9.8s)
+  Q23 math: OK (14.3s)
+  Q24 logic: OK (14.8s)
+  Q25 coding: BAD (22.9s)
+  Q26 coding: OK (28.0s)
+  Q27 coding: OK (19.6s)
+  Q28 coding: OK (9.4s)
+  Q29 coding: OK (4.8s)
+mac-ollama gemma4:26b-nvfp4: {'correct': 26, 'total': 29, 'overall_pct': 89.65517241379311, 'avg_seconds_per_question': 12.69374799872909, 'hit_token_limit': 0, 'median_time_to_first_text_s': 0.08296158351004124, 'median_completion_tokens_per_total_second': 56.3650596317973}
+== step: E venue qa nemotron-3.5-lightning:30b-a3b-mlx Sat Oct 24 21:06:50 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: ['gemma4:26b-nvfp4']
+mac-ollama nemotron-3.5-lightning:30b-a3b-mlx: smoke OK
+  speed: {'median_time_to_first_text_s': 0.10949987452477217, 'median_completion_tokens_per_total_second': 63.90145709063649}
+  Q1 coding: OK (2.5s)
+  Q2 coding: OK (4.1s)
+  Q3 math: OK (4.0s)
+  Q4 math: OK (14.9s)
+  Q5 math: OK (5.6s)
+  Q6 math: OK (4.9s)
+  Q7 math: OK (9.0s)
+  Q8 math: OK (2.5s)
+  Q9 logic: BAD (11.2s)
+  Q10 logic: OK (1.1s)
+  Q11 coding: OK (6.2s)
+  Q12 coding: OK (2.5s)
+  Q13 coding: OK (3.6s)
+  Q14 coding: OK (4.0s)
+  Q15 coding: OK (4.8s)
+  Q16 math: BAD (5.8s)
+  Q17 math: OK (10.4s)
+  Q18 math: OK (8.4s)
+  Q19 math: BAD (10.8s)
+  Q20 math: OK (9.6s)
+  Q21 math: OK (11.6s)
+  Q22 math: OK (11.4s)
+  Q23 math: OK (5.7s)
+  Q24 logic: OK (33.6s)
+  Q25 coding: BAD (9.7s)
+  Q26 coding: OK (7.7s)
+  Q27 coding: BAD (3.6s)
+  Q28 coding: OK (14.4s)
+  Q29 coding: BAD (5.5s)
+mac-ollama nemotron-3.5-lightning:30b-a3b-mlx: {'correct': 23, 'total': 29, 'overall_pct': 79.3103448275862, 'avg_seconds_per_question': 7.89423197976731, 'hit_token_limit': 0, 'median_time_to_first_text_s': 0.10949987452477217, 'median_completion_tokens_per_total_second': 63.90145709063649}
+== step: E venue qa qwen3.8:27b Sat Oct 24 21:11:12 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: ['nemotron-3.5-lightning:30b-a3b-mlx']
+mac-ollama qwen3.8:27b: smoke OK
+  speed: {'median_time_to_first_text_s': 0.35339987464249134, 'median_completion_tokens_per_total_second': 14.340436421811795}
+  Q1 coding: OK (16.1s)
+  Q2 coding: OK (16.6s)
+  Q3 math: OK (76.5s)
+  Q4 math: OK (65.6s)
+  Q5 math: OK (45.6s)
+  Q6 math: OK (53.8s)
+  Q7 math: OK (99.6s)
+  Q8 math: OK (71.3s)
+  Q9 logic: OK (82.4s)
+  Q10 logic: OK (10.7s)
+  Q11 coding: OK (37.4s)
+  Q12 coding: OK (10.5s)
+  Q13 coding: OK (22.0s)
+  Q14 coding: OK (16.3s)
+  Q15 coding: OK (15.7s)
+  Q16 math: OK (224.9s)
+  Q17 math: OK (108.2s)
+  Q18 math: OK (113.2s)
+  Q19 math: OK (87.2s)
+  Q20 math: OK (90.7s)
+  Q21 math: OK (72.2s)
+  Q22 math: OK (54.1s)
+  Q23 math: OK (104.1s)
+  Q24 logic: OK (71.6s)
+  Q25 coding: OK (47.8s)
+  Q26 coding: OK (28.1s)
+  Q27 coding: OK (19.6s)
+  Q28 coding: BAD (32.9s)
+  Q29 coding: OK (14.6s)
+mac-ollama qwen3.8:27b: {'correct': 28, 'total': 29, 'overall_pct': 96.55172413793103, 'avg_seconds_per_question': 58.944230800430326, 'hit_token_limit': 0, 'median_time_to_first_text_s': 0.35339987464249134, 'median_completion_tokens_per_total_second': 14.340436421811795}
+== step: E venue qa rafw007/qwen3.8-27b-redteam:latest Sat Oct 24 21:40:39 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: ['qwen3.8:27b']
+mac-ollama rafw007/qwen3.8-27b-redteam:latest: smoke OK
+  speed: {'median_time_to_first_text_s': 0.199497832916677, 'median_completion_tokens_per_total_second': 7.658902636947358}
+  Q1 coding: OK (34.3s)
+  Q2 coding: OK (33.8s)
+  Q3 math: OK (72.3s)
+  Q4 math: OK (152.1s)
+  Q5 math: OK (72.4s)
+  Q6 math: OK (115.8s)
+  Q7 math: OK (178.8s)
+  Q8 math: OK (136.7s)
+  Q9 logic: OK (128.1s)
+  Q10 logic: OK (15.7s)
+  Q11 coding: OK (52.2s)
+  Q12 coding: OK (20.4s)
+  Q13 coding: OK (37.9s)
+  Q14 coding: OK (31.6s)
+  Q15 coding: OK (26.4s)
+  Q16 math: OK (428.9s)
+  Q17 math: OK (461.7s)
+  Q18 math: OK (252.6s)
+  Q19 math: OK (688.5s)
+  Q20 math: OK (233.2s)
+  Q21 math: OK (201.9s)
+  Q22 math: OK (117.7s)
+  Q23 math: OK (111.4s)
+  Q24 logic: OK (146.8s)
+  Q25 coding: OK (96.6s)
+  Q26 coding: OK (56.5s)
+  Q27 coding: BAD (25.5s)
+  Q28 coding: OK (57.5s)
+  Q29 coding: OK (33.3s)
+mac-ollama rafw007/qwen3.8-27b-redteam:latest: {'correct': 28, 'total': 29, 'overall_pct': 96.55172413793103, 'avg_seconds_per_question': 138.62848029452664, 'hit_token_limit': 0, 'median_time_to_first_text_s': 0.199497832916677, 'median_completion_tokens_per_total_second': 7.658902636947358}
+== step: E venue docs gemma4:26b-nvfp4 Sat Oct 24 22:49:41 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: ['rafw007/qwen3.8-27b-redteam:latest']
+mac-ollama gemma4:26b-nvfp4: smoke OK
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1777, 'wait_before_first_text_s': 2.78, 'reading_tok_s': 640.1, 'reply_tokens': 200, 'seconds': 6.83}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6780, 'wait_before_first_text_s': 12.8, 'reading_tok_s': 529.5, 'reply_tokens': 200, 'seconds': 17.43}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 25963, 'wait_before_first_text_s': 55.22, 'reading_tok_s': 470.2, 'reply_tokens': 200, 'seconds': 61.34}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 103998, 'wait_before_first_text_s': 321.31, 'reading_tok_s': 323.7, 'reply_tokens': 200, 'seconds': 337.5}
+  document 262144: {'context': 262144, 'document_chars': 754974, 'prompt_tokens': 221184, 'wait_before_first_text_s': 1027.67, 'reading_tok_s': 215.2, 'reply_tokens': 200, 'seconds': 1069.08}
+mac-ollama gemma4:26b-nvfp4: {}
+== step: E venue docs nemotron-3.5-lightning:30b-a3b-mlx Sat Oct 24 23:14:44 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: ['gemma4:26b-nvfp4']
+mac-ollama nemotron-3.5-lightning:30b-a3b-mlx: smoke OK
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1699, 'wait_before_first_text_s': 2.75, 'reading_tok_s': 617.8, 'reply_tokens': 150, 'seconds': 5.15}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6183, 'wait_before_first_text_s': 11.95, 'reading_tok_s': 517.6, 'reply_tokens': 140, 'seconds': 14.32}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 23823, 'wait_before_first_text_s': 51.43, 'reading_tok_s': 463.2, 'reply_tokens': 156, 'seconds': 54.5}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 94772, 'wait_before_first_text_s': 279.22, 'reading_tok_s': 339.4, 'reply_tokens': 165, 'seconds': 284.86}
+  document 262144: {'context': 262144, 'document_chars': 754974, 'prompt_tokens': 199546, 'wait_before_first_text_s': 819.23, 'reading_tok_s': 243.6, 'reply_tokens': 176, 'seconds': 828.16}
+mac-ollama nemotron-3.5-lightning:30b-a3b-mlx: {}
+== step: E venue docs qwen3.8:27b Sat Oct 24 23:35:31 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: ['nemotron-3.5-lightning:30b-a3b-mlx']
+mac-ollama qwen3.8:27b: smoke OK
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1685, 'wait_before_first_text_s': 18.85, 'reading_tok_s': 89.4, 'reply_tokens': 197, 'seconds': 34.24}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6320, 'wait_before_first_text_s': 76.12, 'reading_tok_s': 83.0, 'reply_tokens': 193, 'seconds': 91.15}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 24315, 'wait_before_first_text_s': 308.86, 'reading_tok_s': 78.7, 'reply_tokens': 200, 'seconds': 325.49}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 97805, 'wait_before_first_text_s': 1632.24, 'reading_tok_s': 59.9, 'reply_tokens': 200, 'seconds': 1657.06}
+Traceback (most recent call last):
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 156, in <module>
+    main()
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 142, in main
+    doc = read_document(args.base_url, args.model, ctx, args.extra)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 57, in read_document
+    r = complete(base_url, payload(model, prompt, REPLY_TOKENS, extra=extra))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 40, in complete
+    with urllib.request.urlopen(req, timeout=timeout) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 1377, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 1352, in do_open
+    r = h.getresponse()
+        ^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/http/client.py", line 1378, in getresponse
+    response.begin()
+  File "/opt/homebrew/anaconda3/lib/python3.11/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/http/client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/socket.py", line 706, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: timed out
+== FAILED: E venue docs qwen3.8:27b (exit 1) Sun Oct 25 01:10:53 CDT 2026
+== step: E venue docs rafw007/qwen3.8-27b-redteam:latest Sun Oct 25 01:10:54 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: ['qwen3.8:27b']
+mac-ollama rafw007/qwen3.8-27b-redteam:latest: smoke OK
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1868, 'wait_before_first_text_s': 17.41, 'reading_tok_s': 107.3, 'reply_tokens': 200, 'seconds': 43.61}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6504, 'wait_before_first_text_s': 67.48, 'reading_tok_s': 96.4, 'reply_tokens': 163, 'seconds': 88.89}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 24500, 'wait_before_first_text_s': 283.03, 'reading_tok_s': 86.6, 'reply_tokens': 181, 'seconds': 308.28}
+Traceback (most recent call last):
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 156, in <module>
+    main()
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 142, in main
+    doc = read_document(args.base_url, args.model, ctx, args.extra)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 63, in read_document
+    raise RuntimeError(f"Document request failed with HTTP {e.code}; not a context-limit result.") from None
+RuntimeError: Document request failed with HTTP 400; not a context-limit result.
+== FAILED: E venue docs rafw007/qwen3.8-27b-redteam:latest (exit 1) Sun Oct 25 01:18:28 CDT 2026
+== all done Sun Oct 25 01:18:28 CDT 2026
+== step (manual daytime run): E venue docs qwen3.8:27b Sun Oct 25 08:22:20 CDT 2026 | AC Power
+mac-ollama qwen3.8:27b: smoke OK
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1688, 'wait_before_first_text_s': 18.59, 'reading_tok_s': 90.8, 'reply_tokens': 200, 'seconds': 32.29}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6321, 'wait_before_first_text_s': 77.24, 'reading_tok_s': 81.8, 'reply_tokens': 178, 'seconds': 91.63}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 24314, 'wait_before_first_text_s': 315.54, 'reading_tok_s': 77.1, 'reply_tokens': 200, 'seconds': 333.46}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 97809, 'wait_before_first_text_s': 1820.66, 'reading_tok_s': 53.7, 'reply_tokens': 200, 'seconds': 1844.43}
+Traceback (most recent call last):
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 156, in <module>
+    main()
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 142, in main
+    doc = read_document(args.base_url, args.model, ctx, args.extra)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 63, in read_document
+    raise RuntimeError(f"Document request failed with HTTP {e.code}; not a context-limit result.") from None
+RuntimeError: Document request failed with HTTP 500; not a context-limit result.
+== FAILED: E venue docs qwen3.8:27b (exit 1) Sun Oct 25 09:46:35 CDT 2026
+== step (manual daytime run): E venue docs qwen3.8-27b-redteam-262k:latest Sun Oct 25 09:46:35 CDT 2026 | AC Power
+mac-ollama qwen3.8-27b-redteam-262k:latest: smoke OK
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1865, 'wait_before_first_text_s': 18.03, 'reading_tok_s': 103.5, 'reply_tokens': 165, 'seconds': 39.68}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6506, 'wait_before_first_text_s': 69.22, 'reading_tok_s': 94.0, 'reply_tokens': 187, 'seconds': 94.33}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 24498, 'wait_before_first_text_s': 290.99, 'reading_tok_s': 84.2, 'reply_tokens': 183, 'seconds': 316.94}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 97989, 'wait_before_first_text_s': 1666.2, 'reading_tok_s': 58.8, 'reply_tokens': 200, 'seconds': 1701.43}
+  document 262144: {'context': 262144, 'document_chars': 754974, 'prompt_tokens': 203290, 'wait_before_first_text_s': 5241.16, 'reading_tok_s': 38.8, 'reply_tokens': 200, 'seconds': 5286.38}
+mac-ollama qwen3.8-27b-redteam-262k:latest: {}
+== step: E venue docs qwen3.8:27b Sun Oct 25 21:00:06 CDT 2026 | AC Power | main loaded: [] | 0.40.6 loaded: []
+mac-ollama qwen3.8:27b: smoke OK
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1685, 'wait_before_first_text_s': 17.64, 'reading_tok_s': 95.5, 'reply_tokens': 200, 'seconds': 30.92}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6322, 'wait_before_first_text_s': 74.64, 'reading_tok_s': 84.7, 'reply_tokens': 180, 'seconds': 89.21}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 24314, 'wait_before_first_text_s': 303.54, 'reading_tok_s': 80.1, 'reply_tokens': 200, 'seconds': 319.87}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 97807, 'wait_before_first_text_s': 1656.9, 'reading_tok_s': 59.0, 'reply_tokens': 200, 'seconds': 1679.95}
+Traceback (most recent call last):
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 156, in <module>
+    main()
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 142, in main
+    doc = read_document(args.base_url, args.model, ctx, args.extra)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/git/open-weights-presentation/bench/venue.py", line 63, in read_document
+    raise RuntimeError(f"Document request failed with HTTP {e.code}; not a context-limit result.") from None
+RuntimeError: Document request failed with HTTP 500; not a context-limit result.
+== FAILED: E venue docs qwen3.8:27b (exit 1) Sun Oct 25 22:23:00 CDT 2026
+== all done Sun Oct 25 22:23:00 CDT 2026

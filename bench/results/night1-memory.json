@@ -1,0 +1,195 @@
+{
+  "models": {
+    "bonsai-2:27b": {
+      "ollama_version": "0.40.6",
+      "contexts": {
+        "2048": {
+          "document_chars": 5898,
+          "prompt_tokens": 1684,
+          "truncated": false,
+          "prefill_tok_s": 108.4,
+          "wait_before_first_token_s": 15.54,
+          "reply_tokens": 164,
+          "gen_tok_s_with_document": 13.6,
+          "memory_gb_after": 10.62,
+          "memory_gb": 10.62
+        },
+        "8192": {
+          "document_chars": 23592,
+          "prompt_tokens": 6320,
+          "truncated": false,
+          "prefill_tok_s": 95.1,
+          "wait_before_first_token_s": 66.48,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 13.1,
+          "memory_gb_after": 11.84,
+          "memory_gb": 11.84
+        },
+        "32768": {
+          "document_chars": 94371,
+          "prompt_tokens": 24317,
+          "truncated": false,
+          "prefill_tok_s": 86.9,
+          "wait_before_first_token_s": 279.79,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 11.9,
+          "memory_gb_after": 11.73,
+          "memory_gb": 11.73
+        },
+        "131072": {
+          "document_chars": 377487,
+          "prompt_tokens": 97810,
+          "truncated": false,
+          "prefill_tok_s": 61.1,
+          "wait_before_first_token_s": 1602.12,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 8.2,
+          "memory_gb_after": 18.57,
+          "memory_gb": 18.57
+        },
+        "262144": {
+          "document_chars": 754974,
+          "prompt_tokens": 203103,
+          "truncated": false,
+          "prefill_tok_s": 38.6,
+          "wait_before_first_token_s": 5260.42,
+          "reply_tokens": 198,
+          "gen_tok_s_with_document": 5.7,
+          "memory_gb_after": 27.4,
+          "memory_gb": 27.4
+        }
+      },
+      "system_prompt_replaced": false
+    },
+    "qwen3.8:27b-q4_K_M": {
+      "ollama_version": "0.40.6",
+      "contexts": {
+        "2048": {
+          "document_chars": 5898,
+          "prompt_tokens": 1683,
+          "truncated": false,
+          "prefill_tok_s": 89.1,
+          "wait_before_first_token_s": 18.91,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 7.8,
+          "memory_gb_after": 19.74,
+          "memory_gb": 19.74
+        },
+        "8192": {
+          "document_chars": 23592,
+          "prompt_tokens": 6323,
+          "truncated": false,
+          "prefill_tok_s": 87.6,
+          "wait_before_first_token_s": 72.22,
+          "reply_tokens": 166,
+          "gen_tok_s_with_document": 7.8,
+          "memory_gb_after": 22.09,
+          "memory_gb": 22.09
+        },
+        "32768": {
+          "document_chars": 94371,
+          "prompt_tokens": 24315,
+          "truncated": false,
+          "prefill_tok_s": 75.0,
+          "wait_before_first_token_s": 324.25,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 7.3,
+          "memory_gb_after": 20.86,
+          "memory_gb": 20.86
+        },
+        "131072": {
+          "document_chars": 377487,
+          "prompt_tokens": 97810,
+          "truncated": false,
+          "prefill_tok_s": 55.0,
+          "wait_before_first_token_s": 1777.78,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 6.0,
+          "memory_gb_after": 28.57,
+          "memory_gb": 28.57
+        },
+        "262144": {
+          "document_chars": 754974,
+          "prompt_tokens": 203107,
+          "truncated": false,
+          "prefill_tok_s": 35.8,
+          "wait_before_first_token_s": 5668.25,
+          "reply_tokens": 191,
+          "gen_tok_s_with_document": 4.6,
+          "memory_gb_after": 37.18,
+          "memory_gb": 37.18
+        }
+      },
+      "system_prompt_replaced": false
+    },
+    "rafw007/qwen3.8-27b-redteam:latest": {
+      "ollama_version": "0.40.6",
+      "contexts": {
+        "2048": {
+          "document_chars": 5898,
+          "prompt_tokens": 1682,
+          "truncated": false,
+          "prefill_tok_s": 89.8,
+          "wait_before_first_token_s": 18.72,
+          "reply_tokens": 193,
+          "gen_tok_s_with_document": 7.3,
+          "memory_gb_after": 18.34,
+          "memory_gb": 18.34
+        },
+        "8192": {
+          "document_chars": 23592,
+          "prompt_tokens": 6323,
+          "truncated": false,
+          "prefill_tok_s": 82.1,
+          "wait_before_first_token_s": 76.98,
+          "reply_tokens": 171,
+          "gen_tok_s_with_document": 7.3,
+          "memory_gb_after": 19.71,
+          "memory_gb": 19.71
+        },
+        "32768": {
+          "document_chars": 94371,
+          "prompt_tokens": 24315,
+          "truncated": false,
+          "prefill_tok_s": 81.1,
+          "wait_before_first_token_s": 299.99,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 6.9,
+          "memory_gb_after": 20.63,
+          "memory_gb": 20.63
+        },
+        "131072": {
+          "document_chars": 377487,
+          "prompt_tokens": 97807,
+          "truncated": false,
+          "prefill_tok_s": 55.4,
+          "wait_before_first_token_s": 1766.19,
+          "reply_tokens": 196,
+          "gen_tok_s_with_document": 5.6,
+          "memory_gb_after": 27.18,
+          "memory_gb": 27.18
+        },
+        "262144": {
+          "document_chars": 754974,
+          "prompt_tokens": 203103,
+          "truncated": false,
+          "prefill_tok_s": 35.9,
+          "wait_before_first_token_s": 5661.99,
+          "reply_tokens": 188,
+          "gen_tok_s_with_document": 4.4,
+          "memory_gb_after": 36.06,
+          "memory_gb": 36.06
+        }
+      },
+      "system_prompt_replaced": true
+    }
+  },
+  "environment": {
+    "measured_at": "2026-10-21T01:26:00",
+    "macos": "26.5.2",
+    "model_identifier": "MacBookPro18,4",
+    "chip": "Apple M1 Max",
+    "memory": "64 GB",
+    "power": "Now drawing from 'AC Power'"
+  }
+}

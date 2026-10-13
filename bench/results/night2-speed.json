@@ -1,0 +1,335 @@
+{
+  "models": {
+    "gemma4:latest": {
+      "ollama_version": "0.40.6",
+      "load_seconds": 3.4,
+      "memory_gb_idle": 9.63,
+      "gen_tok_s": 64.8,
+      "gen_tok_s_runs": [
+        60.2,
+        64.8,
+        65.1
+      ],
+      "contexts": {
+        "2048": {
+          "document_chars": 5898,
+          "prompt_tokens": 1770,
+          "truncated": false,
+          "prefill_tok_s": 1034.8,
+          "wait_before_first_token_s": 1.71,
+          "reply_tokens": 182,
+          "gen_tok_s_with_document": 57.2,
+          "memory_gb_after": 9.86,
+          "memory_gb": 10.78
+        },
+        "8192": {
+          "document_chars": 23592,
+          "prompt_tokens": 6775,
+          "truncated": false,
+          "prefill_tok_s": 926.8,
+          "wait_before_first_token_s": 7.31,
+          "reply_tokens": 184,
+          "gen_tok_s_with_document": 50.8,
+          "memory_gb_after": 10.12,
+          "memory_gb": 11.33
+        },
+        "32768": {
+          "document_chars": 94371,
+          "prompt_tokens": 25957,
+          "truncated": false,
+          "prefill_tok_s": 866.9,
+          "wait_before_first_token_s": 29.94,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 38.6,
+          "memory_gb_after": 10.2,
+          "memory_gb": 11.83
+        },
+        "131072": {
+          "document_chars": 377487,
+          "prompt_tokens": 103994,
+          "truncated": false,
+          "prefill_tok_s": 655.8,
+          "wait_before_first_token_s": 158.57,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 16.9,
+          "memory_gb_after": 11.67,
+          "memory_gb": 14.89
+        }
+      },
+      "system_prompt_replaced": false
+    },
+    "qwen3.5:35b": {
+      "ollama_version": "0.40.6",
+      "load_seconds": 13.7,
+      "memory_gb_idle": 22.21,
+      "gen_tok_s": 58.1,
+      "gen_tok_s_runs": [
+        58.2,
+        58.1,
+        58.1
+      ],
+      "contexts": {
+        "2048": {
+          "document_chars": 5898,
+          "prompt_tokens": 1683,
+          "truncated": false,
+          "prefill_tok_s": 788.0,
+          "wait_before_first_token_s": 2.14,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 56.9,
+          "memory_gb_after": 22.81,
+          "memory_gb": 24.75
+        },
+        "8192": {
+          "document_chars": 23592,
+          "prompt_tokens": 6322,
+          "truncated": false,
+          "prefill_tok_s": 676.4,
+          "wait_before_first_token_s": 9.35,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 55.5,
+          "memory_gb_after": 23.17,
+          "memory_gb": 25.59
+        },
+        "32768": {
+          "document_chars": 94371,
+          "prompt_tokens": 24314,
+          "truncated": false,
+          "prefill_tok_s": 591.8,
+          "wait_before_first_token_s": 41.08,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 49.9,
+          "memory_gb_after": 23.01,
+          "memory_gb": 26.96
+        },
+        "131072": {
+          "document_chars": 377487,
+          "prompt_tokens": 97807,
+          "truncated": false,
+          "prefill_tok_s": 322.3,
+          "wait_before_first_token_s": 303.47,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 31.7,
+          "memory_gb_after": 25.12,
+          "memory_gb": 35.5
+        },
+        "262144": {
+          "document_chars": 754974,
+          "prompt_tokens": 203106,
+          "truncated": false,
+          "prefill_tok_s": 182.1,
+          "wait_before_first_token_s": 1115.48,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 20.1,
+          "memory_gb_after": 28.09,
+          "memory_gb": 47.89
+        }
+      },
+      "system_prompt_replaced": false
+    },
+    "gemma4:12b": {
+      "ollama_version": "0.40.6",
+      "load_seconds": 2.3,
+      "memory_gb_idle": 8.01,
+      "gen_tok_s": 27.5,
+      "gen_tok_s_runs": [
+        33.1,
+        27.5,
+        26.3
+      ],
+      "contexts": {
+        "2048": {
+          "document_chars": 5898,
+          "prompt_tokens": 1779,
+          "truncated": false,
+          "prefill_tok_s": 196.9,
+          "wait_before_first_token_s": 9.0,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 23.2,
+          "memory_gb_after": 10.12,
+          "memory_gb": 11.15
+        },
+        "8192": {
+          "document_chars": 23592,
+          "prompt_tokens": 6781,
+          "truncated": false,
+          "prefill_tok_s": 189.0,
+          "wait_before_first_token_s": 35.88,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 25.8,
+          "memory_gb_after": 10.45,
+          "memory_gb": 12.75
+        },
+        "32768": {
+          "document_chars": 94371,
+          "prompt_tokens": 25964,
+          "truncated": false,
+          "prefill_tok_s": 178.1,
+          "wait_before_first_token_s": 145.78,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 26.3,
+          "memory_gb_after": 10.27,
+          "memory_gb": 12.73
+        },
+        "131072": {
+          "document_chars": 377487,
+          "prompt_tokens": 103998,
+          "truncated": false,
+          "prefill_tok_s": 135.5,
+          "wait_before_first_token_s": 767.44,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 19.9,
+          "memory_gb_after": 14.42,
+          "memory_gb": 19.21
+        },
+        "262144": {
+          "document_chars": 754974,
+          "prompt_tokens": 221184,
+          "truncated": false,
+          "prefill_tok_s": 98.0,
+          "wait_before_first_token_s": 2257.8,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 14.4,
+          "memory_gb_after": 20.13,
+          "memory_gb": 28.12
+        }
+      },
+      "system_prompt_replaced": false
+    },
+    "deepseek-r1:latest": {
+      "ollama_version": "0.40.6",
+      "load_seconds": 3.3,
+      "memory_gb_idle": 5.9,
+      "gen_tok_s": 27.5,
+      "gen_tok_s_runs": [
+        31.0,
+        27.5,
+        26.8
+      ],
+      "contexts": {
+        "2048": {
+          "document_chars": 5898,
+          "prompt_tokens": 1584,
+          "truncated": false,
+          "prefill_tok_s": 326.6,
+          "wait_before_first_token_s": 4.85,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 26.9,
+          "memory_gb_after": 6.26,
+          "memory_gb": 6.26
+        },
+        "8192": {
+          "document_chars": 23592,
+          "prompt_tokens": 5870,
+          "truncated": false,
+          "prefill_tok_s": 271.0,
+          "wait_before_first_token_s": 21.66,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 25.0,
+          "memory_gb_after": 8.5,
+          "memory_gb": 8.5
+        },
+        "32768": {
+          "document_chars": 94371,
+          "prompt_tokens": 22605,
+          "truncated": false,
+          "prefill_tok_s": 192.6,
+          "wait_before_first_token_s": 117.36,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 19.6,
+          "memory_gb_after": 10.41,
+          "memory_gb": 10.41
+        },
+        "131072": {
+          "document_chars": 377487,
+          "prompt_tokens": 91316,
+          "truncated": false,
+          "prefill_tok_s": 85.6,
+          "wait_before_first_token_s": 1066.84,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 9.1,
+          "memory_gb_after": 24.97,
+          "memory_gb": 24.97
+        }
+      },
+      "system_prompt_replaced": false
+    },
+    "qwen3.8:27b": {
+      "ollama_version": "0.40.6",
+      "load_seconds": 5.9,
+      "memory_gb_idle": 18.69,
+      "gen_tok_s": 13.7,
+      "gen_tok_s_runs": [
+        15.0,
+        13.7,
+        12.8
+      ],
+      "contexts": {
+        "2048": {
+          "document_chars": 5898,
+          "prompt_tokens": 1686,
+          "truncated": false,
+          "prefill_tok_s": 83.8,
+          "wait_before_first_token_s": 20.12,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 12.4,
+          "memory_gb_after": 20.54,
+          "memory_gb": 23.53
+        },
+        "8192": {
+          "document_chars": 23592,
+          "prompt_tokens": 6322,
+          "truncated": false,
+          "prefill_tok_s": 82.2,
+          "wait_before_first_token_s": 76.84,
+          "reply_tokens": 184,
+          "gen_tok_s_with_document": 12.3,
+          "memory_gb_after": 21.53,
+          "memory_gb": 26.01
+        },
+        "32768": {
+          "document_chars": 94371,
+          "prompt_tokens": 24318,
+          "truncated": false,
+          "prefill_tok_s": 78.1,
+          "wait_before_first_token_s": 311.52,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 11.0,
+          "memory_gb_after": 21.22,
+          "memory_gb": 32.3
+        },
+        "131072": {
+          "document_chars": 377487,
+          "prompt_tokens": 97808,
+          "truncated": false,
+          "prefill_tok_s": 55.9,
+          "wait_before_first_token_s": 1749.53,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 7.7,
+          "memory_gb_after": 27.69,
+          "memory_gb": 53.0
+        },
+        "262144": {
+          "document_chars": 754974,
+          "prompt_tokens": 203100,
+          "truncated": false,
+          "prefill_tok_s": 31.1,
+          "wait_before_first_token_s": 6539.81,
+          "reply_tokens": 200,
+          "gen_tok_s_with_document": 5.3,
+          "memory_gb_after": 37.11,
+          "memory_gb": 59.55
+        }
+      },
+      "system_prompt_replaced": false
+    }
+  },
+  "environment": {
+    "measured_at": "2026-10-22T07:52:14",
+    "macos": "26.5.2",
+    "model_identifier": "MacBookPro18,4",
+    "chip": "Apple M1 Max",
+    "memory": "64 GB",
+    "power": "Now drawing from 'AC Power'"
+  }
+}

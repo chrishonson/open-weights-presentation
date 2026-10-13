@@ -1,0 +1,99 @@
+== step: speed 2k-128k Thu Oct 15 15:25:48 CDT 2026
+== qwen3.8:27b
+  qwen3.8:27b ctx=2048: {'prompt_tokens': 1818, 'prefill_tok_s': 83.5, 'wait_before_first_token_s': 21.75, 'reply_tokens': 190, 'gen_tok_s_with_document': 12.5, 'memory_gb': 21.63}
+  qwen3.8:27b ctx=8192: {'prompt_tokens': 7172, 'prefill_tok_s': 80.9, 'wait_before_first_token_s': 88.7, 'reply_tokens': 191, 'gen_tok_s_with_document': 10.7, 'memory_gb': 9.69}
+  qwen3.8:27b ctx=32768: {'prompt_tokens': 28345, 'prefill_tok_s': 72.3, 'wait_before_first_token_s': 392.08, 'reply_tokens': 200, 'gen_tok_s_with_document': 10.4, 'memory_gb': 9.68}
+== restarted with model-specific memory probe (another app had loaded gemma4:latest on the main server) Thu Oct 15 15:42:51 CDT 2026
+== step: speed 2k-128k Thu Oct 15 15:43:00 CDT 2026
+== qwen3.8:27b
+  qwen3.8:27b ctx=2048: {'prompt_tokens': 1805, 'prefill_tok_s': 81.6, 'wait_before_first_token_s': 22.11, 'reply_tokens': 200, 'gen_tok_s_with_document': 12.4, 'memory_gb': 21.43}
+  qwen3.8:27b ctx=8192: {'prompt_tokens': 7153, 'prefill_tok_s': 81.0, 'wait_before_first_token_s': 88.36, 'reply_tokens': 190, 'gen_tok_s_with_document': 11.9, 'memory_gb': 23.89}
+  qwen3.8:27b ctx=32768: {'prompt_tokens': 28259, 'prefill_tok_s': 74.4, 'wait_before_first_token_s': 379.58, 'reply_tokens': 200, 'gen_tok_s_with_document': 11.3, 'memory_gb': 27.26}
+  qwen3.8:27b ctx=131072: {'prompt_tokens': 112768, 'prefill_tok_s': 51.4, 'wait_before_first_token_s': 2194.07, 'reply_tokens': 200, 'gen_tok_s_with_document': 5.4, 'memory_gb': 48.69}
+== step: quiz Thu Oct 15 16:35:27 CDT 2026
+== qwen3.8:27b
+  qwen3.8:27b #1 math: OK  '30.50' 22.05s
+  qwen3.8:27b #2 math: OK  '288' 26.62s
+  qwen3.8:27b #3 math: OK  '162' 23.35s
+  qwen3.8:27b #4 math: OK  '72' 17.19s
+  qwen3.8:27b #5 math: OK  '32.40' 21.81s
+  qwen3.8:27b #6 math: OK  '40' 16.15s
+  qwen3.8:27b #7 math: OK  '9368' 66.01s
+  qwen3.8:27b #8 math: OK  '13.75' 23.05s
+  qwen3.8:27b #9 math: OK  '294' 28.13s
+  qwen3.8:27b #10 math: OK  '45' 17.34s
+  qwen3.8:27b #11 math: OK  '9' 58.92s
+  qwen3.8:27b #12 math: OK  '33.04' 14.96s
+  qwen3.8:27b #13 math: OK  '123' 23.06s
+  qwen3.8:27b #14 math: OK  '24' 27.01s
+  qwen3.8:27b #15 math: OK  '2' 20.84s
+  qwen3.8:27b #16 math: OK  '5624.32' 23.43s
+  qwen3.8:27b #17 math: OK  '18' 15.13s
+  qwen3.8:27b #18 math: OK  '130' 24.67s
+  qwen3.8:27b #19 math: OK  '80' 25.4s
+  qwen3.8:27b #20 math: OK  '60' 28.3s
+  qwen3.8:27b #21 knowledge: OK  'B' 5.85s
+  qwen3.8:27b #22 knowledge: OK  'A' 6.98s
+  qwen3.8:27b #23 knowledge: OK  'D' 12.84s
+  qwen3.8:27b #24 knowledge: OK  'C' 12.59s
+  qwen3.8:27b #25 knowledge: OK  'B' 16.07s
+  qwen3.8:27b #26 knowledge: OK  'D' 37.18s
+  qwen3.8:27b #27 knowledge: OK  'D' 40.19s
+  qwen3.8:27b #28 knowledge: OK  'B' 12.45s
+  qwen3.8:27b #29 knowledge: OK  'C' 5.23s
+  qwen3.8:27b #30 knowledge: OK  'A' 17.21s
+  qwen3.8:27b #31 knowledge: OK  'D' 5.82s
+  qwen3.8:27b #32 knowledge: OK  'B' 9.17s
+  qwen3.8:27b #33 knowledge: OK  'B' 14.18s
+  qwen3.8:27b #34 knowledge: OK  'C' 5.07s
+  qwen3.8:27b #35 knowledge: OK  'A' 5.28s
+  qwen3.8:27b #36 knowledge: OK  'B' 4.47s
+  qwen3.8:27b #37 knowledge: OK  'C' 26.36s
+  qwen3.8:27b #38 knowledge: OK  'B' 10.34s
+  qwen3.8:27b #39 knowledge: OK  'B' 12.25s
+  qwen3.8:27b #40 knowledge: OK  'C' 5.7s
+  qwen3.8:27b #41 coding: OK  'pass' 5.25s
+  qwen3.8:27b #42 coding: OK  'pass' 24.98s
+  qwen3.8:27b #43 coding: OK  'pass' 3.91s
+  qwen3.8:27b #44 coding: OK  'pass' 5.73s
+  qwen3.8:27b #45 coding: OK  'pass' 10.01s
+  qwen3.8:27b #46 coding: OK  'pass' 13.15s
+  qwen3.8:27b #47 coding: OK  'pass' 10.05s
+  qwen3.8:27b #48 coding: OK  'pass' 7.14s
+  qwen3.8:27b #49 coding: OK  'pass' 7.44s
+  qwen3.8:27b #50 coding: OK  'pass' 12.21s
+  qwen3.8:27b #51 coding: OK  'pass' 7.51s
+  qwen3.8:27b #52 coding: OK  'pass' 8.43s
+  qwen3.8:27b #53 coding: OK  'pass' 7.41s
+  qwen3.8:27b #54 coding: OK  'pass' 8.22s
+  qwen3.8:27b #55 coding: OK  'pass' 6.06s
+  qwen3.8:27b #56 coding: OK  'pass' 5.55s
+  qwen3.8:27b #57 coding: OK  'pass' 4.89s
+  qwen3.8:27b #58 coding: OK  'pass' 9.31s
+  qwen3.8:27b #59 coding: OK  'pass' 16.18s
+  qwen3.8:27b #60 coding: OK  'pass' 16.5s
+  qwen3.8:27b #61 hard: OK  '779' 42.38s
+  qwen3.8:27b #62 hard: OK  '31' 36.73s
+  qwen3.8:27b #63 hard: OK  '115' 79.58s
+  qwen3.8:27b #64 hard: OK  '121415' 63.1s
+  qwen3.8:27b #65 hard: OK  '103776' 38.53s
+  qwen3.8:27b #66 hard: OK  '45' 61.47s
+  qwen3.8:27b #67 hard: OK  '117' 49.67s
+  qwen3.8:27b #68 hard: OK  '329' 96.97s
+  qwen3.8:27b #69 hard: OK  '23' 41.73s
+  qwen3.8:27b #70 hard: OK  '924' 57.23s
+  qwen3.8:27b #71 hard: OK  'B' 69.62s
+  qwen3.8:27b #72 hard: OK  'C' 57.66s
+  qwen3.8:27b #73 hard: OK  'D' 20.89s
+  qwen3.8:27b #74 hard: OK  'B' 11.35s
+  qwen3.8:27b #75 hard: OK  'C' 42.22s
+  qwen3.8:27b #76 hard: OK  'pass' 32.71s
+  qwen3.8:27b #77 hard: OK  'pass' 9.25s
+  qwen3.8:27b #78 hard: OK  'pass' 18.77s
+  qwen3.8:27b #79 hard: OK  'pass' 13.08s
+  qwen3.8:27b #80 hard: OK  'pass' 13.45s
+  qwen3.8:27b: {'overall_pct': 100.0, 'everyday_pct': 100.0, 'math_pct': 100.0, 'knowledge_pct': 100.0, 'coding_pct': 100.0, 'hard_pct': 100.0, 'avg_seconds_per_question': 22.9, 'total_minutes': 30.6, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: speed 256k Thu Oct 15 17:06:08 CDT 2026
+== qwen3.8:27b
+  qwen3.8:27b ctx=262144: {'prompt_tokens': 234112, 'prefill_tok_s': 30.1, 'wait_before_first_token_s': 7785.2, 'reply_tokens': 200, 'gen_tok_s_with_document': 4.6, 'memory_gb': 47.42}
+== done Thu Oct 15 19:18:10 CDT 2026

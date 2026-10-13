@@ -1,0 +1,875 @@
+{
+  "schema_version": 1,
+  "venue": "mac-ollama",
+  "server": "Ollama 0.40.6",
+  "base_url": "http://127.0.0.1:11436/v1",
+  "measured_at": "2026-10-25T02:06:54.241764+00:00",
+  "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+  "local_baseline_tag": "nemotron-3.5-lightning:30b-a3b-mlx",
+  "precision": "nvfp4",
+  "settings": {
+    "set": "challenge",
+    "temperature": 0,
+    "seed": 0,
+    "think": false,
+    "max_tokens": 6144,
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "prompt_sha256": "947a45010c59f1a9eb991bb5705522b5160c2b26f82aa71dffb34e734a0b157d"
+  },
+  "timing": "Client wall time, including the network between this Mac and the server. First text is the first nonempty visible text chunk. Throughput is completion tokens / total request seconds.",
+  "status": "complete",
+  "questions": [
+    {
+      "response": "```python\nimport re\n\ndef parse_duration(s: str) -> int:\n    total = 0\n    # Match optional hours, minutes, and seconds in order\n    m = re.match(r'(\\d+h)?(\\d+m)?(\\d+s)?', s)\n    if m:\n        if m.group(1):\n            total += int(m.group(1)[:-1]) * 3600\n        if m.group(2):\n            total += int(m.group(2)[:-1]) * 60\n        if m.group(3):\n            total += int(m.group(3)[:-1])\n    return total\n```",
+      "seconds": 2.457789541222155,
+      "time_to_first_text_s": 0.46454045828431845,
+      "last_text_s": 2.4577007088810205,
+      "completion_tokens_per_total_second": 54.92740437526241,
+      "usage": {
+        "prompt_tokens": 105,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        },
+        "completion_tokens": 135,
+        "total_tokens": 240
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-178",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 1,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nfrom typing import List\n\ndef spiral_order(m: List[List[int]]) -> List[int]:\n    if not m or not m[0]:\n        return []\n    \n    res: List[int] = []\n    top, bottom = 0, len(m) - 1\n    left, right = 0, len(m[0]) - 1\n    \n    while top <= bottom and left <= right:\n        # Traverse right\n        for i in range(left, right + 1):\n            res.append(m[top][i])\n        top += 1\n        \n        # Traverse down\n        for i in range(top, bottom + 1):\n            res.append(m[i][right])\n        right -= 1\n        \n        # Traverse left (if still in bounds)\n        if top <= bottom:\n            for i in range(right, left - 1, -1):\n                res.append(m[bottom][i])\n            bottom -= 1\n        \n        # Traverse up (if still in bounds)\n        if left <= right:\n            for i in range(bottom, top - 1, -1):\n                res.append(m[i][left])\n            left += 1\n    \n    return res\n```",
+      "seconds": 4.104729791171849,
+      "time_to_first_text_s": 0.3922552913427353,
+      "last_text_s": 4.104632957838476,
+      "completion_tokens_per_total_second": 63.828805628933324,
+      "usage": {
+        "prompt_tokens": 83,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        },
+        "completion_tokens": 262,
+        "total_tokens": 345
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-787",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 2,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "2^100 = 1267650600228229401496703205376\n\nThe digits are: 1, 2, 6, 7, 6, 5, 0, 6, 0, 0, 2, 2, 8, 2, 2, 9, 4, 0, 1, 4, 9, 6, 7, 0, 3, 2, 0, 5, 3, 7, 6.\n\nSumming them:\n1 + 2 + 6 + 7 + 6 + 5 + 0 + 6 + 0 + 0 + 2 + 2 + 8 + 2 + 2 + 9 + 4 + 0 + 1 + 4 + 9 + 6 + 7 + 0 + 3 + 2 + 0 + 5 + 3 + 7 + 6 = 115\n\nANSWER: 115",
+      "seconds": 3.968641249462962,
+      "time_to_first_text_s": 0.5188394589349627,
+      "last_text_s": 3.9685464994981885,
+      "completion_tokens_per_total_second": 61.73397508105664,
+      "usage": {
+        "prompt_tokens": 70,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        },
+        "completion_tokens": 245,
+        "total_tokens": 315
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-55",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 3,
+      "category": "math",
+      "correct": true,
+      "detail": "115",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To solve this problem, we need to find the number of ways to climb a staircase of 20 steps, where each move can be 1, 2, or 3 steps. This is a classic combinatorial problem that can be solved using dynamic programming or recurrence relations.\n\nLet \\( f(n) \\) be the number of ways to climb \\( n \\) steps. The recurrence relation is:\n\\[ f(n) = f(n-1) + f(n-2) + f(n-3) \\]\nfor \\( n \\ge 3 \\), with base cases:\n\\[ f(0) = 1 \\] (one way to stay at the ground, doing nothing)\n\\[ f(1) = 1 \\] (one way: 1 step)\n\\[ f(2) = 2 \\] (two ways: 1+1 or 2 steps)\n\nWe compute \\( f(n) \\) step by step up to \\( n = 20 \\):\n\n- \\( f(3) = f(2) + f(1) + f(0) = 2 + 1 + 1 = 4 \\)\n- \\( f(4) = f(3) + f(2) + f(1) = 4 + 2 + 1 = 7 \\)\n- \\( f(5) = f(4) + f(3) + f(2) = 7 + 4 + 2 = 13 \\)\n- \\( f(6) = f(5) + f(4) + f(3) = 13 + 7 + 4 = 24 \\)\n- \\( f(7) = f(6) + f(5) + f(4) = 24 + 13 + 7 = 44 \\)\n- \\( f(8) = f(7) + f(6) + f(5) = 44 + 24 + 13 = 81 \\)\n- \\( f(9) = f(8) + f(7) + f(6) = 81 + 44 + 24 = 149 \\)\n- \\( f(10) = f(9) + f(8) + f(7) = 149 + 81 + 44 = 274 \\)\n- \\( f(11) = f(10) + f(9) + f(8) = 274 + 149 + 81 = 504 \\)\n- \\( f(12) = f(11) + f(10) + f(9) = 504 + 274 + 149 = 927 \\)\n- \\( f(13) = f(12) + f(11) + f(10) = 927 + 504 + 274 = 1705 \\)\n- \\( f(14) = f(13) + f(12) + f(11) = 1705 + 927 + 504 = 3136 \\)\n- \\( f(15) = f(14) + f(13) + f(12) = 3136 + 1705 + 927 = 5768 \\)\n- \\( f(16) = f(15) + f(14) + f(13) = 5768 + 3136 + 1705 = 10609 \\)\n- \\( f(17) = f(16) + f(15) + f(14) = 10609 + 5768 + 3136 = 19513 \\)\n- \\( f(18) = f(17) + f(16) + f(15) = 19513 + 10609 + 5768 = 35890 \\)\n- \\( f(19) = f(18) + f(17) + f(16) = 35890 + 19513 + 10609 = 66012 \\)\n- \\( f(20) = f(19) + f(18) + f(17) = 66012 + 35890 + 19513 = 121415 \\)\n\nThus, the number of ways to climb a staircase of 20 steps is 121415.\n\nANSWER: 121415",
+      "seconds": 14.939716041088104,
+      "time_to_first_text_s": 0.396161625161767,
+      "last_text_s": 14.939627415500581,
+      "completion_tokens_per_total_second": 69.81391059451724,
+      "usage": {
+        "prompt_tokens": 81,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        },
+        "completion_tokens": 1043,
+        "total_tokens": 1124
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-666",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 4,
+      "category": "math",
+      "correct": true,
+      "detail": "121415",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the number of 5-card hands with exactly two aces, we can break the problem into two parts:\n\n1.  **Choose the aces:** There are 4 aces in the deck. We need to choose exactly 2 of them. The number of ways to do this is given by the combination formula $\\binom{4}{2}$:\n    $$\\binom{4}{2} = \\frac{4!}{2!(4-2)!} = \\frac{4 \\times 3}{2 \\times 1} = 6$$\n\n2.  **Choose the non-aces:** After selecting the 2 aces, we need 3 more cards to complete the 5-card hand. These 3 cards must come from the remaining 48 cards in the deck (since there are 52 cards total and 4 are aces). The number of ways to choose 3 cards from 48 is $\\binom{48}{3}$:\n    $$\\binom{48}{3} = \\frac{48!}{3!(48-3)!} = \\frac{48 \\times 47 \\times 46}{3 \\times 2 \\times 1} = 17296$$\n\n3.  **Calculate the total:** Multiply the number of ways to choose the aces by the number of ways to choose the non-aces:\n    $$6 \\times 17296 = 103776$$\n\nTherefore, there are 103,776 different 5-card hands that contain exactly two aces.\n\nANSWER: 103776",
+      "seconds": 5.574383666738868,
+      "time_to_first_text_s": 0.49687962513417006,
+      "last_text_s": 5.5453252494335175,
+      "completion_tokens_per_total_second": 62.60781834634148,
+      "usage": {
+        "prompt_tokens": 71,
+        "prompt_tokens_details": {
+          "cached_tokens": 12
+        },
+        "completion_tokens": 349,
+        "total_tokens": 420
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-310",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 5,
+      "category": "math",
+      "correct": true,
+      "detail": "103776",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the number of integers from 1 to 10,000 inclusive that are perfect squares or perfect cubes (or both), we use the principle of inclusion-exclusion.\n\nFirst, count the perfect squares. The largest integer \\(n\\) such that \\(n^2 \\le 10000\\) is \\(n = 100\\), since \\(100^2 = 10000\\). Thus, there are 100 perfect squares.\n\nNext, count the perfect cubes. The largest integer \\(m\\) such that \\(m^3 \\le 10000\\) is \\(m = 21\\), since \\(21^3 = 9261\\) and \\(22^3 = 10648\\). Thus, there are 21 perfect cubes.\n\nNow, count the integers that are both perfect squares and perfect cubes, which are perfect sixth powers. The largest integer \\(k\\) such that \\(k^6 \\le 10000\\) is \\(k = 4\\), since \\(4^6 = 4096\\) and \\(5^6 = 15625\\). Thus, there are 4 perfect sixth powers.\n\nBy inclusion-exclusion, the number of integers that are perfect squares or perfect cubes (or both) is:\n\\[\n100 + 21 - 4 = 117\n\\]\n\nANSWER: 117",
+      "seconds": 4.903175124898553,
+      "time_to_first_text_s": 0.6270887078717351,
+      "last_text_s": 4.903058500029147,
+      "completion_tokens_per_total_second": 62.40853981456173,
+      "usage": {
+        "prompt_tokens": 76,
+        "prompt_tokens_details": {
+          "cached_tokens": 12
+        },
+        "completion_tokens": 306,
+        "total_tokens": 382
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-620",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 6,
+      "category": "math",
+      "correct": true,
+      "detail": "117",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the last three digits of \\(3^{2026}\\), we need to compute \\(3^{2026} \\pmod{1000}\\).\n\nFirst, note that \\(\\gcd(3, 1000) = 1\\), so Euler's theorem applies. The totient of 1000 is:\n\\[\n\\phi(1000) = 1000 \\left(1 - \\frac{1}{2}\\right)\\left(1 - \\frac{1}{5}\\right) = 1000 \\cdot \\frac{1}{2} \\cdot \\frac{4}{5} = 400.\n\\]\nThus, \\(3^{400} \\equiv 1 \\pmod{1000}\\).\n\nReduce the exponent modulo 400:\n\\[\n2026 \\div 400 = 5 \\text{ remainder } 26 \\quad \\Rightarrow \\quad 2026 = 5 \\cdot 400 + 26.\n\\]\nTherefore,\n\\[\n3^{2026} \\equiv 3^{26} \\pmod{1000}.\n\\]\n\nNow compute \\(3^{26} \\pmod{1000}\\) using successive squaring:\n\\[\n\\begin{aligned}\n3^1 &\\equiv 3 \\\\\n3^2 &\\equiv 9 \\\\\n3^4 &\\equiv 9^2 = 81 \\\\\n3^8 &\\equiv 81^2 = 6561 \\equiv 561 \\pmod{1000} \\\\\n3^{16} &\\equiv 561^2 = 314721 \\equiv 721 \\pmod{1000}\n\\end{aligned}\n\\]\nSince \\(26 = 16 + 8 + 2\\),\n\\[\n3^{26} \\equiv 3^{16} \\cdot 3^8 \\cdot 3^2 \\equiv 721 \\cdot 561 \\cdot 9 \\pmod{1000}.\n\\]\nFirst, compute \\(721 \\cdot 561\\):\n\\[\n721 \\cdot 561 = 721 \\cdot (500 + 60 + 1) = 360500 + 43260 + 721 = 404481 \\equiv 481 \\pmod{1000}.\n\\]\nThen multiply by 9:\n\\[\n481 \\cdot 9 = 4329 \\equiv 329 \\pmod{1000}.\n\\]\n\nThus, the last three digits of \\(3^{2026}\\) are 329.\n\nANSWER: 329",
+      "seconds": 8.97338708397001,
+      "time_to_first_text_s": 0.5483925007283688,
+      "last_text_s": 8.973246542736888,
+      "completion_tokens_per_total_second": 67.53302786665179,
+      "usage": {
+        "prompt_tokens": 76,
+        "prompt_tokens_details": {
+          "cached_tokens": 12
+        },
+        "completion_tokens": 606,
+        "total_tokens": 682
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-54",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 7,
+      "category": "math",
+      "correct": true,
+      "detail": "329",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the number of shortest paths from the top-left corner to the bottom-right corner of a 6x6 grid, we can use combinatorics. A shortest path requires exactly 6 moves to the right and 6 moves down, in any order. The total number of moves is 12, and we need to choose 6 of those moves to be right (or down). The number of such paths is given by the binomial coefficient:\n\n\\[\n\\binom{12}{6} = \\frac{12!}{6! \\cdot 6!} = 924\n\\]\n\nANSWER: 924",
+      "seconds": 2.528935832902789,
+      "time_to_first_text_s": 0.4222800834104419,
+      "last_text_s": 2.5126994997262955,
+      "completion_tokens_per_total_second": 52.59129087800483,
+      "usage": {
+        "prompt_tokens": 91,
+        "prompt_tokens_details": {
+          "cached_tokens": 12
+        },
+        "completion_tokens": 133,
+        "total_tokens": 224
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-316",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 8,
+      "category": "math",
+      "correct": true,
+      "detail": "924",
+      "hit_token_limit": false
+    },
+    {
+      "response": "This is a variation of the Monty Hall problem, but with a crucial difference: the host does not know where the car is and opens a door purely at random. In the classic problem, the host always reveals a goat, which changes the probabilities. Here, the host's action provides different information.\n\nLet's analyze the scenarios. There are three equally likely initial placements of the car:\n\n1. **Car is behind Door 1** (your initial pick): Probability = 1/3.  \n   The host opens Door 3 at random. Since the car is behind Door 1, both Door 2 and Door 3 have goats. The host picks Door 3 with probability 1/2. If you switch to Door 2, you get a goat. If you stay, you win the car.\n\n2. **Car is behind Door 2**: Probability = 1/3.  \n   The host opens Door 3 at random. Since the car is behind Door 2, Door 3 has a goat. The host must open Door 3 (probability 1). If you switch to Door 2, you win the car.\n\n3. **Car is behind Door 3**: Probability = 1/3.  \n   The host opens Door 3 at random. But Door 3 has the car, so the host cannot open it (or would be forced to open a door with the car, which contradicts the problem stating Door 3 shows a goat). This scenario is impossible given the condition that Door 3 reveals a goat.\n\nWe are told that Door 3 revealed a goat. This condition eliminates the third scenario. We are left with Scenario 1 and Scenario 2, each originally having probability 1/3. However, the host's action of opening Door 3 is not equally likely in both remaining scenarios.\n\n- In Scenario 1, the host opens Door 3 with probability 1/2.\n- In Scenario 2, the host opens Door 3 with probability 1.\n\nTo find the conditional probabilities given that Door 3 shows a goat, we normalize the probabilities:\n\n- Probability of being in Scenario 1 given Door 3 is a goat:  \n  (1/3 \u00d7 1/2) / [(1/3 \u00d7 1/2) + (1/3 \u00d7 1)] = (1/6) / (1/6 + 1/3) = (1/6) / (1/2) = 1/3.\n\n- Probability of being in Scenario 2 given Door 3 is a goat:  \n  (1/3 \u00d7 1) / (1/2) = (1/3) / (1/2) = 2/3.\n\nIf you switch to Door 2, you win the car if and only if you are in Scenario 2 (probability 2/3). You lose the car if you are in Scenario 1 (probability 1/3).\n\nTherefore, your chance of winning the car by switching is 2/3.\n\nANSWER: C",
+      "seconds": 11.213948041200638,
+      "time_to_first_text_s": 0.4871507501229644,
+      "last_text_s": 11.156120290979743,
+      "completion_tokens_per_total_second": 57.69600479892432,
+      "usage": {
+        "prompt_tokens": 126,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        },
+        "completion_tokens": 647,
+        "total_tokens": 773
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-216",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 9,
+      "category": "logic",
+      "correct": false,
+      "detail": "C",
+      "hit_token_limit": false
+    },
+    {
+      "response": "If the day before yesterday was Thursday, then yesterday was Friday, and today is Saturday. The day after tomorrow would be Monday.\n\nANSWER: B",
+      "seconds": 1.124031750485301,
+      "time_to_first_text_s": 0.6282245004549623,
+      "last_text_s": 1.0745444176718593,
+      "completion_tokens_per_total_second": 27.579292121077312,
+      "usage": {
+        "prompt_tokens": 69,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        },
+        "completion_tokens": 31,
+        "total_tokens": 100
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-242",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 10,
+      "category": "logic",
+      "correct": true,
+      "detail": "B",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nimport re\n\ndef evaluate(expr: str) -> int:\n    # Remove all spaces for easier parsing\n    s = expr.replace(' ', '')\n    n = len(s)\n    pos = 0\n\n    def parse_expression() -> int:\n        \"\"\"Handle + and - (lowest precedence).\"\"\"\n        nonlocal pos\n        left = parse_term()\n        while pos < n and s[pos] in '+-':\n            op = s[pos]\n            pos += 1\n            right = parse_term()\n            if op == '+':\n                left += right\n            else:\n                left -= right\n        return left\n\n    def parse_term() -> int:\n        \"\"\"Handle * and / (higher precedence).\"\"\"\n        nonlocal pos\n        left = parse_factor()\n        while pos < n and s[pos] in '*/':\n            op = s[pos]\n            pos += 1\n            right = parse_factor()\n            if op == '*':\n                left *= right\n            else:\n                # Integer division truncating toward zero\n                # Using int() on true division achieves truncation toward zero\n                left = int(left / right)\n        return left\n\n    def parse_factor() -> int:\n        \"\"\"Handle parentheses and non-negative integers.\"\"\"\n        nonlocal pos\n        if s[pos] == '(':\n            pos += 1  # skip '('\n            val = parse_expression()\n            pos += 1  # skip ')'\n            return val\n        # parse a non-negative integer\n        start = pos\n        while pos < n and s[pos].isdigit():\n            pos += 1\n        return int(s[start:pos])\n\n    result = parse_expression()\n    return result\n```",
+      "seconds": 6.1940745413303375,
+      "time_to_first_text_s": 0.43447174970060587,
+      "last_text_s": 6.177902082912624,
+      "completion_tokens_per_total_second": 56.989950257231506,
+      "usage": {
+        "prompt_tokens": 94,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 353,
+        "total_tokens": 447
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-473",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 11,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.capacity = capacity\n        self.cache = OrderedDict()\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        self.cache.move_to_end(key)\n        return self.cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self.cache.move_to_end(key)\n        self.cache[key] = value\n        if len(self.cache) > self.capacity:\n            self.cache.popitem(last=False)\n```",
+      "seconds": 2.521880082786083,
+      "time_to_first_text_s": 0.5298898741602898,
+      "last_text_s": 2.521778875030577,
+      "completion_tokens_per_total_second": 54.32454974173367,
+      "usage": {
+        "prompt_tokens": 121,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 137,
+        "total_tokens": 258
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-540",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 12,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nfrom typing import List\n\ndef next_permutation(nums: List[int]) -> List[int]:\n    # Find the largest index i such that nums[i] < nums[i + 1]\n    i = len(nums) - 2\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n\n    # If no such index exists, the permutation is the last; return sorted ascending\n    if i < 0:\n        return sorted(nums)\n\n    # Find the largest index j > i such that nums[j] > nums[i]\n    j = len(nums) - 1\n    while nums[j] <= nums[i]:\n        j -= 1\n\n    # Swap the values at positions i and j\n    nums[i], nums[j] = nums[j], nums[i]\n\n    # Reverse the suffix starting at i + 1\n    nums[i + 1:] = reversed(nums[i + 1:])\n\n    return nums\n```",
+      "seconds": 3.5719517497345805,
+      "time_to_first_text_s": 0.4213866665959358,
+      "last_text_s": 3.5716708339750767,
+      "completion_tokens_per_total_second": 57.39159270984913,
+      "usage": {
+        "prompt_tokens": 93,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 205,
+        "total_tokens": 298
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-172",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 13,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nfrom collections import deque\n\ndef count_islands(grid: list[str]) -> int:\n    if not grid:\n        return 0\n\n    rows = len(grid)\n    cols = len(grid[0])\n    visited = [[False] * cols for _ in range(rows)]\n    count = 0\n\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1' and not visited[r][c]:\n                count += 1\n                # BFS to mark the whole island as visited\n                q = deque()\n                q.append((r, c))\n                visited[r][c] = True\n\n                while q:\n                    cr, cc = q.popleft()\n                    for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                        nr, nc = cr + dr, cc + dc\n                        if 0 <= nr < rows and 0 <= nc < cols:\n                            if grid[nr][nc] == '1' and not visited[nr][nc]:\n                                visited[nr][nc] = True\n                                q.append((nr, nc))\n\n    return count\n```",
+      "seconds": 4.010605209507048,
+      "time_to_first_text_s": 0.3963283337652683,
+      "last_text_s": 4.010422917082906,
+      "completion_tokens_per_total_second": 63.082748558813336,
+      "usage": {
+        "prompt_tokens": 99,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 253,
+        "total_tokens": 352
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-165",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 14,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef decode_ways(s: str) -> int:\n    \"\"\"\n    Returns the number of ways to decode a string of digits into letters\n    (A=1, B=2, ..., Z=26). A code cannot start with '0'.\n    \"\"\"\n    if not s or s[0] == '0':\n        return 0\n\n    # dp[i] = number of ways to decode s[:i] (first i characters)\n    # We only need the last two values, so use two variables.\n    prev2 = 1  # dp[0] = empty string has one way\n    prev1 = 1  # dp[1] = first character (already checked not '0')\n\n    for i in range(2, len(s) + 1):\n        cur = 0\n        # Single digit decode (s[i-1] is the current digit)\n        if s[i - 1] != '0':\n            cur += prev1\n        # Two digit decode (s[i-2:i] forms a number 10..26)\n        two_digit = int(s[i - 2:i])\n        if 10 <= two_digit <= 26:\n            cur += prev2\n        # Shift window\n        prev2, prev1 = prev1, cur\n\n    return prev1\n```",
+      "seconds": 4.848771541379392,
+      "time_to_first_text_s": 0.4389615822583437,
+      "last_text_s": 4.832787791267037,
+      "completion_tokens_per_total_second": 58.57153664105339,
+      "usage": {
+        "prompt_tokens": 114,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 284,
+        "total_tokens": 398
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-383",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 15,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the last two nonzero digits of 30!, we need to determine the value of 30! modulo 100 after removing all factors of 10 (which are produced by pairs of 2 and 5).\n\nFirst, we count the number of trailing zeros in 30!:\n- Number of factors of 5: floor(30/5) + floor(30/25) = 6 + 1 = 7\n- Number of factors of 2: floor(30/2) + floor(30/4) + floor(30/8) + floor(30/16) = 15 + 7 + 3 + 1 = 26\n\nSince there are 7 factors of 5 and 26 factors of 2, there are 7 trailing zeros. We need to compute 30! / 10^7 modulo 100, which is equivalent to computing 30! / (2^7 * 5^7) modulo 100.\n\nWe compute the product of numbers from 1 to 30, removing factors of 2 and 5, and then multiply by the remaining factors of 2 (26 - 7 = 19 factors of 2).\n\nAfter detailed modular arithmetic (considering modulo 25 and modulo 4, and using the Chinese Remainder Theorem), the last two nonzero digits of 30! are found to be 84.\n\nANSWER: 84",
+      "seconds": 5.7935843747109175,
+      "time_to_first_text_s": 0.519313458353281,
+      "last_text_s": 5.777402208186686,
+      "completion_tokens_per_total_second": 56.09653350672338,
+      "usage": {
+        "prompt_tokens": 76,
+        "prompt_tokens_details": {
+          "cached_tokens": 13
+        },
+        "completion_tokens": 325,
+        "total_tokens": 401
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-802",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 16,
+      "category": "math",
+      "correct": false,
+      "detail": "84",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the number of integers from 1 to 10,000 inclusive whose digits sum to exactly 20, we can consider all 4-digit strings from 0000 to 9999 (which covers all numbers from 0 to 9999). The number 10,000 has a digit sum of 1, so it does not contribute. We need to count the number of solutions to:\n\n\\[\nd_1 + d_2 + d_3 + d_4 = 20\n\\]\n\nwhere each \\(d_i\\) is an integer between 0 and 9 inclusive.\n\nUsing inclusion-exclusion (or generating functions), the number of non-negative integer solutions to \\(x_1 + x_2 + x_3 + x_4 = 20\\) without the upper bound is \\(\\binom{20+4-1}{4-1} = \\binom{23}{3} = 1771\\).\n\nWe subtract the cases where at least one digit is \\(\\ge 10\\). If \\(d_1 \\ge 10\\), set \\(d_1' = d_1 - 10 \\ge 0\\), then \\(d_1' + d_2 + d_3 + d_4 = 10\\), which has \\(\\binom{10+4-1}{3} = \\binom{13}{3} = 286\\) solutions. There are 4 choices for which digit exceeds 9, giving \\(4 \\times 286 = 1144\\).\n\nWe add back the cases where two digits are \\(\\ge 10\\). If \\(d_1, d_2 \\ge 10\\), set \\(d_1' = d_1 - 10\\), \\(d_2' = d_2 - 10\\), then \\(d_1' + d_2' + d_3 + d_4 = 0\\), which has \\(\\binom{0+4-1}{3} = \\binom{3}{3} = 1\\) solution. There are \\(\\binom{4}{2} = 6\\) pairs of digits, giving \\(6 \\times 1 = 6\\).\n\nCases with three or more digits \\(\\ge 10\\) are impossible because the sum would be at least 30.\n\nBy inclusion-exclusion, the number of valid solutions is:\n\n\\[\n1771 - 1144 + 6 = 633\n\\]\n\nThese 633 solutions correspond to the integers from 0 to 9999 with digit sum 20. Since 0 has digit sum 0, the count for integers from 1 to 9999 is also 633. The number 10,000 does not have digit sum 20, so the total from 1 to 10,000 inclusive is 633.\n\nANSWER: 633",
+      "seconds": 10.383291457779706,
+      "time_to_first_text_s": 0.5994949173182249,
+      "last_text_s": 10.331352832727134,
+      "completion_tokens_per_total_second": 61.05963629914039,
+      "usage": {
+        "prompt_tokens": 77,
+        "prompt_tokens_details": {
+          "cached_tokens": 14
+        },
+        "completion_tokens": 634,
+        "total_tokens": 711
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-401",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 17,
+      "category": "math",
+      "correct": true,
+      "detail": "633",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To solve this problem, we need to find the number of ways to distribute 10 identical balls into 4 distinct boxes such that no box contains more than 4 balls.\n\nLet \\(x_1, x_2, x_3, x_4\\) be the number of balls in boxes 1, 2, 3, and 4 respectively. We have the constraints:\n\\[\nx_1 + x_2 + x_3 + x_4 = 10\n\\]\nwith \\(0 \\le x_i \\le 4\\) for each \\(i\\).\n\nFirst, find the total number of non-negative integer solutions without the upper bound constraint using stars and bars:\n\\[\n\\binom{10 + 4 - 1}{4 - 1} = \\binom{13}{3} = 286.\n\\]\n\nNext, subtract the cases where at least one box has 5 or more balls. For a specific box, say \\(x_1 \\ge 5\\), set \\(y_1 = x_1 - 5 \\ge 0\\). Then the equation becomes:\n\\[\ny_1 + x_2 + x_3 + x_4 = 5.\n\\]\nThe number of non-negative integer solutions is \\(\\binom{5 + 4 - 1}{4 - 1} = \\binom{8}{3} = 56\\). Since there are 4 boxes, the total number of solutions where at least one box violates the constraint is \\(4 \\times 56 = 224\\).\n\nNow, check if two boxes can both have 5 or more balls. If \\(x_1 \\ge 5\\) and \\(x_2 \\ge 5\\), then \\(x_1 + x_2 \\ge 10\\). Since the total is exactly 10, this forces \\(x_1 = 5, x_2 = 5, x_3 = 0, x_4 = 0\\). There are \\(\\binom{4}{2} = 6\\) such pairs of boxes. For each pair, there is exactly 1 solution. By inclusion-exclusion, we add back these 6 cases because they were subtracted twice.\n\nThe number of valid distributions is:\n\\[\n286 - 224 + 6 = 68.\n\\]\n\nThus, there are 68 ways to place the balls.\n\nANSWER: 68",
+      "seconds": 8.365343417041004,
+      "time_to_first_text_s": 0.43109079264104366,
+      "last_text_s": 8.348815457895398,
+      "completion_tokens_per_total_second": 60.8462766708559,
+      "usage": {
+        "prompt_tokens": 79,
+        "prompt_tokens_details": {
+          "cached_tokens": 12
+        },
+        "completion_tokens": 509,
+        "total_tokens": 588
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-32",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 18,
+      "category": "math",
+      "correct": true,
+      "detail": "68",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To determine how many months in 2026 and 2027 have a Friday the 13th, we need to find the months where the 13th day falls on a Friday.\n\nFirst, we establish the day of the week for January 1, 2026. Since 2025 is a common year (365 days), January 1, 2026 is a Wednesday. From this, we can calculate the day of the week for the 13th of each month in 2026:\n\n- January 13: Saturday\n- February 13: Thursday (31 days after Jan 13)\n- March 13: Thursday (28 days after Feb 13, so same day)\n- April 13: Sunday (31 days after Mar 13)\n- May 13: Wednesday (30 days after Apr 13)\n- June 13: Saturday (31 days after May 13)\n- July 13: Monday (30 days after June 13)\n- August 13: Thursday (31 days after July 13)\n- September 13: Sunday (31 days after Aug 13)\n- October 13: Tuesday (30 days after Sep 13)\n- November 13: Friday (31 days after Oct 13)\n- December 13: Sunday (30 days after Nov 13)\n\nThus, in 2026, only November has a Friday the 13th.\n\nNext, for 2027, since 2026 is a common year, January 1, 2027 is a Thursday. Calculating the 13th for each month in 2027:\n\n- January 13: Sunday\n- February 13: Wednesday (31 days after Jan 13)\n- March 13: Wednesday (28 days after Feb 13)\n- April 13: Saturday (31 days after Mar 13)\n- May 13: Monday (30 days after Apr 13)\n- June 13: Thursday (31 days after May 13)\n- July 13: Saturday (30 days after June 13)\n- August 13: Tuesday (31 days after July 13)\n- September 13: Friday (31 days after Aug 13)\n- October 13: Sunday (30 days after Sep 13)\n- November 13: Wednesday (31 days after Oct 13)\n- December 13: Friday (30 days after Nov 13)\n\nThus, in 2027, September and December have a Friday the 13th.\n\nCombining both years, the months with Friday the 13th are November 2026, September 2027, and December 2027, totaling 3 months.\n\nANSWER: 3",
+      "seconds": 10.806405708193779,
+      "time_to_first_text_s": 0.5732510415837169,
+      "last_text_s": 10.806281499564648,
+      "completion_tokens_per_total_second": 60.519660066447,
+      "usage": {
+        "prompt_tokens": 78,
+        "prompt_tokens_details": {
+          "cached_tokens": 14
+        },
+        "completion_tokens": 654,
+        "total_tokens": 732
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-572",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 19,
+      "category": "math",
+      "correct": false,
+      "detail": "3",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To find the smallest positive integer with exactly 30 positive divisors, we use the divisor function. If a number \\(n\\) has the prime factorization \\(n = p_1^{a_1} p_2^{a_2} \\cdots p_k^{a_k}\\), then the number of positive divisors of \\(n\\) is \\((a_1+1)(a_2+1)\\cdots(a_k+1)\\). We need this product to equal 30.\n\nFirst, factor 30 into positive integers greater than 1:\n\\[\n30 = 30 \\times 1\n\\]\n\\[\n30 = 15 \\times 2\n\\]\n\\[\n30 = 10 \\times 3\n\\]\n\\[\n30 = 6 \\times 5\n\\]\n\\[\n30 = 5 \\times 3 \\times 2\n\\]\n\nEach factorization corresponds to a possible set of exponents \\(a_i = (\\text{factor} - 1)\\). To minimize \\(n\\), we assign the largest exponents to the smallest primes (2, 3, 5, 7, ...).\n\n- For \\(30 = 30 \\times 1\\): exponent 29, \\(n = 2^{29} = 536,870,912\\).\n- For \\(30 = 15 \\times 2\\): exponents 14 and 1, \\(n = 2^{14} \\times 3^1 = 16,384 \\times 3 = 49,152\\).\n- For \\(30 = 10 \\times 3\\): exponents 9 and 2, \\(n = 2^9 \\times 3^2 = 512 \\times 9 = 4,608\\).\n- For \\(30 = 6 \\times 5\\): exponents 5 and 4, \\(n = 2^5 \\times 3^4 = 32 \\times 81 = 2,592\\).\n- For \\(30 = 5 \\times 3 \\times 2\\): exponents 4, 2, and 1, \\(n = 2^4 \\times 3^2 \\times 5^1 = 16 \\times 9 \\times 5 = 720\\).\n\nComparing the candidates: 536,870,912; 49,152; 4,608; 2,592; and 720. The smallest is 720.\n\nVerification: \\(720 = 2^4 \\times 3^2 \\times 5^1\\), so the number of divisors is \\((4+1)(2+1)(1+1) = 5 \\times 3 \\times 2 = 30\\).\n\nANSWER: 720",
+      "seconds": 9.596205624751747,
+      "time_to_first_text_s": 0.4856207501143217,
+      "last_text_s": 9.596145041286945,
+      "completion_tokens_per_total_second": 66.58881905904667,
+      "usage": {
+        "prompt_tokens": 67,
+        "prompt_tokens_details": {
+          "cached_tokens": 13
+        },
+        "completion_tokens": 639,
+        "total_tokens": 706
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-282",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 20,
+      "category": "math",
+      "correct": true,
+      "detail": "720",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To determine how many integers \\( n \\) from 1 to 2026 inclusive make \\( n^2 + n + 1 \\) divisible by 7, we analyze the expression modulo 7.\n\nFirst, note that \\( n^2 + n + 1 \\equiv 0 \\pmod{7} \\) can be rewritten by multiplying by 4:\n\\[\n4n^2 + 4n + 4 \\equiv 0 \\pmod{7}\n\\]\n\\[\n(2n + 1)^2 + 3 \\equiv 0 \\pmod{7}\n\\]\n\\[\n(2n + 1)^2 \\equiv -3 \\equiv 4 \\pmod{7}\n\\]\nSince \\( 4 \\) is a quadratic residue modulo 7 (because \\( 2^2 = 4 \\) and \\( 5^2 = 25 \\equiv 4 \\pmod{7} \\)), we have:\n\\[\n2n + 1 \\equiv 2 \\pmod{7} \\quad \\text{or} \\quad 2n + 1 \\equiv 5 \\pmod{7}\n\\]\nSolving these congruences:\n1. \\( 2n + 1 \\equiv 2 \\pmod{7} \\implies 2n \\equiv 1 \\pmod{7} \\implies n \\equiv 4 \\pmod{7} \\) (since \\( 2 \\times 4 = 8 \\equiv 1 \\)).\n2. \\( 2n + 1 \\equiv 5 \\pmod{7} \\implies 2n \\equiv 4 \\pmod{7} \\implies n \\equiv 2 \\pmod{7} \\).\n\nThus, \\( n^2 + n + 1 \\) is divisible by 7 if and only if \\( n \\equiv 2 \\pmod{7} \\) or \\( n \\equiv 4 \\pmod{7} \\).\n\nNow, count the integers \\( n \\) from 1 to 2026 that satisfy these congruences.\n\nThe total number of integers in the range is 2026. Dividing 2026 by 7 gives:\n\\[\n2026 = 7 \\times 289 + 3\n\\]\nSo there are 289 full cycles of 7, and a remainder of 3 (the numbers 2024, 2025, 2026).\n\nIn each full cycle of 7 consecutive integers, exactly 2 satisfy the condition (one congruent to 2 mod 7 and one congruent to 4 mod 7). Therefore, the 289 full cycles contribute:\n\\[\n289 \\times 2 = 578\n\\]\nnumbers.\n\nThe remaining numbers are 2024, 2025, 2026. Checking their residues modulo 7:\n- \\( 2024 \\equiv 1 \\pmod{7} \\)\n- \\( 2025 \\equiv 2 \\pmod{7} \\) (satisfies the condition)\n- \\( 2026 \\equiv 3 \\pmod{7} \\)\n\nOnly 2025 satisfies the condition, adding 1 more number.\n\nTotal count: \\( 578 + 1 = 579 \\).\n\nANSWER: 579",
+      "seconds": 11.567740250378847,
+      "time_to_first_text_s": 0.6607821248471737,
+      "last_text_s": 11.551512124948204,
+      "completion_tokens_per_total_second": 62.06916687781654,
+      "usage": {
+        "prompt_tokens": 78,
+        "prompt_tokens_details": {
+          "cached_tokens": 14
+        },
+        "completion_tokens": 718,
+        "total_tokens": 796
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-741",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 21,
+      "category": "math",
+      "correct": true,
+      "detail": "579",
+      "hit_token_limit": false
+    },
+    {
+      "response": "We are given: Two fair six-sided dice are rolled. Given that at least one die shows a 6, the probability that the total is at least 10 is m/n in lowest terms. What is m + n?\n\nWe need to compute the conditional probability: P(total >= 10 | at least one die shows a 6).\n\nLet A = event that total >= 10.\nLet B = event that at least one die shows a 6.\n\nWe want P(A|B) = P(A \u2229 B) / P(B).\n\nFirst, total outcomes when rolling two dice: 6 * 6 = 36, equally likely.\n\nEvent B: at least one die shows a 6.\nNumber of outcomes with at least one 6: total outcomes minus outcomes with no 6 = 36 - 5*5 = 36 - 25 = 11.\nAlternatively: outcomes with first die 6: 6 outcomes; second die 6: 6 outcomes; but double count (6,6): 6+6-1 = 11. So P(B) = 11/36.\n\nEvent A \u2229 B: total >= 10 and at least one die shows a 6.\nWe need outcomes where sum >= 10 and at least one die is 6.\n\nLet's list outcomes with sum >= 10:\nSum 10: (4,6), (5,5), (6,4)\nSum 11: (5,6), (6,5)\nSum 12: (6,6)\n\nNow from these, which have at least one 6?\n(4,6): has 6 -> yes.\n(5,5): no 6 -> no.\n(6,4): has 6 -> yes.\n(5,6): has 6 -> yes.\n(6,5): has 6 -> yes.\n(6,6): has 6 -> yes.\n\nSo outcomes in A \u2229 B: (4,6), (6,4), (5,6), (6,5), (6,6). That's 5 outcomes.\n\nThus P(A \u2229 B) = 5/36.\n\nThen P(A|B) = (5/36) / (11/36) = 5/11.\n\nSo m/n = 5/11, which is already in lowest terms. m = 5, n = 11. m + n = 16.\n\nCheck: 5 and 11 are coprime. So answer is 16.\n\nANSWER: 16</think>The probability that the total is at least 10 given that at least one die shows a 6 is calculated as follows:\n\n- Total possible outcomes when rolling two dice: 36.\n- Outcomes with at least one 6: 11 (since 36 - 25 = 11).\n- Outcomes with total at least 10 and at least one 6: (4,6), (6,4), (5,6), (6,5), (6,6) \u2192 5 outcomes.\n- Conditional probability: 5/11.\n\nIn lowest terms, m = 5 and n = 11, so m + n = 16.\n\nANSWER: 16",
+      "seconds": 11.380758041515946,
+      "time_to_first_text_s": 0.4791694572195411,
+      "last_text_s": 11.380591749213636,
+      "completion_tokens_per_total_second": 62.47387014171975,
+      "usage": {
+        "prompt_tokens": 94,
+        "prompt_tokens_details": {
+          "cached_tokens": 12
+        },
+        "completion_tokens": 711,
+        "total_tokens": 805
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-220",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 22,
+      "category": "math",
+      "correct": true,
+      "detail": "16",
+      "hit_token_limit": false
+    },
+    {
+      "response": "To solve this problem, we need to count the number of 7-digit phone numbers (digits 0\u20139, leading zeros allowed) that contain the digit 7 at least once and never have the same digit twice in a row.\n\n**Step 1: Total phone numbers with no two consecutive digits the same.**\nFor the first digit, there are 10 choices (0\u20139). For each subsequent digit, it must differ from the previous digit, so there are 9 choices. Thus, the total number of such 7-digit numbers is:\n\\[\n10 \\times 9^6 = 10 \\times 531441 = 5314410.\n\\]\n\n**Step 2: Phone numbers with no two consecutive digits the same and no 7 at all.**\nWe count numbers using only the 9 digits {0,1,2,3,4,5,6,8,9} with no two consecutive digits the same. The first digit has 9 choices, and each subsequent digit has 8 choices (any of the 9 allowed digits except the previous one). Thus:\n\\[\n9 \\times 8^6 = 9 \\times 262144 = 2359296.\n\\]\n\n**Step 3: Subtract to get numbers with at least one 7.**\nThe desired count is the total with no consecutive repeats minus those with no 7 and no consecutive repeats:\n\\[\n5314410 - 2359296 = 2955114.\n\\]\n\nANSWER: 2955114",
+      "seconds": 5.695961042307317,
+      "time_to_first_text_s": 0.4105588337406516,
+      "last_text_s": 5.695832292549312,
+      "completion_tokens_per_total_second": 60.920360483968025,
+      "usage": {
+        "prompt_tokens": 95,
+        "prompt_tokens_details": {
+          "cached_tokens": 12
+        },
+        "completion_tokens": 347,
+        "total_tokens": 442
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-425",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 23,
+      "category": "math",
+      "correct": true,
+      "detail": "2955114",
+      "hit_token_limit": false
+    },
+    {
+      "response": "We are given five people: P, Q, R, S, T. They sit in seats 1 to 5 (left to right). The conditions are:\n\n1. Q sits immediately to the right of P. This means P and Q are adjacent with P on the left and Q on the right. So the pair (P, Q) occupies two consecutive seats in that order.\n2. R is not in seat 1 or seat 5. So R is in seats 2, 3, or 4.\n3. S sits somewhere to the left of T. This means the seat number of S is less than the seat number of T.\n4. T does not sit next to R. So T and R are not adjacent.\n5. P is not in seat 1.\n\nWe need to determine who sits in seat 3. Options: A) R, B) Q, C) P, D) S.\n\nLet's analyze the constraints.\n\nFirst, from condition 1: Q is immediately to the right of P. So we have a block PQ. Since there are 5 seats, the block PQ can be in positions (1,2), (2,3), (3,4), or (4,5). But condition 5 says P is not in seat 1. So P cannot be in seat 1. Therefore, the block PQ cannot be in (1,2) because that would put P in seat 1. So the block PQ must be in (2,3), (3,4), or (4,5). That means P is in seat 2,3, or 4, and Q is in seat 3,4, or 5 respectively.\n\nNow, condition 2: R is not in seat 1 or 5. So R is in 2,3,4.\n\nCondition 3: S is left of T, so S's seat < T's seat.\n\nCondition 4: T does not sit next to R. So |seat(T) - seat(R)| != 1.\n\nWe need to find who is in seat 3.\n\nLet's consider the possible positions for the PQ block.\n\nCase 1: PQ in (2,3). Then P is in seat 2, Q in seat 3.\nThen seat 3 is Q. But we need to check if this is possible with other constraints.\nIf PQ in (2,3), then seats 2 and 3 are taken by P and Q.\nRemaining seats: 1, 4, 5 for R, S, T.\nR cannot be in seat 1 or 5, so R must be in seat 4 (since seat 2 and 3 are taken, and seat 1 and 5 are forbidden for R). So R is in seat 4.\nNow we have R in seat 4. Condition 4: T does not sit next to R. R is in seat 4, so T cannot be in seat 3 or 5. Seat 3 is already Q, so T cannot be in seat 5. So T must be in seat 1? But seats available are 1, 4, 5. T cannot be in 5, so T must be in seat 1. But then S must be in seat? The remaining person is S, and seats left would be? We have seats 1,4,5. If T is in 1, and R in 4, then S must be in 5. But condition 3: S sits somewhere to the left of T. If T is in seat 1, and S in seat 5, then S is to the right of T, violating condition 3. If T is in seat 5, but we said T cannot be in 5 because R is in 4 and T cannot sit next to R. So this case leads to contradiction. Let's check carefully: seats: 1,2,3,4,5. PQ in (2,3) means seat 2=P, seat 3=Q. R not in 1 or 5, so R in 2,3,4. But 2 and 3 taken, so R in 4. Then T not next to R: R in 4, so T not in 3 or 5. 3 is Q, so T not in 5. So T must be in 1. Then S must be in 5 (since only seat 5 left). But S left of T: S in 5, T in 1 means S is right of T, contradiction. So PQ in (2,3) is impossible.\n\nCase 2: PQ in (3,4). Then P in seat 3, Q in seat 4.\nThen seat 3 is P. We need to check if this is possible.\nSeats: 1,2,3,4,5. PQ in (3,4) means seat 3=P, seat 4=Q.\nR not in 1 or 5, so R in 2,3,4. But 3 and 4 are taken by P and Q, so R must be in seat 2.\nSo R in seat 2.\nNow condition 4: T does not sit next to R. R in seat 2, so T cannot be in seat 1 or 3. Seat 3 is P, so T cannot be in seat 1. So T must be in seat 5 (since seats left: 1 and 5, but T cannot be in 1, so T in 5).\nThen S must be in seat 1 (the only seat left).\nNow check condition 3: S sits somewhere to the left of T. S in seat 1, T in seat 5. 1 < 5, so S is left of T. That's satisfied.\nAlso check all conditions:\n1. Q immediately right of P: P in 3, Q in 4, yes.\n2. R not in 1 or 5: R in 2, yes.\n3. S left of T: S in 1, T in 5, yes.\n4. T not next to R: T in 5, R in 2, difference is 3, not adjacent, yes.\n5. P not in seat 1: P in 3, yes.\nAll conditions satisfied. In this case, seat 3 is P.\n\nCase 3: PQ in (4,5). Then P in seat 4, Q in seat 5.\nThen seat 3 is not P or Q; it's one of R, S, T.\nLet's check if this case is possible.\nSeats: 1,2,3,4,5. PQ in (4,5) means seat 4=P, seat 5=Q.\nR not in 1 or 5, so R in 2,3,4. But 4 is taken by P, so R in 2 or 3.\nCondition 4: T does not sit next to R.\nCondition 3: S left of T.\nAlso P not in seat 1 (satisfied, P in 4).\nWe need to assign R, S, T to seats 1,2,3.\nR is in 2 or 3.\nT cannot be next to R.\nS must be left of T.\n\nLet's subcases.\n\nSubcase 3a: R in seat 2.\nThen seats left: 1 and 3 for S and T.\nT not next to R: R in 2, so T cannot be in 1 or 3. But the only seats left are 1 and 3. So T would have to be in 1 or 3, both of which are next to R (since seat 1 is adjacent to 2, seat 3 is adjacent to 2). So T cannot be placed without being next to R. Contradiction. So R cannot be in seat 2.\n\nSubcase 3b: R in seat 3.\nThen seats left: 1 and 2 for S and T.\nT not next to R: R in 3, so T cannot be in 2 or 4. Seat 4 is P, so T cannot be in 2. So T must be in seat 1.\nThen S must be in seat 2.\nNow check condition 3: S left of T. S in seat 2, T in seat 1. 2 > 1, so S is to the right of T, violating condition 3. Contradiction.\nSo PQ in (4,5) is impossible.\n\nTherefore, the only possible case is Case 2: PQ in (3,4), with P in seat 3, Q in seat 4, R in seat 2, S in seat 1, T in seat 5. In this arrangement, seat 3 is occupied by P.\n\nThus, the person in seat 3 is P.\n\nThe answer is C) P.\n\nWe need to output the final line exactly: ANSWER: <letter>\n\nSo ANSWER: C</think>The only arrangement that satisfies all conditions is: seat 1 = S, seat 2 = R, seat 3 = P, seat 4 = Q, seat 5 = T. In this arrangement, P sits in seat 3.\n\nANSWER: C",
+      "seconds": 33.58012979011983,
+      "time_to_first_text_s": 0.5405674576759338,
+      "last_text_s": 33.563636290840805,
+      "completion_tokens_per_total_second": 59.32079513838269,
+      "usage": {
+        "prompt_tokens": 132,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        },
+        "completion_tokens": 1992,
+        "total_tokens": 2124
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-183",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 24,
+      "category": "logic",
+      "correct": true,
+      "detail": "C",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nimport re\n\ndef calc(expr: str) -> int:\n    # Remove all spaces for easier parsing\n    s = expr.replace(' ', '')\n    n = len(s)\n    pos = 0\n\n    def peek() -> str:\n        return s[pos] if pos < n else ''\n\n    def consume() -> str:\n        nonlocal pos\n        ch = s[pos]\n        pos += 1\n        return ch\n\n    # Parse primary: number or parenthesized expression\n    def parse_primary() -> int:\n        nonlocal pos\n        # Unary minus\n        if peek() == '-':\n            consume()\n            val = parse_primary()\n            return -val\n        # Parentheses\n        if peek() == '(':\n            consume()  # '('\n            val = parse_expr()\n            # Expect ')'\n            if peek() == ')':\n                consume()\n            return val\n        # Number\n        m = re.match(r'\\d+', s[pos:])\n        if m:\n            num = int(m.group())\n            pos += m.end()\n            return num\n        raise ValueError(\"Unexpected expression\")\n\n    # Parse exponentiation (right-associative)\n    def parse_power() -> int:\n        left = parse_primary()\n        if peek() == '^':\n            consume()\n            # Right-associative: parse right operand with parse_power\n            right = parse_power()\n            return left ** right\n        return left\n\n    # Parse multiplication and division (left-associative)\n    def parse_term() -> int:\n        nonlocal pos\n        left = parse_power()\n        while True:\n            op = peek()\n            if op == '*' or op == '/':\n                consume()\n                right = parse_power()\n                if op == '*':\n                    left = left * right\n                else:\n                    # Integer division truncating toward zero\n                    # Python's // truncates toward negative infinity,\n                    # so we use int(a / b) which truncates toward zero.\n                    left = int(left / right)\n            else:\n                break\n        return left\n\n    # Parse addition and subtraction (left-associative)\n    def parse_expr() -> int:\n        nonlocal pos\n        left = parse_term()\n        while True:\n            op = peek()\n            if op == '+' or op == '-':\n                consume()\n                right = parse_term()\n                if op == '+':\n                    left = left + right\n                else:\n                    left = left - right\n            else:\n                break\n        return left\n\n    result = parse_expr()\n    return result\n```",
+      "seconds": 9.663333917036653,
+      "time_to_first_text_s": 0.5589447505772114,
+      "last_text_s": 9.646437500603497,
+      "completion_tokens_per_total_second": 55.88133501709685,
+      "usage": {
+        "prompt_tokens": 160,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 540,
+        "total_tokens": 700
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-157",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 25,
+      "category": "coding",
+      "correct": false,
+      "detail": "AssertionError",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef int_to_words(n: int) -> str:\n    if n == 0:\n        return \"zero\"\n\n    ones = [\"\", \"one\", \"two\", \"three\", \"four\", \"five\", \"six\", \"seven\", \"eight\", \"nine\"]\n    teens = [\"ten\", \"eleven\", \"twelve\", \"thirteen\", \"fourteen\", \"fifteen\", \"sixteen\", \"seventeen\", \"eighteen\", \"nineteen\"]\n    tens = [\"\", \"\", \"twenty\", \"thirty\", \"forty\", \"fifty\", \"sixty\", \"seventy\", \"eighty\", \"ninety\"]\n\n    def convert_chunk(num: int) -> str:\n        \"\"\"Convert a number 0-999 to words.\"\"\"\n        if num == 0:\n            return \"\"\n        parts = []\n        hundreds = num // 100\n        remainder = num % 100\n        if hundreds > 0:\n            parts.append(f\"{ones[hundreds]} hundred\")\n        if remainder > 0:\n            if remainder < 10:\n                parts.append(ones[remainder])\n            elif remainder < 20:\n                parts.append(teens[remainder - 10])\n            else:\n                t = remainder // 10\n                o = remainder % 10\n                if o == 0:\n                    parts.append(tens[t])\n                else:\n                    parts.append(f\"{tens[t]}-{ones[o]}\")\n        return \" \".join(parts)\n\n    # Break n into groups of three digits (millions, thousands, ones)\n    million = n // 1_000_000\n    thousand = (n % 1_000_000) // 1_000\n    ones_part = n % 1_000\n\n    words = []\n    if million > 0:\n        words.append(f\"{convert_chunk(million)} million\")\n    if thousand > 0:\n        words.append(f\"{convert_chunk(thousand)} thousand\")\n    if ones_part > 0:\n        words.append(convert_chunk(ones_part))\n\n    return \" \".join(words)\n```",
+      "seconds": 7.653202750720084,
+      "time_to_first_text_s": 0.5976809170097113,
+      "last_text_s": 7.653088542632759,
+      "completion_tokens_per_total_second": 62.19618315419822,
+      "usage": {
+        "prompt_tokens": 181,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 476,
+        "total_tokens": 657
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-522",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 26,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef flatten_json(obj: dict) -> dict:\n    result: dict = {}\n\n    def _flatten(current, path_parts):\n        if isinstance(current, dict):\n            if not current:\n                # Empty dict: keep as value at current path\n                key = '.'.join(path_parts)\n                result[key] = current\n            else:\n                for k, v in current.items():\n                    _flatten(v, path_parts + [k])\n        elif isinstance(current, list):\n            if not current:\n                # Empty list: keep as value at current path\n                key = '.'.join(path_parts)\n                result[key] = current\n            else:\n                for i, v in enumerate(current):\n                    _flatten(v, path_parts + [str(i)])\n        else:\n            # Leaf value (number, string, bool, None)\n            key = '.'.join(path_parts)\n            result[key] = current\n\n    _flatten(obj, [])\n    return result\n```",
+      "seconds": 3.56540041603148,
+      "time_to_first_text_s": 0.5238456251099706,
+      "last_text_s": 3.525550582446158,
+      "completion_tokens_per_total_second": 57.216574913362784,
+      "usage": {
+        "prompt_tokens": 163,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 204,
+        "total_tokens": 367
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-165",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 27,
+      "category": "coding",
+      "correct": false,
+      "detail": "AssertionError",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\nimport re\n\ndef glob_match(name: str, pattern: str) -> bool:\n    \"\"\"\n    Match a name against a shell-style glob pattern, case-sensitively.\n    '*' matches any sequence of characters (including none).\n    '?' matches exactly one character.\n    '[abc]' matches one character from the set.\n    '[a-z]' matches one character in the range.\n    '[!abc]' matches one character NOT in the set.\n    All other characters match themselves.\n    \"\"\"\n    # Convert the glob pattern to a regex pattern\n    regex_parts = []\n    i = 0\n    while i < len(pattern):\n        c = pattern[i]\n        if c == '*':\n            regex_parts.append('.*')\n            i += 1\n        elif c == '?':\n            regex_parts.append('.')\n            i += 1\n        elif c == '[':\n            # Find the closing bracket\n            j = pattern.index(']', i + 1)\n            inner = pattern[i + 1:j]\n            # Check for negation [!...]\n            if inner.startswith('!'):\n                negated = True\n                inner = inner[1:]\n            elif inner.startswith('^'):\n                # Some implementations treat ^ as negation inside brackets,\n                # but standard shell treats ^ as literal unless it's the first char after [.\n                # We'll stick to ! for negation as per the prompt.\n                negated = False\n                inner = inner  # keep as is, ^ will be treated as literal\n            else:\n                negated = False\n            # Build character class\n            # Handle ranges like a-z\n            # We need to parse the inner string for ranges\n            # Simple approach: iterate through inner and build set of allowed chars\n            # But regex can handle ranges if we construct properly.\n            # Let's parse manually to handle ! and ranges correctly.\n            allowed = []\n            k = 0\n            while k < len(inner):\n                if k + 2 < len(inner) and inner[k+1] == '-':\n                    # range from inner[k] to inner[k+2]\n                    start_c = inner[k]\n                    end_c = inner[k+2]\n                    for code in range(ord(start_c), ord(end_c) + 1):\n                        allowed.append(chr(code))\n                    k += 3\n                else:\n                    allowed.append(inner[k])\n                    k += 1\n            # Create regex group\n            if negated:\n                # Match any character NOT in allowed\n                # We can use [^...] but need to escape possible special chars in allowed\n                # Since allowed contains characters, we can just put them in a class\n                # But careful: if allowed is empty, [^] is invalid. Assume non-empty.\n                # Build a string of allowed chars for negation\n                # We'll just create a regex [^...] with the chars\n                # However, if there are many chars, better to use a set or just . with negation.\n                # For simplicity, we'll construct [^...] \n                # But we need to escape regex special chars in allowed chars.\n                # Since these are shell glob chars, they might include regex metacharacters.\n                # The prompt says 'All other characters match themselves', so we should treat them literally.\n                # Let's escape them.\n                escaped = ''.join(re.escape(ch) for ch in allowed)\n                regex_parts.append(f'[^{escaped}]')\n            else:\n                escaped = ''.join(re.escape(ch) for ch in allowed)\n                regex_parts.append(f'[{escaped}]')\n            i = j + 1\n        else:\n            # Escape regex special characters in the pattern character\n            regex_parts.append(re.escape(c))\n            i += 1\n    \n    regex_pattern = ''.join(regex_parts)\n    # Match whole name: use ^ and $ to anchor\n    full_regex = f'^{regex_pattern}$'\n    return bool(re.fullmatch(full_regex, name))\n```",
+      "seconds": 14.43140733242035,
+      "time_to_first_text_s": 0.4748794576153159,
+      "last_text_s": 14.415663165971637,
+      "completion_tokens_per_total_second": 58.96860787015672,
+      "usage": {
+        "prompt_tokens": 132,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 851,
+        "total_tokens": 983
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-910",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 28,
+      "category": "coding",
+      "correct": true,
+      "detail": "pass",
+      "hit_token_limit": false
+    },
+    {
+      "response": "```python\ndef parse_csv_line(line: str) -> list[str]:\n    fields: list[str] = []\n    i = 0\n    n = len(line)\n\n    while i < n:\n        # Start of a quoted field\n        if line[i] == '\"':\n            i += 1  # skip opening quote\n            field_chars: list[str] = []\n            while i < n:\n                if line[i] == '\"':\n                    if i + 1 < n and line[i + 1] == '\"':\n                        # Escaped double quote: consume both, add one quote\n                        field_chars.append('\"')\n                        i += 2\n                    else:\n                        # Closing quote\n                        i += 1\n                        break\n                else:\n                    field_chars.append(line[i])\n                    i += 1\n            # Expect closing quote; if not found, treat rest as literal\n            fields.append(''.join(field_chars))\n        else:\n            # Unquoted field: read until comma or end of line\n            start = i\n            while i < n and line[i] != ',':\n                i += 1\n            fields.append(line[start:i])\n\n        # After a field, check for comma\n        if i < n and line[i] == ',':\n            i += 1  # skip comma, next iteration will start new field\n        # else: i is at end of line; loop will terminate\n\n    return fields\n```",
+      "seconds": 5.51394204236567,
+      "time_to_first_text_s": 0.4894783338531852,
+      "last_text_s": 5.496724959462881,
+      "completion_tokens_per_total_second": 55.314328234967185,
+      "usage": {
+        "prompt_tokens": 132,
+        "prompt_tokens_details": {
+          "cached_tokens": 11
+        },
+        "completion_tokens": 305,
+        "total_tokens": 437
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-812",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      },
+      "n": 29,
+      "category": "coding",
+      "correct": false,
+      "detail": "AssertionError",
+      "hit_token_limit": false
+    }
+  ],
+  "speed_runs": [
+    {
+      "response": "A refrigerator keeps food cold through a continuous cycle of evaporation and condensation using a special fluid called a refrigerant. The process begins with a compressor, which squeezes the refrigerant gas, raising its pressure and temperature. This hot gas then flows through coils on the back or bottom of the fridge, where it releases heat into the room and cools down into a high-pressure liquid.\n\nNext, the liquid passes through an expansion valve, which rapidly drops its pressure. This sudden drop causes the refrigerant to evaporate into a cold gas, absorbing heat from the refrigerator\u2019s interior in the process. As the gas travels through evaporator coils inside the fridge, it pulls heat away from the food and air, lowering the temperature. Finally, the now-warm gas returns to the compressor to start the cycle over again.\n\nThis constant movement of heat from inside the fridge to the outside environment maintains a steady, cool temperature, preserving food by slowing bacterial growth.",
+      "seconds": 3.0637556659057736,
+      "time_to_first_text_s": 0.2732370411977172,
+      "last_text_s": 3.030694958753884,
+      "completion_tokens_per_total_second": 60.709802047811365,
+      "usage": {
+        "prompt_tokens": 32,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens": 186,
+        "total_tokens": 218
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-340",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      }
+    },
+    {
+      "response": "A refrigerator keeps food cold through a continuous cycle of evaporation and condensation using a special fluid called a refrigerant. The process begins with a compressor, which squeezes the refrigerant gas, raising its pressure and temperature. This hot gas then flows through coils on the back or bottom of the fridge, where it releases heat into the room and cools down into a high-pressure liquid.\n\nNext, the liquid passes through an expansion valve, which rapidly drops its pressure. This sudden drop causes the refrigerant to evaporate into a cold gas, absorbing heat from the refrigerator\u2019s interior in the process. As the gas travels through evaporator coils inside the fridge, it pulls heat away from the food and air, lowering the temperature. Finally, the now-warm gas returns to the compressor to start the cycle over again.\n\nThis constant movement of heat from inside the fridge to the outside environment maintains a steady, cool temperature, preserving food by slowing bacterial growth.",
+      "seconds": 2.9107317496091127,
+      "time_to_first_text_s": 0.10949987452477217,
+      "last_text_s": 2.8960562916472554,
+      "completion_tokens_per_total_second": 63.90145709063649,
+      "usage": {
+        "prompt_tokens": 32,
+        "prompt_tokens_details": {
+          "cached_tokens": 27
+        },
+        "completion_tokens": 186,
+        "total_tokens": 218
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-98",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      }
+    },
+    {
+      "response": "A refrigerator keeps food cold through a continuous cycle of evaporation and condensation using a special fluid called a refrigerant. The process begins with a compressor, which squeezes the refrigerant gas, raising its pressure and temperature. This hot gas then flows through coils on the back or bottom of the fridge, where it releases heat into the room and cools down into a high-pressure liquid.\n\nNext, the liquid passes through an expansion valve, which rapidly drops its pressure. This sudden drop causes the refrigerant to evaporate into a cold gas, absorbing heat from the refrigerator\u2019s interior in the process. As the gas travels through evaporator coils inside the fridge, it pulls heat away from the food and air, lowering the temperature. Finally, the now-warm gas returns to the compressor to start the cycle over again.\n\nThis constant movement of heat from inside the fridge to the outside environment maintains a steady, cool temperature, preserving food by slowing bacterial growth.",
+      "seconds": 2.8691042084246874,
+      "time_to_first_text_s": 0.06743091717362404,
+      "last_text_s": 2.8080935422331095,
+      "completion_tokens_per_total_second": 64.82859683306006,
+      "usage": {
+        "prompt_tokens": 32,
+        "prompt_tokens_details": {
+          "cached_tokens": 31
+        },
+        "completion_tokens": 186,
+        "total_tokens": 218
+      },
+      "finish_reason": "stop",
+      "metadata": {
+        "id": "chatcmpl-292",
+        "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+        "system_fingerprint": "fp_ollama"
+      }
+    }
+  ],
+  "documents": [],
+  "smoke": {
+    "response": "OK",
+    "seconds": 19.85898608248681,
+    "time_to_first_text_s": 19.846100749447942,
+    "last_text_s": 19.846100749447942,
+    "completion_tokens_per_total_second": 0.050355038059162416,
+    "usage": {
+      "prompt_tokens": 21,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens": 1,
+      "total_tokens": 22
+    },
+    "finish_reason": "stop",
+    "metadata": {
+      "id": "chatcmpl-685",
+      "model": "nemotron-3.5-lightning:30b-a3b-mlx",
+      "system_fingerprint": "fp_ollama"
+    }
+  },
+  "summary": {
+    "correct": 23,
+    "total": 29,
+    "overall_pct": 79.3103448275862,
+    "avg_seconds_per_question": 7.89423197976731,
+    "hit_token_limit": 0,
+    "median_time_to_first_text_s": 0.10949987452477217,
+    "median_completion_tokens_per_total_second": 63.90145709063649
+  }
+}

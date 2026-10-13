@@ -1,0 +1,13 @@
+{
+  "video.jpg": {
+    "source": "https://i.ytimg.com/vi/79Pnm5hANsA/hqdefault.jpg",
+    "credit": "Nathan Lambert / YouTube video thumbnail"
+  },
+  "semianalysis.png": {
+    "source": "https://semianalysis.com/wp-content/themes/semianalysis/assets/img/sharecard-default.png",
+    "credit": "SemiAnalysis website social sharing image"
+  },
+  "linkedin.svg": {
+    "credit": "Locally drawn LinkedIn identification icon; not a profile photo"
+  }
+}

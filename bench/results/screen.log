@@ -1,0 +1,190 @@
+== pull bonsai-2:4b 10:07:56
+   ok
+== pull bonsai-2:9b 10:08:50
+   ok
+== pull qwen3.5:4b-nvfp4 10:10:53
+   ok
+== pull qwen3.5:9b-nvfp4 10:13:13
+   ok
+== pull granite4.2:8b 10:18:21
+   ok
+== pull lfm2.5:8b-a1b-q4_K_M 10:22:03
+   ok
+== pull ornith-1.5:9b 10:25:53
+   ok
+== screen bonsai-2:4b 10:30:03 | AC Power
+== bonsai-2:4b
+  bonsai-2:4b ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1684, 'truncated': False, 'prefill_tok_s': 724.1, 'wait_before_first_token_s': 2.33, 'reply_tokens': 127, 'gen_tok_s_with_document': 63.4, 'memory_gb_after': 2.66, 'memory_gb': 2.66}
+== bonsai-2:4b
+  bonsai-2:4b #61 hard: OK  '779' 8.5s
+  bonsai-2:4b #62 hard: OK  '31' 6.5s
+  bonsai-2:4b #63 hard: BAD '124' 6.3s
+  bonsai-2:4b #64 hard: BAD '121335' 15.57s
+  bonsai-2:4b #65 hard: OK  '103776' 8.42s
+  bonsai-2:4b #66 hard: OK  '45' 12.17s
+  bonsai-2:4b #67 hard: OK  '117' 11.12s
+  bonsai-2:4b #68 hard: OK  '329' 25.38s
+  bonsai-2:4b #69 hard: OK  '23' 8.88s
+  bonsai-2:4b #70 hard: OK  '924' 16.84s
+  bonsai-2:4b #71 hard: OK  'B' 18.68s
+  bonsai-2:4b #72 hard: OK  'C' 26.65s
+  bonsai-2:4b #73 hard: OK  'D' 4.87s
+  bonsai-2:4b #74 hard: OK  'B' 2.35s
+  bonsai-2:4b #75 hard: OK  'C' 7.19s
+  bonsai-2:4b #76 hard: BAD "SyntaxError: name 'tokens' is used prior to global declarat 17.11s
+  bonsai-2:4b #77 hard: OK  'pass' 3.23s
+  bonsai-2:4b #78 hard: OK  'pass' 3.87s
+  bonsai-2:4b #79 hard: OK  'pass' 4.31s
+  bonsai-2:4b #80 hard: OK  'pass' 3.41s
+  bonsai-2:4b: {'overall_pct': 85.0, 'everyday_pct': None, 'math_pct': None, 'knowledge_pct': None, 'coding_pct': None, 'hard_pct': 85.0, 'avg_seconds_per_question': 10.6, 'total_minutes': 3.5, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== screen bonsai-2:9b 10:34:04 | AC Power
+== bonsai-2:9b
+  bonsai-2:9b ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1682, 'truncated': False, 'prefill_tok_s': 368.1, 'wait_before_first_token_s': 4.58, 'reply_tokens': 155, 'gen_tok_s_with_document': 38.8, 'memory_gb_after': 4.37, 'memory_gb': 4.37}
+== bonsai-2:9b
+  bonsai-2:9b #61 hard: OK  '779' 16.25s
+  bonsai-2:9b #62 hard: OK  '31' 12.98s
+  bonsai-2:9b #63 hard: OK  '115' 125.98s
+  bonsai-2:9b #64 hard: OK  '121415' 30.08s
+  bonsai-2:9b #65 hard: OK  '103776' 11.37s
+  bonsai-2:9b #66 hard: OK  '45' 19.58s
+  bonsai-2:9b #67 hard: OK  '117' 19.86s
+  bonsai-2:9b #68 hard: OK  '329' 33.1s
+  bonsai-2:9b #69 hard: OK  '23' 19.94s
+  bonsai-2:9b #70 hard: BAD '252' 21.8s
+  bonsai-2:9b #71 hard: OK  'B' 88.16s
+  bonsai-2:9b #72 hard: OK  'C' 35.11s
+  bonsai-2:9b #73 hard: OK  'D' 8.35s
+  bonsai-2:9b #74 hard: BAD 'A' 2.87s
+  bonsai-2:9b #75 hard: OK  'C' 11.21s
+  bonsai-2:9b #76 hard: OK  'pass' 12.67s
+  bonsai-2:9b #77 hard: OK  'pass' 5.15s
+  bonsai-2:9b #78 hard: OK  'pass' 6.54s
+  bonsai-2:9b #79 hard: OK  'pass' 6.41s
+  bonsai-2:9b #80 hard: OK  'pass' 6.29s
+  bonsai-2:9b: {'overall_pct': 90.0, 'everyday_pct': None, 'math_pct': None, 'knowledge_pct': None, 'coding_pct': None, 'hard_pct': 90.0, 'avg_seconds_per_question': 24.7, 'total_minutes': 8.2, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== screen qwen3.5:4b-nvfp4 10:43:03 | AC Power
+== qwen3.5:4b-nvfp4
+  qwen3.5:4b-nvfp4 ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1684, 'truncated': False, 'prefill_tok_s': 619.2, 'wait_before_first_token_s': 2.72, 'reply_tokens': 200, 'gen_tok_s_with_document': 63.1, 'memory_gb_after': 4.85, 'memory_gb': 6.53}
+== qwen3.5:4b-nvfp4
+  qwen3.5:4b-nvfp4 #61 hard: OK  '779' 9.5s
+  qwen3.5:4b-nvfp4 #62 hard: OK  '31' 9.8s
+  qwen3.5:4b-nvfp4 #63 hard: OK  '115' 88.84s
+  qwen3.5:4b-nvfp4 #64 hard: OK  '121415' 15.51s
+  qwen3.5:4b-nvfp4 #65 hard: OK  '103776' 7.06s
+  qwen3.5:4b-nvfp4 #66 hard: OK  '45' 18.34s
+  qwen3.5:4b-nvfp4 #67 hard: OK  '117' 16.96s
+  qwen3.5:4b-nvfp4 #68 hard: OK  '329' 18.29s
+  qwen3.5:4b-nvfp4 #69 hard: OK  '23' 12.68s
+  qwen3.5:4b-nvfp4 #70 hard: OK  '924' 17.65s
+  qwen3.5:4b-nvfp4 #71 hard: BAD 'C' 12.43s
+  qwen3.5:4b-nvfp4 #72 hard: OK  'C' 25.94s
+  qwen3.5:4b-nvfp4 #73 hard: OK  'D' 8.43s
+  qwen3.5:4b-nvfp4 #74 hard: OK  'B' 1.83s
+  qwen3.5:4b-nvfp4 #75 hard: OK  'C' 12.33s
+  qwen3.5:4b-nvfp4 #76 hard: OK  'pass' 9.59s
+  qwen3.5:4b-nvfp4 #77 hard: OK  'pass' 3.43s
+  qwen3.5:4b-nvfp4 #78 hard: OK  'pass' 6.3s
+  qwen3.5:4b-nvfp4 #79 hard: OK  'pass' 5.13s
+  qwen3.5:4b-nvfp4 #80 hard: OK  'pass' 4.28s
+  qwen3.5:4b-nvfp4: {'overall_pct': 95.0, 'everyday_pct': None, 'math_pct': None, 'knowledge_pct': None, 'coding_pct': None, 'hard_pct': 95.0, 'avg_seconds_per_question': 15.2, 'total_minutes': 5.1, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== screen qwen3.5:9b-nvfp4 10:48:42 | AC Power
+== qwen3.5:9b-nvfp4
+  qwen3.5:9b-nvfp4 ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1686, 'truncated': False, 'prefill_tok_s': 322.9, 'wait_before_first_token_s': 5.22, 'reply_tokens': 167, 'gen_tok_s_with_document': 37.9, 'memory_gb_after': 8.01, 'memory_gb': 9.79}
+== qwen3.5:9b-nvfp4
+  qwen3.5:9b-nvfp4 #61 hard: OK  '779' 16.97s
+  qwen3.5:9b-nvfp4 #62 hard: OK  '31' 16.29s
+  qwen3.5:9b-nvfp4 #63 hard: OK  '115' 27.4s
+  qwen3.5:9b-nvfp4 #64 hard: OK  '121415' 30.06s
+  qwen3.5:9b-nvfp4 #65 hard: BAD '207552' 13.0s
+  qwen3.5:9b-nvfp4 #66 hard: OK  '45' 19.41s
+  qwen3.5:9b-nvfp4 #67 hard: OK  '117' 23.23s
+  qwen3.5:9b-nvfp4 #68 hard: OK  '329' 36.68s
+  qwen3.5:9b-nvfp4 #69 hard: OK  '23' 15.83s
+  qwen3.5:9b-nvfp4 #70 hard: BAD '252' 19.14s
+  qwen3.5:9b-nvfp4 #71 hard: OK  'B' 51.92s
+  qwen3.5:9b-nvfp4 #72 hard: OK  'C' 25.08s
+  qwen3.5:9b-nvfp4 #73 hard: OK  'D' 10.52s
+  qwen3.5:9b-nvfp4 #74 hard: OK  'B' 2.71s
+  qwen3.5:9b-nvfp4 #75 hard: OK  'C' 19.84s
+  qwen3.5:9b-nvfp4 #76 hard: BAD "UnboundLocalError: cannot access local variable 'i' where i 8.11s
+  qwen3.5:9b-nvfp4 #77 hard: OK  'pass' 6.01s
+  qwen3.5:9b-nvfp4 #78 hard: OK  'pass' 7.75s
+  qwen3.5:9b-nvfp4 #79 hard: OK  'pass' 7.93s
+  qwen3.5:9b-nvfp4 #80 hard: OK  'pass' 5.08s
+  qwen3.5:9b-nvfp4: {'overall_pct': 85.0, 'everyday_pct': None, 'math_pct': None, 'knowledge_pct': None, 'coding_pct': None, 'hard_pct': 85.0, 'avg_seconds_per_question': 18.1, 'total_minutes': 6.0, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== screen granite4.2:8b 10:55:38 | AC Power
+== granite4.2:8b
+  granite4.2:8b ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1794, 'truncated': False, 'prefill_tok_s': 286.0, 'wait_before_first_token_s': 6.26, 'reply_tokens': 200, 'gen_tok_s_with_document': 24.8, 'memory_gb_after': 6.53, 'memory_gb': 6.53}
+== granite4.2:8b
+  granite4.2:8b #61 hard: OK  '779' 28.33s
+  granite4.2:8b #62 hard: OK  '31' 17.02s
+  granite4.2:8b #63 hard: BAD None 263.44s
+  granite4.2:8b #64 hard: BAD None 258.65s
+  granite4.2:8b #65 hard: OK  '103776' 25.62s
+  granite4.2:8b #66 hard: OK  '45' 151.73s
+  granite4.2:8b #67 hard: OK  '117' 46.03s
+  granite4.2:8b #68 hard: BAD None 258.29s
+  granite4.2:8b #69 hard: OK  '23' 35.49s
+  granite4.2:8b #70 hard: OK  'ANSWER: 924' 29.93s
+  granite4.2:8b #71 hard: BAD None 255.18s
+  granite4.2:8b #72 hard: OK  'C' 237.77s
+  granite4.2:8b #73 hard: OK  'D' 27.79s
+  granite4.2:8b #74 hard: OK  'B' 12.04s
+  granite4.2:8b #75 hard: OK  'C' 57.72s
+  granite4.2:8b #76 hard: OK  'pass' 31.94s
+  granite4.2:8b #77 hard: OK  'pass' 8.82s
+  granite4.2:8b #78 hard: OK  'pass' 14.89s
+  granite4.2:8b #79 hard: OK  'pass' 10.07s
+  granite4.2:8b #80 hard: OK  'pass' 9.28s
+  granite4.2:8b: {'overall_pct': 80.0, 'everyday_pct': None, 'math_pct': None, 'knowledge_pct': None, 'coding_pct': None, 'hard_pct': 80.0, 'avg_seconds_per_question': 89.0, 'total_minutes': 29.7, 'thought_before_answering': False, 'hit_token_limit': 4, 'crashed': 0}
+== screen lfm2.5:8b-a1b-q4_K_M 11:26:42 | AC Power
+== lfm2.5:8b-a1b-q4_K_M
+  lfm2.5:8b-a1b-q4_K_M ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1678, 'truncated': False, 'prefill_tok_s': 1316.9, 'wait_before_first_token_s': 1.27, 'reply_tokens': 200, 'gen_tok_s_with_document': 116.4, 'memory_gb_after': 5.43, 'memory_gb': 5.43}
+== lfm2.5:8b-a1b-q4_K_M
+  lfm2.5:8b-a1b-q4_K_M #61 hard: OK  '779' 2.83s
+  lfm2.5:8b-a1b-q4_K_M #62 hard: OK  '31' 3.97s
+  lfm2.5:8b-a1b-q4_K_M #63 hard: OK  '115' 19.12s
+  lfm2.5:8b-a1b-q4_K_M #64 hard: OK  '121415' 15.68s
+  lfm2.5:8b-a1b-q4_K_M #65 hard: OK  '103776' 4.39s
+  lfm2.5:8b-a1b-q4_K_M #66 hard: OK  '45' 5.64s
+  lfm2.5:8b-a1b-q4_K_M #67 hard: OK  '117' 5.82s
+  lfm2.5:8b-a1b-q4_K_M #68 hard: OK  '329' 7.06s
+  lfm2.5:8b-a1b-q4_K_M #69 hard: OK  '23' 5.18s
+  lfm2.5:8b-a1b-q4_K_M #70 hard: OK  '924' 9.68s
+  lfm2.5:8b-a1b-q4_K_M #71 hard: OK  'B' 12.7s
+  lfm2.5:8b-a1b-q4_K_M #72 hard: OK  'C' 12.57s
+  lfm2.5:8b-a1b-q4_K_M #73 hard: OK  'D' 6.68s
+  lfm2.5:8b-a1b-q4_K_M #74 hard: OK  'B' 3.7s
+  lfm2.5:8b-a1b-q4_K_M #75 hard: OK  'C' 16.9s
+  lfm2.5:8b-a1b-q4_K_M #76 hard: OK  'pass' 14.82s
+  lfm2.5:8b-a1b-q4_K_M #77 hard: OK  'pass' 4.2s
+  lfm2.5:8b-a1b-q4_K_M #78 hard: OK  'pass' 7.4s
+  lfm2.5:8b-a1b-q4_K_M #79 hard: BAD 'SyntaxError: invalid syntax' 6.96s
+  lfm2.5:8b-a1b-q4_K_M #80 hard: OK  'pass' 8.29s
+  lfm2.5:8b-a1b-q4_K_M: {'overall_pct': 95.0, 'everyday_pct': None, 'math_pct': None, 'knowledge_pct': None, 'coding_pct': None, 'hard_pct': 95.0, 'avg_seconds_per_question': 8.7, 'total_minutes': 2.9, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== screen ornith-1.5:9b 11:29:58 | AC Power
+== ornith-1.5:9b
+  ornith-1.5:9b ctx=2048: {'document_chars': 5898, 'prompt_tokens': 1685, 'truncated': False, 'prefill_tok_s': 341.1, 'wait_before_first_token_s': 4.94, 'reply_tokens': 200, 'gen_tok_s_with_document': 25.0, 'memory_gb_after': 7.66, 'memory_gb': 7.66}
+== ornith-1.5:9b
+  ornith-1.5:9b #61 hard: OK  '779' 13.65s
+  ornith-1.5:9b #62 hard: OK  '31' 15.79s
+  ornith-1.5:9b #63 hard: BAD '207' 21.5s
+  ornith-1.5:9b #64 hard: BAD '344732' 23.31s
+  ornith-1.5:9b #65 hard: OK  '103776' 8.71s
+  ornith-1.5:9b #66 hard: OK  '45' 22.8s
+  ornith-1.5:9b #67 hard: BAD '118' 18.11s
+  ornith-1.5:9b #68 hard: OK  '329' 24.63s
+  ornith-1.5:9b #69 hard: OK  '23' 13.25s
+  ornith-1.5:9b #70 hard: BAD '252' 19.52s
+  ornith-1.5:9b #71 hard: OK  'B' 21.05s
+  ornith-1.5:9b #72 hard: OK  'C' 16.9s
+  ornith-1.5:9b #73 hard: OK  'D' 11.23s
+  ornith-1.5:9b #74 hard: OK  'B' 2.66s
+  ornith-1.5:9b #75 hard: OK  'C' 16.02s
+  ornith-1.5:9b #76 hard: BAD 'AssertionError' 12.66s
+  ornith-1.5:9b #77 hard: OK  'pass' 5.92s
+  ornith-1.5:9b #78 hard: OK  'pass' 7.63s
+  ornith-1.5:9b #79 hard: BAD 'TypeError: list.extend() takes exactly one argument (4 give 9.79s
+  ornith-1.5:9b #80 hard: OK  'pass' 10.13s
+  ornith-1.5:9b: {'overall_pct': 70.0, 'everyday_pct': None, 'math_pct': None, 'knowledge_pct': None, 'coding_pct': None, 'hard_pct': 70.0, 'avg_seconds_per_question': 14.8, 'total_minutes': 4.9, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== screen done 11:36:13

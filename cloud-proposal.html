@@ -1,0 +1,278 @@
+<title>Same Model, Three Venues</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
+<style>
+  /* Layout: one reading column, a three-lane venue diagram, a build matrix, the run steps, then cost. Palette taken from the deck (index.html). */
+  :root {
+    --bg: #0b1020;
+    --panel: #131a2e;
+    --panel-2: #1a2340;
+    --line: #2a3557;
+    --text: #f3f6fc;
+    --text-2: #c3cce0;
+    --text-3: #93a0bd;
+    --blue: #4cc2ff;
+    --green: #3ddc97;
+    --amber: #ffc24b;
+    --red: #ff6b7d;
+    --violet: #b794ff;
+    --sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding-block: 40px 64px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid;
+    gap: 48px;
+  }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.01em; }
+  h2 { font-size: 1.25rem; font-weight: 600; }
+  h3 { font-size: 1rem; font-weight: 600; }
+  p { margin: 0; max-width: 65ch; color: var(--text-2); }
+  .eyebrow { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
+  section { display: grid; gap: 16px; }
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .code { font-family: var(--mono); font-size: 0.8rem; color: var(--blue); overflow-wrap: anywhere; }
+
+  header { display: grid; gap: 12px; }
+  .goal { color: var(--text); font-size: 1.1rem; }
+
+  /* Venue diagram */
+  .flow { display: grid; grid-template-columns: 1fr 2.6fr; gap: 16px; align-items: stretch; }
+  .source {
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+    padding: 16px; display: grid; gap: 8px; align-content: center; min-width: 0;
+  }
+  .lanes { display: grid; gap: 10px; min-width: 0; }
+  .lane {
+    display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: center;
+    background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--c);
+    border-radius: 6px; padding: 12px 16px;
+  }
+  .lane .name { font-weight: 600; color: var(--c); }
+  .lane .detail { color: var(--text-2); font-size: 0.9rem; min-width: 0; }
+  .lane.mac { --c: var(--green); }
+  .lane.gpu { --c: var(--blue); }
+  .lane.or { --c: var(--violet); }
+
+  /* Build matrix */
+  .matrix-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 0.85rem; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  thead th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); font-weight: 400; }
+  thead th.mac { color: var(--green); }
+  thead th.gpu { color: var(--blue); }
+  thead th.or { color: var(--violet); }
+  td.model b { display: block; color: var(--text); }
+  td.model span { font-family: var(--mono); font-size: 0.72rem; color: var(--text-3); }
+  td .fmt { display: inline-block; font-family: var(--mono); font-size: 0.72rem; padding: 1px 7px; border-radius: 99px; border: 1px solid var(--c); color: var(--c); margin-bottom: 4px; }
+  td .src { display: block; font-family: var(--mono); font-size: 0.72rem; color: var(--text-3); overflow-wrap: anywhere; }
+  td.none { color: var(--text-3); }
+  tr.redteam td.model b { color: var(--red); }
+
+  /* Steps */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-left: 2px solid var(--line); }
+  .steps li { display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; padding: 10px 0 10px 16px; position: relative; align-items: baseline; }
+  .steps li::before { content: ""; position: absolute; left: -6px; top: 18px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--blue); }
+  .steps li.before::before { border-color: var(--amber); }
+  .steps li.local::before { border-color: var(--green); }
+  .steps li.phase::before { display: none; }
+  .steps .when { color: var(--text-3); font-size: 0.85rem; text-align: right; white-space: nowrap; }
+  .steps .what { color: var(--text-2); min-width: 0; }
+  .steps .what b { color: var(--text); font-weight: 600; }
+  .phase { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 14px 0 4px 16px; }
+
+  /* Cost */
+  .totals { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .total { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: grid; gap: 4px; }
+  .total .big { font-family: var(--mono); font-size: 1.8rem; font-weight: 600; }
+  .total.gpu .big { color: var(--blue); }
+  .total.or .big { color: var(--violet); }
+  .total .sub { color: var(--text-3); font-size: 0.85rem; }
+
+  .chart { display: grid; gap: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 20px; overflow-x: auto; }
+  .row { display: grid; grid-template-columns: 230px 1fr; gap: 12px; align-items: center; font-size: 0.85rem; min-width: 460px; }
+  .row .label { color: var(--text-2); }
+  .row .label small { display: block; color: var(--text-3); font-family: var(--mono); font-size: 0.72rem; }
+  .track { position: relative; height: 22px; }
+  .bar { height: 100%; border-radius: 3px; background: var(--blue); min-width: 3px; }
+  .value { position: absolute; top: 50%; transform: translateY(-50%); padding-left: 8px; font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--text); white-space: nowrap; }
+
+  .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .why div { border-top: 2px solid var(--line); padding-top: 12px; display: grid; gap: 6px; align-content: start; }
+  .why div:first-child { border-top-color: var(--blue); }
+  .why h3 { color: var(--text); }
+  .why p { font-size: 0.9rem; }
+
+  .risks { display: grid; gap: 8px; }
+  .risks p { font-size: 0.9rem; }
+  .risks .num { color: var(--amber); margin-right: 8px; }
+  footer p { font-size: 0.8rem; color: var(--text-3); max-width: none; }
+
+  @media (max-width: 720px) {
+    h1 { font-size: 1.6rem; }
+    .flow, .totals, .why { grid-template-columns: 1fr; }
+    .lane { grid-template-columns: 1fr; gap: 4px; }
+    .steps li { grid-template-columns: 1fr; gap: 2px; }
+    .steps .when { text-align: left; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Proposal · open-weights deck</div>
+    <h1>Same model, three venues</h1>
+    <p class="goal">Run models from the local benchmark on a rented cloud GPU and through OpenRouter, each in the build that suits that hardware best, and compare speed and quality on the same challenge questions.</p>
+    <p>Three makers plus one red-team fine-tune. Every venue gets its fastest build, so the weights differ in precision by platform, and the slide says so. The cloud runs happen unattended overnight. Nothing is demoed live.</p>
+  </header>
+
+  <section>
+    <div class="eyebrow">How it runs</div>
+    <div class="flow">
+      <div class="source">
+        <h3>Same questions, same settings</h3>
+        <span class="code">quiz.py --set challenge</span>
+        <p style="font-size:0.85rem">29 questions that separate models, temperature 0, thinking off, empty system prompt, 6,144-token cap. Speed comes from one streaming client used on every venue.</p>
+      </div>
+      <div class="lanes">
+        <div class="lane mac">
+          <div class="name">MacBook Pro</div>
+          <div class="detail">M1 Max, 64 GB. Ollama 0.40.6 with Apple-optimized <span class="num">nvfp4</span> builds on the MLX runner. Already scheduled in the local night runner.</div>
+        </div>
+        <div class="lane gpu">
+          <div class="name">Cloud GPU</div>
+          <div class="detail">AWS <span class="num">g6e.xlarge</span>, one NVIDIA L40S (48 GB). vLLM serving <span class="num">FP8</span> checkpoints, the precision the L40S runs natively. Ollama for the red-team model, which only exists as GGUF.</div>
+        </div>
+        <div class="lane or">
+          <div class="name">OpenRouter</div>
+          <div class="detail">Pinned to DeepInfra, no fallbacks, which serves <span class="num">bf16</span> or <span class="num">fp8</span>. Same OpenAI-compatible client as vLLM.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">What runs where</div>
+    <div class="matrix-wrap">
+      <table>
+        <thead>
+          <tr><th>Model</th><th class="mac">Mac</th><th class="gpu">Cloud GPU</th><th class="or">OpenRouter</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="model"><b>M2 · Qwen 3.8 27B</b><span>Alibaba · dense</span></td>
+            <td><span class="fmt" style="--c: var(--green)">nvfp4</span><span class="src">qwen3.8:27b</span></td>
+            <td><span class="fmt" style="--c: var(--blue)">FP8</span><span class="src">Qwen/Qwen3.8-27B-FP8 · 30.9 GB</span></td>
+            <td><span class="fmt" style="--c: var(--violet)">bf16</span><span class="src">qwen/qwen3.8-27b</span></td>
+          </tr>
+          <tr>
+            <td class="model"><b>M7 · Gemma 4 26B-A4B</b><span>Google · mixture of experts</span></td>
+            <td><span class="fmt" style="--c: var(--green)">nvfp4</span><span class="src">gemma4:26b-nvfp4</span></td>
+            <td><span class="fmt" style="--c: var(--blue)">FP8</span><span class="src">RedHatAI/gemma-4-26B-A4B-it-FP8-dynamic · 28.6 GB</span></td>
+            <td><span class="fmt" style="--c: var(--violet)">fp8</span><span class="src">google/gemma-4-26b-a4b-it</span></td>
+          </tr>
+          <tr>
+            <td class="model"><b>M8 · Nemotron 3.5 Lightning 30B-A3B</b><span>NVIDIA · mixture of experts</span></td>
+            <td><span class="fmt" style="--c: var(--green)">nvfp4</span><span class="src">nemotron-3.5-lightning:30b-a3b-mlx</span></td>
+            <td><span class="fmt" style="--c: var(--blue)">FP8</span><span class="src">RedHatAI/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-FP8 · 32.3 GB</span></td>
+            <td><span class="fmt" style="--c: var(--violet)">bf16</span><span class="src">nvidia/nemotron-3.5-lightning</span></td>
+          </tr>
+          <tr class="redteam">
+            <td class="model"><b>M9 · Qwen 3.8 27B red-team</b><span>Community fine-tune of M2</span></td>
+            <td><span class="fmt" style="--c: var(--green)">Q4_K_M</span><span class="src">rafw007/qwen3.8-27b-redteam</span></td>
+            <td><span class="fmt" style="--c: var(--blue)">Q4_K_M</span><span class="src">rafw007/Qwen3.8-27B-redteam-abliterated · 16.6 GB · Ollama</span></td>
+            <td class="none">Not hosted. Only your own hardware or a rented GPU can run it.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">The run</div>
+    <ol class="steps">
+      <li class="phase">Before</li>
+      <li class="before"><span class="num code">A12</span><span class="what"><b>Request GPU quota.</b> At least 4 vCPUs of "G and VT" instances in us-east-1. Free until an instance runs.</span><span class="when">days before</span></li>
+      <li class="local"><span class="num code">A19</span><span class="what"><b>Mac baseline.</b> Already in <span class="code">runner.sh</span>: the challenge set for all four Mac builds on Ollama 0.40.6. No change needed.</span><span class="when">local nights</span></li>
+      <li class="before"><span class="num code">A16</span><span class="what"><b>One streaming client.</b> Sends the challenge set to any OpenAI-compatible server and records time to first token and tokens/sec. Covers vLLM, OpenRouter, and Ollama's own compatible endpoint, so speed is measured the same way on all three venues.</span><span class="when">small script</span></li>
+      <li class="before"><span class="num code">A20</span><span class="what"><b>Stage in S3.</b> A small instance without a GPU downloads the three FP8 checkpoints and the red-team GGUF at pinned revisions, and syncs them to a bucket in us-east-1.</span><span class="when">about 1 hour, once</span></li>
+      <li class="phase">Overnight</li>
+      <li><span class="num code">A13</span><span class="what"><b>Boot and copy.</b> Deep Learning Base AMI, a pinned vLLM version and Ollama 0.40.6, then sync the models from S3 to local disk. First check that vLLM loads all three architectures.</span><span class="when">under 30 min</span></li>
+      <li><span class="num code">A14</span><span class="what"><b>Challenge set on the GPU.</b> vLLM serves M2, M7 and M8 one at a time with a 32K context limit, then Ollama serves M9.</span><span class="when">1 to 2 hours</span></li>
+      <li><span class="num code">A15</span><span class="what"><b>Speed on the GPU.</b> Writing speed and time to first token on 2K, 8K and 32K documents, one request at a time.</span><span class="when">about 1 hour</span></li>
+      <li><span class="num code">A21</span><span class="what"><b>OpenRouter.</b> The same challenge set and speed test for M2, M7 and M8, run twice. Runs from the laptop, no GPU needed.</span><span class="when">in parallel</span></li>
+      <li><span class="num code">·</span><span class="what"><b>Shut down.</b> The script ends with a shutdown so the instance does not bill until morning.</span><span class="when">automatic</span></li>
+      <li class="phase">After</li>
+      <li class="local"><span class="num code">A18</span><span class="what"><b>One slide.</b> Per model: build, tokens/sec, time to first token, challenge score and cost per run, one row per venue.</span><span class="when">next day</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="eyebrow">What it costs</div>
+    <div class="totals">
+      <div class="total gpu">
+        <span class="sub">Cloud GPU, estimate</span>
+        <span class="big">$5 to $8</span>
+        <span class="sub">3 to 4 billed hours at about $1.86 per hour on-demand, plus about $2.50 a month to keep 108 GB in S3</span>
+      </div>
+      <div class="total or">
+        <span class="sub">OpenRouter, three models, two runs</span>
+        <span class="big">under $1</span>
+        <span class="sub">29 questions and three short documents per model at DeepInfra's prices</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Why the GPU costs more for the same work</div>
+    <h2>You rent the whole GPU by the hour. OpenRouter sells you a slice of a busy one.</h2>
+    <div class="chart" role="img" aria-label="Output tokens per second one L40S must sustain at 1.86 dollars per hour to match DeepInfra's price: Qwen 3.8 27B 276, Gemma 4 26B 1,520, Nemotron 3.5 Lightning 3,229.">
+      <div class="eyebrow">Tokens/sec one L40S must sustain to match DeepInfra's price</div>
+      <div class="row"><span class="label">M2 · Qwen 3.8 27B<small>$1.875 per million</small></span><div class="track"><div class="bar" style="width: 7.9%"></div><span class="value" style="left: 7.9%">276</span></div></div>
+      <div class="row"><span class="label">M7 · Gemma 4 26B-A4B<small>$0.34 per million</small></span><div class="track"><div class="bar" style="width: 43.4%"></div><span class="value" style="left: 43.4%">1,520</span></div></div>
+      <div class="row"><span class="label">M8 · Nemotron 3.5 Lightning<small>$0.16 per million</small></span><div class="track"><div class="bar" style="width: 92.3%"></div><span class="value" style="left: 92.3%">3,229</span></div></div>
+      <p style="font-size:0.8rem; color: var(--text-3)">$1.86 per hour divided by the output price. One request at a time, the Mac writes 14 to 66 tokens/sec on these models. The overnight run measures the L40S figure that goes beside these bars.</p>
+    </div>
+    <div class="why">
+      <div>
+        <h3>Sharing is the main reason</h3>
+        <p>Writing each token means reading the model's weights from GPU memory. One user waits on that read. A provider answers dozens of requests in the same read, so one GPU-hour is split across many customers. This run sends one request at a time.</p>
+      </div>
+      <div>
+        <h3>You pay for idle time</h3>
+        <p>Booting, copying the models, loading them, and the gaps between questions are all billed. A provider's GPU is never idle on your behalf.</p>
+      </div>
+      <div>
+        <h3>On-demand list price</h3>
+        <p>On-demand is the highest price for any card. Spot and smaller GPU clouds cost less, which narrows the gap but does not close it without sharing.</p>
+      </div>
+    </div>
+    <p>The compute per token is about the same. The GPU's utilization is not: a single-user overnight run uses a small fraction of what the card could serve.</p>
+  </section>
+
+  <section class="risks">
+    <div class="eyebrow">Risks</div>
+    <p><span class="num">R4</span>Each venue runs a different precision: 4-bit on the Mac, 8-bit on the GPU, 8 or 16-bit on OpenRouter. A score gap mixes the platform with the precision, so the slide labels each row with its build.</p>
+    <p><span class="num">R6</span>The challenge set has 29 questions, so one answer moves a score by 3.4 points. Hosted providers are not always deterministic at temperature 0, so OpenRouter runs twice and both results are reported.</p>
+    <p><span class="num">R8</span>"Thinking off" is set differently on each server: Ollama's <span class="code">think</span>, vLLM's chat-template switch, and OpenRouter's reasoning setting. A model that thinks on one venue and not another will look slower and score differently, so the client checks every reply for thinking text.</p>
+    <p><span class="num">R9</span>All three models are recent architectures. The vLLM version has to support Qwen 3.8, Gemma 4 and Nemotron 3.5, and the first step on the GPU checks that before the night starts.</p>
+  </section>
+
+  <footer>
+    <p>Prices: OpenRouter API, 2026-10-21. g6e.xlarge price from memory, not checked against AWS's own price page. Checkpoint sizes: Hugging Face API. Mac speeds: bench/results/speed.json and night1-speed.json.</p>
+  </footer>
+</div>

@@ -1,0 +1,655 @@
+== step: quiz Wed Oct 14 11:24:21 CDT 2026
+== deepseek-r1:latest
+  deepseek-r1:latest #1 math: OK  '30.50' 180.54s
+  deepseek-r1:latest #2 math: OK  '288' 44.3s
+  deepseek-r1:latest #3 math: OK  '162' 56.01s
+  deepseek-r1:latest #4 math: OK  '72' 28.56s
+  deepseek-r1:latest #5 math: OK  '32.4' 174.47s
+  deepseek-r1:latest #6 math: OK  '40' 31.09s
+  deepseek-r1:latest #7 math: OK  '9368' 228.52s
+  deepseek-r1:latest #8 math: OK  '13.75' 65.08s
+  deepseek-r1:latest #9 math: OK  '294' 66.61s
+  deepseek-r1:latest #10 math: OK  '45' 91.73s
+  deepseek-r1:latest #11 math: OK  '9' 95.46s
+  deepseek-r1:latest #12 math: OK  '33.04' 98.21s
+  deepseek-r1:latest #13 math: OK  '123' 66.85s
+  deepseek-r1:latest #14 math: OK  '24' 104.07s
+  deepseek-r1:latest #15 math: OK  '2' 65.81s
+  deepseek-r1:latest #16 math: OK  '5624.32' 218.25s
+  deepseek-r1:latest #17 math: OK  '18' 26.3s
+  deepseek-r1:latest #18 math: BAD None 241.44s
+  deepseek-r1:latest #19 math: OK  '80' 24.54s
+  deepseek-r1:latest #20 math: OK  '60' 84.93s
+  deepseek-r1:latest #21 knowledge: OK  'B' 30.61s
+  deepseek-r1:latest #22 knowledge: OK  'A' 17.28s
+  deepseek-r1:latest #23 knowledge: OK  'D' 42.14s
+  deepseek-r1:latest #24 knowledge: OK  'C' 12.06s
+  deepseek-r1:latest #25 knowledge: OK  'B' 23.46s
+  deepseek-r1:latest #26 knowledge: OK  'D' 53.2s
+  deepseek-r1:latest #27 knowledge: OK  'D' 103.27s
+  deepseek-r1:latest #28 knowledge: OK  'B' 61.6s
+  deepseek-r1:latest #29 knowledge: OK  'C' 27.08s
+  deepseek-r1:latest #30 knowledge: OK  'A' 38.35s
+  deepseek-r1:latest #31 knowledge: OK  'D' 48.34s
+  deepseek-r1:latest #32 knowledge: OK  'B' 23.85s
+  deepseek-r1:latest #33 knowledge: OK  'B' 25.31s
+  deepseek-r1:latest #34 knowledge: OK  'C' 28.06s
+  deepseek-r1:latest #35 knowledge: OK  'A' 17.21s
+  deepseek-r1:latest #36 knowledge: OK  'B' 13.68s
+  deepseek-r1:latest #37 knowledge: OK  'C' 108.25s
+  deepseek-r1:latest #38 knowledge: OK  'B' 25.13s
+  deepseek-r1:latest #39 knowledge: OK  'B' 32.01s
+  deepseek-r1:latest #40 knowledge: OK  'C' 41.67s
+  deepseek-r1:latest #41 coding: OK  'pass' 21.47s
+  deepseek-r1:latest #42 coding: OK  'pass' 45.95s
+  deepseek-r1:latest #43 coding: BAD "NameError: name 'flatten' is not defined" 240.33s
+  deepseek-r1:latest #44 coding: OK  'pass' 78.08s
+  deepseek-r1:latest #45 coding: OK  'pass' 82.78s
+  deepseek-r1:latest #46 coding: OK  'pass' 74.08s
+  deepseek-r1:latest #47 coding: OK  'pass' 37.69s
+  deepseek-r1:latest #48 coding: OK  'pass' 36.92s
+  deepseek-r1:latest #49 coding: BAD 'AssertionError' 28.71s
+  deepseek-r1:latest #50 coding: BAD 'IndentationError: unexpected indent' 81.92s
+  deepseek-r1:latest #51 coding: BAD "NameError: name 'longest_common_prefix' is not defined" 244.09s
+  deepseek-r1:latest #52 coding: BAD "NameError: name 'caesar' is not defined" 240.96s
+  deepseek-r1:latest #53 coding: OK  'pass' 30.4s
+  deepseek-r1:latest #54 coding: OK  'pass' 29.41s
+  deepseek-r1:latest #55 coding: OK  'pass' 25.0s
+  deepseek-r1:latest #56 coding: OK  'pass' 29.53s
+  deepseek-r1:latest #57 coding: BAD "NameError: name 'max_subarray' is not defined" 238.43s
+  deepseek-r1:latest #58 coding: OK  'pass' 34.6s
+  deepseek-r1:latest #59 coding: OK  'pass' 82.3s
+  deepseek-r1:latest #60 coding: BAD "NameError: name 'spiral_order' is not defined" 237.65s
+  deepseek-r1:latest: {'overall_pct': 86.7, 'math_pct': 95.0, 'knowledge_pct': 100.0, 'coding_pct': 65.0, 'avg_seconds_per_question': 78.1, 'total_minutes': 78.1, 'thought_before_answering': True}
+== gemma4:12b
+== step: quiz Wed Oct 14 12:42:51 CDT 2026
+== gemma4:12b
+  gemma4:12b #1 math: OK  '30.50' 5.08s
+  gemma4:12b #2 math: OK  '288' 9.44s
+  gemma4:12b #3 math: OK  '162' 12.26s
+  gemma4:12b #4 math: OK  '72' 7.71s
+  gemma4:12b #5 math: OK  '32.4' 7.6s
+  gemma4:12b #6 math: OK  '40' 7.26s
+  gemma4:12b #7 math: OK  '9368' 20.25s
+  gemma4:12b #8 math: OK  '13.75' 10.88s
+  gemma4:12b #9 math: OK  '294' 13.54s
+  gemma4:12b #10 math: OK  '45' 13.37s
+  gemma4:12b #11 math: OK  '9' 16.52s
+  gemma4:12b #12 math: OK  '33.04' 7.77s
+  gemma4:12b #13 math: OK  '123' 8.44s
+  gemma4:12b #14 math: OK  '24' 11.46s
+  gemma4:12b #15 math: OK  '2' 7.85s
+  gemma4:12b #16 math: OK  '5624.32' 10.28s
+  gemma4:12b #17 math: OK  '18' 6.13s
+  gemma4:12b #18 math: OK  '130' 9.71s
+  gemma4:12b #19 math: OK  '80' 7.46s
+  gemma4:12b #20 math: OK  '60' 10.94s
+  gemma4:12b #21 knowledge: OK  'B' 0.98s
+  gemma4:12b #22 knowledge: OK  'A' 2.85s
+  gemma4:12b #23 knowledge: OK  'D' 11.69s
+  gemma4:12b #24 knowledge: OK  'C' 1.91s
+  gemma4:12b #25 knowledge: OK  'B' 5.13s
+  gemma4:12b #26 knowledge: OK  'D' 12.75s
+  gemma4:12b #27 knowledge: OK  'D' 10.59s
+  gemma4:12b #28 knowledge: OK  'B' 7.46s
+  gemma4:12b #29 knowledge: OK  'C' 1.12s
+  gemma4:12b #30 knowledge: OK  'A' 9.74s
+  gemma4:12b #31 knowledge: OK  'D' 1.26s
+  gemma4:12b #32 knowledge: OK  'B' 3.34s
+  gemma4:12b #33 knowledge: OK  'B' 8.78s
+  gemma4:12b #34 knowledge: OK  'C' 2.97s
+  gemma4:12b #35 knowledge: OK  'A' 5.68s
+  gemma4:12b #36 knowledge: OK  'B' 1.97s
+  gemma4:12b #37 knowledge: OK  'C' 7.61s
+  gemma4:12b #38 knowledge: OK  'B' 4.25s
+  gemma4:12b #39 knowledge: OK  'B' 4.53s
+  gemma4:12b #40 knowledge: OK  'C' 3.12s
+  gemma4:12b #41 coding: OK  'pass' 4.1s
+  gemma4:12b #42 coding: OK  'pass' 10.11s
+  gemma4:12b #43 coding: OK  'pass' 1.98s
+  gemma4:12b #44 coding: OK  'pass' 3.37s
+  gemma4:12b #45 coding: OK  'pass' 25.33s
+  gemma4:12b #46 coding: OK  'pass' 6.57s
+  gemma4:12b #47 coding: OK  'pass' 5.07s
+  gemma4:12b #48 coding: OK  'pass' 3.11s
+  gemma4:12b #49 coding: OK  'pass' 3.29s
+  gemma4:12b #50 coding: OK  'pass' 7.95s
+  gemma4:12b #51 coding: OK  'pass' 3.62s
+  gemma4:12b #52 coding: OK  'pass' 5.02s
+  gemma4:12b #53 coding: OK  'pass' 3.32s
+  gemma4:12b #54 coding: OK  'pass' 4.26s
+  gemma4:12b #55 coding: OK  'pass' 3.1s
+  gemma4:12b #56 coding: OK  'pass' 3.37s
+  gemma4:12b #57 coding: OK  'pass' 3.93s
+  gemma4:12b #58 coding: OK  'pass' 5.98s
+  gemma4:12b #59 coding: OK  'pass' 4.74s
+  gemma4:12b #60 coding: OK  'pass' 7.96s
+  gemma4:12b: {'overall_pct': 100.0, 'math_pct': 100.0, 'knowledge_pct': 100.0, 'coding_pct': 100.0, 'avg_seconds_per_question': 7.1, 'total_minutes': 7.1, 'thought_before_answering': False, 'hit_token_limit': 0}
+== gemma4:latest
+  gemma4:latest #1 math: OK  '30.5' 2.77s
+  gemma4:latest #2 math: OK  '288' 3.17s
+  gemma4:latest #3 math: OK  '162' 3.77s
+  gemma4:latest #4 math: OK  '72' 4.2s
+  gemma4:latest #5 math: OK  '32.40' 4.07s
+  gemma4:latest #6 math: OK  '40' 2.26s
+  gemma4:latest #7 math: OK  '9368' 11.21s
+  gemma4:latest #8 math: OK  '13.75' 4.93s
+  gemma4:latest #9 math: OK  '294' 5.91s
+  gemma4:latest #10 math: OK  '45' 2.83s
+  gemma4:latest #11 math: OK  '9' 7.69s
+  gemma4:latest #12 math: OK  '33.04' 2.39s
+  gemma4:latest #13 math: OK  '123' 4.14s
+  gemma4:latest #14 math: OK  '24' 4.94s
+  gemma4:latest #15 math: OK  '2' 3.76s
+  gemma4:latest #16 math: OK  '5624.32' 6.4s
+  gemma4:latest #17 math: OK  '18' 3.74s
+  gemma4:latest #18 math: OK  '130' 13.1s
+  gemma4:latest #19 math: OK  '80' 4.33s
+  gemma4:latest #20 math: OK  '60' 4.93s
+  gemma4:latest #21 knowledge: OK  'B' 0.35s
+  gemma4:latest #22 knowledge: OK  'A' 0.93s
+  gemma4:latest #23 knowledge: OK  'D' 3.41s
+  gemma4:latest #24 knowledge: OK  'C' 0.41s
+  gemma4:latest #25 knowledge: OK  'B' 3.02s
+  gemma4:latest #26 knowledge: OK  'D' 11.09s
+  gemma4:latest #27 knowledge: OK  'D' 8.92s
+  gemma4:latest #28 knowledge: OK  'B' 2.86s
+  gemma4:latest #29 knowledge: OK  'C' 0.6s
+  gemma4:latest #30 knowledge: OK  'A' 3.89s
+  gemma4:latest #31 knowledge: OK  'D' 0.83s
+  gemma4:latest #32 knowledge: OK  'B' 1.86s
+  gemma4:latest #33 knowledge: OK  'B' 3.75s
+  gemma4:latest #34 knowledge: OK  'C' 1.78s
+  gemma4:latest #35 knowledge: OK  'A' 1.15s
+  gemma4:latest #36 knowledge: OK  'B' 1.33s
+  gemma4:latest #37 knowledge: OK  'C' 4.43s
+  gemma4:latest #38 knowledge: OK  'B' 2.58s
+  gemma4:latest #39 knowledge: OK  'B' 0.89s
+  gemma4:latest #40 knowledge: OK  'C' 3.01s
+  gemma4:latest #41 coding: OK  'pass' 1.44s
+  gemma4:latest #42 coding: OK  'pass' 4.68s
+  gemma4:latest #43 coding: OK  'pass' 1.19s
+  gemma4:latest #44 coding: OK  'pass' 2.36s
+  gemma4:latest #45 coding: OK  'pass' 3.18s
+  gemma4:latest #46 coding: OK  'pass' 3.01s
+  gemma4:latest #47 coding: OK  'pass' 3.25s
+  gemma4:latest #48 coding: OK  'pass' 3.48s
+  gemma4:latest #49 coding: OK  'pass' 2.25s
+  gemma4:latest #50 coding: OK  'pass' 3.62s
+  gemma4:latest #51 coding: OK  'pass' 2.44s
+  gemma4:latest #52 coding: OK  'pass' 4.02s
+  gemma4:latest #53 coding: OK  'pass' 1.68s
+  gemma4:latest #54 coding: OK  'pass' 4.1s
+  gemma4:latest #55 coding: OK  'pass' 2.2s
+  gemma4:latest #56 coding: OK  'pass' 2.58s
+  gemma4:latest #57 coding: OK  'pass' 2.77s
+  gemma4:latest #58 coding: OK  'pass' 3.64s
+  gemma4:latest #59 coding: OK  'pass' 3.67s
+  gemma4:latest #60 coding: BAD 'AssertionError' 4.15s
+  gemma4:latest: {'overall_pct': 98.3, 'math_pct': 100.0, 'knowledge_pct': 100.0, 'coding_pct': 95.0, 'avg_seconds_per_question': 3.6, 'total_minutes': 3.6, 'thought_before_answering': False, 'hit_token_limit': 0}
+== qwen3.5:35b
+  qwen3.5:35b #1 math: OK  '30.5' 4.16s
+  qwen3.5:35b #2 math: OK  '288' 6.26s
+  qwen3.5:35b #3 math: OK  '162' 6.22s
+  qwen3.5:35b #4 math: OK  '72' 4.03s
+  qwen3.5:35b #5 math: OK  '32.4' 4.78s
+  qwen3.5:35b #6 math: OK  '40' 4.83s
+  qwen3.5:35b #7 math: OK  '9368' 16.06s
+  qwen3.5:35b #8 math: OK  '13.75' 7.12s
+  qwen3.5:35b #9 math: OK  '294' 8.78s
+  qwen3.5:35b #10 math: OK  '45' 4.98s
+  qwen3.5:35b #11 math: OK  '9' 14.05s
+  qwen3.5:35b #12 math: OK  '33.04' 4.19s
+  qwen3.5:35b #13 math: OK  '123' 7.43s
+  qwen3.5:35b #14 math: OK  '24' 8.71s
+  qwen3.5:35b #15 math: OK  '2' 5.25s
+  qwen3.5:35b #16 math: OK  '5624.32' 7.17s
+  qwen3.5:35b #17 math: OK  '18' 4.36s
+  qwen3.5:35b #18 math: OK  '130' 8.22s
+  qwen3.5:35b #19 math: OK  '80' 5.83s
+  qwen3.5:35b #20 math: OK  '60' 7.05s
+  qwen3.5:35b #21 knowledge: OK  'B' 0.98s
+  qwen3.5:35b #22 knowledge: OK  'A' 1.28s
+  qwen3.5:35b #23 knowledge: OK  'D' 6.13s
+  qwen3.5:35b #24 knowledge: OK  'C' 2.53s
+  qwen3.5:35b #25 knowledge: OK  'B' 4.25s
+  qwen3.5:35b #26 knowledge: OK  'D' 9.74s
+  qwen3.5:35b #27 knowledge: OK  'D' 6.79s
+  qwen3.5:35b #28 knowledge: OK  'B' 3.86s
+  qwen3.5:35b #29 knowledge: OK  'C' 2.04s
+  qwen3.5:35b #30 knowledge: OK  'A' 4.57s
+  qwen3.5:35b #31 knowledge: OK  'D' 1.7s
+  qwen3.5:35b #32 knowledge: OK  'B' 1.82s
+  qwen3.5:35b #33 knowledge: OK  'B' 7.47s
+  qwen3.5:35b #34 knowledge: OK  'C' 1.98s
+  qwen3.5:35b #35 knowledge: OK  'A' 1.42s
+  qwen3.5:35b #36 knowledge: OK  'B' 1.22s
+  qwen3.5:35b #37 knowledge: OK  'C' 7.17s
+  qwen3.5:35b #38 knowledge: OK  'B' 3.12s
+  qwen3.5:35b #39 knowledge: OK  'B' 3.55s
+  qwen3.5:35b #40 knowledge: OK  'C' 5.05s
+  qwen3.5:35b #41 coding: OK  'pass' 1.04s
+  qwen3.5:35b #42 coding: OK  'pass' 4.98s
+  qwen3.5:35b #43 coding: OK  'pass' 1.39s
+  qwen3.5:35b #44 coding: OK  'pass' 2.02s
+  qwen3.5:35b #45 coding: OK  'pass' 2.86s
+  qwen3.5:35b #46 coding: OK  'pass' 3.7s
+  qwen3.5:35b #47 coding: OK  'pass' 3.44s
+  qwen3.5:35b #48 coding: OK  'pass' 2.28s
+  qwen3.5:35b #49 coding: OK  'pass' 2.11s
+  qwen3.5:35b #50 coding: OK  'pass' 2.8s
+  qwen3.5:35b #51 coding: OK  'pass' 2.22s
+  qwen3.5:35b #52 coding: OK  'pass' 2.92s
+  qwen3.5:35b #53 coding: OK  'pass' 2.39s
+  qwen3.5:35b #54 coding: OK  'pass' 2.52s
+  qwen3.5:35b #55 coding: OK  'pass' 2.04s
+  qwen3.5:35b #56 coding: OK  'pass' 1.88s
+  qwen3.5:35b #57 coding: OK  'pass' 1.89s
+  qwen3.5:35b #58 coding: OK  'pass' 3.58s
+  qwen3.5:35b #59 coding: OK  'pass' 4.98s
+  qwen3.5:35b #60 coding: OK  'pass' 5.17s
+  qwen3.5:35b: {'overall_pct': 100.0, 'math_pct': 100.0, 'knowledge_pct': 100.0, 'coding_pct': 100.0, 'avg_seconds_per_question': 4.5, 'total_minutes': 4.5, 'thought_before_answering': False, 'hit_token_limit': 0}
+== qwen3.8:27b
+  qwen3.8:27b #1 math: OK  '30.50' 21.19s
+  qwen3.8:27b #2 math: OK  '288' 27.68s
+  qwen3.8:27b #3 math: OK  '162' 20.16s
+  qwen3.8:27b #4 math: OK  '72' 16.37s
+  qwen3.8:27b #5 math: OK  '32.40' 20.69s
+  qwen3.8:27b #6 math: OK  '40' 15.32s
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+Traceback (most recent call last):
+  File "/Users/nick/git/open-weights-presentation/bench/ollama_client.py", line 17, in post
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 525, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 634, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 563, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/nick/git/open-weights-presentation/bench/ollama_client.py", line 17, in post
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 525, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 634, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 563, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/nick/git/open-weights-presentation/bench/quiz.py", line 130, in <module>
+    ap.add_argument("--category", choices=["math", "knowledge", "coding", "hard"], help="re-run one category and merge into saved results")
+    ^^^^^^
+  File "/Users/nick/git/open-weights-presentation/bench/quiz.py", line 122, in main
+    unload_all()
+                 
+  File "/Users/nick/git/open-weights-presentation/bench/quiz.py", line 90, in run_model
+    
+  File "/Users/nick/git/open-weights-presentation/bench/ollama_client.py", line 44, in chat
+    return post(
+           ^^^^^
+  File "/Users/nick/git/open-weights-presentation/bench/ollama_client.py", line 23, in post
+    return post(path, payload, timeout, retries - 1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/git/open-weights-presentation/bench/ollama_client.py", line 23, in post
+    return post(path, payload, timeout, retries - 1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/git/open-weights-presentation/bench/ollama_client.py", line 17, in post
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 525, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 634, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 563, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/homebrew/anaconda3/lib/python3.11/urllib/request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+== step: deepseek coding regrade Wed Oct 14 13:03:23 CDT 2026
+== deepseek-r1:latest
+  deepseek-r1:latest #41 coding: OK  'pass' 20.72s
+  deepseek-r1:latest #42 coding: OK  'pass' 45.43s
+  deepseek-r1:latest #43 coding: BAD "NameError: name 'flatten' is not defined" 237.66s
+  deepseek-r1:latest #44 coding: OK  'pass' 76.92s
+  deepseek-r1:latest #45 coding: OK  'pass' 81.72s
+  deepseek-r1:latest #46 coding: OK  'pass' 73.41s
+  deepseek-r1:latest #47 coding: OK  'pass' 37.29s
+  deepseek-r1:latest #48 coding: OK  'pass' 37.19s
+  deepseek-r1:latest #49 coding: BAD 'AssertionError' 28.26s
+  deepseek-r1:latest #50 coding: BAD "NameError: name 'rotate_matrix' is not defined" 80.98s
+  deepseek-r1:latest #51 coding: BAD "NameError: name 'longest_common_prefix' is not defined" 238.14s
+  deepseek-r1:latest #52 coding: BAD "NameError: name 'caesar' is not defined" 238.87s
+  deepseek-r1:latest #53 coding: OK  'pass' 30.18s
+  deepseek-r1:latest #54 coding: OK  'pass' 29.14s
+  deepseek-r1:latest #55 coding: OK  'pass' 24.7s
+  deepseek-r1:latest #56 coding: OK  'pass' 29.2s
+  deepseek-r1:latest #57 coding: BAD "NameError: name 'max_subarray' is not defined" 242.79s
+  deepseek-r1:latest #58 coding: OK  'pass' 34.91s
+  deepseek-r1:latest #59 coding: OK  'pass' 83.42s
+  deepseek-r1:latest #60 coding: BAD "NameError: name 'spiral_order' is not defined" 241.39s
+  deepseek-r1:latest: {'overall_pct': 86.7, 'everyday_pct': 86.7, 'math_pct': 95.0, 'knowledge_pct': 100.0, 'coding_pct': 65.0, 'hard_pct': None, 'avg_seconds_per_question': 78.0, 'total_minutes': 78.0, 'thought_before_answering': True, 'hit_token_limit': 6, 'crashed': 0}
+== step: speed+memory 2k-128k Wed Oct 14 13:35:20 CDT 2026
+== deepseek-r1:latest
+  deepseek-r1:latest ctx=2048: {'prompt_tokens': 1840, 'prefill_tok_s': 332.8, 'wait_before_first_token_s': 5.52, 'reply_tokens': 200, 'gen_tok_s_with_document': 24.8, 'memory_gb': 1.0}
+== step: speed+memory 2k-128k Wed Oct 14 13:37:54 CDT 2026
+== deepseek-r1:latest
+  deepseek-r1:latest ctx=2048: {'prompt_tokens': 1838, 'prefill_tok_s': 336.1, 'wait_before_first_token_s': 5.47, 'reply_tokens': 200, 'gen_tok_s_with_document': 28.4, 'memory_gb': 6.29}
+  deepseek-r1:latest ctx=8192: {'prompt_tokens': 6974, 'prefill_tok_s': 276.8, 'wait_before_first_token_s': 25.2, 'reply_tokens': 200, 'gen_tok_s_with_document': 25.6, 'memory_gb': 8.76}
+  deepseek-r1:latest ctx=32768: {'prompt_tokens': 27741, 'prefill_tok_s': 185.4, 'wait_before_first_token_s': 149.59, 'reply_tokens': 200, 'gen_tok_s_with_document': 17.7, 'memory_gb': 10.36}
+  deepseek-r1:latest ctx=131072: {'prompt_tokens': 113438, 'prefill_tok_s': 74.1, 'wait_before_first_token_s': 1530.43, 'reply_tokens': 200, 'gen_tok_s_with_document': 8.0, 'memory_gb': 24.78}
+== gemma4:12b
+  gemma4:12b ctx=2048: {'prompt_tokens': 1774, 'prefill_tok_s': 197.6, 'wait_before_first_token_s': 8.98, 'reply_tokens': 200, 'gen_tok_s_with_document': 27.5, 'memory_gb': 7.98}
+  gemma4:12b ctx=8192: {'prompt_tokens': 7334, 'prefill_tok_s': 193.6, 'wait_before_first_token_s': 37.87, 'reply_tokens': 200, 'gen_tok_s_with_document': 25.7, 'memory_gb': 8.09}
+== step: speed+memory 2k-128k MLX models Wed Oct 14 14:14:13 CDT 2026
+== gemma4:12b
+  gemma4:12b ctx=2048: {'prompt_tokens': 1773, 'prefill_tok_s': 201.0, 'wait_before_first_token_s': 8.83, 'reply_tokens': 200, 'gen_tok_s_with_document': 28.0, 'memory_gb': 11.16}
+  gemma4:12b ctx=8192: {'prompt_tokens': 7332, 'prefill_tok_s': 192.6, 'wait_before_first_token_s': 38.08, 'reply_tokens': 200, 'gen_tok_s_with_document': 23.8, 'memory_gb': 13.56}
+  gemma4:12b ctx=32768: {'prompt_tokens': 28720, 'prefill_tok_s': 179.3, 'wait_before_first_token_s': 160.18, 'reply_tokens': 200, 'gen_tok_s_with_document': 25.4, 'memory_gb': 15.87}
+  gemma4:12b ctx=131072: {'prompt_tokens': 114066, 'prefill_tok_s': 134.9, 'wait_before_first_token_s': 845.6, 'reply_tokens': 200, 'gen_tok_s_with_document': 17.7, 'memory_gb': 18.47}
+== gemma4:latest
+  gemma4:latest ctx=2048: {'prompt_tokens': 1774, 'prefill_tok_s': 984.9, 'wait_before_first_token_s': 1.8, 'reply_tokens': 175, 'gen_tok_s_with_document': 57.2, 'memory_gb': 9.99}
+  gemma4:latest ctx=8192: {'prompt_tokens': 7348, 'prefill_tok_s': 939.4, 'wait_before_first_token_s': 7.82, 'reply_tokens': 198, 'gen_tok_s_with_document': 51.6, 'memory_gb': 10.48}
+  gemma4:latest ctx=32768: {'prompt_tokens': 28878, 'prefill_tok_s': 871.2, 'wait_before_first_token_s': 33.15, 'reply_tokens': 200, 'gen_tok_s_with_document': 35.2, 'memory_gb': 11.11}
+  gemma4:latest ctx=131072: {'prompt_tokens': 114333, 'prefill_tok_s': 651.8, 'wait_before_first_token_s': 175.41, 'reply_tokens': 200, 'gen_tok_s_with_document': 12.6, 'memory_gb': 13.31}
+== qwen3.5:35b
+  qwen3.5:35b ctx=2048: {'prompt_tokens': 1805, 'prefill_tok_s': 765.0, 'wait_before_first_token_s': 2.36, 'reply_tokens': 200, 'gen_tok_s_with_document': 57.0, 'memory_gb': 23.33}
+  qwen3.5:35b ctx=8192: {'prompt_tokens': 7158, 'prefill_tok_s': 645.5, 'wait_before_first_token_s': 11.09, 'reply_tokens': 200, 'gen_tok_s_with_document': 55.4, 'memory_gb': 24.3}
+  qwen3.5:35b ctx=32768: {'prompt_tokens': 28310, 'prefill_tok_s': 564.0, 'wait_before_first_token_s': 50.2, 'reply_tokens': 200, 'gen_tok_s_with_document': 48.8, 'memory_gb': 25.2}
+  qwen3.5:35b ctx=131072: {'prompt_tokens': 112947, 'prefill_tok_s': 299.9, 'wait_before_first_token_s': 376.68, 'reply_tokens': 200, 'gen_tok_s_with_document': 29.7, 'memory_gb': 28.5}
+== qwen3.8:27b
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b ctx=2048: CRASHED (Ollama runner)
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b ctx=8192: CRASHED (Ollama runner)
+== step: qwen3.8 speed (2k, 8k) Wed Oct 14 15:01:52 CDT 2026
+== qwen3.8:27b
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b ctx=2048: CRASHED (Ollama runner)
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b ctx=8192: CRASHED (Ollama runner)
+== step: 256k Wed Oct 14 15:09:51 CDT 2026
+== qwen3.5:35b
+  qwen3.5:35b ctx=262144: {'prompt_tokens': 234061, 'prefill_tok_s': 164.0, 'wait_before_first_token_s': 1427.35, 'reply_tokens': 195, 'gen_tok_s_with_document': 15.1, 'memory_gb': 31.66}
+== gemma4:12b
+  gemma4:12b ctx=262144: {'prompt_tokens': 243120, 'prefill_tok_s': 96.5, 'wait_before_first_token_s': 2520.24, 'reply_tokens': 200, 'gen_tok_s_with_document': 11.5, 'memory_gb': 36.75}
+== step: hard quiz Wed Oct 14 16:17:28 CDT 2026
+== deepseek-r1:latest
+  deepseek-r1:latest #61 hard: BAD None 232.14s
+  deepseek-r1:latest #62 hard: BAD None 235.73s
+  deepseek-r1:latest #63 hard: BAD None 234.0s
+  deepseek-r1:latest #64 hard: BAD None 231.13s
+  deepseek-r1:latest #65 hard: BAD None 231.93s
+  deepseek-r1:latest #66 hard: BAD None 232.28s
+  deepseek-r1:latest #67 hard: BAD None 233.21s
+  deepseek-r1:latest #68 hard: BAD None 232.5s
+  deepseek-r1:latest #69 hard: OK  '23' 164.94s
+  deepseek-r1:latest #70 hard: BAD None 232.93s
+  deepseek-r1:latest #71 hard: BAD None 234.23s
+  deepseek-r1:latest #72 hard: BAD None 232.39s
+  deepseek-r1:latest #73 hard: OK  'D' 51.25s
+  deepseek-r1:latest #74 hard: OK  'B' 97.8s
+  deepseek-r1:latest #75 hard: BAD None 231.86s
+  deepseek-r1:latest #76 hard: BAD "NameError: name 'evaluate' is not defined" 232.67s
+  deepseek-r1:latest #77 hard: OK  'pass' 51.46s
+  deepseek-r1:latest #78 hard: BAD "NameError: name 'next_permutation' is not defined" 232.91s
+  deepseek-r1:latest #79 hard: OK  'pass' 40.02s
+  deepseek-r1:latest #80 hard: BAD "NameError: name 'decode_ways' is not defined" 232.05s
+  deepseek-r1:latest: {'overall_pct': 72.5, 'everyday_pct': 88.3, 'math_pct': 95.0, 'knowledge_pct': 100.0, 'coding_pct': 70.0, 'hard_pct': 25.0, 'avg_seconds_per_question': 107.2, 'total_minutes': 142.9, 'thought_before_answering': True, 'hit_token_limit': 21, 'crashed': 0}
+== gemma4:12b
+  gemma4:12b #61 hard: OK  '779' 13.49s
+  gemma4:12b #62 hard: OK  '31' 14.17s
+  gemma4:12b #63 hard: BAD '109' 23.18s
+  gemma4:12b #64 hard: OK  '121415' 36.7s
+  gemma4:12b #65 hard: OK  '103776' 15.05s
+  gemma4:12b #66 hard: OK  '45' 14.88s
+  gemma4:12b #67 hard: OK  '117' 17.33s
+  gemma4:12b #68 hard: BAD '521' 23.06s
+  gemma4:12b #69 hard: OK  '23' 13.24s
+  gemma4:12b #70 hard: OK  '924' 28.77s
+  gemma4:12b #71 hard: OK  'B' 21.41s
+  gemma4:12b #72 hard: OK  'C' 22.38s
+  gemma4:12b #73 hard: OK  'D' 7.61s
+  gemma4:12b #74 hard: OK  'B' 5.64s
+  gemma4:12b #75 hard: OK  'C' 16.81s
+  gemma4:12b #76 hard: OK  'pass' 89.97s
+  gemma4:12b #77 hard: OK  'pass' 6.56s
+  gemma4:12b #78 hard: OK  'pass' 10.39s
+  gemma4:12b #79 hard: OK  'pass' 8.44s
+  gemma4:12b #80 hard: OK  'pass' 9.46s
+  gemma4:12b: {'overall_pct': 97.5, 'everyday_pct': 100.0, 'math_pct': 100.0, 'knowledge_pct': 100.0, 'coding_pct': 100.0, 'hard_pct': 90.0, 'avg_seconds_per_question': 10.3, 'total_minutes': 13.8, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== gemma4:latest
+  gemma4:latest #61 hard: OK  '779' 7.23s
+  gemma4:latest #62 hard: OK  '31' 7.1s
+  gemma4:latest #63 hard: OK  '115' 11.16s
+  gemma4:latest #64 hard: OK  '121415' 12.86s
+  gemma4:latest #65 hard: OK  '103776' 8.55s
+  gemma4:latest #66 hard: OK  '45' 11.33s
+  gemma4:latest #67 hard: OK  '117' 8.55s
+  gemma4:latest #68 hard: OK  '329' 17.82s
+  gemma4:latest #69 hard: OK  '23' 7.29s
+  gemma4:latest #70 hard: OK  '924' 12.86s
+  gemma4:latest #71 hard: BAD 'C' 12.07s
+  gemma4:latest #72 hard: OK  'C' 23.52s
+  gemma4:latest #73 hard: OK  'D' 6.49s
+  gemma4:latest #74 hard: OK  'B' 2.19s
+  gemma4:latest #75 hard: OK  'C' 14.45s
+  gemma4:latest #76 hard: OK  'pass' 6.95s
+  gemma4:latest #77 hard: OK  'pass' 5.8s
+  gemma4:latest #78 hard: OK  'pass' 5.53s
+  gemma4:latest #79 hard: OK  'pass' 4.11s
+  gemma4:latest #80 hard: OK  'pass' 3.87s
+  gemma4:latest: {'overall_pct': 97.5, 'everyday_pct': 98.3, 'math_pct': 100.0, 'knowledge_pct': 100.0, 'coding_pct': 95.0, 'hard_pct': 95.0, 'avg_seconds_per_question': 5.1, 'total_minutes': 6.8, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== qwen3.5:35b
+  qwen3.5:35b #61 hard: OK  '779' 11.94s
+  qwen3.5:35b #62 hard: OK  '31' 9.14s
+  qwen3.5:35b #63 hard: OK  '115' 20.51s
+  qwen3.5:35b #64 hard: OK  '121415' 20.53s
+  qwen3.5:35b #65 hard: OK  '103776' 10.01s
+  qwen3.5:35b #66 hard: OK  '45' 15.08s
+  qwen3.5:35b #67 hard: OK  '117' 14.65s
+  qwen3.5:35b #68 hard: OK  '329' 23.56s
+  qwen3.5:35b #69 hard: OK  '23' 10.47s
+  qwen3.5:35b #70 hard: OK  '924' 23.9s
+  qwen3.5:35b #71 hard: OK  'B' 23.62s
+  qwen3.5:35b #72 hard: OK  'C' 16.85s
+  qwen3.5:35b #73 hard: OK  'D' 6.57s
+  qwen3.5:35b #74 hard: OK  'B' 2.79s
+  qwen3.5:35b #75 hard: OK  'C' 11.54s
+  qwen3.5:35b #76 hard: OK  'pass' 15.37s
+  qwen3.5:35b #77 hard: BAD 'AssertionError' 38.11s
+  qwen3.5:35b #78 hard: OK  'pass' 5.3s
+  qwen3.5:35b #79 hard: OK  'pass' 4.87s
+  qwen3.5:35b #80 hard: OK  'pass' 5.1s
+  qwen3.5:35b: {'overall_pct': 98.8, 'everyday_pct': 100.0, 'math_pct': 100.0, 'knowledge_pct': 100.0, 'coding_pct': 100.0, 'hard_pct': 95.0, 'avg_seconds_per_question': 7.0, 'total_minutes': 9.4, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 0}
+== step: qwen3.8 full quiz Wed Oct 14 17:37:32 CDT 2026
+== qwen3.8:27b
+  qwen3.8:27b #1 math: OK  '30.50' 19.5s
+  qwen3.8:27b #2 math: OK  '288' 26.78s
+  qwen3.8:27b #3 math: OK  '162' 21.63s
+  qwen3.8:27b #4 math: OK  '72' 16.11s
+  qwen3.8:27b #5 math: OK  '32.40' 20.45s
+  qwen3.8:27b #6 math: OK  '40' 15.36s
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b #7 math: CRASH
+  qwen3.8:27b #8 math: OK  '13.75' 24.23s
+  qwen3.8:27b #9 math: OK  '294' 27.53s
+  qwen3.8:27b #10 math: OK  '45' 16.36s
+  qwen3.8:27b #11 math: OK  '9' 44.7s
+  qwen3.8:27b #12 math: OK  '33.04' 16.03s
+  qwen3.8:27b #13 math: OK  '123' 22.51s
+  qwen3.8:27b #14 math: OK  '24' 27.3s
+  qwen3.8:27b #15 math: OK  '2' 22.05s
+  qwen3.8:27b #16 math: OK  '5624.32' 23.71s
+  qwen3.8:27b #17 math: OK  '18' 14.74s
+  qwen3.8:27b #18 math: OK  '130' 24.3s
+  qwen3.8:27b #19 math: OK  '80' 22.62s
+  qwen3.8:27b #20 math: OK  '60' 26.6s
+  qwen3.8:27b #21 knowledge: OK  'B' 5.14s
+  qwen3.8:27b #22 knowledge: OK  'A' 6.9s
+  qwen3.8:27b #23 knowledge: OK  'D' 13.95s
+  qwen3.8:27b #24 knowledge: OK  'C' 12.31s
+  qwen3.8:27b #25 knowledge: OK  'B' 16.29s
+  qwen3.8:27b #26 knowledge: OK  'D' 37.21s
+  qwen3.8:27b #27 knowledge: OK  'D' 42.68s
+  qwen3.8:27b #28 knowledge: OK  'B' 13.9s
+  qwen3.8:27b #29 knowledge: OK  'C' 5.03s
+  qwen3.8:27b #30 knowledge: OK  'A' 15.85s
+  qwen3.8:27b #31 knowledge: OK  'D' 5.23s
+  qwen3.8:27b #32 knowledge: OK  'B' 8.44s
+  qwen3.8:27b #33 knowledge: OK  'B' 16.17s
+  qwen3.8:27b #34 knowledge: OK  'C' 4.89s
+  qwen3.8:27b #35 knowledge: OK  'A' 5.65s
+  qwen3.8:27b #36 knowledge: OK  'B' 3.92s
+  qwen3.8:27b #37 knowledge: OK  'C' 26.03s
+  qwen3.8:27b #38 knowledge: OK  'B' 10.41s
+  qwen3.8:27b #39 knowledge: OK  'B' 11.16s
+  qwen3.8:27b #40 knowledge: OK  'C' 5.9s
+  qwen3.8:27b #41 coding: OK  'pass' 4.84s
+  qwen3.8:27b #42 coding: OK  'pass' 25.13s
+  qwen3.8:27b #43 coding: OK  'pass' 3.53s
+  qwen3.8:27b #44 coding: OK  'pass' 5.41s
+  qwen3.8:27b #45 coding: OK  'pass' 9.04s
+  qwen3.8:27b #46 coding: OK  'pass' 12.4s
+  qwen3.8:27b #47 coding: OK  'pass' 9.59s
+  qwen3.8:27b #48 coding: OK  'pass' 6.82s
+  qwen3.8:27b #49 coding: OK  'pass' 7.23s
+  qwen3.8:27b #50 coding: OK  'pass' 12.24s
+  qwen3.8:27b #51 coding: OK  'pass' 7.18s
+  qwen3.8:27b #52 coding: OK  'pass' 8.32s
+  qwen3.8:27b #53 coding: OK  'pass' 7.25s
+  qwen3.8:27b #54 coding: OK  'pass' 7.8s
+  qwen3.8:27b #55 coding: OK  'pass' 5.89s
+  qwen3.8:27b #56 coding: OK  'pass' 5.24s
+  qwen3.8:27b #57 coding: OK  'pass' 4.66s
+  qwen3.8:27b #58 coding: OK  'pass' 9.21s
+  qwen3.8:27b #59 coding: OK  'pass' 15.48s
+  qwen3.8:27b #60 coding: OK  'pass' 16.23s
+  qwen3.8:27b #61 hard: OK  '779' 42.5s
+  qwen3.8:27b #62 hard: OK  '31' 35.01s
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b #63 hard: CRASH
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b #64 hard: CRASH
+  qwen3.8:27b #65 hard: OK  '103776' 45.1s
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b #66 hard: CRASH
+  qwen3.8:27b #67 hard: OK  '117' 49.21s
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b #68 hard: CRASH
+  qwen3.8:27b #69 hard: OK  '23' 43.53s
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b #70 hard: CRASH
+  HTTP 500 from Ollama, retrying (2 left)
+  HTTP 500 from Ollama, retrying (1 left)
+  qwen3.8:27b #71 hard: CRASH
+  qwen3.8:27b #72 hard: OK  'C' 55.5s
+  qwen3.8:27b #73 hard: OK  'D' 20.54s
+  qwen3.8:27b #74 hard: OK  'B' 11.28s
+  qwen3.8:27b #75 hard: OK  'C' 75.22s
+  qwen3.8:27b #76 hard: OK  'pass' 32.23s
+  qwen3.8:27b #77 hard: OK  'pass' 9.61s
+  qwen3.8:27b #78 hard: OK  'pass' 19.89s
+  qwen3.8:27b #79 hard: OK  'pass' 13.8s
+  qwen3.8:27b #80 hard: OK  'pass' 13.85s
+  qwen3.8:27b: {'overall_pct': 91.2, 'everyday_pct': 98.3, 'math_pct': 95.0, 'knowledge_pct': 100.0, 'coding_pct': 100.0, 'hard_pct': 70.0, 'avg_seconds_per_question': 18.5, 'total_minutes': 22.5, 'thought_before_answering': False, 'hit_token_limit': 0, 'crashed': 7}
+== done all Wed Oct 14 18:19:45 CDT 2026
+== deepseek-r1:latest
+  deepseek-r1:latest #1 math: OK  '30.50' 190.78s
+  deepseek-r1:latest #2 math: OK  '288' 43.57s
+  deepseek-r1:latest #3 math: OK  '162' 54.28s
+  deepseek-r1:latest #4 math: OK  '72' 27.52s
+  deepseek-r1:latest #5 math: OK  '32.4' 168.76s
+  deepseek-r1:latest #6 math: OK  '40' 32.43s
+  deepseek-r1:latest #7 math: OK  '9368' 217.29s
+  deepseek-r1:latest #8 math: OK  '13.75' 61.78s
+  deepseek-r1:latest #9 math: OK  '294' 62.95s
+  deepseek-r1:latest #10 math: OK  '45' 87.24s
+  deepseek-r1:latest #11 math: OK  '9' 90.12s
+  deepseek-r1:latest #12 math: OK  '33.04' 92.95s
+  deepseek-r1:latest #13 math: OK  '123' 61.97s
+  deepseek-r1:latest #14 math: OK  '24' 96.42s
+  deepseek-r1:latest #15 math: OK  '2' 63.06s
+  deepseek-r1:latest #16 math: OK  '5624.32' 211.27s
+  deepseek-r1:latest #17 math: OK  '18' 25.31s
+  deepseek-r1:latest #18 math: BAD None 233.33s
+  deepseek-r1:latest #19 math: OK  '80' 24.49s
+  deepseek-r1:latest #20 math: OK  '60' 81.7s
+  deepseek-r1:latest: {'overall_pct': 72.5, 'everyday_pct': 88.3, 'math_pct': 95.0, 'knowledge_pct': 100.0, 'coding_pct': 70.0, 'hard_pct': 25.0, 'avg_seconds_per_question': 106.4, 'total_minutes': 141.8, 'thought_before_answering': True, 'hit_token_limit': 21, 'crashed': 0}
+== deepseek-r1:latest
+  deepseek-r1:latest #21 knowledge: OK  'B' 29.47s
+  deepseek-r1:latest #22 knowledge: OK  'A' 17.85s
+  deepseek-r1:latest #23 knowledge: OK  'D' 40.59s
+  deepseek-r1:latest #24 knowledge: OK  'C' 12.0s
+  deepseek-r1:latest #25 knowledge: OK  'B' 22.52s
+  deepseek-r1:latest #26 knowledge: OK  'D' 51.1s
+  deepseek-r1:latest #27 knowledge: OK  'D' 99.8s
+  deepseek-r1:latest #28 knowledge: OK  'B' 59.35s
+  deepseek-r1:latest #29 knowledge: OK  'C' 26.06s
+  deepseek-r1:latest #30 knowledge: OK  'A' 35.74s
+  deepseek-r1:latest #31 knowledge: OK  'D' 46.18s
+  deepseek-r1:latest #32 knowledge: OK  'B' 22.53s
+  deepseek-r1:latest #33 knowledge: OK  'B' 24.15s
+  deepseek-r1:latest #34 knowledge: OK  'C' 26.97s
+  deepseek-r1:latest #35 knowledge: OK  'A' 16.61s
+  deepseek-r1:latest #36 knowledge: OK  'B' 13.11s
+  deepseek-r1:latest #37 knowledge: OK  'C' 104.67s
+  deepseek-r1:latest #38 knowledge: OK  'B' 24.27s
+  deepseek-r1:latest #39 knowledge: OK  'B' 31.18s
+  deepseek-r1:latest #40 knowledge: OK  'C' 40.61s
+  deepseek-r1:latest: {'overall_pct': 72.5, 'everyday_pct': 88.3, 'math_pct': 95.0, 'knowledge_pct': 100.0, 'coding_pct': 70.0, 'hard_pct': 25.0, 'avg_seconds_per_question': 106.0, 'total_minutes': 141.4, 'thought_before_answering': True, 'hit_token_limit': 21, 'crashed': 0}

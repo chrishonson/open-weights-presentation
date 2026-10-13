@@ -1,0 +1,148 @@
+{
+  "measured_at": "2026-10-24T15:36:59",
+  "ollama_version": "0.40.6",
+  "models": {
+    "gemma4:26b-nvfp4": {
+      "speed_runs": [
+        {
+          "response": "A refrigerator keeps food cold through a continuous cycle of evaporation and condensation involving a chemical called **refrigerant**. Contrary to popular belief, a fridge doesn't \"create cold\"; instead, it works by **removing heat** from the interior and releasing it outside.\n\nThe process begins with the **evaporator coils** located inside the fridge. The liquid refrigerant passes through these coils, where it absorbs heat from the air inside the compartment. As it absorbs this heat, the refrigerant evaporates and turns into a gas.\n\nThis low-pressure gas is then sucked into a **compressor**, which acts as the heart of the system. The compressor squeezes the gas, significantly increasing its pressure and temperature. This hot, high-pressure gas then flows through the **condenser coils** (usually located at the back or bottom of the unit). As the gas travels through these coils, it releases its heat into the surrounding room air and cools down, turning back into a liquid.\n\nFinally, the liquid passes through an **expansion valve**, which drops the pressure and temperature rapidly before the refrigerant enters the evaporator to start the cycle again. This constant loop effectively \"pumps\" heat out of the fridge, maintaining a steady, cold temperature.",
+          "seconds": 4.486163540743291,
+          "time_to_first_text_s": 0.19420062471181154,
+          "last_text_s": 4.48611312545836,
+          "completion_tokens_per_total_second": 55.50399528206775,
+          "usage": {
+            "prompt_tokens": 28,
+            "prompt_tokens_details": {
+              "cached_tokens": 4
+            },
+            "completion_tokens": 249,
+            "total_tokens": 277
+          },
+          "finish_reason": "stop",
+          "metadata": {
+            "id": "chatcmpl-98",
+            "model": "gemma4:26b-nvfp4",
+            "system_fingerprint": "fp_ollama"
+          }
+        },
+        {
+          "response": "A refrigerator keeps food cold through a continuous cycle of evaporation and condensation, using a chemical called **refrigerant**. Instead of \"creating cold,\" the machine actually works by removing heat from the inside of the compartment and dumping it outside.\n\nThe process begins with the **evaporator coils** located inside the fridge. The liquid refrigerant passes through these coils, where it absorbs heat from the air inside the unit. As it absorbs this heat, the refrigerant evaporates and turns into a low-pressure gas.\n\nThis gas is then sucked into a **compressor**, which acts as the heart of the system. The compressor squeezes the gas, significantly increasing its pressure and temperature. This hot, high-pressure gas then flows into the **condenser coils** (usually located at the back or bottom of the fridge). As the gas travels through these coils, it releases its heat into the surrounding room air and cools down, turning back into a liquid.\n\nFinally, the liquid passes through an **expansion valve**, which drops the pressure and temperature rapidly before the refrigerant enters the evaporator to start the cycle again. This constant loop effectively \"pumps\" heat out of the fridge, maintaining a steady, cold temperature.",
+          "seconds": 4.3819935424253345,
+          "time_to_first_text_s": 0.1549986256286502,
+          "last_text_s": 4.38196475058794,
+          "completion_tokens_per_total_second": 55.45421225461345,
+          "usage": {
+            "prompt_tokens": 28,
+            "prompt_tokens_details": {
+              "cached_tokens": 27
+            },
+            "completion_tokens": 243,
+            "total_tokens": 271
+          },
+          "finish_reason": "stop",
+          "metadata": {
+            "id": "chatcmpl-932",
+            "model": "gemma4:26b-nvfp4",
+            "system_fingerprint": "fp_ollama"
+          }
+        },
+        {
+          "response": "A refrigerator keeps food cold through a continuous cycle of evaporation and condensation, using a chemical called **refrigerant**. Instead of \"creating cold,\" the machine actually works by removing heat from the inside of the compartment and dumping it outside.\n\nThe process begins with the **evaporator coils** located inside the fridge. The liquid refrigerant passes through these coils, where it absorbs heat from the air inside the unit. As it absorbs this heat, the refrigerant evaporates and turns into a low-pressure gas.\n\nThis gas is then sucked into a **compressor**, which acts as the heart of the system. The compressor squeezes the gas, significantly increasing its pressure and temperature. This high-pressure, hot gas then flows into the **condenser coils** (usually located at the back or bottom of the fridge). As the gas travels through these coils, it releases its heat into the surrounding room air and cools down, turning back into a liquid.\n\nFinally, the liquid passes through an **expansion valve**, which drops the pressure and temperature rapidly before the refrigerant enters the evaporator to start the cycle again. This constant loop effectively \"pumps\" heat out of the fridge, maintaining a steady, cold temperature.",
+          "seconds": 4.4011559169739485,
+          "time_to_first_text_s": 0.08304254151880741,
+          "last_text_s": 4.401100916787982,
+          "completion_tokens_per_total_second": 55.21276786919121,
+          "usage": {
+            "prompt_tokens": 28,
+            "prompt_tokens_details": {
+              "cached_tokens": 27
+            },
+            "completion_tokens": 243,
+            "total_tokens": 271
+          },
+          "finish_reason": "stop",
+          "metadata": {
+            "id": "chatcmpl-757",
+            "model": "gemma4:26b-nvfp4",
+            "system_fingerprint": "fp_ollama"
+          }
+        }
+      ],
+      "summary": {
+        "median_time_to_first_text_s": 0.1549986256286502,
+        "median_completion_tokens_per_total_second": 55.45421225461345
+      }
+    },
+    "qwen3.8:27b": {
+      "speed_runs": [
+        {
+          "response": "A refrigerator maintains a low internal temperature through a continuous cycle of heat transfer, rather than by generating cold itself. The process relies on a refrigerant, a chemical substance that changes state between liquid and gas.\n\nAt the heart of the system is the compressor, which pressurizes the refrigerant, turning it into a hot, high-pressure gas. This gas flows through condenser coils, typically located at the back or bottom of the unit. As it passes through these coils, it releases heat to the surrounding room air, causing the refrigerant to condense back into a liquid.\n\nThis high-pressure liquid then passes through an expansion valve, which drastically reduces its pressure. This sudden drop in pressure causes the refrigerant to evaporate rapidly into a low-pressure gas. This phase change absorbs a significant amount of heat from the interior of the refrigerator, effectively cooling the air and the food inside.\n\nThe now-cold, low-pressure gas returns to the compressor to begin the cycle again. By constantly moving heat from the inside of the fridge to the outside environment, the system maintains a stable, cool temperature, preserving food freshness and slowing bacterial growth.",
+          "seconds": 15.611877208575606,
+          "time_to_first_text_s": 0.501631542108953,
+          "last_text_s": 15.500957291573286,
+          "completion_tokens_per_total_second": 14.732373111009416,
+          "usage": {
+            "prompt_tokens": 28,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens": 230,
+            "total_tokens": 258
+          },
+          "finish_reason": "stop",
+          "metadata": {
+            "id": "chatcmpl-206",
+            "model": "qwen3.8:27b",
+            "system_fingerprint": "fp_ollama"
+          }
+        },
+        {
+          "response": "A refrigerator maintains a low internal temperature by utilizing a continuous thermodynamic cycle known as vapor-compression refrigeration. This process relies on a specialized fluid called a refrigerant, which circulates through a closed loop of pipes and components. The cycle begins when a compressor, typically located at the back or bottom of the unit, pressurizes the refrigerant gas. This high-pressure gas then flows into the condenser coils, where it releases heat to the surrounding room air, causing the refrigerant to condense into a high-pressure liquid.\n\nNext, this liquid passes through an expansion valve, which drastically reduces its pressure. As the pressure drops, the refrigerant evaporates into a low-pressure gas within the evaporator coils located inside the fridge compartment. This phase change from liquid to gas requires energy, which is absorbed from the interior air and the food, effectively cooling them down. The now-cold, low-pressure gas returns to the compressor to restart the cycle. By constantly moving heat from the inside of the refrigerator to the outside environment, the system maintains a stable, cool temperature, preserving food freshness and slowing bacterial growth.",
+          "seconds": 16.71850787475705,
+          "time_to_first_text_s": 0.36559979151934385,
+          "last_text_s": 16.71844312455505,
+          "completion_tokens_per_total_second": 13.458138829465943,
+          "usage": {
+            "prompt_tokens": 28,
+            "prompt_tokens_details": {
+              "cached_tokens": 23
+            },
+            "completion_tokens": 225,
+            "total_tokens": 253
+          },
+          "finish_reason": "stop",
+          "metadata": {
+            "id": "chatcmpl-169",
+            "model": "qwen3.8:27b",
+            "system_fingerprint": "fp_ollama"
+          }
+        },
+        {
+          "response": "A refrigerator maintains a low internal temperature by utilizing a continuous thermodynamic cycle known as vapor-compression refrigeration. This process relies on a specialized fluid called a refrigerant, which circulates through a closed loop of pipes and components. The cycle begins when a compressor, typically located at the back or bottom of the unit, pressurizes the refrigerant gas. This high-pressure gas then flows into the condenser coils, where it releases heat to the surrounding room air, causing the refrigerant to condense into a high-pressure liquid.\n\nNext, this liquid passes through an expansion valve, which drastically reduces its pressure. As the pressure drops, the refrigerant evaporates into a low-pressure gas within the evaporator coils located inside the refrigerator compartment. This phase change from liquid to gas requires energy, which is absorbed from the interior air and the food, effectively cooling them down. The now-cold, low-pressure gas returns to the compressor to restart the cycle. By constantly moving heat from the inside of the fridge to the outside environment, the system maintains a stable, cool temperature, preserving food freshness and slowing bacterial growth.",
+          "seconds": 15.926827374845743,
+          "time_to_first_text_s": 0.16548850014805794,
+          "last_text_s": 15.926708375103772,
+          "completion_tokens_per_total_second": 14.1271073456448,
+          "usage": {
+            "prompt_tokens": 28,
+            "prompt_tokens_details": {
+              "cached_tokens": 27
+            },
+            "completion_tokens": 225,
+            "total_tokens": 253
+          },
+          "finish_reason": "stop",
+          "metadata": {
+            "id": "chatcmpl-923",
+            "model": "qwen3.8:27b",
+            "system_fingerprint": "fp_ollama"
+          }
+        }
+      ],
+      "summary": {
+        "median_time_to_first_text_s": 0.36559979151934385,
+        "median_completion_tokens_per_total_second": 14.1271073456448
+      }
+    }
+  }
+}

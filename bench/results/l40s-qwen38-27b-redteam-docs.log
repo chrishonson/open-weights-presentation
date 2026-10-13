@@ -1,0 +1,7 @@
+l40s-ollama qwen3.8-27b-redteam-262k:latest: smoke OK
+  document 2048: {'context': 2048, 'document_chars': 5898, 'prompt_tokens': 1871, 'wait_before_first_text_s': 1.16, 'reading_tok_s': 1618.9, 'reply_tokens': 200, 'seconds': 6.43}
+  document 8192: {'context': 8192, 'document_chars': 23592, 'prompt_tokens': 6506, 'wait_before_first_text_s': 2.9, 'reading_tok_s': 2239.6, 'reply_tokens': 169, 'seconds': 7.43}
+  document 32768: {'context': 32768, 'document_chars': 94371, 'prompt_tokens': 24497, 'wait_before_first_text_s': 9.83, 'reading_tok_s': 2492.5, 'reply_tokens': 163, 'seconds': 14.44}
+  document 131072: {'context': 131072, 'document_chars': 377487, 'prompt_tokens': 97988, 'wait_before_first_text_s': 66.84, 'reading_tok_s': 1466.1, 'reply_tokens': 176, 'seconds': 72.97}
+  document 262144: {'context': 262144, 'document_chars': 754974, 'prompt_tokens': 203291, 'wait_before_first_text_s': 273.92, 'reading_tok_s': 742.2, 'reply_tokens': 200, 'seconds': 282.85}
+l40s-ollama qwen3.8-27b-redteam-262k:latest: {}

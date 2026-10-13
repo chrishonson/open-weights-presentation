@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "venue": "openrouter",
+  "server": "OpenRouter, pinned to DeepInfra",
+  "base_url": "https://openrouter.ai/api/v1",
+  "measured_at": "2026-10-26T20:28:38.058101+00:00",
+  "model": "qwen/qwen3.8-27b",
+  "local_baseline_tag": null,
+  "precision": "bf16",
+  "expect_provider": "DeepInfra",
+  "settings": {
+    "set": "challenge",
+    "temperature": 0,
+    "seed": 0,
+    "think": false,
+    "max_tokens": 6144,
+    "extra": {
+      "reasoning": {
+        "enabled": false
+      },
+      "provider": {
+        "only": [
+          "deepinfra/bf16"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true,
+        "quantizations": [
+          "bf16"
+        ]
+      }
+    },
+    "prompt_sha256": "947a45010c59f1a9eb991bb5705522b5160c2b26f82aa71dffb34e734a0b157d"
+  },
+  "timing": "Client wall time, including the network between this Mac and the server. First text is the first nonempty visible text chunk. Throughput is completion tokens / total request seconds.",
+  "status": "complete",
+  "questions": [],
+  "speed_runs": [],
+  "documents": [
+    {
+      "context": 2048,
+      "document_chars": 5898,
+      "prompt_tokens": 1685,
+      "wait_before_first_text_s": 0.47,
+      "reading_tok_s": 3552.7,
+      "reply_tokens": 200,
+      "seconds": 16.33,
+      "cost": 0.00062775
+    },
+    {
+      "context": 8192,
+      "document_chars": 23592,
+      "prompt_tokens": 6321,
+      "wait_before_first_text_s": 13.31,
+      "reading_tok_s": 474.8,
+      "reply_tokens": 183,
+      "seconds": 17.29,
+      "cost": 0.001291275
+    },
+    {
+      "context": 32768,
+      "document_chars": 94371,
+      "prompt_tokens": 24314,
+      "wait_before_first_text_s": 3.06,
+      "reading_tok_s": 7951.6,
+      "reply_tokens": 198,
+      "seconds": 8.07,
+      "cost": 0.00401835
+    },
+    {
+      "context": 131072,
+      "document_chars": 377487,
+      "prompt_tokens": 97806,
+      "wait_before_first_text_s": 13.13,
+      "reading_tok_s": 7450.7,
+      "reply_tokens": 200,
+      "seconds": 43.58,
+      "cost": 0.0150459
+    },
+    {
+      "context": 262144,
+      "document_chars": 754974,
+      "prompt_tokens": 203104,
+      "wait_before_first_text_s": 26.98,
+      "reading_tok_s": 7526.7,
+      "reply_tokens": 171,
+      "seconds": 31.99,
+      "cost": 0.030786225
+    }
+  ],
+  "smoke": {
+    "response": "OK",
+    "seconds": 0.4712644163519144,
+    "time_to_first_text_s": 0.44829741679131985,
+    "last_text_s": 0.44829741679131985,
+    "completion_tokens_per_total_second": 4.243902001942175,
+    "usage": {
+      "prompt_tokens": 17,
+      "completion_tokens": 2,
+      "total_tokens": 19,
+      "cost": 6.3e-06,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.3e-06,
+        "upstream_inference_prompt_cost": 2.55e-06,
+        "upstream_inference_completions_cost": 3.75e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finish_reason": "stop",
+    "metadata": {
+      "id": "gen-1793046518-XuU5yiqFDnBwOX9hJ2FE",
+      "model": "qwen/qwen3.8-27b",
+      "provider": "DeepInfra"
+    }
+  },
+  "summary": {
+    "reported_cost_usd": 0.0517758
+  }
+}

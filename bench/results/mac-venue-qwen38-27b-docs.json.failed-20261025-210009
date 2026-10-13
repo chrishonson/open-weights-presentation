@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "venue": "mac-ollama",
+  "server": "Ollama 0.40.6",
+  "base_url": "http://127.0.0.1:11436/v1",
+  "measured_at": "2026-10-25T13:22:23.563629+00:00",
+  "model": "qwen3.8:27b",
+  "local_baseline_tag": "qwen3.8:27b",
+  "precision": "nvfp4",
+  "settings": {
+    "set": "challenge",
+    "temperature": 0,
+    "seed": 0,
+    "think": false,
+    "max_tokens": 6144,
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "prompt_sha256": "947a45010c59f1a9eb991bb5705522b5160c2b26f82aa71dffb34e734a0b157d"
+  },
+  "timing": "Client wall time, including the network between this Mac and the server. First text is the first nonempty visible text chunk. Throughput is completion tokens / total request seconds.",
+  "status": "incomplete",
+  "questions": [],
+  "speed_runs": [],
+  "documents": [
+    {
+      "context": 2048,
+      "document_chars": 5898,
+      "prompt_tokens": 1688,
+      "wait_before_first_text_s": 18.59,
+      "reading_tok_s": 90.8,
+      "reply_tokens": 200,
+      "seconds": 32.29
+    },
+    {
+      "context": 8192,
+      "document_chars": 23592,
+      "prompt_tokens": 6321,
+      "wait_before_first_text_s": 77.24,
+      "reading_tok_s": 81.8,
+      "reply_tokens": 178,
+      "seconds": 91.63
+    },
+    {
+      "context": 32768,
+      "document_chars": 94371,
+      "prompt_tokens": 24314,
+      "wait_before_first_text_s": 315.54,
+      "reading_tok_s": 77.1,
+      "reply_tokens": 200,
+      "seconds": 333.46
+    },
+    {
+      "context": 131072,
+      "document_chars": 377487,
+      "prompt_tokens": 97809,
+      "wait_before_first_text_s": 1820.66,
+      "reading_tok_s": 53.7,
+      "reply_tokens": 200,
+      "seconds": 1844.43
+    }
+  ],
+  "smoke": {
+    "response": "OK",
+    "seconds": 7.399467582814395,
+    "time_to_first_text_s": 7.343766916543245,
+    "last_text_s": 7.343766916543245,
+    "completion_tokens_per_total_second": 0.13514485857368252,
+    "usage": {
+      "prompt_tokens": 17,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens": 1,
+      "total_tokens": 18
+    },
+    "finish_reason": "stop",
+    "metadata": {
+      "id": "chatcmpl-172",
+      "model": "qwen3.8:27b",
+      "system_fingerprint": "fp_ollama"
+    }
+  },
+  "error": "RuntimeError: Document request failed with HTTP 500; not a context-limit result."
+}

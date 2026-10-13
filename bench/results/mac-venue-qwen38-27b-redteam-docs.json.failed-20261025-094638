@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "venue": "mac-ollama",
+  "server": "Ollama 0.40.6",
+  "base_url": "http://127.0.0.1:11436/v1",
+  "measured_at": "2026-10-25T06:10:57.847806+00:00",
+  "model": "rafw007/qwen3.8-27b-redteam:latest",
+  "local_baseline_tag": "rafw007/qwen3.8-27b-redteam:latest",
+  "precision": "Q4_K_M",
+  "settings": {
+    "set": "challenge",
+    "temperature": 0,
+    "seed": 0,
+    "think": false,
+    "max_tokens": 6144,
+    "extra": {
+      "reasoning_effort": "none"
+    },
+    "prompt_sha256": "947a45010c59f1a9eb991bb5705522b5160c2b26f82aa71dffb34e734a0b157d"
+  },
+  "timing": "Client wall time, including the network between this Mac and the server. First text is the first nonempty visible text chunk. Throughput is completion tokens / total request seconds.",
+  "status": "incomplete",
+  "questions": [],
+  "speed_runs": [],
+  "documents": [
+    {
+      "context": 2048,
+      "document_chars": 5898,
+      "prompt_tokens": 1868,
+      "wait_before_first_text_s": 17.41,
+      "reading_tok_s": 107.3,
+      "reply_tokens": 200,
+      "seconds": 43.61
+    },
+    {
+      "context": 8192,
+      "document_chars": 23592,
+      "prompt_tokens": 6504,
+      "wait_before_first_text_s": 67.48,
+      "reading_tok_s": 96.4,
+      "reply_tokens": 163,
+      "seconds": 88.89
+    },
+    {
+      "context": 32768,
+      "document_chars": 94371,
+      "prompt_tokens": 24500,
+      "wait_before_first_text_s": 283.03,
+      "reading_tok_s": 86.6,
+      "reply_tokens": 181,
+      "seconds": 308.28
+    }
+  ],
+  "smoke": {
+    "response": "OK",
+    "seconds": 9.507558417506516,
+    "time_to_first_text_s": 9.431968209333718,
+    "last_text_s": 9.431968209333718,
+    "completion_tokens_per_total_second": 0.21035894939307948,
+    "usage": {
+      "prompt_tokens": 201,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens": 2,
+      "total_tokens": 203
+    },
+    "finish_reason": "stop",
+    "metadata": {
+      "id": "chatcmpl-450",
+      "model": "rafw007/qwen3.8-27b-redteam:latest",
+      "system_fingerprint": "fp_ollama"
+    }
+  },
+  "error": "RuntimeError: Document request failed with HTTP 400; not a context-limit result."
+}
